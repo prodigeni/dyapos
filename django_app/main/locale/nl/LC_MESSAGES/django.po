@@ -40,7 +40,7 @@ msgstr "E-mailadres is al in gebruik"
 
 #: forms/user.py:43
 msgid "error_user_or_password_incorrect"
-msgstr Gebruikersnaam of wachtwoord onjuist"
+msgstr "Gebruikersnaam of wachtwoord onjuist"
 
 #: forms/user.py:47
 msgid "error_account_not_activated"
@@ -329,7 +329,7 @@ msgstr "Samenwerking"
 
 #: templates/index.html:47
 msgid "slide_html5_css3"
-msgstr "Html5 CCS3"
+msgstr "HTML5 + CSS3"
 
 #: templates/index.html:51
 msgid "slide_no_flash"
