@@ -15,5 +15,7 @@ def change_language(request, lang):
         request.session['django_language'] = "it"
     elif lang == "de":
         request.session['django_language'] = "de"
+    elif lang == "nl":
+        request.session['django_language'] = "nl"
     
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
