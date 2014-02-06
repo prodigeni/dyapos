@@ -2,7 +2,7 @@
 
 ## Test Dyapos here: [dyapos.heroku.com](http://dyapos.heroku.com)
 
-## If you want to install Dyapos on your computer for testing go [here](https://github.com/edwardoyarzun/dyapos/wiki/Installation-in-your-computer)
+### If you want to install Dyapos on your computer for testing, go [here](https://github.com/edwardoyarzun/dyapos/wiki/Installation-in-your-computer)
 
 # License
 
