@@ -91,58 +91,22 @@ def presentation(request, key):
 def create(request):
 	"""Create a new presentation"""
 
-	# if data are received from the view
 	if request.method == "POST":
-		# get data from the form
 		form = NewPresentationForm(request.POST)
 		if form.is_valid():
-			name = form.cleaned_data["name"]
-			description = form.cleaned_data["description"]
+			presentation = Presentation(name = form.cleaned_data["name"],
+										description = form.cleaned_data["description"],
+										key = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10],
+										is_private = form.cleaned_data["is_private"])
 
-			# set default theme (id=1)
-			theme_id = 1
-
-			# set the number of views and likes to 0
-			num_views = num_likes = 0
-
-			# set status=1 (active)
-			status = 1
-
-			# set the presentation key based on a random SHA1 string
-			key = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10]
-
-			# set public=1 (public is default)
-			is_private = form.cleaned_data["is_private"]
-
-			# create a Presentation object with its parameters
-			presentation = Presentation(theme_id=theme_id,
-										name=name,
-										description=description,
-										status=status,
-										key=key,
-										is_private=is_private,
-										num_views=num_views,
-										num_likes=num_likes
-										)
-
-			# save the presentation to the database
 			presentation.save()
-
-			# create a UserPresentation object to associate the user with the created presentation ID
-			userpresentation = UserPresentation(user_id=request.user.id,
-												presentation_id=presentation.id,
-												is_owner=1,
-												can_edit=1,
-												)
-
-			# save the association to the database
-			userpresentation.save()
+			
+			presentation.associate_to_user(request.user, True, True)
 
 			# redirect to the edit page of the created presentation
 			return HttpResponseRedirect("/edit/" + str(presentation.key))
 
 	form = NewPresentationForm()
-	# redirect to home page
 	return render_to_response("home.html", {"form":form}, context_instance=RequestContext(request))
 
 
@@ -574,7 +538,5 @@ def load_featured(request):
 
 @login_required(login_url="/")
 def like(request, id):
-	p = Presentation.objects.get(pk=id)
-	p.num_likes += 1
-	p.save()
+	p = Presentation.objects.get(pk=id).like()
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
