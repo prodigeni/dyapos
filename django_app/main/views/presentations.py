@@ -9,7 +9,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-# from django.utils import simplejson
 import json
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseNotFound
@@ -29,12 +28,13 @@ import os
 import pymongo
 from bson.objectid import ObjectId
 
+
 def presentation(request, key):
 	"""Show the presentation page with info, mini preview, comments and other options """
 
 	# search the presentation based on its key
 	p = Presentation.objects.filter(key=key).first()
-
+	
 	# if presentation exists
 	if p is not None:
 		if p.is_private:
@@ -46,9 +46,7 @@ def presentation(request, key):
 		modify_description_form = ModifyDescriptionForm({"description":p.description})
 
 		# Load comments from presentation's ID
-		from main.models import Comment
-		c = Comment()
-		comments = c.get_from_presentation(p.id)
+		comments = p.comment_set.get_queryset()
 
 		# generate comment form
 		comment_form = CommentForm()

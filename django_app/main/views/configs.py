@@ -2,7 +2,13 @@
 
 from django.http import HttpResponseRedirect
 
+
 def change_language(request, lang):
+    """Set the application's language
+    Args:
+        lang (str): language code
+    """
+    
     if lang == "en":
         request.session['django_language'] = "en"
     elif lang == "es":

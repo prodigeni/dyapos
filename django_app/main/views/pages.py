@@ -12,8 +12,9 @@ from main.forms.user import LoginForm
 def index(request):
 	"""Show the main page"""
 	
-	if request.user.username:
+	if request.user.is_authenticated():
 		if request.path == "/":
+			# show the user's home page
 			return HttpResponseRedirect("/home")
 
 	return render_to_response('index.html', context_instance=RequestContext(request))

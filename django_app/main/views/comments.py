@@ -14,29 +14,25 @@ def comment(request):
 	if request.method == "POST":
 		form = CommentForm(request.POST)
 		if form.is_valid():
-			presentation_id = form.cleaned_data["presentation_id"]
-			comment = form.cleaned_data["comment"]
-			user_id = request.user.id  #get the ID of the user that posted the comment
-			c = Comment(user_id=user_id,
-						presentation_id=presentation_id,
-						comment=comment,
-						)
+			c = Comment(user_id = request.user.id,
+						presentation_id = form.cleaned_data["presentation_id"],
+						comment = form.cleaned_data["comment"])
 			c.save()
 
-	#Reload the same page
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
-# @login_required(login_url="/")
+@login_required(login_url="/")
 def delete(request, id):
-	"""Delete a comment"""
+	"""Delete a comment
+	Args:
+		id (int): Id of the presentation to delete
+	"""
 
-	comment = Comment.objects.get(pk=id)
-	presentation_id = comment.presentation.id
-	uspr = UserPresentation.objects.filter(user_id=request.user.id, presentation_id=presentation_id, is_owner=1)
-	
-	# If the user is the owner of the presentation
-	if uspr.exists():
+ 	comment = Comment.objects.get(pk=id)
+ 	presentation = comment.presentation
+
+	# only the owner of the presentation can delete the comment
+	if presentation.is_owner(request.user):
 		comment.delete()
  	
-	#Reload the same page
  	return HttpResponseRedirect(request.META["HTTP_REFERER"])	

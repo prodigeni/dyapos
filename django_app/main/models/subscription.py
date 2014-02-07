@@ -1,11 +1,10 @@
 from django.db import models
-from main.models.plan import Plan
 from django.contrib.auth.models import User
 
 class Subscription(models.Model):
 	# Attributes:
 	user = models.ForeignKey(User)
-	plan = models.ForeignKey(Plan)
+	plan = models.ForeignKey("Plan")
 	start_date = models.DateTimeField()
 	end_date = models.DateTimeField()
 	monthly = models.BooleanField()

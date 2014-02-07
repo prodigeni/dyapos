@@ -9,9 +9,10 @@ from django.views.decorators.csrf import csrf_exempt
 from json import dumps
 from django.template.context import RequestContext
 
+
 @csrf_exempt
 def selectlist(request):
-    ''' Load a list of themes '''
+    """Load a list of themes"""
     
     if request.user.is_authenticated():
         # note: it will be modified later for filtering custom themes according to the user
@@ -34,7 +35,7 @@ def selectlist(request):
 @login_required(login_url="/")  
 @csrf_exempt  
 def select(request):
-    ''' Select a theme from the list and applies it to the presentation '''
+    """Select a theme from the list and applies it to the presentation"""
     presentation_id = request.POST["presentation_id"]
     theme_id = request.POST["theme_id"]
     p = Presentation.objects.get(id=presentation_id)
@@ -44,7 +45,7 @@ def select(request):
     return HttpResponse("Theme changed")
 
 def preview(request, id):
-    ''' Render a preview of the theme according to the passed ID '''
+    """Render a preview of the theme according to the passed ID"""
     
     theme = Theme.objects.get(pk=id)
     
