@@ -45,7 +45,7 @@ class Presentation(models.Model):
 	def increase_num_views(self):
 		"""Increases the number of views by one on the presentation"""
 		
-		# I don't know how to do it, because it increases every time I refresh the page with F5
+		# NOTE: I don't know how to do it, because it increases every time I refresh the page with F5
 		pass
 	
 	def is_owner(self, user):

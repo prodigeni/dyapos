@@ -1,6 +1,6 @@
 # Dyapos
 
-## Test Dyapos here: [dyapos.heroku.com](http://dyapos.heroku.com)
+## Visit Dyapos here: [www.dyapos.net](http://www.dyapos.net)
 
 ### If you want to install Dyapos on your computer for testing, go [here](https://github.com/edwardoyarzun/dyapos/wiki/Installation-in-your-computer)
 

@@ -75,7 +75,10 @@ class ChangePasswordForm(forms.Form):
 
 		return self.cleaned_data
 
-class ProfileForm(forms.Form):
+class ProfileForm(forms.ModelForm):
 	first_name = forms.CharField(max_length=15)
 	last_name = forms.CharField(max_length=15)
 	email = forms.EmailField()
+	
+	class Meta:
+		model = User

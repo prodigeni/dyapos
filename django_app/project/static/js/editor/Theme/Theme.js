@@ -2,9 +2,11 @@ define(["Slide"], function(Slide) {
 
 	// Load a list of available themes from server into a JSON format
 	var loadList = function() {
-		var url = "/themes_selectlist";
+		var url = "/theme/load-list";
 		$.post(url, function(data) {
-			data = JSON.parse(data);
+			data = {
+				themes : JSON.parse(data)
+			};
 			var template = document.getElementById("template-theme").innerHTML;
 			var view = Mustache.render(template, data);
 			document.getElementById("themes-list").innerHTML = view;
@@ -20,7 +22,7 @@ define(["Slide"], function(Slide) {
 		currentStylesheetURL = currentStylesheetURL.replace(/,/g, "/");
 		currentStyleSheet.href = currentStylesheetURL;
 		//Save to database
-		var url = "/themes_select";
+		var url = "/theme/set";
 		var theme_id = name.split("_");
 		var theme_id = theme_id[theme_id.length - 1];
 		if (!is_anonymous) {

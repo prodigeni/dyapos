@@ -17,137 +17,100 @@ from django.forms.forms import NON_FIELD_ERRORS
 
 
 def signup(request):
-    """Register a new user"""
-    return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
+	"""Register a new user"""
+	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
+	
+	if request.method == "POST":
+		form = SignupForm(request.POST)
+		if form.is_valid():
+			'''Generate a random username (format: username + underscore + random md5 string).
+			username is not so important, because users log in with their email address'''
+			username = form.cleaned_data["email"].split("@")[0] + "_" + hashlib.md5(str(datetime.datetime.now())).hexdigest()[:5]
+			
+			user = User(username = username,
+						first_name = form.cleaned_data["first_name"],
+						last_name = form.cleaned_data["last_name"],
+						email = form.cleaned_data["email"],
+						is_superuser = 0,
+						is_active = 1,
+						is_staff = 0)
+			
+			# set the password using a cryptographic algorithm
+			user.set_password(form.cleaned_data["password"])
+			user.save()
+			
+			# redirect to main page
+			return HttpResponseRedirect("/")
+		else:
+			return render_to_response("signup.html", { "form": form }, context_instance=RequestContext(request))
 
-    # if data are received from the form
-    if request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid():
-		    # Get data from the signup form
-		    first_name = form.cleaned_data["first_name"]
-		    last_name = form.cleaned_data["last_name"]
-		    email = form.cleaned_data["email"]
-		    password = form.cleaned_data["password"]
-
-		    '''Generate a random username (format: username + underline + random md5 string).
-		    username is not so important, because the users log in with their email address'''
-		    username = email.split("@")[0] + "_" + hashlib.md5(str(datetime.datetime.now())).hexdigest()[:5]
-		    newuser = User(username=username,
-		            first_name=first_name,
-		            last_name=last_name,
-		            email=email,
-		            is_superuser=0,
-		            is_active=1,
-		            is_staff=0,
-		            )
-
-		    # hash the password using a cryptographic algorithm
-		    newuser.set_password(password)
-		    newuser.save()
-
-		    # redirect to main page
-		    return HttpResponseRedirect("/")
-        else:
-        	return render_to_response("signup.html", { "form": form }, context_instance=RequestContext(request))
-    else:
-	    form = SignupForm()
-
-    # show signup form
-    return render_to_response("signup.html", { "form": form }, context_instance=RequestContext(request))
-
+	# show signup form
+	return render_to_response("signup.html", { "form": SignupForm() }, context_instance=RequestContext(request))
 
 def user_login(request):
-    """Login form"""
+	"""User login"""
 
-    # if already logged in
-    if request.user.username:
-        return HttpResponseRedirect("/")
-
-    form = LoginForm()
-
-    # if data are received from the form
-    if request.method == "POST":
+	# if data are received from the form
+	if request.method == "POST":
 		form = LoginForm(request.POST)
 		if form.is_valid():
-			# get data from the form
-			email = form.cleaned_data["email"]
-			password = form.cleaned_data["password"]
+			user = authenticate(username = form.cleaned_data["email"],
+								password = form.cleaned_data["password"])
 
-			# authenticate user
-			user = authenticate(username=email, password=password)
-
-			# login user
 			login(request, user)
 
 			# redirect to user's home page
 			return HttpResponseRedirect("/home")
 
-    return render_to_response("login.html", {'form':form}, context_instance=RequestContext(request))
+	return render_to_response("login.html", {'form': LoginForm()}, context_instance=RequestContext(request))
+
+@login_required(login_url="/")
+def user_logout(request):
+	"""Close user session"""
+
+	logout(request)
+	return HttpResponseRedirect("/")
 
 def recover_password(request):
-	"""Recovery password form. it's used to send an email with
-	a reset password link to the user"""
+	"""Sends a recovery password email to the user. it's send's a
+	reset a reset password link to the user"""
 
-	# if data are received from the form
 	if request.method == "POST":
 		form = RecoverPasswordForm(request.POST)
 		if form.is_valid():
-			# get data from the form
-			email = form.cleaned_data["email"]
-
-			# send the email
-			send_mail("Password recovery", "If you forgot your password, you can reset on the following link: ", "", [email], fail_silently=False)
+			send_mail("Password recovery",
+					  "If you forgot your password, you can reset on the following link: ",
+					  "",
+					  [form.cleaned_data["email"]],
+					  fail_silently = False)
 
 			# return to main page
 			return HttpResponseRedirect("/")
 		else:
-			return render_to_response("recover_password.html", {'form':form}, context_instance=RequestContext(request))
-	else:
-		form = RecoverPasswordForm()
-	# show recovery password form
-	return render_to_response("recover_password.html", {'form':form}, context_instance=RequestContext(request))
-
-
-@login_required(login_url="/")
-def user_logout(request):
-    """Close user's session"""
-
-    # logout
-    logout(request)
-
-    # redirect to main page
-    return HttpResponseRedirect("/")
-
+			return render_to_response("recover_password.html", {'form': form}, context_instance=RequestContext(request)) 
+		
+	return render_to_response("recover_password.html", {'form': RecoverPasswordForm()}, context_instance=RequestContext(request))
 
 @login_required(login_url="/")
 def profile(request):
-	"""Show and update user data"""
+	"""Shows and updates user's profile data"""
 
-	# if data are received from the form
 	if request.method == "POST":
-		# get data from the form
 		form = ProfileForm(request.POST)
 		if form.is_valid():
-			first_name = form.cleaned_data["first_name"]
-			last_name = form.cleaned_data["last_name"]
-			email = form.cleaned_data["email"]
-
 			# check if the email address is already used for another user
-			if not User.objects.filter(email=email).exclude(id=request.user.id):
-				# update user fields to the User object
-				updated_user = User.objects.filter(username=request.user)[0]
-				updated_user.first_name = first_name
-				updated_user.last_name = last_name
-				updated_user.email = email
-
-				# update user data to the database
-				updated_user.save()
+			if not User.objects.filter(email = form.cleaned_data["email"]).exclude(id = request.user.id):
+				print dir(form)
+				form.save()
+# 				request.user.first_name = form.cleaned_data["first_name"]
+# 				request.user.last_name = form.cleaned_data["last_name"]
+# 				request.user.email = form.cleaned_data["email"]
+# 				request.user.save()
 
 				# redirect to home page
 				return HttpResponseRedirect("/profile")
-		else:
-			return render_to_response("profile.html", {"form": form}, context_instance=RequestContext(request))
+			else:
+				return render_to_response("profile.html", {"form": form}, context_instance=RequestContext(request))
 	else:
 		# get data from the user
 		user = User.objects.get(pk=request.user.id)

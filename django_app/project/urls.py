@@ -45,9 +45,9 @@ urlpatterns = patterns('',
 	url(r'^comment$', 'main.views.comments.comment'),
 	url(r'^comment/delete/(?P<id>\w+)', 'main.views.comments.delete'),
 	# Themes
-	url(r'^themes_selectlist', 'main.views.themes.selectlist'),
-	url(r'^themes_select', 'main.views.themes.select'),
-	url(r'^theme-preview/(?P<id>\w+)', 'main.views.themes.preview'),
+	url(r'^theme/load-list', 'main.views.themes.load_list'),
+	url(r'^theme/set', 'main.views.themes.set'),
+	url(r'^theme/preview/(?P<id>\w+)', 'main.views.themes.preview'),
 	# Configs
 	url(r'^lang/(?P<lang>\w+)','main.views.configs.change_language'),
 	# Other
