@@ -1,5 +1,8 @@
 from django.db import models
 from main.models.userpresentation import UserPresentation
+from django.conf import settings
+import pymongo
+import os
 
 
 class Presentation(models.Model):
@@ -49,7 +52,7 @@ class Presentation(models.Model):
 		pass
 	
 	def is_owner(self, user):
-		"""Check if the user is owner of the presentation
+		"""Checks if the user is owner of the presentation
 		Args:
 			user (User): the user to check
 		Returns:
@@ -63,7 +66,7 @@ class Presentation(models.Model):
 			return False
 	
 	def can_edit(self, user):
-		"""Check if the user can edit the presentation
+		"""Checks if the user can edit the presentation
 		Args:
 			user (User): the user to check
 		Returns:
@@ -75,3 +78,22 @@ class Presentation(models.Model):
 			return True
 		else:
 			return False
+	
+	def delete_completely(self):
+		"""Deletes the presentation completely including slides, thumbnail, and relation with other users"""
+		
+ 		thumbnail = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + self.key + ".png"
+ 		
+ 		# delete the presentation thumbnail
+ 		try:
+ 			os.remove(thumbnail)
+ 		except:
+ 			pass
+
+		# Load slides from MongoDB
+		conn = pymongo.Connection(settings.MONGODB_URI)
+		db = conn[settings.MONGODB_DATABASE]
+		db.slides.remove({"presentation_id": self.id})
+
+ 		self.delete()
+			

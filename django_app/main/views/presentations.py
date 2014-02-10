@@ -112,28 +112,17 @@ def create(request):
 def delete(request, id):
 	"""Delete a presentation"""
 
-	uspr = UserPresentation.objects.filter(presentation_id=id, user_id=request.user.id).first()
+	presentation = Presentation.objects.get(pk = id)
+	userpresentation = presentation.userpresentation_set.filter(user_id = request.user.id).first()
 
-	if uspr is not None:
-		thumbnail = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + uspr.presentation.key + ".png"
-
+	# check if is there any association between the user and the presentation
+	if userpresentation is not None:		
 		# check if the user is the owner of the presentation
- 		if uspr.is_owner:
- 			uspr.presentation.delete()
+ 		if userpresentation.is_owner:
+ 			presentation.delete_completely()
  		else:
- 			uspr.delete()
-
-		# Load slides from MongoDB
-		conn = pymongo.Connection(settings.MONGODB_URI)
-		db = conn[settings.MONGODB_DATABASE]
-		db.slides.remove({"presentation_id": id})
-		db.components.remove({"presentation_id": id})
-
-		# delete the presentation thumbnail
-		try:
-			os.remove(thumbnail)
-		except:
-			pass
+ 			# delete only the relation between the user and the presentation
+ 			userpresentation.delete()
 
 	# redirect to home page
 	return HttpResponseRedirect("/home")
