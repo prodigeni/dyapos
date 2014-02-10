@@ -14,7 +14,7 @@ from django.forms.forms import NON_FIELD_ERRORS
 
 def signup(request):
 	"""Register a new user"""
-# 	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
+ 	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
 	
 	if request.method == "POST":
 		form = SignupForm(request.POST)
