@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+import datetime, json, hashlib, urllib, re, shutil, pymongo
 from main.forms.presentation import *
 from main.forms.comment import *
 from main.models.presentation import Presentation
@@ -9,7 +10,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
-import json
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseNotFound
 from django.contrib.auth.models import User
@@ -17,15 +17,8 @@ from json import dumps
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-import datetime
-import hashlib
-import urllib
-import re
 from django.forms.formsets import formset_factory
 from django.http import Http404
-import shutil
-import os
-import pymongo
 from bson.objectid import ObjectId
 
 

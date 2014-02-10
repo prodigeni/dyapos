@@ -3,7 +3,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from main.models.comment import Comment
-from main.models.userpresentation import UserPresentation
 from main.forms.comment import *
 
 

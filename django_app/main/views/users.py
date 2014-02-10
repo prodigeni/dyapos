@@ -1,7 +1,6 @@
 # encoding: utf-8
 
-from main.models.userpresentation import UserPresentation
-from main.models.comment import Comment
+import datetime, hashlib
 from main.forms.user import *
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
@@ -10,9 +9,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-import datetime
-import hashlib
-import json
 from django.forms.forms import NON_FIELD_ERRORS
 
 
