@@ -4,4 +4,3 @@ from main.models.userpresentation import UserPresentation
 from main.models.comment import Comment
 from main.models.plan import Plan
 from main.models.subscription import Subscription
-from main.models.user import User
