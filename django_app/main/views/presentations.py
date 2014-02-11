@@ -182,43 +182,51 @@ def download(request):
 @login_required(login_url="/")
 @csrf_exempt
 def update_thumbnail(request):
-    """Update the presentation image thumbnail"""
+	"""Update the presentation image thumbnail"""
 
-    # get the data from POST
-    presentation_id = request.POST["presentation_id"]
-    image = request.POST["image"]
+	# get the presentation data based on the ID
+	presentation = Presentation.objects.get(pk = request.POST["presentation_id"])
 
-    # get the presentation data based on the ID
-    p = Presentation.objects.get(id=presentation_id)
+	# generate an image file
+	datauri = request.POST["image"]
+	imgstr = re.search(r'base64,(.*)', datauri).group(1)
+	path = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + presentation.key + ".png"
+	output = open(path, "wb")
+	output.write(imgstr.decode('base64'))
+	output.close()
 
-    # generate an image file
-    datauri = image
-    imgstr = re.search(r'base64,(.*)', datauri).group(1)
-    path = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + p.key + ".png"
-    output = open(path, "wb")
-    output.write(imgstr.decode('base64'))
-    output.close()
-
-    return HttpResponse("")
+	return HttpResponse("")
 
 @login_required(login_url="/")
 @csrf_exempt
 def upload_image(request):
-    for key, file in request.FILES.items():
-        filename = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10] + file.name
-        path = settings.MEDIA_IMAGES_ROOT + "/" + filename
-        dest = open(path, 'w')
-        if file.multiple_chunks:
-            for c in file.chunks():
-                dest.write(c)
-        else:
-            dest.write(file.read())
-        dest.close()
-    return HttpResponse(filename)
+	""" Uploads an image from a presentation slide to the server
+	Returns:
+		str: saved filename
+	"""
+	
+	for key, file in request.FILES.items():
+		filename = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10] + file.name
+		path = settings.MEDIA_IMAGES_ROOT + "/" + filename
+		dest = open(path, 'w')
+		if file.multiple_chunks:
+			for c in file.chunks():
+				dest.write(c)
+		else:
+			dest.write(file.read())
+		dest.close()
+		
+	# return the saved filename
+	return HttpResponse(filename)
 
 @login_required(login_url="/")
 @csrf_exempt
 def upload_image_from_url(request):
+	""" Uploads an URL image from a presentation slide to the server
+	Returns:
+		str: saved filename
+	"""
+	
 	url = request.POST["image_url"]
 	img = urllib.urlretrieve(url)
 	type = img[1].type
@@ -232,93 +240,100 @@ def upload_image_from_url(request):
 def view(request, key):
 	"""Show the presentation"""
 
-	# get the presentation data based on its key
-	p = Presentation.objects.get(key=key)
+	# get the presentation based on its key
+	presentation = Presentation.objects.get(key = key)
 
-	if p.is_private:
-		uspr = UserPresentation()
-		if not uspr.is_allowed(request.user.id, p.id):
+	if presentation.is_private:
+		if not presentation.is_allowed(request.user):
 			raise Http404
-
-	# Load slides from MongoDB
-	conn = pymongo.Connection(settings.MONGODB_URI)
-	db = conn[settings.MONGODB_DATABASE]
-	slides = db.slides.find({"presentation_id": p.id})
 
 	# show the presentation preview
 	return render_to_response("view.html", {
-	    "presentation":p,
-	    "slides":slides,
-	    }, context_instance=RequestContext(request))
+		"presentation": presentation,
+		"slides": presentation.get_slides(),
+		}, context_instance=RequestContext(request))
+
+@login_required(login_url="/")
+def like(request, id):
+	"""Set a like on the presentation
+	Args:
+		id (int): Presentation Id
+	"""
+	try:
+		Presentation.objects.get(pk = id).like()
+	except ObjectDoesNotExist:
+		pass
+	
+	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 @login_required(login_url="/")
 @csrf_exempt
 def filter_all(request):
-    """Get all the presentations associated with the user.
-    It includes 'own' and 'shared' presentations"""
+	"""Get all the presentations associated with the user.
+	It includes 'own' and 'shared' presentations"""
 
-    userpresentations = UserPresentation.objects.filter(user_id=request.user.id)
+	userpresentations = UserPresentation.objects.filter(user_id=request.user.id)
 
-    # generate a structures object list with the presentations
-    list = {"presentations":[]}
-    for uspr in userpresentations:
-        list["presentations"].append({
-                    "id":uspr.presentation.id,
-                    "key":uspr.presentation.key,
-                    "name":uspr.presentation.name,
-                    "img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
+	# generate a structures object list with the presentations
+	list = {"presentations":[]}
+	for uspr in userpresentations:
+		list["presentations"].append({
+					"id":uspr.presentation.id,
+					"key":uspr.presentation.key,
+					"name":uspr.presentation.name,
+					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
 
-    # convert object list to JSON string
-    json_data = dumps(list)
+	# convert object list to JSON string
+	json_data = dumps(list)
 
-    # print the JSON string
-    return HttpResponse(json_data)
+	# print the JSON string
+	return HttpResponse(json_data)
 
 
 @login_required(login_url="/")
 @csrf_exempt
 def filter_own(request):
-    """Get all the presentations owned by the user"""
+	"""Get all the presentations owned by the user"""
 
-    userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=1)
+	userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=1)
 
-    # generate a structures object list with the presentations
-    list = {"presentations":[]}
-    for uspr in userpresentations:
-        list["presentations"].append({
-                    "id":uspr.presentation.id,
-                    "key":uspr.presentation.key,
-                    "name":uspr.presentation.name,
+	# generate a structures object list with the presentations
+	list = {"presentations":[]}
+	for uspr in userpresentations:
+		list["presentations"].append({
+					"id":uspr.presentation.id,
+					"key":uspr.presentation.key,
+					"name":uspr.presentation.name,
 					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
 
-    # convert object list to JSON string
-    json_data = dumps(list)
+	# convert object list to JSON string
+	json_data = dumps(list)
 
-    # print the JSON string
-    return HttpResponse(json_data)
+	# print the JSON string
+	return HttpResponse(json_data)
 
 
 @login_required(login_url="/")
 @csrf_exempt
 def filter_shared(request):
-    """Get all the presentations that are shared to the user"""
+	"""Get all the presentations that are shared to the user"""
 
-    userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=0)
+	userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=0)
 
-    # generate a structures object list with the presentations
-    list = {"presentations":[]}
-    for uspr in userpresentations:
-        list["presentations"].append({
-                    "id":uspr.presentation.id,
-                    "key":uspr.presentation.key,
-                    "name":uspr.presentation.name,
+	# generate a structures object list with the presentations
+	list = {"presentations":[]}
+	for uspr in userpresentations:
+		list["presentations"].append({
+					"id":uspr.presentation.id,
+					"key":uspr.presentation.key,
+					"name":uspr.presentation.name,
 					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
 
-    # convert object list to JSON string
-    json_data = dumps(list)
+	# convert object list to JSON string
+	json_data = dumps(list)
 
-    # print the JSON string
-    return HttpResponse(json_data)
+	# print the JSON string
+	return HttpResponse(json_data)
 
 @login_required(login_url="/")
 def share(request):
@@ -355,78 +370,73 @@ def share(request):
 
 @csrf_exempt
 def search_global(request):
-    """Search for presentations"""
-    text = request.POST["search_text"]
+	"""Search for presentations"""
+	text = request.POST["search_text"]
 
-    presentations = Presentation.objects.filter(name__contains=text, is_private=False)
+	presentations = Presentation.objects.filter(name__contains=text, is_private=False)
 
-    # generate a structures object list with the presentations
-    list = {"presentations":[]}
-    for p in presentations:
-        list["presentations"].append({
-                    "key":p.key,
-                    "name":p.name,
+	# generate a structures object list with the presentations
+	list = {"presentations":[]}
+	for p in presentations:
+		list["presentations"].append({
+					"key":p.key,
+					"name":p.name,
 					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(p.key) + ".png" })
 
-    # convert object list to JSON string
-    list = dumps(list)
+	# convert object list to JSON string
+	list = dumps(list)
 
-    # print the JSON string
-    return HttpResponse(list)
+	# print the JSON string
+	return HttpResponse(list)
 
 @login_required(login_url="/")
 @csrf_exempt
 def search(request):
-    """Search for presentations"""
-    text = request.POST["search_text"]
-    selected_filter = request.POST["selected_filter"]
+	"""Search for presentations"""
+	text = request.POST["search_text"]
+	selected_filter = request.POST["selected_filter"]
 
-    if selected_filter == "all":
-        # search all
-        userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text)
-    if selected_filter == "own":
-        # search only own presentations
-        userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text, is_owner=1)
-    if selected_filter == "shared":
-        # search only shared presentation
-        userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text, is_owner=0)
+	if selected_filter == "all":
+		# search all
+		userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text)
+	if selected_filter == "own":
+		# search only own presentations
+		userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text, is_owner=1)
+	if selected_filter == "shared":
+		# search only shared presentation
+		userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text, is_owner=0)
 
-    # generate a structures object list with the presentations
-    list = {"presentations":[]}
-    for uspr in userpresentations:
-        list["presentations"].append({
-                    "id":uspr.presentation.id,
-                    "key":uspr.presentation.key,
-                    "name":uspr.presentation.name,
-                    "img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
+	# generate a structures object list with the presentations
+	list = {"presentations":[]}
+	for uspr in userpresentations:
+		list["presentations"].append({
+					"id":uspr.presentation.id,
+					"key":uspr.presentation.key,
+					"name":uspr.presentation.name,
+					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
 
-    # convert object list to JSON string
-    list = dumps(list)
+	# convert object list to JSON string
+	list = dumps(list)
 
-    # print the JSON string
-    return HttpResponse(list)
+	# print the JSON string
+	return HttpResponse(list)
 
 @csrf_exempt
 def load_featured(request):
-    """Search for presentations"""
+	"""Search for presentations"""
 
-    presentations = Presentation.objects.filter(is_private=False)
+	presentations = Presentation.objects.filter(is_private=False)
 
-    # generate a structures object list with the presentations
-    list = {"presentations":[]}
-    for p in presentations:
-        list["presentations"].append({
-                    "key":p.key,
-                    "name":p.name,
-                    "img_url":settings.MEDIA_URL + "thumbnails/img_" + str(p.key) + ".png" })
+	# generate a structures object list with the presentations
+	list = {"presentations":[]}
+	for p in presentations:
+		list["presentations"].append({
+					"key":p.key,
+					"name":p.name,
+					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(p.key) + ".png" })
 
-    # convert object list to JSON string
-    list = dumps(list)
+	# convert object list to JSON string
+	list = dumps(list)
 
-    # print the JSON string
-    return HttpResponse(list)
-
-@login_required(login_url="/")
-def like(request, id):
-	p = Presentation.objects.get(pk=id).like()
-	return HttpResponseRedirect(request.META["HTTP_REFERER"])
+	# print the JSON string
+	return HttpResponse(list)

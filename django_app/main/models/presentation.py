@@ -176,3 +176,15 @@ class Presentation(models.Model):
 			db.slides.insert(i)
 		
 		return self
+	
+	def get_slides(self):
+		"""Get the presentation slides
+		Returns:
+			pymongo Cursor: list of slides
+		"""
+		
+		# Load slides from MongoDB
+		conn = pymongo.Connection(settings.MONGODB_URI)
+		db = conn[settings.MONGODB_DATABASE]
+		slides = db.slides.find({"presentation_id": self.id})
+		return slides
