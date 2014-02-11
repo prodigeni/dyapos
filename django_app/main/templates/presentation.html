@@ -159,8 +159,11 @@
 	<h3>{% trans 'title_rename_presentation' %}</h3>
 	<div class="row">	
 		<div class="large-12 columns last">
-			{{rename_form.name}}
-			<a href="#" id="rename-btn" class="button">{% trans 'btn_rename' %}</a>
+			<form action="{% url 'main.views.presentations.rename' presentation.id %}" method="post">
+				{% csrf_token %}
+				{{ rename_form }}
+				<button class="button">{% trans 'btn_rename' %}</button>
+			</form>
 		</div>
 	</div>
 	<a class="close-reveal-modal">x</a>
@@ -170,8 +173,11 @@
 	<h3>{% trans 'title_modify_description' %}</h3>
 	<div class="row">	
 		<div class="large-12 columns last">
-			{{modify_description_form.description}}
-			<a href="#" id="modify-description-btn" class="button">{% trans 'btn_save' %}</a>
+			<form action="{% url 'main.views.presentations.modify_description' presentation.id %}" method="post">
+				{% csrf_token %}
+				{{ modify_description_form }}
+				<button class="button">{% trans 'btn_save' %}</button>
+			</form>
 		</div>
 	</div>
 	<a class="close-reveal-modal">x</a>

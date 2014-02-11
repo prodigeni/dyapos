@@ -42,8 +42,8 @@ def presentation(request, key):
 		# show the presentation page
 		return render_to_response("presentation.html", {
 			"presentation": presentation,
-			"rename_form": RenameForm({"name" : presentation.name}),
-			"modify_description_form": ModifyDescriptionForm({"description" : presentation.description}),
+			"rename_form": RenameForm(instance = presentation),
+			"modify_description_form": ModifyDescriptionForm(instance = presentation),
 			"share_formset": share_formset,
 			"comment_form": CommentForm(),
 			"comments": presentation.comment_set.get_queryset(),
@@ -107,56 +107,41 @@ def copy(request, id):
 	return HttpResponseRedirect("/home")
 
 @login_required(login_url="/")
-@csrf_exempt
-def rename(request):  # Ajax
-	"""Rename the presentation"""
+def rename(request, id):
+	"""Renames the presentation
+	Args:
+	 id (int): Presentation Id to be renamed
+	"""
 
 	if request.method == "POST":
-		form = RenameForm(request.POST)
+		presentation = Presentation.objects.get(pk = id)
+		form = RenameForm(request.POST, instance = presentation)
 		if form.is_valid():
-			# get the data from the form
-			name = form.cleaned_data["name"]
-			key = request.POST["key"]
+			form.save()
 
-			# search the presentation based on its key
-			p = Presentation.objects.get(key=key)
-
-			# set the new name
-			p.name = name
-
-			# update the presentation with the new name
-			p.save()
-			return HttpResponse("true")
-
-		return HttpResponse("false")
+	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 @login_required(login_url="/")
-@csrf_exempt
-def modify_description(request):  # Ajax
-	"""Modify the presentation description"""
+def modify_description(request, id):
+	"""Modifies the presentation description
+	Args:
+	 id (int): Presentation Id whose the description will be modified
+	"""
 
 	if request.method == "POST":
-		form = ModifyDescriptionForm(request.POST)
+		presentation = Presentation.objects.get(pk = id)
+		form = ModifyDescriptionForm(request.POST, instance = presentation)
 		if form.is_valid():
-			# get the data from the form
-			description = form.cleaned_data["description"]
-			key = request.POST["key"]
+			form.save()
 
-			# search the presentation based on its key
-			p = Presentation.objects.get(key=key)
-
-			# set the new description
-			p.description = description
-
-			# save the presentation with its new description
-			p.save()
-			return HttpResponse("true")
-
-		return HttpResponse("false")
+	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
-def edit(request, key=None):
-	"""Open the presentation editor screen"""
+def edit(request, key = None):
+	"""Open the presentation editor screen
+	Args:
+		key (str): Presentation public key, default = None
+	"""
 
 	template_data = {}
 
@@ -164,10 +149,10 @@ def edit(request, key=None):
 		template_data["is_anonymous"] = True
 	else:
 		try:
-			p = Presentation.objects.get(key=key)
+			presentation = Presentation.objects.get(key=key)
 
 			# check if user is allowed to edit this presentation
-			if UserPresentation.objects.filter(user_id=request.user.id, presentation_id=p.id, can_edit=1).exists():
+			if presentation.can_edit(request.user):
 				# get user data
 				user_data = {
 					"username": request.user.username,
@@ -177,20 +162,18 @@ def edit(request, key=None):
 
 				# generate share form
 		 		uspr = UserPresentation()
-		 		share_formset = uspr.load_share_form(p.id, request.user.id)
+		 		share_formset = uspr.load_share_form(presentation.id, request.user.id)
 
-		 		template_data["presentation"] = p
+		 		template_data["presentation"] = presentation
 		 		template_data["is_anonymous"] = False
 		 		template_data["user_data"] = user_data
 		 		template_data["share_formset"] = share_formset
 		 		template_data["NODEJS_URL"] = settings.NODEJS_URL
-
-
 			else:
 				raise ObjectDoesNotExist
 		except ObjectDoesNotExist:
 			return HttpResponseRedirect("/")
-	# show the editor page
+
 	return render_to_response("edit.html", template_data, context_instance=RequestContext(request))
 
 def download(request):
@@ -199,8 +182,7 @@ def download(request):
 @login_required(login_url="/")
 @csrf_exempt
 def update_thumbnail(request):
-    """Update the presentation image (it will be executed when the user
-    modifies the first slide on the presentation editor)"""
+    """Update the presentation image thumbnail"""
 
     # get the data from POST
     presentation_id = request.POST["presentation_id"]
@@ -220,7 +202,7 @@ def update_thumbnail(request):
     return HttpResponse("")
 
 @login_required(login_url="/")
-@csrf_exempt  # no csrfmiddlewaretoken required
+@csrf_exempt
 def upload_image(request):
     for key, file in request.FILES.items():
         filename = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10] + file.name
@@ -235,7 +217,7 @@ def upload_image(request):
     return HttpResponse(filename)
 
 @login_required(login_url="/")
-@csrf_exempt  # no csrfmiddlewaretoken required
+@csrf_exempt
 def upload_image_from_url(request):
 	url = request.POST["image_url"]
 	img = urllib.urlretrieve(url)
@@ -271,7 +253,7 @@ def view(request, key):
 
 @login_required(login_url="/")
 @csrf_exempt
-def filter_all(request):  # Ajax JSON
+def filter_all(request):
     """Get all the presentations associated with the user.
     It includes 'own' and 'shared' presentations"""
 
@@ -295,7 +277,7 @@ def filter_all(request):  # Ajax JSON
 
 @login_required(login_url="/")
 @csrf_exempt
-def filter_own(request):  # Ajax JSON
+def filter_own(request):
     """Get all the presentations owned by the user"""
 
     userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=1)
@@ -318,7 +300,7 @@ def filter_own(request):  # Ajax JSON
 
 @login_required(login_url="/")
 @csrf_exempt
-def filter_shared(request):  # Ajax JSON
+def filter_shared(request):
     """Get all the presentations that are shared to the user"""
 
     userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=0)

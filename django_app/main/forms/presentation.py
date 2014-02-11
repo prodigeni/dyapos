@@ -7,13 +7,15 @@ class NewPresentationForm(forms.ModelForm):
  		model = Presentation
      		fields = ["name", "description", "is_private"]
 
-class RenameForm(forms.Form):
-	name = forms.CharField(max_length=20)
+class RenameForm(forms.ModelForm):
+    class Meta:
+        model = Presentation
+        fields = ["name"]
 
-class ModifyDescriptionForm(forms.Form):
-	description = forms.CharField(required=False,
-									widget=forms.Textarea,
-									max_length=200)
+class ModifyDescriptionForm(forms.ModelForm):
+    class Meta:
+        model = Presentation
+        fields = ["description"]
 
 class SharePresentationForm(forms.Form):
 	email = forms.EmailField()
