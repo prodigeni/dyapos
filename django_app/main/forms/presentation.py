@@ -1,13 +1,11 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from main.models.presentation import Presentation
 
-class NewPresentationForm(forms.Form):
-	name = forms.CharField(max_length=20)
-	description = forms.CharField(required=False,
-									widget=forms.Textarea,
-									max_length=200)
-	is_private = forms.BooleanField(required=False,
-									label=_("is_private"))
+class NewPresentationForm(forms.ModelForm):
+ 	class Meta:
+ 		model = Presentation
+     		fields = ["name", "description", "is_private"]
 
 class RenameForm(forms.Form):
 	name = forms.CharField(max_length=20)

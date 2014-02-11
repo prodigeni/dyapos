@@ -53,6 +53,7 @@
 <div id="create-presentation-form" class="reveal-modal small" data-reveal>
     <form id="create-presentation-form" action="{% url 'main.views.presentations.create' %}" method="post">
         {% csrf_token %}
+
         <label for="name">{% trans 'lbl_name' %}</label>
         {{form.name}}
         <label for="name">{% trans 'lbl_description' %} ({% trans 'lbl_optional_message' %})</label>
@@ -62,6 +63,7 @@
 	        {{form.is_private}}
 	        {{form.is_private.label}}			
 		</div>
+
         <hr>
         <button>
             {% trans 'btn_create_presentation' %}

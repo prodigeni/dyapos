@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-import datetime, json, hashlib, urllib, re, shutil, pymongo
+import datetime, hashlib, urllib, re, shutil, pymongo
 from main.forms.presentation import *
 from main.forms.comment import *
 from main.models.presentation import Presentation
@@ -9,7 +9,6 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
-from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseNotFound
 from django.contrib.auth.models import User
@@ -19,103 +18,72 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import formset_factory
 from django.http import Http404
-from bson.objectid import ObjectId
 
 
 def presentation(request, key):
-	"""Show the presentation page with info, mini preview, comments and other options """
+	"""Shows the presentation page with info, mini preview, comments and other options
+	Args:
+		key (str): String key that corresponds to a presentation
+	"""
 
 	# search the presentation based on its key
-	p = Presentation.objects.filter(key=key).first()
+	presentation = Presentation.objects.filter(key = key).first()
 	
 	# if presentation exists
-	if p is not None:
-		if p.is_private:
-			uspr = UserPresentation()
-			if not uspr.is_allowed(request.user.id, p.id):
+	if presentation is not None:
+		if presentation.is_private:
+			if not presentation.is_allowed(request.user):
 				raise Http404
-
-		rename_form = RenameForm({"name":p.name})
-		modify_description_form = ModifyDescriptionForm({"description":p.description})
-
-		# Load comments from presentation's ID
-		comments = p.comment_set.get_queryset()
-
-		# generate comment form
-		comment_form = CommentForm()
 
 		# generate share form
  		uspr = UserPresentation()
- 		share_formset = uspr.load_share_form(p.id, request.user.id)
-
-		# set permissions
-		is_owner = False
-		can_edit = False
-
-		# check if the user is logged
-		if request.user.username:
-			# check if the user is the owner of the presentation
-			if UserPresentation.objects.filter(user_id=request.user.id, presentation_id=p.id, is_owner=True).exists():
-				is_owner = True
-			# check if the user can edit the presentation
-			if UserPresentation.objects.filter(user_id=request.user.id, presentation_id=p.id, can_edit=True).exists():
-				can_edit = True
+ 		share_formset = uspr.load_share_form(presentation.id, request.user.id)
 
 		# show the presentation page
 		return render_to_response("presentation.html", {
-			"presentation": p,
-			"rename_form": rename_form,
-			"modify_description_form": modify_description_form,
+			"presentation": presentation,
+			"rename_form": RenameForm({"name" : presentation.name}),
+			"modify_description_form": ModifyDescriptionForm({"description" : presentation.description}),
 			"share_formset": share_formset,
-			"comment_form": comment_form,
-			"comments": comments,
+			"comment_form": CommentForm(),
+			"comments": presentation.comment_set.get_queryset(),
 			"view_url": request.get_host() + reverse("main.views.presentations.view", args=[key]),
-			"is_owner": is_owner,
-			"can_edit": can_edit,
+ 			"is_owner": True if (request.user.is_authenticated() and presentation.is_owner(request.user)) else False,
+ 			"can_edit": True if (request.user.is_authenticated() and presentation.can_edit(request.user)) else False,			
 			}, context_instance=RequestContext(request))
 	else:
-		# show error 404 page
+		# show Error 404 page
 		raise Http404
 
 
 @login_required(login_url="/")
 def create(request):
-	"""Create a new presentation"""
+	"""Creates a new presentation and associates to the current user"""
 
 	if request.method == "POST":
-		form = NewPresentationForm(request.POST)
+ 		form = NewPresentationForm(request.POST)
 		if form.is_valid():
-			presentation = Presentation(name = form.cleaned_data["name"],
-										description = form.cleaned_data["description"],
-										key = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10],
-										is_private = form.cleaned_data["is_private"])
+			form.save()
+			form.instance.associate_to_user(request.user, True, True)
+ 
+ 			# redirect to the edit page of the created presentation
+ 			return HttpResponseRedirect("/edit/" + str(form.instance.key))
 
-			presentation.save()
-			
-			presentation.associate_to_user(request.user, True, True)
-
-			# redirect to the edit page of the created presentation
-			return HttpResponseRedirect("/edit/" + str(presentation.key))
-
-	form = NewPresentationForm()
-	return render_to_response("home.html", {"form":form}, context_instance=RequestContext(request))
+	return render_to_response("home.html", {"form": NewPresentationForm()}, context_instance=RequestContext(request))
 
 
 @login_required(login_url="/")
 def delete(request, id):
-	"""Delete a presentation"""
+	"""Deletes a presentation
+	Args:
+		id (int): Presentation Id to delete
+	"""
 
-	presentation = Presentation.objects.get(pk = id)
-	userpresentation = presentation.userpresentation_set.filter(user_id = request.user.id).first()
-
-	# check if is there any association between the user and the presentation
-	if userpresentation is not None:		
-		# check if the user is the owner of the presentation
- 		if userpresentation.is_owner:
- 			presentation.delete_completely()
- 		else:
- 			# delete only the relation between the user and the presentation
- 			userpresentation.delete()
+	presentation = Presentation.objects.get(pk = id)	
+	if presentation.is_owner(request.user):
+		presentation.delete_completely()
+	else:
+		presentation.userpresentation_set.filter(user_id = request.user.id).first().delete()
 
 	# redirect to home page
 	return HttpResponseRedirect("/home")
@@ -123,57 +91,17 @@ def delete(request, id):
 
 @login_required(login_url="/")
 def copy(request, id):
-	"""Copy a backup of the presentation"""
+	"""Copies a backup of the presentation
+	Args:
+		id (int): Presentation Id to be copied
+	"""
 
-	# search the presentation data based on its ID
-	p = Presentation.objects.get(pk=id)
-	thumbnail_src = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + p.key + ".png"
-
-	'''delete its PK, so next time the save() method is executed,
-	it'll save a new row to the database with a new ID'''
-	p.pk = None
-
-	# generate a presentation key, based on a random SHA1 string
-	p.key = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10]
-
-	# generate a new name to the presentation
-	p.name = _("text_copy_of") + " " + p.name
-
-	# set the number of views and likes to 0
-	p.num_views = p.num_likes = 0
-
-	# save the new copied presentation to the database
-	p.save()
-
-	# Copy slides from MongoDB database
-	conn = pymongo.Connection(settings.MONGODB_URI)
-	db = conn[settings.MONGODB_DATABASE]
-	slides = db.slides.find({"presentation_id": int(id)})
-	for i in slides:
-		#Replace the slide _id and its presentation_id
-		i["_id"] = ObjectId()
-		i["presentation_id"] = p.id
-
-		#Replace the components' _id
-		for j in i["components"]:
-			j["_id"] = str(ObjectId())
-
-		#Finally save the new slide
-		db.slides.insert(i)
-
-	# associate to userpresentation table
-	us_pr = UserPresentation(user_id=request.user.id,
-							presentation_id=p.id,
-							is_owner=1,
-							can_edit=1)
-
-	# save the association
-	us_pr.save()
-
-	# copy the thumbnail
-# 	thumbnail_dst = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + p.key + ".png"
-# 	shutil.copy(thumbnail_src, thumbnail_dst)
-
+	try:
+		presentation = Presentation.objects.get(pk = id)
+		new_presentation = presentation.clone()
+		new_presentation.associate_to_user(request.user, True, True)
+	except ObjectDoesNotExist:
+		pass
 
 	# redirect to home page
 	return HttpResponseRedirect("/home")
