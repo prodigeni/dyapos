@@ -1,7 +1,8 @@
 {% load i18n %}
 <div class="panel">
-    <form action="/share" method="post">
+    <form action="{% url 'main.views.presentations.share' presentation.id %}" method="post">
         {% csrf_token %}
+        {%comment%}
         <input type="hidden" name="presentation_id" value="{{presentation.id}}"/>
         {{share_formset.management_form}}
         <div id="collaborators">
@@ -20,6 +21,8 @@
             <hr>
             {% endfor %}
         </div>
+        {%endcomment%}
+        {{share_formset}}
         <div class="row">
             <div class="large-8 columns first"></div>
             <div class="large-4 columns last">

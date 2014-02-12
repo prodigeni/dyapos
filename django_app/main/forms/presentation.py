@@ -16,7 +16,3 @@ class ModifyDescriptionForm(forms.ModelForm):
     class Meta:
         model = Presentation
         fields = ["description"]
-
-class SharePresentationForm(forms.Form):
-	email = forms.EmailField()
-	permission = forms.ChoiceField(choices=(("1", _("option_allow_edit")), ("0", _("option_view_only"))))

@@ -19,6 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import formset_factory
 from django.http import Http404
 from django.core.serializers import serialize
+from main.forms.userpresentation import SharePresentationForm
 
 
 def presentation(request, key):
@@ -37,15 +38,14 @@ def presentation(request, key):
 				raise Http404
 
 		# generate share form
- 		uspr = UserPresentation()
- 		share_formset = uspr.load_share_form(presentation.id, request.user.id)
+		share_formset = presentation.get_share_formset()
 
 		# show the presentation page
 		return render_to_response("presentation.html", {
 			"presentation": presentation,
 			"rename_form": RenameForm(instance = presentation),
 			"modify_description_form": ModifyDescriptionForm(instance = presentation),
-			"share_formset": share_formset,
+ 			"share_formset": share_formset,
 			"comment_form": CommentForm(),
 			"comments": presentation.comment_set.get_queryset(),
 			"view_url": request.get_host() + reverse("main.views.presentations.view", args=[key]),
@@ -325,34 +325,40 @@ def search(request):
 	return HttpResponse(serialize("json", presentations))
 
 @login_required(login_url="/")
-def share(request):
+def share(request, id):
 	"""Share the presentation to other users"""
 
 	if request.method == "POST":
-
-		presentation_id = request.POST["presentation_id"]
-
+		
+		presentation = Presentation.objects.get(pk = id)
+		
 		formset = formset_factory(SharePresentationForm)
 		formset = formset(request.POST)
+		print formset.cleaned_data
 
-		if formset.is_valid():
-			# get the data from the form
-			for form in formset:
-				email = form.cleaned_data["email"]
-				permission = int(form.cleaned_data["permission"])
-
-				# get user info based on the email
-				user = User.objects.filter(email=email).first()
-				if user is not None:
-					# create a UserPresentation object that associates a user to a presentation
-					uspr = UserPresentation(user_id=user.id,
-											presentation_id=presentation_id,
-											is_owner=0,
-											can_edit=permission
-											)
-
-					# save the association to the database
-					uspr.save()
+# 		presentation_id = request.POST["presentation_id"]
+# 
+# 		formset = formset_factory(SharePresentationForm)
+# 		formset = formset(request.POST)
+# 
+# 		if formset.is_valid():
+# 			# get the data from the form
+# 			for form in formset:
+# 				email = form.cleaned_data["email"]
+# 				permission = int(form.cleaned_data["permission"])
+# 
+# 				# get user info based on the email
+# 				user = User.objects.filter(email=email).first()
+# 				if user is not None:
+# 					# create a UserPresentation object that associates a user to a presentation
+# 					uspr = UserPresentation(user_id=user.id,
+# 											presentation_id=presentation_id,
+# 											is_owner=0,
+# 											can_edit=permission
+# 											)
+# 
+# 					# save the association to the database
+# 					uspr.save()
 
 		# redirect to the same page
 		return HttpResponseRedirect(request.META["HTTP_REFERER"])

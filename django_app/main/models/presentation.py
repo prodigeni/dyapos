@@ -4,6 +4,7 @@ from main.models.userpresentation import UserPresentation
 from django.conf import settings
 from django.utils.translation import ugettext as _
 from bson.objectid import ObjectId
+from django.forms.formsets import formset_factory
 
 
 class Presentation(models.Model):
@@ -185,3 +186,16 @@ class Presentation(models.Model):
 		db = conn[settings.MONGODB_DATABASE]
 		slides = db.slides.find({"presentation_id": self.id})
 		return slides
+	
+	def get_share_formset(self):
+		"""Get a formset to share the presentation
+		Returns:
+			formset object
+		"""
+		
+		from main.forms.userpresentation import SharePresentationForm
+		share_formset = formset_factory(SharePresentationForm)
+		userpresentations = [{"email": userpresentation.user.email, "can_edit": userpresentation.can_edit} 
+							for userpresentation in self.userpresentation_set.get_queryset()]
+			
+  		return share_formset(initial = userpresentations)
