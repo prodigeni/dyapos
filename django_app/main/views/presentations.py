@@ -37,15 +37,13 @@ def presentation(request, key):
 			if not presentation.is_allowed(request.user):
 				raise Http404
 
-		# generate share form
-		share_formset = presentation.get_share_formset()
-
 		# show the presentation page
 		return render_to_response("presentation.html", {
 			"presentation": presentation,
 			"rename_form": RenameForm(instance = presentation),
 			"modify_description_form": ModifyDescriptionForm(instance = presentation),
- 			"share_formset": share_formset,
+			"collaborators": presentation.userpresentation_set.exclude(user__id = request.user.id),
+ 			"share_formset": formset_factory(SharePresentationForm),
 			"comment_form": CommentForm(),
 			"comments": presentation.comment_set.get_queryset(),
 			"view_url": request.get_host() + reverse("main.views.presentations.view", args=[key]),
@@ -53,7 +51,6 @@ def presentation(request, key):
  			"can_edit": True if (request.user.is_authenticated() and presentation.can_edit(request.user)) else False,			
 			}, context_instance=RequestContext(request))
 	else:
-		# show Error 404 page
 		raise Http404
 
 
@@ -161,14 +158,11 @@ def edit(request, key = None):
 				"last_name": request.user.last_name,
 				}
 
-# 				# generate share form
-# 		 		uspr = UserPresentation()
-# 		 		share_formset = uspr.load_share_form(presentation.id, request.user.id)
-
 		 		template_data["presentation"] = presentation
 		 		template_data["is_anonymous"] = False
 		 		template_data["user_data"] = user_data
-# 		 		template_data["share_formset"] = share_formset
+ 		 		template_data["share_formset"] = formset_factory(SharePresentationForm)
+  		 		template_data["collaborators"] = presentation.userpresentation_set.exclude(user__id = request.user.id)
 		 		template_data["NODEJS_URL"] = settings.NODEJS_URL
 			else:
 				raise ObjectDoesNotExist
@@ -331,34 +325,35 @@ def share(request, id):
 	if request.method == "POST":
 		
 		presentation = Presentation.objects.get(pk = id)
-		
-		formset = formset_factory(SharePresentationForm)
-		formset = formset(request.POST)
-		print formset.cleaned_data
-
-# 		presentation_id = request.POST["presentation_id"]
-# 
-# 		formset = formset_factory(SharePresentationForm)
-# 		formset = formset(request.POST)
-# 
-# 		if formset.is_valid():
-# 			# get the data from the form
-# 			for form in formset:
-# 				email = form.cleaned_data["email"]
-# 				permission = int(form.cleaned_data["permission"])
-# 
-# 				# get user info based on the email
-# 				user = User.objects.filter(email=email).first()
-# 				if user is not None:
-# 					# create a UserPresentation object that associates a user to a presentation
-# 					uspr = UserPresentation(user_id=user.id,
-# 											presentation_id=presentation_id,
-# 											is_owner=0,
-# 											can_edit=permission
-# 											)
-# 
-# 					# save the association to the database
-# 					uspr.save()
+		share_formset = formset_factory(SharePresentationForm)
+		formset = share_formset(request.POST)
+		if formset.is_valid():
+			for form in formset:
+				user = User.objects.filter(email = form.cleaned_data["email"]).first()
+				if user is not None:
+					userpresentation = UserPresentation(
+								presentation_id = presentation.id,
+								user_id = user.id,
+								can_edit = True if int(form.cleaned_data["permission"]) == 1 else False,
+								is_owner = 0)
+					userpresentation.save()
 
 		# redirect to the same page
 		return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+@login_required(login_url="/")
+@csrf_exempt
+def unshare(request, id):
+	"""Unshare the presentation to a user
+	Args:
+		id (int): UserPresentation association ID
+	""" 
+	
+	try:
+		userpresentation = UserPresentation.objects.get(pk = id)
+		print userpresentation
+		userpresentation.delete()
+	except ObjectDoesNotExist:
+		pass
+	
+	return HttpResponseRedirect("")
