@@ -22,6 +22,9 @@ $(document).ready(function(){
 	};
 	
 	var showPresentationList = function(data){
+		data = {
+			"presentations": data
+		};
         var template = $("#template-presentation").html();
         var view = Mustache.render(template, data);
         

@@ -149,10 +149,10 @@
 <script id="template-presentation" type="text/mustache">
 	[[#presentations]]
 	<li>
-	<a href="/p/[[key]]">
-	<div class="presentation" style="background-image: url('[[img_url]]'); background-size: 100% 100%;">
+	<a href="/p/[[fields.key]]">
+	<div class="presentation" style="background-image: url('/media/thumbnails/img_[[fields.key]].png'); background-size: 100% 100%;">
 	<div class="container">
-	<h4 class="title">[[name]]</h4>
+	<h4 class="title">[[fields.name]]</h4>
 	</div>
 	</div>
 	</a>

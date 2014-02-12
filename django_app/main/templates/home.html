@@ -75,26 +75,26 @@
 <script id="template-presentation" type="text/mustache">
 	[[#presentations]]
     <li>
-        <div class="presentation" style="background-image: url('[[img_url]]'); background-size: 100% 100%;">
-            <a href="/p/[[key]]">
+        <div class="presentation" style="background-image: url('/media/thumbnails/img_[[fields.key]].png'); background-size: 100% 100%;">
+            <a href="/p/[[fields.key]]">
             <div class="container">
-                <h4 class="title">[[name]]</h4>                
+                <h4 class="title">[[fields.name]]</h4>                
             </div> </a>
             <div class="options">
-                <input type="hidden" value="[[id]]">
+                <input type="hidden" value="[[pk]]">
                 <div class="row">
                     <div class="large-4 columns first">
-                        <a href="/view/[[key]]" class="btn-view tiny button secondary round" data-tooltip title="{% trans 'tt_btn_view' %}">
+                        <a href="/view/[[fields.key]]" class="btn-view tiny button secondary round" data-tooltip title="{% trans 'tt_btn_view' %}">
                             <i class="fi-eye"></i>
                         </a>
                     </div>
                     <div class="large-4 columns">
-                        <a href="/edit/[[key]]" class="btn-edit tiny button secondary round" data-tooltip title="{% trans 'tt_btn_edit' %}">
+                        <a href="/edit/[[fields.key]]" class="btn-edit tiny button secondary round" data-tooltip title="{% trans 'tt_btn_edit' %}">
                             <i class="fi-pencil"></i>
                         </a>
                     </div>
                     <div class="large-4 columns last">
-                        <a href="/delete/[[id]]" class="btn-delete tiny button alert round" data-tooltip title="{% trans 'tt_btn_delete' %}">
+                        <a href="/delete/[[pk]]" class="btn-delete tiny button alert round" data-tooltip title="{% trans 'tt_btn_delete' %}">
                             <i class="fi-x"></i>                            
                         </a>
                     </div>

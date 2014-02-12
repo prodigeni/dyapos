@@ -36,6 +36,9 @@ var refreshPresentationList = function(data) {
     $("#presentation-list").html("");
     if (data != "") {
         data = $.parseJSON(data);
+        data = {
+        	presentations: data
+        };
         var template = $("#template-presentation").html();
         var view = Mustache.render(template,data);
         $("#presentation-list").append(view);

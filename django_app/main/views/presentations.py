@@ -18,6 +18,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.formsets import formset_factory
 from django.http import Http404
+from django.core.serializers import serialize
 
 
 def presentation(request, key):
@@ -238,7 +239,7 @@ def upload_image_from_url(request):
 		return HttpResponse("false")
 
 def view(request, key):
-	"""Show the presentation"""
+	"""Shows the presentation"""
 
 	# get the presentation based on its key
 	presentation = Presentation.objects.get(key = key)
@@ -255,7 +256,7 @@ def view(request, key):
 
 @login_required(login_url="/")
 def like(request, id):
-	"""Set a like on the presentation
+	"""Sets a like on the presentation
 	Args:
 		id (int): Presentation Id
 	"""
@@ -266,28 +267,28 @@ def like(request, id):
 	
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
+@csrf_exempt
+def load_featured(request):
+	"""Gets the top 6 featured presentation whose the 'num_likes' and 'num_views' are the highest"""
+
+	presentations = Presentation.objects.filter(is_private = False).order_by("num_likes", "num_views")[:6]
+	return HttpResponse(serialize("json", presentations))
+
+@csrf_exempt
+def search_global(request):
+	"""Searches for presentations that matches the text entered on the search bar"""
+
+	presentations = Presentation.objects.filter(is_private = False, name__contains = request.POST["search_text"])[:6]
+	return HttpResponse(serialize("json", presentations))
+
 @login_required(login_url="/")
 @csrf_exempt
 def filter_all(request):
 	"""Get all the presentations associated with the user.
 	It includes 'own' and 'shared' presentations"""
 
-	userpresentations = UserPresentation.objects.filter(user_id=request.user.id)
-
-	# generate a structures object list with the presentations
-	list = {"presentations":[]}
-	for uspr in userpresentations:
-		list["presentations"].append({
-					"id":uspr.presentation.id,
-					"key":uspr.presentation.key,
-					"name":uspr.presentation.name,
-					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
-
-	# convert object list to JSON string
-	json_data = dumps(list)
-
-	# print the JSON string
-	return HttpResponse(json_data)
+	presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.get_queryset()]
+	return HttpResponse(serialize("json", presentations))
 
 
 @login_required(login_url="/")
@@ -295,45 +296,33 @@ def filter_all(request):
 def filter_own(request):
 	"""Get all the presentations owned by the user"""
 
-	userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=1)
-
-	# generate a structures object list with the presentations
-	list = {"presentations":[]}
-	for uspr in userpresentations:
-		list["presentations"].append({
-					"id":uspr.presentation.id,
-					"key":uspr.presentation.key,
-					"name":uspr.presentation.name,
-					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
-
-	# convert object list to JSON string
-	json_data = dumps(list)
-
-	# print the JSON string
-	return HttpResponse(json_data)
+	presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(is_owner = True)]
+	return HttpResponse(serialize("json", presentations))
 
 
 @login_required(login_url="/")
 @csrf_exempt
 def filter_shared(request):
-	"""Get all the presentations that are shared to the user"""
+	"""Get all the presentations that are shared to the user (not owner)"""
 
-	userpresentations = UserPresentation.objects.filter(user_id=request.user.id, is_owner=0)
+	presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(is_owner = False)]
+	return HttpResponse(serialize("json", presentations))
 
-	# generate a structures object list with the presentations
-	list = {"presentations":[]}
-	for uspr in userpresentations:
-		list["presentations"].append({
-					"id":uspr.presentation.id,
-					"key":uspr.presentation.key,
-					"name":uspr.presentation.name,
-					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
-
-	# convert object list to JSON string
-	json_data = dumps(list)
-
-	# print the JSON string
-	return HttpResponse(json_data)
+@login_required(login_url="/")
+@csrf_exempt
+def search(request):
+	"""Search for presentations"""
+		
+ 	text = request.POST["search_text"]
+ 	filter = request.POST["selected_filter"]
+ 	if filter == "all":
+	 	presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(presentation__name__contains = text)]
+	elif filter == "own":
+		presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(presentation__name__contains = text, is_owner = True)]
+	elif filter == "shared":
+		presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(presentation__name__contains = text, is_owner = False)]
+	
+	return HttpResponse(serialize("json", presentations))
 
 @login_required(login_url="/")
 def share(request):
@@ -367,76 +356,3 @@ def share(request):
 
 		# redirect to the same page
 		return HttpResponseRedirect(request.META["HTTP_REFERER"])
-
-@csrf_exempt
-def search_global(request):
-	"""Search for presentations"""
-	text = request.POST["search_text"]
-
-	presentations = Presentation.objects.filter(name__contains=text, is_private=False)
-
-	# generate a structures object list with the presentations
-	list = {"presentations":[]}
-	for p in presentations:
-		list["presentations"].append({
-					"key":p.key,
-					"name":p.name,
-					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(p.key) + ".png" })
-
-	# convert object list to JSON string
-	list = dumps(list)
-
-	# print the JSON string
-	return HttpResponse(list)
-
-@login_required(login_url="/")
-@csrf_exempt
-def search(request):
-	"""Search for presentations"""
-	text = request.POST["search_text"]
-	selected_filter = request.POST["selected_filter"]
-
-	if selected_filter == "all":
-		# search all
-		userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text)
-	if selected_filter == "own":
-		# search only own presentations
-		userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text, is_owner=1)
-	if selected_filter == "shared":
-		# search only shared presentation
-		userpresentations = UserPresentation.objects.filter(user_id=request.user.id, presentation__name__contains=text, is_owner=0)
-
-	# generate a structures object list with the presentations
-	list = {"presentations":[]}
-	for uspr in userpresentations:
-		list["presentations"].append({
-					"id":uspr.presentation.id,
-					"key":uspr.presentation.key,
-					"name":uspr.presentation.name,
-					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(uspr.presentation.key) + ".png" })
-
-	# convert object list to JSON string
-	list = dumps(list)
-
-	# print the JSON string
-	return HttpResponse(list)
-
-@csrf_exempt
-def load_featured(request):
-	"""Search for presentations"""
-
-	presentations = Presentation.objects.filter(is_private=False)
-
-	# generate a structures object list with the presentations
-	list = {"presentations":[]}
-	for p in presentations:
-		list["presentations"].append({
-					"key":p.key,
-					"name":p.name,
-					"img_url":settings.MEDIA_URL + "thumbnails/img_" + str(p.key) + ".png" })
-
-	# convert object list to JSON string
-	list = dumps(list)
-
-	# print the JSON string
-	return HttpResponse(list)

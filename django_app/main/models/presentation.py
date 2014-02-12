@@ -99,10 +99,7 @@ class Presentation(models.Model):
 		Returns:
 			list: list of associated users
 		"""
-		users = []
-		for userpresentation in self.userpresentation_set.get_queryset():
-			users.append(userpresentation.user)
-		
+		users = [userpresentation.user for userpresentation in self.userpresentation_set.get_queryset()]		
 		return users
 	
 	def get_slides(self):
