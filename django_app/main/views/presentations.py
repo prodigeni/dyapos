@@ -161,14 +161,14 @@ def edit(request, key = None):
 				"last_name": request.user.last_name,
 				}
 
-				# generate share form
-		 		uspr = UserPresentation()
-		 		share_formset = uspr.load_share_form(presentation.id, request.user.id)
+# 				# generate share form
+# 		 		uspr = UserPresentation()
+# 		 		share_formset = uspr.load_share_form(presentation.id, request.user.id)
 
 		 		template_data["presentation"] = presentation
 		 		template_data["is_anonymous"] = False
 		 		template_data["user_data"] = user_data
-		 		template_data["share_formset"] = share_formset
+# 		 		template_data["share_formset"] = share_formset
 		 		template_data["NODEJS_URL"] = settings.NODEJS_URL
 			else:
 				raise ObjectDoesNotExist
