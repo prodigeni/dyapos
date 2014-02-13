@@ -549,7 +549,7 @@ msgstr "Registrarse"
 
 #: templates/signup.html:29
 msgid "lbl_repeat_password"
-msgstr "Repetir contraseña"
+msgstr "Repetir password"
 
 #: templates/signup.html:33
 msgid "btn_register"

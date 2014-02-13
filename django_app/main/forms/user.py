@@ -3,28 +3,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext_lazy as _
 
-class SignupForm(forms.Form):	
-	first_name = forms.CharField(min_length=3,
-								max_length=20)
-	last_name = forms.CharField(min_length=3,
-								max_length=20)
-	email = forms.EmailField()
-	password = forms.CharField(widget=forms.PasswordInput)
-	password_repeat = forms.CharField(widget=forms.PasswordInput)
+class SignupForm(forms.ModelForm):
+ 	password = forms.CharField(widget=forms.PasswordInput, max_length=100)
+ 	password_repeat = forms.CharField(widget=forms.PasswordInput, 
+ 									max_length=100,
+ 									label = _("lbl_repeat_password"))
 	
-	def clean(self):
-		# Check if passwords match
-		password1 = self.cleaned_data.get('password')
-		password2 = self.cleaned_data.get('password_repeat')
-		
-		if password1 != password2:
-		    raise forms.ValidationError(_("error_passwords_dont_match"))
-		
-		# Check if email already exists
-		if User.objects.filter(email=self.cleaned_data.get("email")).exists():
-			raise forms.ValidationError(_("error_email_already_registered"))
-
-		return self.cleaned_data
+	class Meta:
+		model = User
+		fields = ["first_name", "last_name", "email"]
+	
+  	def clean(self):
+  		# Check if passwords match
+  		password1 = self.cleaned_data.get('password')
+  		password2 = self.cleaned_data.get('password_repeat')
+  		
+  		if password1 != password2:
+  		    raise forms.ValidationError(_("error_passwords_dont_match"))
+  		
+  		# Check if email already exists
+  		if User.objects.filter(email=self.cleaned_data.get("email")).exists():
+  			raise forms.ValidationError(_("error_email_already_registered"))
+  
+  		return self.cleaned_data
 
 class LoginForm(forms.Form):
 	email = forms.EmailField()
@@ -48,8 +49,10 @@ class LoginForm(forms.Form):
 		
 		return self.cleaned_data
 
-class RecoverPasswordForm(forms.Form):
-	email = forms.EmailField()
+class RecoverPasswordForm(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ["email"]
 	
 	def clean(self):
 		# Check if the email address is associated to an account

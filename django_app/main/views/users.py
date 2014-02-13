@@ -14,7 +14,7 @@ from django.forms.forms import NON_FIELD_ERRORS
 
 def signup(request):
 	"""Register a new user"""
-  	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
+#   	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
 	
 	if request.method == "POST":
 		form = SignupForm(request.POST)
@@ -23,17 +23,17 @@ def signup(request):
 			username is not so important, because users log in with their email address'''
 			username = form.cleaned_data["email"].split("@")[0] + "_" + hashlib.md5(str(datetime.datetime.now())).hexdigest()[:5]
 			
-			user = User(username = username,
-						first_name = form.cleaned_data["first_name"],
-						last_name = form.cleaned_data["last_name"],
-						email = form.cleaned_data["email"],
-						is_superuser = 0,
-						is_active = 1,
-						is_staff = 0)
-			
-			# set the password using a cryptographic algorithm
-			user.set_password(form.cleaned_data["password"])
-			user.save()
+ 			user = User(username = username,
+ 						first_name = form.cleaned_data["first_name"],
+ 						last_name = form.cleaned_data["last_name"],
+ 						email = form.cleaned_data["email"],
+ 						is_superuser = False,
+ 						is_active = True,
+ 						is_staff = False)
+ 			
+ 			# set the password using a cryptographic algorithm
+ 			user.set_password(form.cleaned_data["password"])
+ 			user.save()
 			
 			# redirect to main page
 			return HttpResponseRedirect("/")
@@ -57,6 +57,8 @@ def user_login(request):
 
 			# redirect to user's home page
 			return HttpResponseRedirect("/home")
+		else:
+			return render_to_response("login.html", {'form': form}, context_instance=RequestContext(request))
 
 	return render_to_response("login.html", {'form': LoginForm()}, context_instance=RequestContext(request))
 

@@ -22,7 +22,7 @@ def comment(request, id):
 			if form.is_valid():
 				comment = Comment(user_id = request.user.id,
 								presentation_id = presentation.id,
-								comment = form.data["comment"]).save()
+								comment = form.cleaned_data["comment"]).save()
 		except ObjectDoesNotExist:
 			pass
 
