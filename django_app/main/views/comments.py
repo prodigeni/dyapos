@@ -3,20 +3,28 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from main.models.comment import Comment
+from main.models.presentation import Presentation
 from main.forms.comment import *
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @login_required(login_url="/")
-def comment(request):    
-	"""Post a comment on a presentation"""
+def comment(request, id):
+	"""Post a comment on a presentation
+	Args:
+		id (int): Presesentation ID
+	"""
 
 	if request.method == "POST":
-		form = CommentForm(request.POST)
-		if form.is_valid():
-			c = Comment(user_id = request.user.id,
-						presentation_id = form.cleaned_data["presentation_id"],
-						comment = form.cleaned_data["comment"])
-			c.save()
+		try:
+			presentation = Presentation.objects.get(pk = id)			
+			form = CommentForm(request.POST)
+			if form.is_valid():
+				comment = Comment(user_id = request.user.id,
+								presentation_id = presentation.id,
+								comment = form.data["comment"]).save()
+		except ObjectDoesNotExist:
+			pass
 
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 

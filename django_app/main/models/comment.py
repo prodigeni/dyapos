@@ -5,7 +5,7 @@ class Comment(models.Model):
     # Attributes:
     user = models.ForeignKey(User)
     presentation = models.ForeignKey("Presentation")
-    comment = models.CharField(max_length=500)
+    comment = models.TextField(max_length=500)
     published_date = models.DateTimeField(auto_now=True)
     
     class Meta:

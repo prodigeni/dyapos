@@ -4,10 +4,10 @@
 	<div id="collaborators-list">
 		{% for collaborator in collaborators %}
 		<div class="row">
-			<div class="large-6 columns">
+			<div class="large-5 columns">
 				{{ collaborator.user.email }}
 			</div>
-			<div class="large-2 columns">
+			<div class="large-3 columns">
 				{% if collaborator.can_edit %}
 				{% trans 'option_allow_edit' %}
 				{% else %}
@@ -15,7 +15,7 @@
 				{% endif %}
 			</div>
 			<div class="large-4 columns">
-				<a class="btn-unshare" href="{% url 'main.views.presentations.unshare' collaborator.id %}">Delete</a>
+				<a class="btn-unshare" href="{% url 'main.views.presentations.unshare' collaborator.id %}">{% trans 'delete' %}</a>
 			</div>
 		</div>
 		{% endfor %}

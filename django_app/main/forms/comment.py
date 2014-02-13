@@ -1,6 +1,7 @@
 from django import forms
+from main.models.comment import Comment
 
-class CommentForm(forms.Form):
-	presentation_id = forms.IntegerField(widget=forms.HiddenInput)
-	comment = forms.CharField(widget=forms.Textarea,
-								max_length=500)
+class CommentForm(forms.ModelForm):	
+	class Meta:
+		model = Comment
+		fields = ["comment"]

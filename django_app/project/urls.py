@@ -43,7 +43,7 @@ urlpatterns = patterns('',
 	url(r'^index','main.views.pages.index'),
 	url(r'^home','main.views.pages.home'),
 	# Comments
-	url(r'^comment$', 'main.views.comments.comment'),
+	url(r'^comment/(?P<id>\d+)$', 'main.views.comments.comment'),
 	url(r'^comment/delete/(?P<id>\w+)', 'main.views.comments.delete'),
 	# Themes
 	url(r'^theme/load-list', 'main.views.themes.load_list'),

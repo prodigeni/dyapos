@@ -1,6 +1,5 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from main.models.userpresentation import UserPresentation
 
 class SharePresentationForm(forms.Form):
     email = forms.EmailField()

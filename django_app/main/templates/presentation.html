@@ -117,12 +117,15 @@
 		</ul>
 		
 		{% if user.is_authenticated %}
-		<form action="{% url 'main.views.comments.comment' %}" method="post">
+		<form action="{% url 'main.views.comments.comment' presentation.id %}" method="post">
 			{% csrf_token %}
+			{%comment%}
 			<input type="hidden" name="presentation_id" value="{{ presentation.id }}"/>
 			<label for="comment">{% trans 'lbl_comment' %}</label>
 			{{comment_form.comment.errors}}
 			{{comment_form.comment}}
+			{%endcomment%}
+			{{ comment_form }}
 			<button>
 				{% trans 'btn_comment' %}
 			</button>
