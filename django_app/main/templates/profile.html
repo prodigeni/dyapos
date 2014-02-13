@@ -16,16 +16,7 @@
         <div class="panel">
             <form method="post" action="{% url 'main.views.users.profile' %}">
                 {% csrf_token %}
-                <label for="first_name">{% trans 'lbl_first_name' %}</label>
-                	{{form.first_name.errors}}
-                	{{form.first_name}}
-                <label for="last_name">{% trans 'lbl_last_name' %}</label>
-                	{{form.last_name.errors}}
-                	{{form.last_name}}
-                <label for="email">{% trans 'lbl_email' %}</label>
-                	{{form.email.errors}}
-                	{{form.email}}
-                {{form.non_field_errors}}
+				{{ form }}
                 <button>
                     {% trans 'btn_update_profile' %}
                 </button>

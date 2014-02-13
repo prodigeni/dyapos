@@ -96,7 +96,6 @@ def profile(request):
 	if request.method == "POST":
 		form = ProfileForm(request.POST)
 		if form.is_valid():
-			print form.cleaned_data
 			# check if the email address is already used for another user
 			if not User.objects.filter(email = form.cleaned_data["email"]).exclude(id = request.user.id):
   				request.user.first_name = form.cleaned_data["first_name"]
@@ -108,9 +107,14 @@ def profile(request):
 				return HttpResponseRedirect("/profile")
 			else:
 				return render_to_response("profile.html", {"form": form}, context_instance=RequestContext(request))
+		else:
+			return render_to_response("profile.html", {"form": form}, context_instance=RequestContext(request))
 
 	# show the profile page
-	return render_to_response("profile.html", {"form": ProfileForm(instance = request.user)}, context_instance=RequestContext(request))
+	return render_to_response("profile.html", {"form": ProfileForm({"first_name": request.user.first_name,
+																	"last_name": request.user.last_name,
+																	"email": request.user.email
+																})}, context_instance=RequestContext(request))
 
 
 @login_required(login_url="/")
