@@ -14,7 +14,7 @@ $("#add-collaborator-btn").on("click", function() {
 	$("#collaborators").append(empty_form);
 });
 
-$(".btn-unshare").on("click", function(event){
+$(".btn-unshare").on("click", function(event) {
 	event.preventDefault();
 	$(this).parent().parent().hide();
 	$.post(this.href);

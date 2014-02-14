@@ -1,10 +1,10 @@
 define(["ComponentModel"], function(ComponentModel) {
-	
+
 	var model = ComponentModel.extend({
 		defaults : {
 			type : "text",
-			text_type : new String(),
-			content : new String(),
+			text_type : null,
+			content : null,
 			font : "",
 			font_size : "",
 			color : "",
@@ -29,30 +29,30 @@ define(["ComponentModel"], function(ComponentModel) {
 			//        view = view.replace("[cid]", this.cid);
 			//        view = view.replace("[content]", this.get("content"));
 
-			for (attr_name in this.attributes) {
+			for (var attr_name in this.attributes) {
 				value = this.attributes[attr_name];
 
 				switch(attr_name) {
 					case "bold":
-						if (value == true) {
+						if (value === true) {
 							style += "font-weight:bold;";
 						}
 						break;
 					case "italic":
-						if (value == true) {
+						if (value === true) {
 							style += "font-style:italic;";
 						}
 						break;
 					case "underlined":
-						if (value == true) {
+						if (value === true) {
 							style += "text-decoration:underline;";
 						}
 						break;
 					case "color":
 						style += "color:" + value + ";";
-						break
+						break;
 					case "font_size":
-						if (value != "") {
+						if (value !== "") {
 							// style += "font-size:" + value + "px;";
 							style += "font-size:" + value + "em;";
 						}
@@ -66,15 +66,15 @@ define(["ComponentModel"], function(ComponentModel) {
 				}
 			}
 
-			data["style"] = style;
-			data["container_style"] = container_style;
+			data.style = style;
+			data.container_style = container_style;
 			//        view = view.replace("[style]", style);
 			//        view = view.replace("[container_style]", container_style);
 
 			var view = Mustache.render(template, data);
 
 			// If the component is new
-			if (this.id == undefined) {
+			if (this.id === undefined) {
 				$("#" + selected_slide).append(view);
 			} else {
 				$("#" + this.get("slide").cid).append(view);

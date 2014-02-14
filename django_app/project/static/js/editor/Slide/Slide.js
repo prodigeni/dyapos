@@ -2,57 +2,57 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 	var initWebsocketEvents = function() {
 
-//DO NOT DELETE
+		//DO NOT DELETE
 		// //Receive a new slide from server
 		// socket.on("broadcast_add_slide", function(data) {
-			// console.log("received new slide:");
-			// console.log(data);
-			// insert(data);
+		// console.log("received new slide:");
+		// console.log(data);
+		// insert(data);
 		// });
-// 
+		//
 		// //Receive a slide removal from server
 		// socket.on("broadcast_delete_slide", function(data) {
-			// console.log("received delete slide");
-			// console.log(data);
-			// var cid = slides.where({"_id": data})[0].cid;
-			// deleteSlide(cid, false);
+		// console.log("received delete slide");
+		// console.log(data);
+		// var cid = slides.where({"_id": data})[0].cid;
+		// deleteSlide(cid, false);
 		// });
-// 
+		//
 		// //Receive a slide update from server
 		// socket.on("broadcast_update_slide", function(data) {
-			// console.log("received update slide");
-			// console.log(data);
-			// updatedFromServer = true;
-// 
-			// var cid = slides.where({"_id": data._id})[0].cid;
-			// var slide = slides.get(cid);
-// 
-			// // Determine what property has changed
-// 
-			// var changedPosition = parseInt(data.pos_x) !== parseInt(slide.get("pos_x")) || parseInt(data.pos_y) !== parseInt(slide.get("pos_y"));
-			// var changedSlideScale = parseFloat(data.scale) !== parseFloat(slide.get("scale"));
-			// var changedRotationZ = parseInt(data.rotation_z) !== parseInt(slide.get("rotation_z"));
-			// var changedRotationX = parseInt(data.rotation_x) !== parseInt(slide.get("rotation_x"));
-			// var changedRotationY = parseInt(data.rotation_y) !== parseInt(slide.get("rotation_y"));
-// 
-			// //Check what properties have changed
-			// if (changedPosition) {
-				// console.log("Position changed");
-				// changePosition(cid, data.pos_x, data.pos_y);
-			// } else if (changedSlideScale) {
-				// console.log("Slide scale changed");
-				// changeScale(cid, data.scale);
-			// } else if (changedRotationZ) {
-				// console.log("Rotation Z changed");
-				// changeRotationZ(cid, data.rotation_z);
-			// } else if (changedRotationX) {
-				// console.log("Rotation X changed");
-				// changeRotationX(cid, data.rotation_x);
-			// } else if (changedRotationY) {
-				// console.log("Rotation Y changed");
-				// changeRotationY(cid, data.rotation_y);
-			// }
-// 
+		// console.log("received update slide");
+		// console.log(data);
+		// updatedFromServer = true;
+		//
+		// var cid = slides.where({"_id": data._id})[0].cid;
+		// var slide = slides.get(cid);
+		//
+		// // Determine what property has changed
+		//
+		// var changedPosition = parseInt(data.pos_x) !== parseInt(slide.get("pos_x")) || parseInt(data.pos_y) !== parseInt(slide.get("pos_y"));
+		// var changedSlideScale = parseFloat(data.scale) !== parseFloat(slide.get("scale"));
+		// var changedRotationZ = parseInt(data.rotation_z) !== parseInt(slide.get("rotation_z"));
+		// var changedRotationX = parseInt(data.rotation_x) !== parseInt(slide.get("rotation_x"));
+		// var changedRotationY = parseInt(data.rotation_y) !== parseInt(slide.get("rotation_y"));
+		//
+		// //Check what properties have changed
+		// if (changedPosition) {
+		// console.log("Position changed");
+		// changePosition(cid, data.pos_x, data.pos_y);
+		// } else if (changedSlideScale) {
+		// console.log("Slide scale changed");
+		// changeScale(cid, data.scale);
+		// } else if (changedRotationZ) {
+		// console.log("Rotation Z changed");
+		// changeRotationZ(cid, data.rotation_z);
+		// } else if (changedRotationX) {
+		// console.log("Rotation X changed");
+		// changeRotationX(cid, data.rotation_x);
+		// } else if (changedRotationY) {
+		// console.log("Rotation Y changed");
+		// changeRotationY(cid, data.rotation_y);
+		// }
+		//
 		// });
 	};
 
@@ -66,14 +66,10 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 					console.log("Data received from server: ");
 					console.log(data);
 					//If presentation doesn't have any slides (first time opened)
-					if (data.length == 0) {
+					if (data.length === 0) {
 						//Insert first slide
 						insert();
 					} else {
-						// for ( i = 0; i < data.length; i++) {
-							// console.log(data[i]);
-							// insert(data[i]);
-						// }
 						slides = new SlideCollection(data);
 						for ( i = 0; i < slides.length; i++) {
 							slides.at(i).toHTML();
@@ -82,7 +78,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 							}
 						}
 						changeSelected(slides.at(0).cid);
-						
+
 						setTimeout(loadThumbnails, 3000);
 					}
 					// Component.loadAll();
@@ -90,7 +86,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 			});
 		} else {
 			//Load from local web storage
-			if (localStorage.slides == undefined || localStorage.slides == "[]") {
+			if (localStorage.slides === undefined || localStorage.slides === "[]") {
 				// If it is the first time the editor is opened, so create a first slide
 				insert();
 			} else {
@@ -102,7 +98,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 					}
 				}
 				changeSelected(slides.at(0).cid);
-				
+
 				setTimeout(loadThumbnails, 3000);
 			}
 		}
@@ -110,32 +106,32 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 	//Insert a new slide
 	var insert = function(data) {
-		if (data == null) {
+		if (data === null) {
 			//If the first Slide is inserted manually
-			if (slides.length == 0) {
+			if (slides.length === 0) {
 				slides.add(new SlideModel());
 			} else {
 				// If it isn't the first slide, calculate coordinates based on the last slide
 				slides.add(new SlideModel({
-					pos_x : parseInt(slides.at(slides.length - 1).get("pos_x")) + 1000,
-					pos_y : parseInt(slides.at(slides.length - 1).get("pos_y")),
+					pos_x : parseInt(slides.at(slides.length - 1).get("pos_x"), 10) + 1000,
+					pos_y : parseInt(slides.at(slides.length - 1).get("pos_y"), 10),
 					number : slides.length
 				}));
 			}
 		} else {
 			// delete data.components;
 			//If data is loaded from the server or local web storage
-			slides.add(new SlideModel(data));			
+			slides.add(new SlideModel(data));
 		}
 
 		position = slides.length - 1;
 		cid = slides.at(position).cid;
 
 		slides.get(cid).toHTML();
-		
-		if(slides.last().isNew() && !is_anonymous){
+
+		if (slides.last().isNew() && !is_anonymous) {
 			//Save the last inserted slide to the database
-			slides.last().save();					
+			slides.last().save();
 		}
 
 		changeSelected(cid);
@@ -194,7 +190,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 		hideSlideOptionsBox();
 
-		if (from_server == true) {
+		if (from_server === true) {
 			//Remove from server and collection
 			slides.get(cid).destroy();
 		} else {
@@ -295,18 +291,18 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 	var loadThumbnails = function() {
 		// for ( i = 0; i < slides.length; i++) {
-			// updateThumbnail(slides.at(i).cid);
+		// updateThumbnail(slides.at(i).cid);
 		// }
-		slides.each(function(slide){
+		slides.each(function(slide) {
 			slide.updateThumbnail();
 		});
 	};
-	
-	var saveAllToLocalStorage = function(){
+
+	var saveAllToLocalStorage = function() {
 		setTimeout(function() {
 			localStorage.slides = JSON.stringify(slides.toJSON());
 			saveAllToLocalStorage();
-		}, 5000);		
+		}, 5000);
 	};
 
 	// Event functions
@@ -364,18 +360,18 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 		if (deltaX > 0) {
 			// If the movement is to left
-			slide_trans3d[0] = parseInt(slide_trans3d[0]) - movement;
+			slide_trans3d[0] = parseInt(slide_trans3d[0], 10) - movement;
 		} else if (deltaX < 0) {
 			// If the movement is to right
-			slide_trans3d[0] = parseInt(slide_trans3d[0]) + movement;
+			slide_trans3d[0] = parseInt(slide_trans3d[0], 10) + movement;
 		}
 
 		if (deltaY > 0) {
 			// If the movement is to up
-			slide_trans3d[1] = parseInt(slide_trans3d[1]) - movement;
+			slide_trans3d[1] = parseInt(slide_trans3d[1], 10) - movement;
 		} else if (deltaY < 0) {
 			// If the movement is to down
-			slide_trans3d[1] = parseInt(slide_trans3d[1]) + movement;
+			slide_trans3d[1] = parseInt(slide_trans3d[1], 10) + movement;
 		}
 
 		last_x = event.clientX;

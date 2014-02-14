@@ -33,8 +33,8 @@ define(["ComponentModel"], function(ComponentModel) {
 							updatedFromServer = false;
 						}
 					}
-				};
-				
+				}
+
 				// this.updateThumbnail();
 			}, this);
 		},
@@ -46,26 +46,22 @@ define(["ComponentModel"], function(ComponentModel) {
 				'id' : this.cid
 			};
 			var view = Mustache.render(template, data);
-			// $slides_list.innerHTML += view;
 			$($slides_list).append(view);
 
 			//Generate an editor screen for the created slide
 			template = document.getElementById("template-slide").innerHTML;
 			data = {
 				'id' : this.cid,
-				'data-x' : parseInt(this.get("pos_x")),
-				'data-y' : parseInt(this.get("pos_y")),
+				'data-x' : parseInt(this.get("pos_x"), 10),
+				'data-y' : parseInt(this.get("pos_y"), 10),
 				'data-scale' : parseFloat(this.get("scale")),
-				'data-rotate-z' : parseInt(this.get("rotation_z")),
-				'data-rotate-x' : parseInt(this.get("rotation_x")),
-				'data-rotate-y' : parseInt(this.get("rotation_y"))
+				'data-rotate-z' : parseInt(this.get("rotation_z"), 10),
+				'data-rotate-x' : parseInt(this.get("rotation_x"), 10),
+				'data-rotate-y' : parseInt(this.get("rotation_y"), 10)
 			};
 			view = Mustache.render(template, data);
 
 			$("#slides").append(view);
-
-			// //Generate thumbnail
-			// _Slide.updateThumbnail(cid);
 
 			selected_slide = this.cid;
 			impress().initStep(document.getElementById(this.cid));
@@ -78,7 +74,7 @@ define(["ComponentModel"], function(ComponentModel) {
 
 			// Set the background color
 			var background_color = null;
-			if (slide.style.backgroundColor == "") {
+			if (slide.style.backgroundColor === "") {
 				background_color = $("body").css("background-color");
 			} else {
 				background_color = slide.style.backgroundColor;
@@ -93,7 +89,7 @@ define(["ComponentModel"], function(ComponentModel) {
 					slide_mini.appendChild(canvas);
 
 					//If thumbnail corresponds to the first slide
-					if (number == 0 && !is_anonymous) {
+					if (number === 0 && !is_anonymous) {
 						console.log("Update presentation thumbnail");
 						//Update presentation thumbnail to server
 						var url = "/update-thumbnail";

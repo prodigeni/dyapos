@@ -24,13 +24,13 @@ define(["Slide"], function(Slide) {
 		//Save to database
 		var url = "/theme/set";
 		var theme_id = name.split("_");
-		var theme_id = theme_id[theme_id.length - 1];
+		theme_id = theme_id[theme_id.length - 1];
 		if (!is_anonymous) {
 			$.post(url, {
 				"theme_id" : theme_id,
 				"presentation_id" : p_id
 			});
-		}else{
+		} else {
 			localStorage.theme = name;
 		}
 

@@ -92,48 +92,48 @@ define(["Mode",
         // });
     };
 
-    var loadAll = function() {
-		if(!is_anonymous){
-	        components.sync("read", components, {
-	            success : function(data) {
-	                for ( i = 0; i < data.length; i++) {
-	                    insert(data[i]);
-	                }
+var loadAll = function() {
+	if(!is_anonymous){
+		components.sync("read", components, {
+			success : function(data) {
+				for ( i = 0; i < data.length; i++) {
+					insert(data[i]);
+				}
+				
+				// Move to first slide
+				Slide.changeSelected(slides.at(0).cid);
 	
-	                // Move to first slide
-	                Slide.changeSelected(slides.at(0).cid);
-	                
-	                // Wait 3 seconds before rendering thumbails canvas, because it looks ugly while loading
-	                setTimeout(function(){ Slide.loadThumbnails(); }, 3000);
-	            }
-	        });			
-		}
-    };
+				// Wait 3 seconds before rendering thumbails canvas, because it looks ugly while loading
+				setTimeout(function(){ Slide.loadThumbnails(); }, 3000);
+			}
+        });			
+	}
+};
 
     //Insert a new component on the selected slide
     var insert = function(data) {
 		if(typeof(data.slide_id) == "undefined"){
 			// When a new component is created and doesn't have a slide_id
 			// when the component is created from client side (not fetched from server side)
-	        data.slide = slides.get(selected_slide);
+			data.slide = slides.get(selected_slide);
 		}
 		
 		var component = null;
 
-        switch(data.type) {
-            case "text":            	
-                component = new TextCompModel(data);
-                break;
-            case "image":
-                component = new ImageCompModel(data);
-                break;
+		switch(data.type) {
+			case "text":
+				component = new TextCompModel(data);
+				break;
+			case "image":
+				component = new ImageCompModel(data);
+				break;
 			case "video":
 				component = new VideoCompModel(data);
 				break;
-        }
+		}
         
         if(component.isNew() && !is_anonymous){
-	        component.save();        	
+			component.save();
         }
 
 		//Render the component to HTML
@@ -169,7 +169,7 @@ define(["Mode",
 
         document.getElementById(cid).remove();
 
-        if (from_server == true) {
+        if (from_server === true) {
             //Remove from server and collection
             slides.getComponent(cid).destroy();
         } else {
@@ -189,16 +189,16 @@ define(["Mode",
     };
     
     var showToolbox = function(){
-    	$("#toolbox-container").css("display","block");
+		$("#toolbox-container").css("display","block");
     
-    	switch(slides.getComponent(selected_component).get("type")){
-    		case "text": $("#toolbox-text").css("display","block");
-						 break;
-    		case "image":
+		switch(slides.getComponent(selected_component).get("type")){
+			case "text": $("#toolbox-text").css("display","block");
+						break;
+			case "image":
 			case "video":
 						$("#toolbox-image").css("display","block");
-						break;    					 
-    	}
+						break;
+		}
     };
     
     var hideToolbox = function(){
@@ -215,38 +215,30 @@ define(["Mode",
     };
 
     var select = function(cid) {
-    	console.log(cid);
-    	
+		console.log(cid);
+
         var component = document.getElementById(cid);
-//        component.getElementsByClassName("component-preview")[0].classList.add("selected-component");
         component.classList.add("selected-component");
-//        showComponentBox(cid);
 
 		// Show component toolbox
 		showToolbox();
 
 		// Show component menu
 		showMenu(cid);
-
-//		document.getElementById("toolbox-text").style.display = "block";
     };
 
     var deselectAll = function() {
-        console.log("deselect component");
-//		document.getElementById("toolbox-text").style.display = "none";        
+        console.log("deselect component");        
 
-        // if a previous component was selected
-        if (selected_component != null) {
-        	// If the edit-text-mode was active
-        	if(Mode.getCurrentMode() === "text-edit"){
-	            Mode.exitFromEditTextMode();        	
-//		        TextEdit.closeTextToolsWindow();
-        	}
-//			$(".component-preview").removeClass("selected-component");
+		// if a previous component was selected
+		if(selected_component !== null) {
+			// If the edit-text-mode was active
+			if(Mode.getCurrentMode() === "text-edit"){
+				Mode.exitFromEditTextMode();
+			}
 			$(".component").removeClass("selected-component");			
 			hideToolbox();			
 			hideMenu(selected_component);
-//            hideComponentBox(selected_component);
             selected_component = null;        
         }
     };
@@ -266,7 +258,7 @@ define(["Mode",
 			deselectAll();
             selected_component = this.id;
             select(selected_component);
-        }  	
+        }
     };
 
     var onDragStop = function(event, ui) {
@@ -283,15 +275,15 @@ define(["Mode",
         console.log("remove component");                
         deleteComponent(selected_component);
         selected_component = null;  
-        hideToolbox();  	
+        hideToolbox();
         
         //Patch, when a component is deleted, its tooltip remains visible
         $(".tooltip").css("display","none");
     };
     
     var onClickBtnEditText = function(event){
-    	event.stopPropagation();
-    	Mode.goToEditTextMode();
+		event.stopPropagation();
+		Mode.goToEditTextMode();
     };
 
     // module.exports = {

@@ -11,7 +11,7 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$("body").removeClass("non-selectable-text");
 		$(".step").removeClass("hoverable");
 		$(".step").removeClass("borderless");
-		if ($(".component").draggable("option", "disabled") == true) {
+		if ($(".component").draggable("option", "disabled") === true) {
 			$(".component").draggable("enable");
 		}
 		$(".component").addClass("hoverable");
@@ -49,7 +49,7 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$(".step").addClass("hoverable");
 		$(".component").removeClass("hoverable");
 
-		if ($(".component").draggable("option", "disabled") == false) {
+		if ($(".component").draggable("option", "disabled") === false) {
 			$(".component").draggable("disable");
 		}
 		document.getElementById(selected_slide).classList.add("selected-slide");
@@ -129,7 +129,7 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$(".component").removeClass("hoverable");
 		$(".step").addClass("borderless");
 
-		if ($(".component").draggable("option", "disabled") == false) {
+		if ($(".component").draggable("option", "disabled") === false) {
 			$(".component").draggable("disable");
 		}
 
@@ -167,20 +167,20 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 	};
 
 	// module.exports = {
-		// getCurrentMode : getCurrentMode,
-		// goToSlideEditMode : goToSlideEditMode,
-		// goToNavigationEditMode : goToNavigationEditMode,
-		// goToEditTextMode : goToEditTextMode,
-		// exitFromEditTextMode : exitFromEditTextMode,
-		// goToPreviewMode : goToPreviewMode,
-		// exitFromPreviewMode : exitFromPreviewMode,
+	// getCurrentMode : getCurrentMode,
+	// goToSlideEditMode : goToSlideEditMode,
+	// goToNavigationEditMode : goToNavigationEditMode,
+	// goToEditTextMode : goToEditTextMode,
+	// exitFromEditTextMode : exitFromEditTextMode,
+	// goToPreviewMode : goToPreviewMode,
+	// exitFromPreviewMode : exitFromPreviewMode,
 	// };
-	
+
 	exports.getCurrentMode = getCurrentMode;
 	exports.goToSlideEditMode = goToSlideEditMode;
 	exports.goToNavigationEditMode = goToNavigationEditMode;
 	exports.goToEditTextMode = goToEditTextMode;
 	exports.exitFromEditTextMode = exitFromEditTextMode;
 	exports.goToPreviewMode = goToPreviewMode;
-	exports.exitFromPreviewMode = exitFromPreviewMode;	
+	exports.exitFromPreviewMode = exitFromPreviewMode;
 });

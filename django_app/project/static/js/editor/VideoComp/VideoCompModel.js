@@ -3,8 +3,8 @@ define(["ComponentModel"], function(ComponentModel) {
 	var model = ComponentModel.extend({
 		defaults : {
 			type : "video",
-			website : new String(),
-			url_id : new String(),
+			website : null,
+			url_id : null,
 			size : 40, //Default 40% in relation to the slide container
 		},
 		// Methods
@@ -18,39 +18,39 @@ define(["ComponentModel"], function(ComponentModel) {
 			//Get the link from the url_ID
 			var link = "www.youtube.com/embed/" + this.get("url_id");
 
-			data["link"] = link;
+			data.link = link;
 
-			for (attr_name in this.attributes) {
+			for (var attr_name in this.attributes) {
 				var value = this.attributes[attr_name];
 
 				switch(attr_name) {
 					case "pos_x":
 						container_style += "left:" + value + "px;";
-						break
+						break;
 					case "pos_y":
 						container_style += "top:" + value + "px;";
-						break
+						break;
 					case "size":
 						container_style += "width:" + value + "%;";
-						break
+						break;
 				}
 			}
-			data["container_style"] = container_style;
+			data.container_style = container_style;
 
 			var view = Mustache.render(template, data);
 
 			// If the component is new
-			if (this.id == undefined) {
+			if (this.id === undefined) {
 				$("#" + selected_slide).append(view);
-			}else {
+			} else {
 				$("#" + this.get("slide").cid).append(view);
 			}
-			
+
 			$("#" + this.cid).draggable();
 		},
 	});
 	_.extend(model.prototype.defaults, ComponentModel.prototype.defaults);
-	
+
 	return model;
 
 });

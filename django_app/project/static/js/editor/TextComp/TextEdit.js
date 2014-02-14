@@ -1,40 +1,4 @@
 define([], function() {
-	// var selection_start_point = null;
-	// var selection_end_point = null;	
-	// var selected_text = null;
-	
-//    var openTextToolsWindow = function() {
-//        console.log("text tools window opened");
-
-//        // get DOM object of textToolWindow
-//        var textToolsWindow = document.getElementById(selected_component).getElementsByClassName("component-text-tools")[0];
-
-//        textToolsWindow.style.display = "block";
-
-//        //Add click event listeners to buttons
-//        textToolsWindow.getElementsByClassName("bold-btn")[0].addEventListener("click", onClickBtnBold);
-//        textToolsWindow.getElementsByClassName("underlined-btn")[0].addEventListener("click", onClickBtnUnderlined);
-//        textToolsWindow.getElementsByClassName("italic-btn")[0].addEventListener("click", onClickBtnItalic);
-//        textToolsWindow.getElementsByClassName("link-btn")[0].addEventListener("click", onClickBtnLink);        
-//        textToolsWindow.getElementsByClassName("color-btn")[0].addEventListener("click", toggleColorPicker);        
-//    };
-
-//    var closeTextToolsWindow = function() {
-//        console.log("text tools window closed");
-
-//        // get DOM object of textToolWindow
-//        var textToolsWindow = document.getElementById(selected_component).getElementsByClassName("component-text-tools")[0];
-
-//        textToolsWindow.style.display = "none";
-
-//        //Remove click event listeners to buttons
-//        textToolsWindow.getElementsByClassName("bold-btn")[0].removeEventListener("click", onClickBtnBold);
-//        textToolsWindow.getElementsByClassName("underlined-btn")[0].removeEventListener("click", onClickBtnUnderlined);
-//        textToolsWindow.getElementsByClassName("italic-btn")[0].removeEventListener("click", onClickBtnItalic);
-//	    textToolsWindow.getElementsByClassName("link-btn")[0].removeEventListener("click", onClickBtnLink);                
-//        textToolsWindow.getElementsByClassName("color-btn")[0].removeEventListener("click", toggleColorPicker);
-//    };
-
     var toggleBold = function(cid) {
         console.log("Toggle bold");
         var component = document.getElementById(cid).getElementsByClassName("component-preview")[0];
@@ -146,13 +110,13 @@ define([], function() {
 		var content = component.children[0].innerHTML;
 		var template = document.getElementById("template-link").innerHTML;
 		var data = {
-		    "link": link,
-		    "content": content
+			"link": link,
+			"content": content
 		};
 		var view = Mustache.render(template, data);
 		component.children[0].innerHTML = view;
 		slides.getComponent(selected_component).set("content", view);
-    	$("#add-link-box").foundation("reveal","close");		
+		$("#add-link-box").foundation("reveal","close");		
     };
 
     // Event functions
@@ -190,20 +154,15 @@ define([], function() {
     
     var onClickBtnLink = function(event) {
         event.stopPropagation();
-		// _TextEdit.selection_start_point = document.getSelection().baseOffset;
-		// _TextEdit.selection_end_point = document.getSelection().focusOffset-1;
-		// selected_text = document.getSelection().toString();
-    	$("#add-link-box").foundation("reveal","open");	
+		$("#add-link-box").foundation("reveal","open");
     };    
     
     var onClickAddTextLinkBtn = function(event){
-    	var link = document.getElementById("text-link").value;
-    	addLink(link);
+		var link = document.getElementById("text-link").value;
+		addLink(link);
     };
 
     return {
-//        openTextToolsWindow : openTextToolsWindow,
-//        closeTextToolsWindow : closeTextToolsWindow,
         toggleBold : toggleBold,
         toggleItalic : toggleItalic,
         toggleUnderlined : toggleUnderlined,

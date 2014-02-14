@@ -18,19 +18,9 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 	SlideCollection = Backbone.Collection.extend({
 		model : SlideModel,
 		url : "slides",
-		initialize : function() {
-			// this.on("add", function() {
-			// console.log("added new Slide");
-			// if(!is_anonymous){
-			// if ( typeof (this.last().id) == "undefined") {
-			// this.last().save();
-			// }
-			// }
-			// });
-		},
 		getComponent : function(cid) {
 			for ( i = 0; i < slides.length; i++) {
-				if (slides.models[i].get("components").get(cid) != undefined) {
+				if (slides.models[i].get("components").get(cid) !== undefined) {
 					return slides.models[i].get("components").get(cid);
 				}
 			}
@@ -39,7 +29,7 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 			return undefined;
 		},
 		getComponentsWhere : function(values) {
-			var results = new Array();
+			var results = [];
 			for ( i = 0; i < slides.length; i++) {
 				var result = slides.models[i].get("components").where(values);
 				if (result.length > 0) {
@@ -56,16 +46,6 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 	ComponentCollection = Backbone.Collection.extend({
 		model : ComponentModel,
 		url : "components",
-		// initialize : function() {
-		// this.on("add", function() {
-		// console.log("added new Component");
-		// if(!is_anonymous){
-		// if ( typeof (this.last().id) == "undefined") {
-		// this.last().save();
-		// }
-		// }
-		// });
-		// },
 	});
 
 	//Load themes list
@@ -93,7 +73,7 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 	Slide.loadAll();
 
 	// If a theme was set and the user is anonymous, load the theme from local web storage
-	if (localStorage.theme != undefined) {
+	if (localStorage.theme !== undefined) {
 		Theme.set(localStorage.theme);
 	}
 
@@ -136,17 +116,17 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 
 	$input_rotation_z.addEventListener("mouseup", function() {
 		var degrees = document.getElementById(selected_slide).dataset.rotateZ;
-		Slide.changeRotationZ(selected_slide, parseInt(degrees));
+		Slide.changeRotationZ(selected_slide, parseInt(degrees, 10));
 	});
 
 	$input_rotation_x.addEventListener("mouseup", function() {
 		var degrees = document.getElementById(selected_slide).dataset.rotateX;
-		Slide.changeRotationX(selected_slide, parseInt(degrees));
+		Slide.changeRotationX(selected_slide, parseInt(degrees, 10));
 	});
 
 	$input_rotation_y.addEventListener("mouseup", function() {
 		var degrees = document.getElementById(selected_slide).dataset.rotateY;
-		Slide.changeRotationY(selected_slide, parseInt(degrees));
+		Slide.changeRotationY(selected_slide, parseInt(degrees, 10));
 	});
 
 	//Add new title

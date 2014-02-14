@@ -22,14 +22,15 @@ define(["Component"], function(Component) {
 			"pos_x" : clicked_inside_slide_point.left,
 			"pos_y" : clicked_inside_slide_point.top
 		});
-		
+
 		created_image_comp = slides.get(selected_slide).get("components").last();
 
 		if (!is_anonymous) {
+			var url;
 
-			if (inputFileImage.value != "") {
+			if (inputFileImage.value !== "") {
 				console.log("Image uploaded from computer");
-				var url = "/image/upload";
+				url = "/image/upload";
 				var file = inputFileImage.files[0];
 				var imageData = new FormData();
 				imageData.append("image", file);
@@ -41,36 +42,40 @@ define(["Component"], function(Component) {
 					data : imageData,
 					processData : false,
 					cache : false
-				}).done(function(file) {					
+				}).done(function(file) {
 					created_image_comp.set("file", file);
 					var image = document.getElementById(created_image_comp.cid).getElementsByClassName("component-preview")[0].children[0];
 					image.src = "/media/images/" + created_image_comp.get("file");
-					//Clear the file input value					
+					//Clear the file input value
 					inputFileImage.value = "";
 				});
-			} else if (inputUrlImage.value != "") {
+			} else if (inputUrlImage.value !== "") {
 				console.log("Image uploaded from external URL");
-				var url = "/image/upload-from-url";
+				url = "/image/upload-from-url";
 				var image_url = inputUrlImage.value;
 
 				$.post(url, {
 					"image_url" : image_url
 				}, function(file) {
-					var last = _.last(slides.getComponentsWhere({type:"image"}));
+					var last = _.last(slides.getComponentsWhere({
+						type : "image"
+					}));
 					last.set("file", file);
 					var image = document.getElementById(last.cid).getElementsByClassName("component-preview")[0].children[0];
 					image.src = "/media/images/" + last.get("file");
 					//Clear the url input value and the image preview
-					inputUrlImage.value = "";					
+					inputUrlImage.value = "";
 					document.getElementById("image-preview").innerHTML = "";
 				});
 			}
 		} else {
 			// Insert an "external_url" property to the last image component added
-			var last = _.last(slides.getComponentsWhere({type:"image"}));
+			var last = _.last(slides.getComponentsWhere({
+				type : "image"
+			}));
 			last.set("external_url", inputUrlImage.value);
 			var image = document.getElementById(last.cid).getElementsByClassName("component-preview")[0].children[0];
-			image.src = last.get("external_url");			
+			image.src = last.get("external_url");
 		}
 
 	};
@@ -78,7 +83,7 @@ define(["Component"], function(Component) {
 	var increaseSize = function(cid) {
 		console.log("increase image");
 		var component = document.getElementById(cid);
-		var size = parseInt(component.style.width.replace("%", ""));
+		var size = parseInt(component.style.width.replace("%", ""), 10);
 		size = size + 2;
 		component.style.width = size + "%";
 		slides.getComponent(cid).set("size", size);
@@ -87,7 +92,7 @@ define(["Component"], function(Component) {
 	var decreaseSize = function(cid) {
 		console.log("increase image");
 		var component = document.getElementById(cid);
-		var size = parseInt(component.style.width.replace("%", ""));
+		var size = parseInt(component.style.width.replace("%", ""), 10);
 		size = size - 2;
 		component.style.width = size + "%";
 		slides.getComponent(cid).set("size", size);
@@ -96,7 +101,7 @@ define(["Component"], function(Component) {
 	var setSize = function(cid, size) {
 		console.log("set size");
 		var component = document.getElementById(cid);
-		component.style.width = parseInt(size) + "%";
+		component.style.width = parseInt(size, 10) + "%";
 		slides.getComponent(cid).set("size", size);
 	};
 
