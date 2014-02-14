@@ -81,7 +81,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 						setTimeout(loadThumbnails, 3000);
 					}
-					// Component.loadAll();
 				}
 			});
 		} else {
@@ -119,7 +118,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 				}));
 			}
 		} else {
-			// delete data.components;
 			//If data is loaded from the server or local web storage
 			slides.add(new SlideModel(data));
 		}
@@ -142,8 +140,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		var from = slides.indexOf(slides.get(selected_slide));
 		selected_slide = cid;
 		selected_slide_position = slides.indexOf(slides.get(cid));
-		// $("#slide-"+selected_slide).addClass("selected");
-		// Mode.goToNavigationEditMode();
 		moveToSlide(from, selected_slide_position);
 	};
 
@@ -183,10 +179,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		console.log(from_server);
 		//Remove slide-mini
 		$("#" + cid).remove();
-		//        slides.remove(cid);
 		$("#slide-" + cid).remove();
-		//Remove slide-map-draggable
-		// $("#slide-drag-" + cid).remove();
 
 		hideSlideOptionsBox();
 
@@ -251,8 +244,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 	};
 
 	var showSlideOptionsBox = function() {
-		// $slide_options.style.left = event.clientX + "px";
-		// $slide_options.style.top = event.clientY + "px";
 		$slide_options.style.display = "block";
 	};
 
@@ -260,39 +251,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		$slide_options.style.display = "none";
 	};
 
-	var updateThumbnail = function(slide_cid) {
-		// console.log("Update thumbnail from slide cid: " + slide_cid);
-		// var slide = document.getElementById(slide_cid);
-		// var slide_mini = document.getElementById("slide-"+slide_cid).getElementsByClassName("slide-mini-preview")[0];
-		//
-		// // Set the background color
-		// var background_color = null;
-		// if (slide.style.backgroundColor == "") {
-		// background_color = $("body").css("background-color");
-		// } else {
-		// background_color = slide.style.backgroundColor
-		// }
-		//
-		// html2canvas(slide, {
-		// background : background_color,
-		// onrendered : function(canvas) {
-		// canvas.style.width = "100%";
-		// slide_mini.innerHTML = "";
-		// slide_mini.appendChild(canvas);
-		//
-		// //If thumbnail corresponds to the first slide
-		// if (slide_cid == "c1") {
-		// //Update presentation thumbnail to server
-		// generatePresentationThumbnail();
-		// }
-		// },
-		// });
-	};
-
 	var loadThumbnails = function() {
-		// for ( i = 0; i < slides.length; i++) {
-		// updateThumbnail(slides.at(i).cid);
-		// }
 		slides.each(function(slide) {
 			slide.updateThumbnail();
 		});
@@ -484,40 +443,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 	};
 
-	// module.exports = {
-	// initWebsocketEvents : initWebsocketEvents,
-	// loadAll : loadAll,
-	// insert : insert,
-	// changeSelected : changeSelected,
-	// deleteSlide : deleteSlide,
-	// changePosition : changePosition,
-	// updateSlidesOrder : updateSlidesOrder,
-	// moveToSlide : moveToSlide,
-	// changeScale : changeScale,
-	// changeRotationZ : changeRotationZ,
-	// changeRotationX : changeRotationX,
-	// changeRotationY : changeRotationY,
-	// showSlideOptionsBox : showSlideOptionsBox,
-	// hideSlideOptionsBox : hideSlideOptionsBox,
-	// updateThumbnail : updateThumbnail,
-	// loadThumbnails : loadThumbnails,
-	// goNext : goNext,
-	// goPrevious : goPrevious,
-	// onClick : onClick,
-	// onMousedown : onMousedown,
-	// onClickDeleteBtn : onClickDeleteBtn,
-	// onClickDeleteBtnSlideMini : onClickDeleteBtnSlideMini,
-	// onMove : onMove,
-	// vonMouseup : onMouseup,
-	// onRotateZ : onRotateZ,
-	// onRotateX : onRotateX,
-	// onRotateY : onRotateY,
-	// onScale : onScale,
-	// onClickInsideSlide : onClickInsideSlide,
-	// onClickEditBtn : onClickEditBtn,
-	// onKeyup : onKeyup,
-	// };
-
 	exports.initWebsocketEvents = initWebsocketEvents;
 	exports.loadAll = loadAll;
 	exports.insert = insert;
@@ -532,7 +457,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 	exports.changeRotationY = changeRotationY;
 	exports.showSlideOptionsBox = showSlideOptionsBox;
 	exports.hideSlideOptionsBox = hideSlideOptionsBox;
-	exports.updateThumbnail = updateThumbnail;
 	exports.loadThumbnails = loadThumbnails;
 	exports.saveAllToLocalStorage = saveAllToLocalStorage;
 	exports.goNext = goNext;

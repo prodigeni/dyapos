@@ -41,7 +41,6 @@ define(["ComponentModel"], function(ComponentModel) {
 			}
 			data.container_style = container_style;
 			var view = Mustache.render(template, data);
-			// console.log(view);
 
 			// If the component is new
 			if (this.id === undefined) {

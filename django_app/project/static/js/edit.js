@@ -27,7 +27,6 @@ require(["config"], function() {
 		for (var i = 0; i < proparray.length; i++) {//loop through possible properties
 			if (proparray[i] in root.style) {//if property exists on element (value will be string, empty string if not set)
 				return proparray[i];
-				//return that string
 			}
 		}
 	};

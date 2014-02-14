@@ -25,9 +25,6 @@ define(["ComponentModel"], function(ComponentModel) {
 				"text_type" : this.get("text_type"),
 				"content" : this.get("content")
 			};
-			//        view = $("#element-" + this.get("type") + "-component").html();
-			//        view = view.replace("[cid]", this.cid);
-			//        view = view.replace("[content]", this.get("content"));
 
 			for (var attr_name in this.attributes) {
 				value = this.attributes[attr_name];
@@ -53,7 +50,6 @@ define(["ComponentModel"], function(ComponentModel) {
 						break;
 					case "font_size":
 						if (value !== "") {
-							// style += "font-size:" + value + "px;";
 							style += "font-size:" + value + "em;";
 						}
 						break;
@@ -68,8 +64,6 @@ define(["ComponentModel"], function(ComponentModel) {
 
 			data.style = style;
 			data.container_style = container_style;
-			//        view = view.replace("[style]", style);
-			//        view = view.replace("[container_style]", container_style);
 
 			var view = Mustache.render(template, data);
 

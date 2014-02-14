@@ -35,16 +35,4 @@ $(document).ready(function() {
 			$("#modify-description-modal-box").foundation("reveal", "close");
 		});
 	});
-
-	// $("#add-collaborator-btn").on("click", function(){
-	// var empty_form = $("#empty-form").html();
-	// var total_forms = parseInt($('#id_form-TOTAL_FORMS').val());
-	// empty_form = empty_form.replace(/__prefix__/g, total_forms);
-	// $('#id_form-TOTAL_FORMS').val(total_forms + 1);
-	// $("#collaborators").append(empty_form);
-	// });
 });
-
-//$(document).on("click",".add-collaborator-btn", function(){
-//	addCollaborator();
-//});

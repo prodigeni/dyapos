@@ -26,7 +26,7 @@ var loadPresentations = function() {
 	if (selected_filter == "shared")
 		url = "/filter-shared";
 	$.post(url, function(data) {
-		refreshPresentationList(data)
+		refreshPresentationList(data);
 	});
 };
 

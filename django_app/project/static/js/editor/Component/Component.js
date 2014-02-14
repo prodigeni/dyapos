@@ -154,14 +154,6 @@ var loadAll = function() {
         });
     };
 
-//    //Click delete button
-//    var clickDeleteButton = function(event) {
-//        event.stopPropagation();
-//        console.log("remove component");
-//        deleteComponent(selected_component);
-//        selected_component = null;
-//    };
-
     //Delete a component
     var deleteComponent = function(cid, from_server) {
         //Decide whether remove from server or client
@@ -179,8 +171,6 @@ var loadAll = function() {
     };
 
     var showNewComponentBox = function() {
-        // $new_component_box.style.left = clicked_inside_slide_point.left + "px";
-        // $new_component_box.style.top = clicked_inside_slide_point.top + "px";
         $new_component_box.style.display = "block";
     };
 
@@ -285,43 +275,23 @@ var loadAll = function() {
 		event.stopPropagation();
 		Mode.goToEditTextMode();
     };
-
-    // module.exports = {
-        // initWebsocketEvents : initWebsocketEvents,
-        // loadAll : loadAll,
-        // insert : insert,
-        // changePosition : changePosition,
-        // deleteComponent : deleteComponent,
-        // showNewComponentBox : showNewComponentBox,
-        // hideNewComponentBox : hideNewComponentBox,  
-        // showToolbox : showToolbox,      
-        // hideToolbox : hideToolbox,        
-        // showMenu : showMenu,
-        // hideMenu : hideMenu,
-        // select : select,
-        // deselectAll : deselectAll,
-        // onClick : onClick,
-        // onDragStop : onDragStop,
-        // onClickDeleteBtn : onClickDeleteBtn,
-        // onClickBtnEditText : onClickBtnEditText,
-    // };
     
-        exports.initWebsocketEvents = initWebsocketEvents;
-        exports.loadAll = loadAll;
-        exports.insert = insert;
-        exports.changePosition = changePosition;
-        exports.deleteComponent = deleteComponent;
-        exports.showNewComponentBox = showNewComponentBox;
-        exports.hideNewComponentBox = hideNewComponentBox;  
-        exports.showToolbox = showToolbox;
-        exports.hideToolbox = hideToolbox;        
-        exports.showMenu = showMenu;
-        exports.hideMenu = hideMenu;
-        exports.select = select;
-        exports.deselectAll = deselectAll;
-        exports.onClick = onClick;
-        exports.onDragStop = onDragStop;
-        exports.onClickDeleteBtn = onClickDeleteBtn;
-        exports.onClickBtnEditText = onClickBtnEditText;    
+	exports.initWebsocketEvents = initWebsocketEvents;
+	exports.loadAll = loadAll;
+	exports.insert = insert;
+	exports.changePosition = changePosition;
+	exports.deleteComponent = deleteComponent;
+	exports.showNewComponentBox = showNewComponentBox;
+	exports.hideNewComponentBox = hideNewComponentBox;
+	exports.showToolbox = showToolbox;
+	exports.hideToolbox = hideToolbox;        
+	exports.showMenu = showMenu;
+	exports.hideMenu = hideMenu;
+	exports.select = select;
+	exports.deselectAll = deselectAll;
+	exports.onClick = onClick;
+	exports.onDragStop = onDragStop;
+	exports.onClickDeleteBtn = onClickDeleteBtn;
+	exports.onClickBtnEditText = onClickBtnEditText;
 
 });

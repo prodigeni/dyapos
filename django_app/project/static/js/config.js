@@ -13,40 +13,40 @@ require.config({
 		backbone_relational : "backbone-relational",
 		iobind : "backbone.iobind",
 		iosync : "backbone.iosync",
-		modernizr: "modernizr",
-		foundation: "foundation.min",
+		modernizr : "modernizr",
+		foundation : "foundation.min",
 
 		//Modules
-		EditorLoader: "editor/EditorLoader",
-		Chat: "editor/Chat/Chat",
-		Collaborative: "editor/Collaborative/Collaborative",
-		Component: "editor/Component/Component",
-		ComponentModel: "editor/Component/ComponentModel",
-		ImageComp: "editor/ImageComp/ImageComp",
-		ImageCompModel: "editor/ImageComp/ImageCompModel",
-		Map: "editor/Map/Map",
-		Mode: "editor/Mode/Mode",
-		Slide: "editor/Slide/Slide",
-		SlideModel: "editor/Slide/SlideModel",
-		TextEdit: "editor/TextComp/TextEdit",
-		TextCompModel: "editor/TextComp/TextCompModel",
-		VideoCompModel: "editor/VideoComp/VideoCompModel",
-		Theme: "editor/Theme/Theme",
-		VideoComp: "editor/VideoComp/VideoComp",
+		EditorLoader : "editor/EditorLoader",
+		Chat : "editor/Chat/Chat",
+		Collaborative : "editor/Collaborative/Collaborative",
+		Component : "editor/Component/Component",
+		ComponentModel : "editor/Component/ComponentModel",
+		ImageComp : "editor/ImageComp/ImageComp",
+		ImageCompModel : "editor/ImageComp/ImageCompModel",
+		Map : "editor/Map/Map",
+		Mode : "editor/Mode/Mode",
+		Slide : "editor/Slide/Slide",
+		SlideModel : "editor/Slide/SlideModel",
+		TextEdit : "editor/TextComp/TextEdit",
+		TextCompModel : "editor/TextComp/TextCompModel",
+		VideoCompModel : "editor/VideoComp/VideoCompModel",
+		Theme : "editor/Theme/Theme",
+		VideoComp : "editor/VideoComp/VideoComp",
 	},
 
 	shim : {
 		jquery : {
 			exports : "$"
 		},
-		jqueryui: {
-			deps: ["jquery"],
+		jqueryui : {
+			deps : ["jquery"],
 		},
-		touchpunch: {
-			deps: ["jqueryui"]
+		touchpunch : {
+			deps : ["jqueryui"]
 		},
-		underscore: {
-			exports: "_"
+		underscore : {
+			exports : "_"
 		},
 		backbone : {
 			deps : ["underscore"],
@@ -55,13 +55,11 @@ require.config({
 		backbone_relational : {
 			deps : ["backbone"]
 		},
-		iosync: {
-			deps : ["underscore","backbone"]
+		iosync : {
+			deps : ["underscore", "backbone"]
 		},
-		iobind: {
-			deps : ["underscore","backbone","iosync"]
+		iobind : {
+			deps : ["underscore", "backbone", "iosync"]
 		}
 	}
-});
-
-console.log("Require.js configuration loaded");
+}); 

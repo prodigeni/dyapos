@@ -93,7 +93,6 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 
 	var goToEditTextMode = function() {
 		currentMode = "text-edit";
-		//        event.stopPropagation();
 		console.log("edit text mode");
 		$("#" + selected_component).draggable("disable");
 
@@ -136,8 +135,6 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
 		$("#btn-exit-preview-mode").show();
 
-		// document.body.classList.add("impress-enabled");
-
 		// Remove previously attached events
 		$("#slides").off("click", ".step", Slide.onClickInsideSlide);
 		$(".step").off("click", ".component", Component.onClick);
@@ -159,22 +156,10 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$("#btn-exit-preview-mode").hide();
 		$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
 
-		// document.body.classList.remove("impress-enabled");
-
 		document.removeEventListener("keyup", Slide.onKeyup);
 
 		goToSlideEditMode();
 	};
-
-	// module.exports = {
-	// getCurrentMode : getCurrentMode,
-	// goToSlideEditMode : goToSlideEditMode,
-	// goToNavigationEditMode : goToNavigationEditMode,
-	// goToEditTextMode : goToEditTextMode,
-	// exitFromEditTextMode : exitFromEditTextMode,
-	// goToPreviewMode : goToPreviewMode,
-	// exitFromPreviewMode : exitFromPreviewMode,
-	// };
 
 	exports.getCurrentMode = getCurrentMode;
 	exports.goToSlideEditMode = goToSlideEditMode;

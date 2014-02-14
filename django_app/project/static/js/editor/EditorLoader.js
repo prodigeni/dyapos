@@ -67,9 +67,6 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 
 	impress().init();
 
-	// // It keeps all the slides visible with an opacity of 1
-	// document.body.classList.remove("impress-enabled");
-
 	Slide.loadAll();
 
 	// If a theme was set and the user is anonymous, load the theme from local web storage
