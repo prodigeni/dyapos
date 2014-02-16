@@ -1,4 +1,4 @@
-define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView) {
+define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -45,6 +45,7 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 	var colorpicker_view = new ColorPickerView();
 	var theme_selector_view = new ThemeSelectorView();
 	var chat_window_view = new ChatWindowView();
+	var add_link_window_view = new AddLinkWindowView();
 
 	//Create a slide collection
 	slides = new SlideCollection();
@@ -172,18 +173,13 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 		document.getElementById("image_url").value = "";
 	});
 
-	$("#btn-add-text-link").on("click", TextEdit.onClickAddTextLinkBtn);
-
-	$("#btn-color-ok").on("click", TextEdit.onClickBtnApplyColor);
-	$("#btn-color-cancel").on("click", TextEdit.cancelColor);
-
 	$("#btn-increase-font").on("click", TextEdit.onClickBtnIncreaseFont);
 	$("#btn-decrease-font").on("click", TextEdit.onClickBtnDecreaseFont);
 	$("#bold-btn").on("click", TextEdit.onClickBtnBold);
 	$("#underlined-btn").on("click", TextEdit.onClickBtnUnderlined);
 	$("#italic-btn").on("click", TextEdit.onClickBtnItalic);
 	$("#link-btn").on("click", TextEdit.onClickBtnLink);
-	$("#color-btn").on("click", TextEdit.toggleColorPicker);
+	$("#color-btn").on("click", colorpicker_view.toggle);
 
 	$("#btn-increase-image-size").on("click", ImageComp.onClickBtnIncrease);
 	$("#btn-decrease-image-size").on("click", ImageComp.onClickBtnDecrease);

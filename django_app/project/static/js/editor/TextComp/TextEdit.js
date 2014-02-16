@@ -38,37 +38,6 @@ define([], function() {
         }
     };
 
-    var toggleColorPicker = function() {
-        var colorpicker = document.getElementById("colorpicker");
-        status = colorpicker.style.display;
-        if (status == "none") {
-            colorpicker.style.display = "block";
-            previous_color = document.getElementById(selected_component).getElementsByClassName("component-preview")[0].style.color;
-        } else {
-            colorpicker.style.display = "none";
-        }
-    };
-
-    var cancelColor = function(event) {
-        event.stopPropagation();
-        console.log("cancel color");
-
-        document.getElementById(selected_component).getElementsByClassName("component-preview")[0].style.color = previous_color;
-        previous_color = selected_color = null;
-        toggleColorPicker();
-    };
-
-    var changeColor = function(cid, color) {
-        console.log("Change color");
-
-        var text = document.getElementById(cid).getElementsByClassName("component-preview")[0];
-        text.style.color = color;
-
-        slides.getComponent(cid).set({
-            "color" : color
-        });
-    };
-
     var increaseFont = function(cid) {
         console.log("increase font");
         var component = document.getElementById(cid).getElementsByClassName("component-preview")[0];
@@ -104,20 +73,6 @@ define([], function() {
         component.innerHTML = content;
         slides.getComponent(cid).set("content", content);        
     };
-        
-    var addLink = function(link){
-        var component = document.getElementById(selected_component).getElementsByClassName("component-preview")[0];
-		var content = component.children[0].innerHTML;
-		var template = document.getElementById("template-link").innerHTML;
-		var data = {
-			"link": link,
-			"content": content
-		};
-		var view = Mustache.render(template, data);
-		component.children[0].innerHTML = view;
-		slides.getComponent(selected_component).set("content", view);
-		$("#add-link-box").foundation("reveal","close");		
-    };
 
     // Event functions
     var onClickBtnIncreaseFont = function(event) {
@@ -128,13 +83,6 @@ define([], function() {
     var onClickBtnDecreaseFont = function(event) {
         event.stopPropagation();
         decreaseFont(selected_component);
-    };
-
-    var onClickBtnApplyColor = function(event) {
-        event.stopPropagation();
-        changeColor(selected_component, selected_color);
-        previous_color = selected_color = null;
-        toggleColorPicker();
     };
 
     var onClickBtnBold = function(event) {
@@ -156,32 +104,21 @@ define([], function() {
         event.stopPropagation();
 		$("#add-link-box").foundation("reveal","open");
     };    
-    
-    var onClickAddTextLinkBtn = function(event){
-		var link = document.getElementById("text-link").value;
-		addLink(link);
-    };
 
     return {
         toggleBold : toggleBold,
         toggleItalic : toggleItalic,
         toggleUnderlined : toggleUnderlined,
-        toggleColorPicker : toggleColorPicker,
-        cancelColor : cancelColor,
-        changeColor : changeColor,
         increaseFont : increaseFont,
         decreaseFont : decreaseFont,
         setFontSize : setFontSize,
         changeContent : changeContent,
-        addLink : addLink,
         onClickBtnIncreaseFont : onClickBtnIncreaseFont,
         onClickBtnDecreaseFont : onClickBtnDecreaseFont,
-        onClickBtnApplyColor : onClickBtnApplyColor,
         onClickBtnBold : onClickBtnBold,
         onClickBtnItalic : onClickBtnItalic,
         onClickBtnUnderlined : onClickBtnUnderlined,
         onClickBtnLink : onClickBtnLink,
-        onClickAddTextLinkBtn : onClickAddTextLinkBtn,
     };
 
 });

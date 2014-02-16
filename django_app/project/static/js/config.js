@@ -36,6 +36,7 @@ require.config({
 		ColorPickerView : "editor/TextComp/ColorPickerView",
 		ThemeSelectorView : "editor/Theme/ThemeSelectorView",
 		ChatWindowView : "editor/Chat/ChatWindowView",
+		AddLinkWindowView : "editor/TextComp/AddLinkWindowView",
 	},
 
 	shim : {
