@@ -31,10 +31,11 @@ require.config({
 		TextEdit : "editor/TextComp/TextEdit",
 		TextCompModel : "editor/TextComp/TextCompModel",
 		VideoCompModel : "editor/VideoComp/VideoCompModel",
-		Theme : "editor/Theme/Theme",
-		VideoComp : "editor/VideoComp/VideoComp",
 		//Views
 		ImageUploadFormView : "editor/ImageComp/ImageUploadFormView",
+		VideoUploadFormView : "editor/VideoComp/VideoUploadFormView",
+		ColorPickerView : "editor/TextComp/ColorPickerView",
+		ThemeSelectorView : "editor/Theme/ThemeSelectorView",
 	},
 
 	shim : {

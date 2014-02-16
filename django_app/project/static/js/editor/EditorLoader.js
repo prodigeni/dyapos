@@ -1,12 +1,4 @@
-define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "VideoComp", "TextEdit", "Mode", "ImageUploadFormView"], function(Theme, Collaborative, Chat, Slide, Component, SlideModel, ComponentModel, ImageComp, VideoComp, TextEdit, Mode, ImageUploadFormView) {
-
-	ColorPicker.fixIndicators(document.getElementById('slider-indicator'), document.getElementById('picker-indicator'));
-
-	ColorPicker(document.getElementById('slider'), document.getElementById('picker'), function(hex, hsv, rgb, pickerCoordinate, sliderCoordinate) {
-		selected_color = hex;
-		ColorPicker.positionIndicators(document.getElementById('slider-indicator'), document.getElementById('picker-indicator'), sliderCoordinate, pickerCoordinate);
-		document.getElementById(selected_component).getElementsByClassName("component-preview")[0].style.color = hex;
-	});
+define(["Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView"], function(Collaborative, Chat, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -47,11 +39,11 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 		model : ComponentModel,
 		url : "components",
 	});
-
-	//Load themes list
-	Theme.loadList();
 	
-	var image_upload_form_view = new ImageUploadFormView(); 
+	var image_upload_form_view = new ImageUploadFormView();
+	var video_upload_form_view = new VideoUploadFormView();
+	var colorpicker_view = new ColorPickerView();
+	var theme_selector_view = new ThemeSelectorView();
 
 	//Create a slide collection
 	slides = new SlideCollection();
@@ -70,11 +62,6 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 	impress().init();
 
 	Slide.loadAll();
-
-	// If a theme was set and the user is anonymous, load the theme from local web storage
-	if (localStorage.theme !== undefined) {
-		Theme.set(localStorage.theme);
-	}
 
 	if (is_anonymous) {
 		Slide.saveAllToLocalStorage();
@@ -185,11 +172,7 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 		document.getElementById("image_url").value = "";
 	});
 
-	$("#btn-add-video-link").on("click", VideoComp.onClickAddLinkBtn);
-
 	$("#btn-add-text-link").on("click", TextEdit.onClickAddTextLinkBtn);
-
-	$("#themes-window").on("click", ".theme-link", Theme.change);
 
 	$("#btn-color-ok").on("click", TextEdit.onClickBtnApplyColor);
 	$("#btn-color-cancel").on("click", TextEdit.cancelColor);
