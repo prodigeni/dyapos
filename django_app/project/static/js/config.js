@@ -33,6 +33,8 @@ require.config({
 		VideoCompModel : "editor/VideoComp/VideoCompModel",
 		Theme : "editor/Theme/Theme",
 		VideoComp : "editor/VideoComp/VideoComp",
+		//Views
+		ImageUploadFormView : "editor/ImageComp/ImageUploadFormView",
 	},
 
 	shim : {

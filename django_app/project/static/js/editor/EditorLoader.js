@@ -1,4 +1,4 @@
-define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "VideoComp", "TextEdit", "Mode"], function(Theme, Collaborative, Chat, Slide, Component, SlideModel, ComponentModel, ImageComp, VideoComp, TextEdit, Mode) {
+define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "VideoComp", "TextEdit", "Mode", "ImageUploadFormView"], function(Theme, Collaborative, Chat, Slide, Component, SlideModel, ComponentModel, ImageComp, VideoComp, TextEdit, Mode, ImageUploadFormView) {
 
 	ColorPicker.fixIndicators(document.getElementById('slider-indicator'), document.getElementById('picker-indicator'));
 
@@ -50,6 +50,8 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 
 	//Load themes list
 	Theme.loadList();
+	
+	var image_upload_form_view = new ImageUploadFormView(); 
 
 	//Create a slide collection
 	slides = new SlideCollection();
@@ -176,8 +178,6 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 		Slide.insert(null);
 	});
 
-	$("#btn-upload-image").on("click", ImageComp.upload);
-
 	$("#image_url").on("change", function(event) {
 		document.getElementById("image").value = "";
 	});
@@ -211,6 +211,4 @@ define(["Theme", "Collaborative", "Chat", "Slide", "Component", "SlideModel", "C
 
 	$("#btn-preview-presentation").on("click", Mode.goToPreviewMode);
 	$("#btn-exit-preview-mode").on("click", Mode.exitFromPreviewMode);
-
-	$("#image-url").on("paste", ImageComp.onPasteURL);
 });

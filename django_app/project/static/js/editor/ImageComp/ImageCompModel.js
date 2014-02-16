@@ -18,7 +18,7 @@ define(["ComponentModel"], function(ComponentModel) {
 			};
 
 			// if an image file is already set
-			if (this.get("file") !== "") {
+			if (this.get("file") !== null) {
 				data.url = media_url + "images/" + this.get("file");
 			} else {
 				data.url = this.get("external_url");
