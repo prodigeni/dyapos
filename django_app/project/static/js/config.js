@@ -18,7 +18,6 @@ require.config({
 
 		//Modules
 		EditorLoader : "editor/EditorLoader",
-		Chat : "editor/Chat/Chat",
 		Collaborative : "editor/Collaborative/Collaborative",
 		Component : "editor/Component/Component",
 		ComponentModel : "editor/Component/ComponentModel",
@@ -36,6 +35,7 @@ require.config({
 		VideoUploadFormView : "editor/VideoComp/VideoUploadFormView",
 		ColorPickerView : "editor/TextComp/ColorPickerView",
 		ThemeSelectorView : "editor/Theme/ThemeSelectorView",
+		ChatWindowView : "editor/Chat/ChatWindowView",
 	},
 
 	shim : {

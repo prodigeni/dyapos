@@ -1,4 +1,4 @@
-define(["Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView"], function(Collaborative, Chat, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView) {
+define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -44,6 +44,7 @@ define(["Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentM
 	var video_upload_form_view = new VideoUploadFormView();
 	var colorpicker_view = new ColorPickerView();
 	var theme_selector_view = new ThemeSelectorView();
+	var chat_window_view = new ChatWindowView();
 
 	//Create a slide collection
 	slides = new SlideCollection();
@@ -54,7 +55,6 @@ define(["Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentM
 	if (!is_anonymous) {
 		// Start listening websocket events from server to client
 		Collaborative.initWebsocketEvents();
-		Chat.initWebsocketEvents();
 		Slide.initWebsocketEvents();
 		Component.initWebsocketEvents();
 	}
@@ -176,8 +176,6 @@ define(["Collaborative", "Chat", "Slide", "Component", "SlideModel", "ComponentM
 
 	$("#btn-color-ok").on("click", TextEdit.onClickBtnApplyColor);
 	$("#btn-color-cancel").on("click", TextEdit.cancelColor);
-
-	$chat_form.addEventListener("submit", Chat.sendMessage);
 
 	$("#btn-increase-font").on("click", TextEdit.onClickBtnIncreaseFont);
 	$("#btn-decrease-font").on("click", TextEdit.onClickBtnDecreaseFont);
