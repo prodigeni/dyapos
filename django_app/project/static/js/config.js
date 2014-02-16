@@ -37,6 +37,7 @@ require.config({
 		ThemeSelectorView : "editor/Theme/ThemeSelectorView",
 		ChatWindowView : "editor/Chat/ChatWindowView",
 		AddLinkWindowView : "editor/TextComp/AddLinkWindowView",
+		NewComponentBoxView : "editor/Component/NewComponentBoxView",
 	},
 
 	shim : {

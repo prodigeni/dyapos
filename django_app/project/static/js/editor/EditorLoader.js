@@ -1,4 +1,4 @@
-define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView) {
+define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView" , "NewComponentBoxView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -46,6 +46,7 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 	var theme_selector_view = new ThemeSelectorView();
 	var chat_window_view = new ChatWindowView();
 	var add_link_window_view = new AddLinkWindowView();
+	var new_component_box_view = new NewComponentBoxView();
 
 	//Create a slide collection
 	slides = new SlideCollection();
@@ -114,51 +115,6 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 	$input_rotation_y.addEventListener("mouseup", function() {
 		var degrees = document.getElementById(selected_slide).dataset.rotateY;
 		Slide.changeRotationY(selected_slide, parseInt(degrees, 10));
-	});
-
-	//Add new title
-	$("#btn-add-title").on("click", function(event) {
-		Component.insert({
-			"type" : "text",
-			"text_type" : "title",
-			"pos_x" : clicked_inside_slide_point.left,
-			"pos_y" : clicked_inside_slide_point.top,
-			"content" : title_default_text,
-		});
-	});
-
-	//Add new subtitle
-	$("#btn-add-subtitle").on("click", function() {
-		Component.insert({
-			"type" : "text",
-			"text_type" : "subtitle",
-			"pos_x" : clicked_inside_slide_point.left,
-			"pos_y" : clicked_inside_slide_point.top,
-			"content" : subtitle_default_text,
-		});
-	});
-
-	//Add new body
-	$("#btn-add-body").on("click", function() {
-		Component.insert({
-			"type" : "text",
-			"text_type" : "body",
-			"pos_x" : clicked_inside_slide_point.left,
-			"pos_y" : clicked_inside_slide_point.top,
-			"content" : body_default_text,
-		});
-	});
-
-	//Add new image
-	$("#btn-add-image").on("click", function() {
-		$("#add-image-box").foundation("reveal", "open");
-		Component.hideNewComponentBox();
-	});
-
-	//Add new video
-	$("#btn-add-video").on("click", function() {
-		$("#add-video-box").foundation("reveal", "open");
-		Component.hideNewComponentBox();
 	});
 
 	$("#btn-add-slide").on("click", function(event) {
