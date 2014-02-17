@@ -1,4 +1,4 @@
-define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView" , "NewComponentBoxView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView) {
+define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView" , "NewComponentBoxView", "SlideOptionsBoxView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -40,13 +40,14 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 		url : "components",
 	});
 	
-	var image_upload_form_view = new ImageUploadFormView();
-	var video_upload_form_view = new VideoUploadFormView();
-	var colorpicker_view = new ColorPickerView();
-	var theme_selector_view = new ThemeSelectorView();
-	var chat_window_view = new ChatWindowView();
-	var add_link_window_view = new AddLinkWindowView();
-	var new_component_box_view = new NewComponentBoxView();
+	image_upload_form_view = new ImageUploadFormView();
+	video_upload_form_view = new VideoUploadFormView();
+	colorpicker_view = new ColorPickerView();
+	theme_selector_view = new ThemeSelectorView();
+	chat_window_view = new ChatWindowView();
+	add_link_window_view = new AddLinkWindowView();
+	new_component_box_view = new NewComponentBoxView();
+	slide_options_box_view = new SlideOptionsBoxView();
 
 	//Create a slide collection
 	slides = new SlideCollection();
@@ -88,34 +89,6 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 	});
 
 	$("#slides-list").on("click", ".btn-delete", Slide.onClickDeleteBtnSlideMini);
-
-	$("#btn-delete-slide").on("click", Slide.onClickDeleteBtn);
-
-	$("#btn-edit-presentation").on("click", Slide.onClickEditBtn);
-
-	$input_scale.addEventListener("change", Slide.onScale);
-	$input_rotation_z.addEventListener("change", Slide.onRotateZ);
-	$input_rotation_x.addEventListener("change", Slide.onRotateX);
-	$input_rotation_y.addEventListener("change", Slide.onRotateY);
-	$input_scale.addEventListener("mouseup", function() {
-		var scale = document.getElementById(selected_slide).dataset.scale;
-		Slide.changeScale(selected_slide, parseFloat(scale));
-	});
-
-	$input_rotation_z.addEventListener("mouseup", function() {
-		var degrees = document.getElementById(selected_slide).dataset.rotateZ;
-		Slide.changeRotationZ(selected_slide, parseInt(degrees, 10));
-	});
-
-	$input_rotation_x.addEventListener("mouseup", function() {
-		var degrees = document.getElementById(selected_slide).dataset.rotateX;
-		Slide.changeRotationX(selected_slide, parseInt(degrees, 10));
-	});
-
-	$input_rotation_y.addEventListener("mouseup", function() {
-		var degrees = document.getElementById(selected_slide).dataset.rotateY;
-		Slide.changeRotationY(selected_slide, parseInt(degrees, 10));
-	});
 
 	$("#btn-add-slide").on("click", function(event) {
 		event.stopPropagation();

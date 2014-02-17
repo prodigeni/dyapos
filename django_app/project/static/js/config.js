@@ -38,6 +38,7 @@ require.config({
 		ChatWindowView : "editor/Chat/ChatWindowView",
 		AddLinkWindowView : "editor/TextComp/AddLinkWindowView",
 		NewComponentBoxView : "editor/Component/NewComponentBoxView",
+		SlideOptionsBoxView : "editor/Slide/SlideOptionsBoxView",
 	},
 
 	shim : {

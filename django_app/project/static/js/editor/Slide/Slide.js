@@ -148,7 +148,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		$input_rotation_z.value = slides.at(to).get("rotation_z");
 		$input_rotation_x.value = slides.at(to).get("rotation_x");
 		$input_rotation_y.value = slides.at(to).get("rotation_y");
-		hideSlideOptionsBox();
+		slide_options_box_view.hide();
 		impress().goto(slides.at(to).cid);
 
 		//Change to slide edit mode
@@ -181,7 +181,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		$("#" + cid).remove();
 		$("#slide-" + cid).remove();
 
-		hideSlideOptionsBox();
+		slide_options_box_view.hide();
 
 		if (from_server === true) {
 			//Remove from server and collection
@@ -214,43 +214,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 	};
 
-	var changeScale = function(cid, scale) {
-		console.log(scale);
-		var slide = document.getElementById(cid);
-		slide.dataset.scale = scale;
-		impress().initStep(slide);
-		slides.get(selected_slide).set("scale", scale);
-	};
-
-	var changeRotationZ = function(cid, degrees) {
-		var slide = document.getElementById(cid);
-		slide.dataset.rotateZ = degrees;
-		impress().initStep(slide);
-		slides.get(selected_slide).set("rotation_z", degrees);
-	};
-
-	var changeRotationX = function(cid, degrees) {
-		var slide = document.getElementById(cid);
-		slide.dataset.rotateX = degrees;
-		impress().initStep(slide);
-		slides.get(selected_slide).set("rotation_x", degrees);
-	};
-
-	var changeRotationY = function(cid, degrees) {
-		var slide = document.getElementById(cid);
-		slide.dataset.rotateY = degrees;
-		impress().initStep(slide);
-		slides.get(selected_slide).set("rotation_y", degrees);
-	};
-
-	var showSlideOptionsBox = function() {
-		$slide_options.style.display = "block";
-	};
-
-	var hideSlideOptionsBox = function() {
-		$slide_options.style.display = "none";
-	};
-
 	var loadThumbnails = function() {
 		slides.each(function(slide) {
 			slide.updateThumbnail();
@@ -272,12 +235,7 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		$("#" + selected_slide).addClass("selected");
 		$(".step").removeClass("active");
 		$("#" + selected_slide).addClass("active");
-		showSlideOptionsBox(event);
-	};
-
-	var onClickDeleteBtn = function(event) {
-		event.stopPropagation();
-		deleteSlide(clicked_slide.id);
+		slide_options_box_view.show();
 	};
 
 	var onClickDeleteBtnSlideMini = function(event) {
@@ -352,41 +310,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 		changePosition(clicked_slide.id, clicked_slide.dataset.x, clicked_slide.dataset.y);
 	};
 
-	var onRotateZ = function(event) {
-		var degreesZ = event.target.value;
-		var slide = clicked_slide;
-		var style = slide.style[css_transform];
-		style = style.replace(/rotateZ\(.+?\)/g, "rotateZ(" + degreesZ + "deg)");
-		slide.style[css_transform] = style;
-		slide.dataset.rotateZ = degreesZ;
-	};
-
-	var onRotateX = function(event) {
-		var degreesX = event.target.value;
-		var slide = clicked_slide;
-		var style = slide.style[css_transform];
-		style = style.replace(/rotateX\(.+?\)/g, "rotateX(" + degreesX + "deg)");
-		slide.style[css_transform] = style;
-		slide.dataset.rotateX = degreesX;
-	};
-
-	var onRotateY = function(event) {
-		var degreesY = event.target.value;
-		var slide = document.getElementById(selected_slide);
-		var style = slide.style[css_transform];
-		style = style.replace(/rotateY\(.+?\)/g, "rotateY(" + degreesY + "deg)");
-		slide.style[css_transform] = style;
-		slide.dataset.rotateY = degreesY;
-	};
-
-	var onScale = function(event) {
-		var scale = event.target.value;
-		var style = clicked_slide.style[css_transform];
-		style = style.replace(/scale\(.+?\)/g, "scale(" + scale + ")");
-		clicked_slide.style[css_transform] = style;
-		clicked_slide.dataset.scale = scale;
-	};
-
 	var onClickInsideSlide = function(event) {
 		event.stopPropagation();
 		console.log("event: click on slide");
@@ -402,11 +325,6 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 
 		Component.deselectAll();
 		Component.showNewComponentBox();
-	};
-
-	var onClickEditBtn = function(event) {
-		changeSelected(clicked_slide.id);
-		// hideSlideOptionsBox();
 	};
 
 	var onKeyup = function(event) {
@@ -451,28 +369,16 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 	exports.changePosition = changePosition;
 	exports.updateSlidesOrder = updateSlidesOrder;
 	exports.moveToSlide = moveToSlide;
-	exports.changeScale = changeScale;
-	exports.changeRotationZ = changeRotationZ;
-	exports.changeRotationX = changeRotationX;
-	exports.changeRotationY = changeRotationY;
-	exports.showSlideOptionsBox = showSlideOptionsBox;
-	exports.hideSlideOptionsBox = hideSlideOptionsBox;
 	exports.loadThumbnails = loadThumbnails;
 	exports.saveAllToLocalStorage = saveAllToLocalStorage;
 	exports.goNext = goNext;
 	exports.goPrevious = goPrevious;
 	exports.onClick = onClick;
 	exports.onMousedown = onMousedown;
-	exports.onClickDeleteBtn = onClickDeleteBtn;
 	exports.onClickDeleteBtnSlideMini = onClickDeleteBtnSlideMini;
 	exports.onMove = onMove;
 	exports.vonMouseup = onMouseup;
-	exports.onRotateZ = onRotateZ;
-	exports.onRotateX = onRotateX;
-	exports.onRotateY = onRotateY;
-	exports.onScale = onScale;
 	exports.onClickInsideSlide = onClickInsideSlide;
-	exports.onClickEditBtn = onClickEditBtn;
 	exports.onKeyup = onKeyup;
 
 });
