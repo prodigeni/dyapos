@@ -41,12 +41,12 @@ define(["ComponentModel"], function(ComponentModel) {
 		// Methods
 		toHTML : function() {
 			// Add to slides list panel
-			var template = document.getElementById("template-slide-mini").innerHTML;
-			var data = {
-				'id' : this.cid
-			};
-			var view = Mustache.render(template, data);
-			$($slides_list).append(view);
+			// var template = document.getElementById("template-slide-mini").innerHTML;
+			// var data = {
+				// 'cid' : this.cid
+			// };
+			// var view = Mustache.render(template, data);
+			// $($slides_list).append(view);
 
 			//Generate an editor screen for the created slide
 			template = document.getElementById("template-slide").innerHTML;
@@ -68,39 +68,39 @@ define(["ComponentModel"], function(ComponentModel) {
 		},
 
 		updateThumbnail : function() {
-			console.log("Thumbnail updated");
-			var slide = document.getElementById(this.cid);
-			var slide_mini = document.getElementById("slide-"+this.cid).getElementsByClassName("slide-mini-preview")[0];
-
-			// Set the background color
-			var background_color = null;
-			if (slide.style.backgroundColor === "") {
-				background_color = $("body").css("background-color");
-			} else {
-				background_color = slide.style.backgroundColor;
-			}
-
-			var number = this.get("number");
-			html2canvas(slide, {
-				background : background_color,
-				onrendered : function(canvas) {
-					canvas.style.width = "100%";
-					slide_mini.innerHTML = "";
-					slide_mini.appendChild(canvas);
-
-					//If thumbnail corresponds to the first slide
-					if (number === 0 && !is_anonymous) {
-						console.log("Update presentation thumbnail");
-						//Update presentation thumbnail to server
-						var url = "/update-thumbnail";
-						var image = canvas.toDataURL("image/png");
-						$.post(url, {
-							"presentation_id" : p_id,
-							"image" : image
-						});
-					}
-				},
-			});
+			// console.log("Thumbnail updated");
+			// var slide = document.getElementById(this.cid);
+			// var slide_mini = document.getElementById("slide-"+this.cid).getElementsByClassName("slide-mini-preview")[0];
+// 
+			// // Set the background color
+			// var background_color = null;
+			// if (slide.style.backgroundColor === "") {
+				// background_color = $("body").css("background-color");
+			// } else {
+				// background_color = slide.style.backgroundColor;
+			// }
+// 
+			// var number = this.get("number");
+			// html2canvas(slide, {
+				// background : background_color,
+				// onrendered : function(canvas) {
+					// canvas.style.width = "100%";
+					// slide_mini.innerHTML = "";
+					// slide_mini.appendChild(canvas);
+// 
+					// //If thumbnail corresponds to the first slide
+					// if (number === 0 && !is_anonymous) {
+						// console.log("Update presentation thumbnail");
+						// //Update presentation thumbnail to server
+						// var url = "/update-thumbnail";
+						// var image = canvas.toDataURL("image/png");
+						// $.post(url, {
+							// "presentation_id" : p_id,
+							// "image" : image
+						// });
+					// }
+				// },
+			// });
 		},
 		updatePositionToMap : function() {
 

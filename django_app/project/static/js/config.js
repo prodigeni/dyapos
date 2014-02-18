@@ -31,6 +31,7 @@ require.config({
 		TextCompModel : "editor/TextComp/TextCompModel",
 		VideoCompModel : "editor/VideoComp/VideoCompModel",
 		//Views
+		EditorView : "editor/EditorView",
 		ImageUploadFormView : "editor/ImageComp/ImageUploadFormView",
 		VideoUploadFormView : "editor/VideoComp/VideoUploadFormView",
 		ColorPickerView : "editor/TextComp/ColorPickerView",
@@ -39,6 +40,8 @@ require.config({
 		AddLinkWindowView : "editor/TextComp/AddLinkWindowView",
 		NewComponentBoxView : "editor/Component/NewComponentBoxView",
 		SlideOptionsBoxView : "editor/Slide/SlideOptionsBoxView",
+		SlidesListView : "editor/Slide/SlidesListView",
+		SlideMiniView : "editor/Slide/SlideMiniView",
 	},
 
 	shim : {

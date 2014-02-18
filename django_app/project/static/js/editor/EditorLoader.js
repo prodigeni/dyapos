@@ -1,4 +1,40 @@
-define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "ImageComp", "TextEdit", "Mode", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView" , "NewComponentBoxView", "SlideOptionsBoxView"], function(Collaborative, Slide, Component, SlideModel, ComponentModel, ImageComp, TextEdit, Mode, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView) {
+define(["Collaborative", 
+		"Slide", 
+		"Component", 
+		"SlideModel", 
+		"ComponentModel", 
+		"ImageComp", 
+		"TextEdit", 
+		"Mode", 
+		"ImageUploadFormView", 
+		"VideoUploadFormView", 
+		"ColorPickerView", 
+		"ThemeSelectorView", 
+		"ChatWindowView", 
+		"AddLinkWindowView" , 
+		"NewComponentBoxView", 
+		"SlideOptionsBoxView", 
+		"EditorView", 
+		"SlidesListView", 
+		"SlideMiniView"], function(Collaborative, 
+									Slide, 
+									Component, 
+									SlideModel, 
+									ComponentModel, 
+									ImageComp, 
+									TextEdit, 
+									Mode, 
+									ImageUploadFormView, 
+									VideoUploadFormView, 
+									ColorPickerView, 
+									ThemeSelectorView, 
+									ChatWindowView, 
+									AddLinkWindowView, 
+									NewComponentBoxView, 
+									SlideOptionsBoxView, 
+									EditorView, 
+									SlidesListView, 
+									SlideMiniView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -40,6 +76,24 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 		url : "components",
 	});
 	
+	//Create a slide collection
+	slides = new SlideCollection();
+	// // Populate the slide collection
+	// if(!is_anonymous) {
+		// slides.sync("read", {
+			// success : function(data) {
+// 				
+			// }
+		// })		
+	// }else{
+// 		
+	// }
+
+	//Create a component collection
+	components = new ComponentCollection();
+	
+	// Instantiate Backbone.js Views
+	editor_view = new EditorView();
 	image_upload_form_view = new ImageUploadFormView();
 	video_upload_form_view = new VideoUploadFormView();
 	colorpicker_view = new ColorPickerView();
@@ -48,19 +102,14 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 	add_link_window_view = new AddLinkWindowView();
 	new_component_box_view = new NewComponentBoxView();
 	slide_options_box_view = new SlideOptionsBoxView();
-
-	//Create a slide collection
-	slides = new SlideCollection();
-
-	//Create a component collection
-	components = new ComponentCollection();
-
-	if (!is_anonymous) {
-		// Start listening websocket events from server to client
-		Collaborative.initWebsocketEvents();
-		Slide.initWebsocketEvents();
-		Component.initWebsocketEvents();
-	}
+	slides_list_view = new SlidesListView({ collection : slides });
+	
+	// if (!is_anonymous) {
+		// // Start listening websocket events from server to client
+		// Collaborative.initWebsocketEvents();
+		// Slide.initWebsocketEvents();
+		// Component.initWebsocketEvents();
+	// }
 
 	impress().init();
 
@@ -72,36 +121,6 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 
 	//EVENTS
 
-	$("#slides-list").sortable({
-		distance : 20,
-	});
-
-	$("#slides-list").sortable({
-		stop : function(event, ui) {
-			Slide.updateSlidesOrder();
-		}
-	});
-
-	$("#slides-list").on("click", ".slide-mini", function(event) {
-		event.stopPropagation();
-		console.log("event: click on mini-slide");
-		Slide.changeSelected(event.currentTarget.id.replace("slide-", ""));
-	});
-
-	$("#slides-list").on("click", ".btn-delete", Slide.onClickDeleteBtnSlideMini);
-
-	$("#btn-add-slide").on("click", function(event) {
-		event.stopPropagation();
-		Slide.insert(null);
-	});
-
-	$("#image_url").on("change", function(event) {
-		document.getElementById("image").value = "";
-	});
-	$("#image").on("change", function(event) {
-		document.getElementById("image_url").value = "";
-	});
-
 	$("#btn-increase-font").on("click", TextEdit.onClickBtnIncreaseFont);
 	$("#btn-decrease-font").on("click", TextEdit.onClickBtnDecreaseFont);
 	$("#bold-btn").on("click", TextEdit.onClickBtnBold);
@@ -112,9 +131,4 @@ define(["Collaborative", "Slide", "Component", "SlideModel", "ComponentModel", "
 
 	$("#btn-increase-image-size").on("click", ImageComp.onClickBtnIncrease);
 	$("#btn-decrease-image-size").on("click", ImageComp.onClickBtnDecrease);
-
-	$("#btn-navigation-mode").on("click", Mode.goToNavigationEditMode);
-
-	$("#btn-preview-presentation").on("click", Mode.goToPreviewMode);
-	$("#btn-exit-preview-mode").on("click", Mode.exitFromPreviewMode);
 });

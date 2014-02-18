@@ -4,6 +4,8 @@ define(["Component"], function(Component) {
 		events : {
 			"click #btn-upload-image" : "upload",
 			"paste #image-url" : "showPreview",
+			"change #image" : "cleanImageURL",
+			"change #image-url" : "cleanImageInputFile",
 		},
 		upload : function() {
 			console.log("upload image");
@@ -85,6 +87,16 @@ define(["Component"], function(Component) {
 				var view = Mustache.render(template, data);
 				$("#image-preview").html(view);
 			}, 500);
-		}
+		},
+
+		cleanImageInputFile : function() {
+			console.log("changed image url");
+			document.getElementById("image").value = "";
+		},
+
+		cleanImageURL : function() {
+			console.log("changed image file input");
+			document.getElementById("image-url").value = "";
+		},
 	});
 });

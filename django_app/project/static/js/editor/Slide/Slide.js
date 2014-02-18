@@ -1,4 +1,4 @@
-define(["Component", "Mode", "SlideModel", "module", "exports"], function(Component, Mode, SlideModel, module, exports) {
+define(["Component", "Mode", "SlideModel", "SlidesListView", "module", "exports"], function(Component, Mode, SlideModel, SlidesListView, module, exports) {
 
 	var initWebsocketEvents = function() {
 
@@ -79,6 +79,8 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 						}
 						changeSelected(slides.at(0).cid);
 
+						slides_list_view.collection = slides;
+						slides_list_view.render();
 						setTimeout(loadThumbnails, 3000);
 					}
 				}
@@ -98,6 +100,8 @@ define(["Component", "Mode", "SlideModel", "module", "exports"], function(Compon
 				}
 				changeSelected(slides.at(0).cid);
 
+				slides_list_view.collection = slides;
+				slides_list_view.render();
 				setTimeout(loadThumbnails, 3000);
 			}
 		}

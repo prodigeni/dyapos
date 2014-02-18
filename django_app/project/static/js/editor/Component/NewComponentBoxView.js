@@ -11,7 +11,6 @@ define(["Component"], function(Component) {
 		},
 
 		addTitle : function() {
-			console.log("asdfasdfasdf");
 			Component.insert({
 				"type" : "text",
 				"text_type" : "title",
