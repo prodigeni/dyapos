@@ -39,33 +39,6 @@ define(["ComponentModel"], function(ComponentModel) {
 			}, this);
 		},
 		// Methods
-		toHTML : function() {
-			// Add to slides list panel
-			// var template = document.getElementById("template-slide-mini").innerHTML;
-			// var data = {
-				// 'cid' : this.cid
-			// };
-			// var view = Mustache.render(template, data);
-			// $($slides_list).append(view);
-
-			//Generate an editor screen for the created slide
-			template = document.getElementById("template-slide").innerHTML;
-			data = {
-				'id' : this.cid,
-				'data-x' : parseInt(this.get("pos_x"), 10),
-				'data-y' : parseInt(this.get("pos_y"), 10),
-				'data-scale' : parseFloat(this.get("scale")),
-				'data-rotate-z' : parseInt(this.get("rotation_z"), 10),
-				'data-rotate-x' : parseInt(this.get("rotation_x"), 10),
-				'data-rotate-y' : parseInt(this.get("rotation_y"), 10)
-			};
-			view = Mustache.render(template, data);
-
-			$("#slides").append(view);
-
-			selected_slide = this.cid;
-			impress().initStep(document.getElementById(this.cid));
-		},
 
 		updateThumbnail : function() {
 			// console.log("Thumbnail updated");

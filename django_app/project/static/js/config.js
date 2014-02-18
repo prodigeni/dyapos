@@ -42,6 +42,8 @@ require.config({
 		SlideOptionsBoxView : "editor/Slide/SlideOptionsBoxView",
 		SlidesListView : "editor/Slide/SlidesListView",
 		SlideMiniView : "editor/Slide/SlideMiniView",
+		SlidesMapView : "editor/Slide/SlidesMapView",
+		SlideView : "editor/Slide/SlideView",
 	},
 
 	shim : {

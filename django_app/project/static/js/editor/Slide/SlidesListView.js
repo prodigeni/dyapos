@@ -7,7 +7,10 @@ define(["SlideMiniView", "Slide"], function(SlideMiniView, Slide) {
 		},
 
 		initialize : function() {
-			this.collection.on("add", function(){ this.appendSlideMini(this.collection.last()); }, this);
+			this.collection.on("add", function() {
+				console.log("Called from SlidesListView");
+				this.appendSlideMini(this.collection.last());
+			}, this);
 
 			$(this.el).sortable({
 				distance : 20,

@@ -16,7 +16,8 @@ define(["Collaborative",
 		"SlideOptionsBoxView", 
 		"EditorView", 
 		"SlidesListView", 
-		"SlideMiniView"], function(Collaborative, 
+		"SlideMiniView", 
+		"SlidesMapView"], function(Collaborative, 
 									Slide, 
 									Component, 
 									SlideModel, 
@@ -34,7 +35,8 @@ define(["Collaborative",
 									SlideOptionsBoxView, 
 									EditorView, 
 									SlidesListView, 
-									SlideMiniView) {
+									SlideMiniView, 
+									SlidesMapView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -78,16 +80,6 @@ define(["Collaborative",
 	
 	//Create a slide collection
 	slides = new SlideCollection();
-	// // Populate the slide collection
-	// if(!is_anonymous) {
-		// slides.sync("read", {
-			// success : function(data) {
-// 				
-			// }
-		// })		
-	// }else{
-// 		
-	// }
 
 	//Create a component collection
 	components = new ComponentCollection();
@@ -102,7 +94,7 @@ define(["Collaborative",
 	add_link_window_view = new AddLinkWindowView();
 	new_component_box_view = new NewComponentBoxView();
 	slide_options_box_view = new SlideOptionsBoxView();
-	slides_list_view = new SlidesListView({ collection : slides });
+	// slides_list_view = new SlidesListView({ collection : slides });
 	
 	// if (!is_anonymous) {
 		// // Start listening websocket events from server to client

@@ -1,4 +1,4 @@
-define(["Component", "Mode", "SlideModel", "SlidesListView", "module", "exports"], function(Component, Mode, SlideModel, SlidesListView, module, exports) {
+define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "exports"], function(Component, Mode, SlideModel, SlidesListView, SlidesMapView, module, exports) {
 
 	var initWebsocketEvents = function() {
 
@@ -72,15 +72,16 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "module", "exports"
 					} else {
 						slides = new SlideCollection(data);
 						for ( i = 0; i < slides.length; i++) {
-							slides.at(i).toHTML();
 							for ( j = 0; j < slides.at(i).get("components").length; j++) {
 								slides.at(i).get("components").at(j).toHTML();
 							}
 						}
 						changeSelected(slides.at(0).cid);
 
-						slides_list_view.collection = slides;
+						slides_list_view = new SlidesListView({ collection : slides });
 						slides_list_view.render();
+						slides_map_view = new SlidesMapView({ collection : slides });
+						slides_map_view.render();
 						setTimeout(loadThumbnails, 3000);
 					}
 				}
@@ -93,15 +94,16 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "module", "exports"
 			} else {
 				slides = new SlideCollection(JSON.parse(localStorage.slides));
 				for ( i = 0; i < slides.length; i++) {
-					slides.at(i).toHTML();
 					for ( j = 0; j < slides.at(i).get("components").length; j++) {
 						slides.at(i).get("components").at(j).toHTML();
 					}
 				}
 				changeSelected(slides.at(0).cid);
 
-				slides_list_view.collection = slides;
+				slides_list_view = new SlidesListView({ collection : slides });
 				slides_list_view.render();
+				slides_map_view = new SlidesMapView({ collection : slides });
+				slides_map_view.render();
 				setTimeout(loadThumbnails, 3000);
 			}
 		}
@@ -128,8 +130,6 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "module", "exports"
 
 		position = slides.length - 1;
 		cid = slides.at(position).cid;
-
-		slides.get(cid).toHTML();
 
 		if (slides.last().isNew() && !is_anonymous) {
 			//Save the last inserted slide to the database
