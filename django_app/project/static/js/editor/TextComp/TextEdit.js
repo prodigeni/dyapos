@@ -67,13 +67,6 @@ define([], function() {
         slides.getComponent(cid).set("font_size", size);
     };
 
-    var changeContent = function(cid, content) {
-        console.log("Change content");
-        var component = document.getElementById(cid).querySelector(".component-content");
-        component.innerHTML = content;
-        slides.getComponent(cid).set("content", content);        
-    };
-
     // Event functions
     var onClickBtnIncreaseFont = function(event) {
         event.stopPropagation();
@@ -112,7 +105,6 @@ define([], function() {
         increaseFont : increaseFont,
         decreaseFont : decreaseFont,
         setFontSize : setFontSize,
-        changeContent : changeContent,
         onClickBtnIncreaseFont : onClickBtnIncreaseFont,
         onClickBtnDecreaseFont : onClickBtnDecreaseFont,
         onClickBtnBold : onClickBtnBold,

@@ -1,4 +1,4 @@
-define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports"], function(Map, Slide, Component, TextEdit, ImageComp, module, exports) {
+define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function(Map, Slide, Component, ImageComp, module, exports) {
 
 	var currentMode = null;
 
@@ -20,11 +20,6 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$("#slides").off("mousedown", ".step", Slide.onMousedown);
 		$("#slides").off("click", ".step", Slide.onClick);
 		$("#slides").on("click", ".step", Slide.onClickInsideSlide);
-		// $(".step").on("click", ".component", Component.onClick);
-		// $(".step").on("click", ".btn-edit-text", Component.onClickBtnEditText);
-		// $(".step").on("click", ".btn-delete-component", Component.onClickDeleteBtn);
-		// $(".step").on("drag", ".component", Component.hideNewComponentBox);
-		// $(".step").on("dragstop", ".component", Component.onDragStop);
 
 		// Remove mousewheel events for zooming
 		// For Chrome
@@ -52,6 +47,7 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		if ($(".component").draggable("option", "disabled") === false) {
 			$(".component").draggable("disable");
 		}
+
 		document.getElementById(selected_slide).classList.add("selected-slide");
 		$("#slides").off("click", ".step", Component.onClickInsideSlide);
 		$(".step").off("click", ".component", Component.onClick);
@@ -89,30 +85,6 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		document.getElementById("btn-navigation-mode").style.display = "none";
 
 		currentMode = "navigation-edit";
-	};
-
-	var goToEditTextMode = function() {
-		currentMode = "text-edit";
-		console.log("edit text mode");
-		$("#" + selected_component).draggable("disable");
-
-		// hide borders
-		document.getElementById(selected_component).classList.remove("selected-component");
-
-		document.getElementById(selected_component).getElementsByClassName("component-preview")[0].children[0].contentEditable = true;
-		document.getElementById(selected_component).getElementsByClassName("component-preview")[0].children[0].focus();
-		Component.hideMenu(selected_component);
-	};
-
-	var exitFromEditTextMode = function() {
-		currentMode = "slide-edit";
-		console.log("exit from edit text mode");
-		$("#" + selected_component).draggable("enable");
-		var component_preview = document.getElementById(selected_component).getElementsByClassName("component-preview")[0].children[0];
-		var content = component_preview.innerHTML;
-		component_preview.contentEditable = false;
-		// Update component text
-		TextEdit.changeContent(selected_component, content);
 	};
 
 	var goToPreviewMode = function() {
@@ -164,8 +136,6 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 	exports.getCurrentMode = getCurrentMode;
 	exports.goToSlideEditMode = goToSlideEditMode;
 	exports.goToNavigationEditMode = goToNavigationEditMode;
-	exports.goToEditTextMode = goToEditTextMode;
-	exports.exitFromEditTextMode = exitFromEditTextMode;
 	exports.goToPreviewMode = goToPreviewMode;
 	exports.exitFromPreviewMode = exitFromPreviewMode;
 });

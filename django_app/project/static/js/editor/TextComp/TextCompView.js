@@ -41,7 +41,7 @@ define([], function() {
 				"style" : style,
 				"class" : "component-preview text " + this.model.get("text_type"),
 			};
-		},
+		},		
 
 		events : {
 			"blur .text-content" : "exitTextEditor",
@@ -57,6 +57,7 @@ define([], function() {
 			console.log("Exit text editor");
 			if(this.model.get("content") !== this.$el.find(".text-content")[0].innerHTML.trim()){
 				console.log("text changed");
+				this.model.set("content", this.$el.find(".text-content")[0].innerHTML.trim());
 			}
 		},
 	});

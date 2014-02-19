@@ -113,14 +113,14 @@ define(["Collaborative",
 
 	//EVENTS
 
-	$("#btn-increase-font").on("click", TextEdit.onClickBtnIncreaseFont);
-	$("#btn-decrease-font").on("click", TextEdit.onClickBtnDecreaseFont);
-	$("#bold-btn").on("click", TextEdit.onClickBtnBold);
-	$("#underlined-btn").on("click", TextEdit.onClickBtnUnderlined);
-	$("#italic-btn").on("click", TextEdit.onClickBtnItalic);
-	$("#link-btn").on("click", TextEdit.onClickBtnLink);
-	$("#color-btn").on("click", colorpicker_view.toggle);
-
-	$("#btn-increase-image-size").on("click", ImageComp.onClickBtnIncrease);
-	$("#btn-decrease-image-size").on("click", ImageComp.onClickBtnDecrease);
+	// $("#btn-increase-font").on("click", TextEdit.onClickBtnIncreaseFont);
+	// $("#btn-decrease-font").on("click", TextEdit.onClickBtnDecreaseFont);
+	// $("#bold-btn").on("click", TextEdit.onClickBtnBold);
+	// $("#underlined-btn").on("click", TextEdit.onClickBtnUnderlined);
+	// $("#italic-btn").on("click", TextEdit.onClickBtnItalic);
+	// $("#link-btn").on("click", TextEdit.onClickBtnLink);
+	// $("#color-btn").on("click", colorpicker_view.toggle);
+// 
+	// $("#btn-increase-image-size").on("click", ImageComp.onClickBtnIncrease);
+	// $("#btn-decrease-image-size").on("click", ImageComp.onClickBtnDecrease);
 });

@@ -1,4 +1,4 @@
-define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView, ImageCompView, VideoCompView) {
+define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], function(TextCompView, ImageCompView, VideoCompView, TextToolboxView) {
 	return Backbone.View.extend({
 		tagName : "div",
 
@@ -49,13 +49,19 @@ define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView
 					this.$el.append(video_comp.render().el);
 					break;
 			}
+
+			var toolbox_view = new TextToolboxView({ model : this.model });
+			this.toolbox_view = toolbox_view.render().el;
 			
 			return this;
 		},
 		
 		clickComponent : function(event) {
 			event.stopPropagation();
+			console.log("click component");
+			console.log(this.toolbox_view);
 			this.$el.find(".component-options").show();
+			$("#toolbox-container").html(this.toolbox_view);
 		},
 		
 		dragStopComponent : function(event, ui) {
