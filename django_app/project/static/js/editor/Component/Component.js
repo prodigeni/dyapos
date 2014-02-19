@@ -140,36 +140,6 @@ var loadAll = function() {
 		component.toHTML();
     };
 
-    //Update component position
-    var changePosition = function(cid, pos_x, pos_y) {
-        console.log("Change position");
-
-        var component = document.getElementById(cid);
-        component.style.left = pos_x + "px";
-        component.style.top = pos_y + "px";
-		
-		slides.getComponent(cid).set({
-            "pos_x" : pos_x,
-            "pos_y" : pos_y
-        });
-    };
-
-    //Delete a component
-    var deleteComponent = function(cid, from_server) {
-        //Decide whether remove from server or client
-        from_server = ( typeof from_server == "undefined") ? true : false;
-
-        document.getElementById(cid).remove();
-
-        if (from_server === true) {
-            //Remove from server and collection
-            slides.getComponent(cid).destroy();
-        } else {
-            //Remove from collection only
-            slides.getComponent(cid).clear();
-        }
-    };
-
     var showNewComponentBox = function() {
         $new_component_box.style.display = "block";
     };
@@ -251,25 +221,6 @@ var loadAll = function() {
         }
     };
 
-    var onDragStop = function(event, ui) {
-        console.log("event dragstop: update component position");
-
-        pos_x = ui.position.left;
-        pos_y = ui.position.top;
-        component_cid = $(this).context.id.replace("component-", "");
-        changePosition(component_cid, pos_x, pos_y);
-    };
-    
-    var onClickDeleteBtn = function(event){
-        event.stopPropagation();
-        console.log("remove component");                
-        deleteComponent(selected_component);
-        selected_component = null;  
-        hideToolbox();
-        
-        //Patch, when a component is deleted, its tooltip remains visible
-        $(".tooltip").css("display","none");
-    };
     
     var onClickBtnEditText = function(event){
 		event.stopPropagation();
@@ -279,8 +230,6 @@ var loadAll = function() {
 	exports.initWebsocketEvents = initWebsocketEvents;
 	exports.loadAll = loadAll;
 	exports.insert = insert;
-	exports.changePosition = changePosition;
-	exports.deleteComponent = deleteComponent;
 	exports.showNewComponentBox = showNewComponentBox;
 	exports.hideNewComponentBox = hideNewComponentBox;
 	exports.showToolbox = showToolbox;
@@ -290,8 +239,6 @@ var loadAll = function() {
 	exports.select = select;
 	exports.deselectAll = deselectAll;
 	exports.onClick = onClick;
-	exports.onDragStop = onDragStop;
-	exports.onClickDeleteBtn = onClickDeleteBtn;
 	exports.onClickBtnEditText = onClickBtnEditText;
 
 });

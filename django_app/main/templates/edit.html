@@ -239,11 +239,6 @@
 
 <!-- Templates -->
 
-<script id="template-slide" type="text/mustache">
-	<div class="step" id="[[id]]" data-x="[[data-x]]" data-y="[[data-y]]" data-scale="[[data-scale]]" data-rotate-z="[[data-rotate-z]]" data-rotate-x="[[data-rotate-x]]" data-rotate-y="[[data-rotate-y]]">
-	</div>
-</script>
-
 <script id="template-slide-mini" type="text/mustache">
 	<div class='tip-right' data-tooltip title="{% trans 'tt_slide_mini_sort' %}">
 	<a class="btn-delete" href="#">
@@ -255,7 +250,39 @@
 	</div>
 </script>
 
+<script id="template-component" type="text/mustache">
+	<div class="component-options" style="display:none;">
+		<a class="btn-move-component tip-left" data-tooltip title="{% trans 'tt_btn_edit' %}">
+			<i class="fi-arrows-out"></i>
+		</a>
+		<a class="btn-delete-component tip-left" data-tooltip title="{% trans 'tt_btn_delete' %}">
+			<i class="fi-x"></i>
+		</a>
+	</div>
+</script>
+
 <script id="template-text-component" type="text/mustache">
+	<div class="text-content" contenteditable="true">
+	[[content]]
+	</div>
+</script>
+
+<script id="template-image-component" type="text/mustache">
+	<img src="
+	[[#url]]
+	[[url]]
+	[[/url]]
+	[[^url]]
+	{{STATIC_URL}}img/loading.gif
+	[[/url]]
+	" style="width: 100%; height: 100%;">	
+</script>
+
+<script id="template-video-component" type="text/mustache">
+	<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="//[[link]]" frameborder="0" allowfullscreen></iframe>
+</script>
+
+<!-- <script id="template-text-component" type="text/mustache">
 	<div id='[[cid]]' class="component hoverable" style="[[container_style]]">
 	<div class="component-options" style="display:none;">
 	<a class="btn-edit-text tip-left" data-tooltip title="{% trans 'tt_btn_edit' %}">
@@ -271,9 +298,9 @@
 	</div>
 	</div>
 	</div>
-</script>
+</script> -->
 
-<script id="template-image-component" type="text/mustache">
+<!-- <script id="template-image-component" type="text/mustache">
 	<div id='[[cid]]' class="component hoverable" style="left:30%;top:20%;[[container_style]]">
 	<div class="component-options" style="display:none;">
 	<a class="btn-delete-component tip-left" data-tooltip title="{% trans 'tt_btn_delete' %}">
@@ -291,9 +318,9 @@
 	" style="width: 100%; height: 100%;">
 	</div>
 	</div>
-</script>
+</script> -->
 
-<script id="template-video-component" type="text/mustache">
+<!-- <script id="template-video-component" type="text/mustache">
 	<div id='[[cid]]' class="component hoverable" style="left:30%;top:20%;[[container_style]]">
 	<div class="component-options" style="display:none;">
 	<a class="btn-delete-component tip-left" data-tooltip title="{% trans 'tt_btn_delete' %}">
@@ -304,7 +331,7 @@
 	<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="//[[link]]" frameborder="0" allowfullscreen></iframe>
 	</div>
 	</div>
-</script>
+</script> -->
 
 <script id="template-user" type="text/mustache">
 	<li id="user-[[id]]" class="user" data-tooltip title="[[first_name]] [[last_name]]">

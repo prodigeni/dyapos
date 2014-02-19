@@ -1,4 +1,4 @@
-define(["Slide"], function(Slide) {
+define(["Slide", "ComponentView"], function(Slide, ComponentView) {
 	return Backbone.View.extend({
 		tagName : "div",
 
@@ -26,7 +26,16 @@ define(["Slide"], function(Slide) {
 		},
 
 		render : function() {
+			var components = this.model.get("components");
+			for(var i = 0; i < components.length; i++){
+				this.appendComponent(components.at(i));
+			}
 			return this;
+		},
+		
+		appendComponent : function(component_model) {
+			component = new ComponentView({ model: component_model });
+			this.$el.append(component.render().$el);
 		},
 	});
 });

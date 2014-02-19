@@ -20,11 +20,11 @@ define(["Map", "Slide", "Component", "TextEdit", "ImageComp", "module", "exports
 		$("#slides").off("mousedown", ".step", Slide.onMousedown);
 		$("#slides").off("click", ".step", Slide.onClick);
 		$("#slides").on("click", ".step", Slide.onClickInsideSlide);
-		$(".step").on("click", ".component", Component.onClick);
-		$(".step").on("click", ".btn-edit-text", Component.onClickBtnEditText);
-		$(".step").on("click", ".btn-delete-component", Component.onClickDeleteBtn);
-		$(".step").on("drag", ".component", Component.hideNewComponentBox);
-		$(".step").on("dragstop", ".component", Component.onDragStop);
+		// $(".step").on("click", ".component", Component.onClick);
+		// $(".step").on("click", ".btn-edit-text", Component.onClickBtnEditText);
+		// $(".step").on("click", ".btn-delete-component", Component.onClickDeleteBtn);
+		// $(".step").on("drag", ".component", Component.hideNewComponentBox);
+		// $(".step").on("dragstop", ".component", Component.onDragStop);
 
 		// Remove mousewheel events for zooming
 		// For Chrome

@@ -44,6 +44,10 @@ require.config({
 		SlideMiniView : "editor/Slide/SlideMiniView",
 		SlidesMapView : "editor/Slide/SlidesMapView",
 		SlideView : "editor/Slide/SlideView",
+		ComponentView : "editor/Component/ComponentView",
+		TextCompView : "editor/TextComp/TextCompView",
+		ImageCompView : "editor/ImageComp/ImageCompView",
+		VideoCompView : "editor/VideoComp/VideoCompView",
 	},
 
 	shim : {
