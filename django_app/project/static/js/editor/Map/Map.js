@@ -31,7 +31,6 @@ define(["Mode", "Slide"], function(Mode, Slide) {
 		event.stopPropagation();
 		if (event.target.isEqualNode(document.body)) {
 			console.log("mousedown on map");
-			Slide.hideSlideOptionsBox();
 
 			last_x = event.clientX;
 			last_y = event.clientY;

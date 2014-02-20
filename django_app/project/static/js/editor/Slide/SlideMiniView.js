@@ -16,20 +16,23 @@ define(["Slide"], function(Slide) {
 		},
 		
 		render : function() {
-			this.template = Mustache.render(this.template, this.model.toJSON());
-			this.$el.html(this.template);
+			var template = Mustache.render(this.template, this.model.toJSON());
+			this.$el.html(template);
 			return this;
 		},
 		
 		goThere : function(event) {
 			event.stopPropagation();
 			console.log("event: click on mini-slide");
-			Slide.changeSelected(this.model.cid);			
+			Slide.changeSelected(this.model.cid);
 		},
 		
-		clickDelete : function() {
-			$(".tooltip").css("display", "none");
-			Slide.deleteSlide(this.model.cid);
+		clickDelete : function(event) {
+			event.stopPropagation();
+			console.log("remove slide");
+			selected_slide = null;
+			slide_options_box_view.hide();
+			this.model.destroy();
 		},
 	});
 });

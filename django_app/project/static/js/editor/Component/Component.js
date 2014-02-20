@@ -51,9 +51,6 @@ var loadAll = function() {
         if(component.isNew() && !is_anonymous){
 			component.save();
         }
-
-		//Render the component to HTML
-		component.toHTML();
     };
 
     var showNewComponentBox = function() {
@@ -81,14 +78,6 @@ var loadAll = function() {
 		$("#toolbox-container").css("display","none");
 		$(".toolbox").css("display","none");
     };
-
-    // var showMenu = function(cid) {
-        // document.getElementById(cid).getElementsByClassName("component-options")[0].style.display = "block";
-    // };
-// 
-    // var hideMenu = function(cid) {
-        // document.getElementById(cid).getElementsByClassName("component-options")[0].style.display = "none";
-    // };
 
     var select = function(cid) {
 		console.log(cid);

@@ -43,11 +43,20 @@ define([], function() {
 
 		events : {
 			"blur .text-content" : "exitTextEditor",
-		},		
+		},
+		
+		initialize : function() {
+			this.model.on("change", function() {
+				this.render();
+				
+				// Updates its tag attributes (css)
+				this.$el.attr(this.attributes());
+			}, this);
+		},
 
 		render : function() {
-			this.template = Mustache.render(this.template, this.model.toJSON());
-			this.$el.html(this.template);
+			var template = Mustache.render(this.template, this.model.toJSON());
+			this.$el.html(template);
 			return this;
 		},
 		

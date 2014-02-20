@@ -2,10 +2,6 @@ define(["SlideMiniView", "Slide"], function(SlideMiniView, Slide) {
 	return Backbone.View.extend({
 		el : document.getElementById("slides-list"),
 
-		events : {
-
-		},
-
 		initialize : function() {
 			this.collection.on("add", function() {
 				console.log("Called from SlidesListView");

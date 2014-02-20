@@ -19,6 +19,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 		},
 
 		initialize : function() {
+			// When the component es destroyed
 			this.model.on("destroy", this.remove, this);
 			
 			this.$el.draggable({
@@ -84,10 +85,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 			event.stopPropagation();
 			console.log("remove component");
 			selected_component = null;                
-			this.model.destroy();
-			
-			// //Patch, when a component is deleted, its tooltip remains visible
-			// $(".tooltip").css("display","none");			
+			this.model.destroy();	
 		},
 	});
 });

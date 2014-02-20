@@ -22,7 +22,13 @@ define(["Slide", "ComponentView"], function(Slide, ComponentView) {
 		},
 
 		initialize : function() {
+			// When the slide is destroyed
 			this.model.on("destroy", this.remove, this);
+			
+			// When a new component is added to the slide
+			this.model.get("components").on("add", function(){
+				this.appendComponent(this.model.get("components").last());
+			}, this);
 		},
 
 		render : function() {

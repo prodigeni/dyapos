@@ -1,61 +1,5 @@
 define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "exports"], function(Component, Mode, SlideModel, SlidesListView, SlidesMapView, module, exports) {
 
-	var initWebsocketEvents = function() {
-
-		//DO NOT DELETE
-		// //Receive a new slide from server
-		// socket.on("broadcast_add_slide", function(data) {
-		// console.log("received new slide:");
-		// console.log(data);
-		// insert(data);
-		// });
-		//
-		// //Receive a slide removal from server
-		// socket.on("broadcast_delete_slide", function(data) {
-		// console.log("received delete slide");
-		// console.log(data);
-		// var cid = slides.where({"_id": data})[0].cid;
-		// deleteSlide(cid, false);
-		// });
-		//
-		// //Receive a slide update from server
-		// socket.on("broadcast_update_slide", function(data) {
-		// console.log("received update slide");
-		// console.log(data);
-		// updatedFromServer = true;
-		//
-		// var cid = slides.where({"_id": data._id})[0].cid;
-		// var slide = slides.get(cid);
-		//
-		// // Determine what property has changed
-		//
-		// var changedPosition = parseInt(data.pos_x) !== parseInt(slide.get("pos_x")) || parseInt(data.pos_y) !== parseInt(slide.get("pos_y"));
-		// var changedSlideScale = parseFloat(data.scale) !== parseFloat(slide.get("scale"));
-		// var changedRotationZ = parseInt(data.rotation_z) !== parseInt(slide.get("rotation_z"));
-		// var changedRotationX = parseInt(data.rotation_x) !== parseInt(slide.get("rotation_x"));
-		// var changedRotationY = parseInt(data.rotation_y) !== parseInt(slide.get("rotation_y"));
-		//
-		// //Check what properties have changed
-		// if (changedPosition) {
-		// console.log("Position changed");
-		// changePosition(cid, data.pos_x, data.pos_y);
-		// } else if (changedSlideScale) {
-		// console.log("Slide scale changed");
-		// changeScale(cid, data.scale);
-		// } else if (changedRotationZ) {
-		// console.log("Rotation Z changed");
-		// changeRotationZ(cid, data.rotation_z);
-		// } else if (changedRotationX) {
-		// console.log("Rotation X changed");
-		// changeRotationX(cid, data.rotation_x);
-		// } else if (changedRotationY) {
-		// console.log("Rotation Y changed");
-		// changeRotationY(cid, data.rotation_y);
-		// }
-		//
-		// });
-	};
-
 	//Load all (slides and components when editor is opened)
 	var loadAll = function() {
 		if (!is_anonymous) {
@@ -173,27 +117,6 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 		previous = previous >= 0 ? slides.where({number:previous})[0].cid : slides.where({number:slides.length-1})[0].cid;
 		selected_slide = previous;
 		impress().goto(previous);
-	};
-
-	//Delete slide from server
-	var deleteSlide = function(cid, from_server) {
-		//Decide whether remove from server or client
-		from_server = ( typeof from_server == "undefined") ? true : false;
-
-		console.log(from_server);
-		//Remove slide-mini
-		$("#" + cid).remove();
-		$("#slide-" + cid).remove();
-
-		slide_options_box_view.hide();
-
-		if (from_server === true) {
-			//Remove from server and collection
-			slides.get(cid).destroy();
-		} else {
-			//Remove from collection only
-			slides.remove(cid);
-		}
 	};
 
 	var changePosition = function(cid, pos_x, pos_y) {
@@ -364,12 +287,10 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 		event.preventDefault();
 
 	};
-
-	exports.initWebsocketEvents = initWebsocketEvents;
+	
 	exports.loadAll = loadAll;
 	exports.insert = insert;
 	exports.changeSelected = changeSelected;
-	exports.deleteSlide = deleteSlide;
 	exports.changePosition = changePosition;
 	exports.updateSlidesOrder = updateSlidesOrder;
 	exports.moveToSlide = moveToSlide;
