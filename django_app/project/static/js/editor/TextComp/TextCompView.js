@@ -30,9 +30,7 @@ define([], function() {
 						style += "color:" + value + ";";
 						break;
 					case "font_size":
-						if (value !== "") {
-							style += "font-size:" + value + "em;";
-						}
+						style += "font-size:" + value + "em;";
 						break;
 				}
 			}

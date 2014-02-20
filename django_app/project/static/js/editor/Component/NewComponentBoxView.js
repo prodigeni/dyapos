@@ -14,6 +14,7 @@ define(["Component"], function(Component) {
 			Component.insert({
 				"type" : "text",
 				"text_type" : "title",
+				"font_size" : 3,
 				"pos_x" : clicked_inside_slide_point.left,
 				"pos_y" : clicked_inside_slide_point.top,
 				"content" : title_default_text,
@@ -24,6 +25,7 @@ define(["Component"], function(Component) {
 			Component.insert({
 				"type" : "text",
 				"text_type" : "subtitle",
+				"font_size" : 2,
 				"pos_x" : clicked_inside_slide_point.left,
 				"pos_y" : clicked_inside_slide_point.top,
 				"content" : subtitle_default_text,
@@ -34,6 +36,7 @@ define(["Component"], function(Component) {
 			Component.insert({
 				"type" : "text",
 				"text_type" : "body",
+				"font_size" : 1,
 				"pos_x" : clicked_inside_slide_point.left,
 				"pos_y" : clicked_inside_slide_point.top,
 				"content" : body_default_text,

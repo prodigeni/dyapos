@@ -27,7 +27,6 @@ require.config({
 		Mode : "editor/Mode/Mode",
 		Slide : "editor/Slide/Slide",
 		SlideModel : "editor/Slide/SlideModel",
-		TextEdit : "editor/TextComp/TextEdit",
 		TextCompModel : "editor/TextComp/TextCompModel",
 		VideoCompModel : "editor/VideoComp/VideoCompModel",
 		//Views
@@ -80,4 +79,4 @@ require.config({
 			deps : ["underscore", "backbone", "iosync"]
 		}
 	}
-}); 
+});

@@ -7,17 +7,7 @@ define([], function() {
 		},
 
 		addLink : function(event) {
-			var link = document.getElementById("text-link").value;
-			var component = document.getElementById(selected_component).getElementsByClassName("component-preview")[0];
-			var content = component.children[0].innerHTML;
-			var template = document.getElementById("template-link").innerHTML;
-			var data = {
-				"link" : link,
-				"content" : content
-			};
-			var view = Mustache.render(template, data);
-			component.children[0].innerHTML = view;
-			slides.getComponent(selected_component).set("content", view);
+			selected_component.set("link", document.getElementById("text-link").value);
 			$("#add-link-box").foundation("reveal", "close");
 		}
 	});

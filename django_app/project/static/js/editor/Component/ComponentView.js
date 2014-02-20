@@ -49,19 +49,26 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 					this.$el.append(video_comp.render().el);
 					break;
 			}
-
-			var toolbox_view = new TextToolboxView({ model : this.model });
-			this.toolbox_view = toolbox_view.render().el;
-			
+	
 			return this;
 		},
 		
 		clickComponent : function(event) {
-			event.stopPropagation();
+			event.stopPropagation();			
 			console.log("click component");
-			console.log(this.toolbox_view);
+
+			new_component_box_view.$el.hide();
 			this.$el.find(".component-options").show();
-			$("#toolbox-container").html(this.toolbox_view);
+			selected_component = this.model;
+			
+			switch(this.model.get("type")){
+				case "text": text_toolbox_view.show();
+							break;
+				case "image": image_toolbox_view.show();
+							break;
+				case "video": video_toolbox_view.show();
+							break;
+			}
 		},
 		
 		dragStopComponent : function(event, ui) {
@@ -74,13 +81,13 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 		},
 		
 		deleteComponent : function(event) {
-	        event.stopPropagation();
-	        console.log("remove component");
-	        selected_component = null;                
-	        this.model.destroy();
-	        
-	        // //Patch, when a component is deleted, its tooltip remains visible
-	        // $(".tooltip").css("display","none");			
+			event.stopPropagation();
+			console.log("remove component");
+			selected_component = null;                
+			this.model.destroy();
+			
+			// //Patch, when a component is deleted, its tooltip remains visible
+			// $(".tooltip").css("display","none");			
 		},
 	});
 });

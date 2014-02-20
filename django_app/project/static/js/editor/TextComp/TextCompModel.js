@@ -6,7 +6,7 @@ define(["ComponentModel"], function(ComponentModel) {
 			text_type : null,
 			content : null,
 			font : "",
-			font_size : "",
+			font_size : null,
 			color : "",
 			bold : false,
 			italic : false,

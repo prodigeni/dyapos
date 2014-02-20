@@ -1,10 +1,8 @@
-define(["Collaborative", 
-		"Slide", 
+define(["Slide", 
 		"Component", 
 		"SlideModel", 
 		"ComponentModel", 
 		"ImageComp", 
-		"TextEdit", 
 		"Mode", 
 		"ImageUploadFormView", 
 		"VideoUploadFormView", 
@@ -17,13 +15,12 @@ define(["Collaborative",
 		"EditorView", 
 		"SlidesListView", 
 		"SlideMiniView", 
-		"SlidesMapView"], function(Collaborative, 
-									Slide, 
+		"SlidesMapView", 
+		"TextToolboxView", ], function(Slide, 
 									Component, 
 									SlideModel, 
 									ComponentModel, 
 									ImageComp, 
-									TextEdit, 
 									Mode, 
 									ImageUploadFormView, 
 									VideoUploadFormView, 
@@ -36,7 +33,8 @@ define(["Collaborative",
 									EditorView, 
 									SlidesListView, 
 									SlideMiniView, 
-									SlidesMapView) {
+									SlidesMapView, 
+									TextToolboxView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -94,14 +92,7 @@ define(["Collaborative",
 	add_link_window_view = new AddLinkWindowView();
 	new_component_box_view = new NewComponentBoxView();
 	slide_options_box_view = new SlideOptionsBoxView();
-	// slides_list_view = new SlidesListView({ collection : slides });
-	
-	// if (!is_anonymous) {
-		// // Start listening websocket events from server to client
-		// Collaborative.initWebsocketEvents();
-		// Slide.initWebsocketEvents();
-		// Component.initWebsocketEvents();
-	// }
+	text_toolbox_view = new TextToolboxView();
 
 	impress().init();
 
@@ -110,17 +101,4 @@ define(["Collaborative",
 	if (is_anonymous) {
 		Slide.saveAllToLocalStorage();
 	}
-
-	//EVENTS
-
-	// $("#btn-increase-font").on("click", TextEdit.onClickBtnIncreaseFont);
-	// $("#btn-decrease-font").on("click", TextEdit.onClickBtnDecreaseFont);
-	// $("#bold-btn").on("click", TextEdit.onClickBtnBold);
-	// $("#underlined-btn").on("click", TextEdit.onClickBtnUnderlined);
-	// $("#italic-btn").on("click", TextEdit.onClickBtnItalic);
-	// $("#link-btn").on("click", TextEdit.onClickBtnLink);
-	// $("#color-btn").on("click", colorpicker_view.toggle);
-// 
-	// $("#btn-increase-image-size").on("click", ImageComp.onClickBtnIncrease);
-	// $("#btn-decrease-image-size").on("click", ImageComp.onClickBtnDecrease);
 });

@@ -32,6 +32,7 @@ require(["config"], function() {
 	};
 
 	// GLOBAL VARIABLES
+	
 	slides = null;
 	components = null;
 	last_position = {};
@@ -102,4 +103,4 @@ require(["config"], function() {
 
 	});
 
-});
+}); 
