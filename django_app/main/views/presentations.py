@@ -30,7 +30,7 @@ def presentation(request, key):
 
 	# search the presentation based on its key
 	presentation = Presentation.objects.filter(key = key).first()
-	
+
 	# if presentation exists
 	if presentation is not None:
 		if presentation.is_private:
@@ -48,7 +48,7 @@ def presentation(request, key):
 			"comments": presentation.comment_set.get_queryset(),
 			"view_url": request.get_host() + reverse("main.views.presentations.view", args=[key]),
  			"is_owner": True if (request.user.is_authenticated() and presentation.is_owner(request.user)) else False,
- 			"can_edit": True if (request.user.is_authenticated() and presentation.can_edit(request.user)) else False,			
+ 			"can_edit": True if (request.user.is_authenticated() and presentation.can_edit(request.user)) else False,
 			}, context_instance=RequestContext(request))
 	else:
 		raise Http404
@@ -63,7 +63,7 @@ def create(request):
 		if form.is_valid():
 			form.save()
 			form.instance.associate_to_user(request.user, True, True)
- 
+
  			# redirect to the edit page of the created presentation
  			return HttpResponseRedirect("/edit/" + str(form.instance.key))
 
@@ -77,7 +77,7 @@ def delete(request, id):
 		id (int): Presentation Id to delete
 	"""
 
-	presentation = Presentation.objects.get(pk = id)	
+	presentation = Presentation.objects.get(pk = id)
 	if presentation.is_owner(request.user):
 		presentation.delete_completely()
 	else:
@@ -199,7 +199,7 @@ def upload_image(request):
 	Returns:
 		str: saved filename
 	"""
-	
+
 	for key, file in request.FILES.items():
 		filename = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10] + file.name
 		path = settings.MEDIA_IMAGES_ROOT + "/" + filename
@@ -210,7 +210,7 @@ def upload_image(request):
 		else:
 			dest.write(file.read())
 		dest.close()
-		
+
 	# return the saved filename
 	return HttpResponse(filename)
 
@@ -221,12 +221,12 @@ def upload_image_from_url(request):
 	Returns:
 		str: saved filename
 	"""
-	
+
 	url = request.POST["image_url"]
 	img = urllib.urlretrieve(url)
-	type = img[1].type
-	filename = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10] + "." + type.split("/")[1]
-	if type == "image/jpeg" or type == "image/png" or type == "image/gif":
+	img_type = img[1].type
+	filename = hashlib.sha1(str(datetime.datetime.now())).hexdigest()[:10] + "." + img_type.split("/")[1]
+	if img_type == "image/jpeg" or img_type == "image/png" or img_type == "image/gif":
 		shutil.move(img[0], settings.MEDIA_IMAGES_ROOT + "/" + filename)
 	 	return HttpResponse(filename)
 	else:
@@ -258,7 +258,7 @@ def like(request, id):
 		Presentation.objects.get(pk = id).like()
 	except ObjectDoesNotExist:
 		pass
-	
+
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 @csrf_exempt
@@ -306,7 +306,7 @@ def filter_shared(request):
 @csrf_exempt
 def search(request):
 	"""Search for presentations"""
-		
+
  	text = request.POST["search_text"]
  	filter = request.POST["selected_filter"]
  	if filter == "all":
@@ -315,7 +315,7 @@ def search(request):
 		presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(presentation__name__contains = text, is_owner = True)]
 	elif filter == "shared":
 		presentations = [userpresentation.presentation for userpresentation in request.user.userpresentation_set.filter(presentation__name__contains = text, is_owner = False)]
-	
+
 	return HttpResponse(serialize("json", presentations))
 
 @login_required(login_url="/")
@@ -323,7 +323,7 @@ def share(request, id):
 	"""Share the presentation to other users"""
 
 	if request.method == "POST":
-		
+
 		presentation = Presentation.objects.get(pk = id)
 		share_formset = formset_factory(SharePresentationForm)
 		formset = share_formset(request.POST)
@@ -347,13 +347,13 @@ def unshare(request, id):
 	"""Unshare the presentation to a user
 	Args:
 		id (int): UserPresentation association ID
-	""" 
-	
+	"""
+
 	try:
 		userpresentation = UserPresentation.objects.get(pk = id)
 		print userpresentation
 		userpresentation.delete()
 	except ObjectDoesNotExist:
 		pass
-	
+
 	return HttpResponseRedirect("")
