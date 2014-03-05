@@ -75,34 +75,6 @@ define(["ComponentModel"], function(ComponentModel) {
 				// },
 			// });
 		},
-		updatePositionToMap : function() {
-
-		},
-		switchPosition : function() {
-
-		},
-		rotateX : function(degrees) {
-			this.set("rotation_x", degrees);
-		},
-		rotateY : function(degrees) {
-			this.set("rotation_y", degrees);
-		},
-		rotateZ : function(degrees) {
-			this.set("rotation_z", degrees);
-		},
-		//Received from the dragstop event
-		move : function(x, y) {
-			this.set({
-				pos_x : x,
-				pos_y : y
-			});
-		},
-		scale : function() {
-
-		},
-		setDuration : function(seconds) {
-
-		},
 	});
 
 });

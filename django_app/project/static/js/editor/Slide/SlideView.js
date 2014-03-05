@@ -61,8 +61,8 @@ define(["Slide", "ComponentView"], function(Slide, ComponentView) {
 				$(".component").removeClass("selected-component");
 				$(".component-options").hide();
 				text_toolbox_view.$el.hide();
-	            selected_component = null;        
-	        }			
+				selected_component = null;
+			}
 			
 			new_component_box_view.$el.show();			
 		},

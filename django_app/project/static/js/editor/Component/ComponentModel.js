@@ -32,7 +32,6 @@ define(["Slide", "TextCompModel"], function(Slide, TextCompModel) {
 				this.get("slide").updateThumbnail();
 			}, this);
 		},
-		// Methods
 	});
 
 	return model;

@@ -15,11 +15,6 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 						insert();
 					} else {
 						slides = new SlideCollection(data);
-						// for ( i = 0; i < slides.length; i++) {
-							// for ( j = 0; j < slides.at(i).get("components").length; j++) {
-								// // slides.at(i).get("components").at(j).toHTML();
-							// }
-						// }
 						changeSelected(slides.at(0).cid);
 
 						slides_list_view = new SlidesListView({ collection : slides });
@@ -37,11 +32,6 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 				insert();
 			} else {
 				slides = new SlideCollection(JSON.parse(localStorage.slides));
-				// for ( i = 0; i < slides.length; i++) {
-					// for ( j = 0; j < slides.at(i).get("components").length; j++) {
-						// // slides.at(i).get("components").at(j).toHTML();
-					// }
-				// }
 				changeSelected(slides.at(0).cid);
 
 				slides_list_view = new SlidesListView({ collection : slides });

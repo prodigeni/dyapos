@@ -61,6 +61,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 			new_component_box_view.$el.hide();
 			this.$el.find(".component-options").show();
 			selected_component = this.model;
+			this.$el.addClass("selected-component");
 			
 			switch(this.model.get("type")){
 				case "text": text_toolbox_view.show();
