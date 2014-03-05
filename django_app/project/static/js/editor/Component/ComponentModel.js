@@ -1,4 +1,4 @@
-define(["Slide", "TextCompModel"], function(Slide, TextCompModel) {
+define([], function() {
 
 	var model = Backbone.RelationalModel.extend({
 		subModelTypes : {
@@ -17,20 +17,20 @@ define(["Slide", "TextCompModel"], function(Slide, TextCompModel) {
 		idAttribute : "_id",
 		initialize : function() {
 
-			this.on("change", function() {
-				if (!is_anonymous) {
-					if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
-						if (!updatedFromServer) {
-							console.log("Slide changed");
-							this.save();
-						} else {
-							updatedFromServer = false;
-						}
-					}
-				}
-
-				this.get("slide").updateThumbnail();
-			}, this);
+			// this.on("change", function() {
+				// if (!is_anonymous) {
+					// if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
+						// if (!updatedFromServer) {
+							// console.log("Slide changed");
+							// this.save();
+						// } else {
+							// updatedFromServer = false;
+						// }
+					// }
+				// }
+// 
+				// this.get("slide").updateThumbnail();
+			// }, this);
 		},
 	});
 

@@ -1,4 +1,4 @@
-define(["Component"], function(Component) {
+define(["ImageCompModel"], function(ImageCompModel) {
 	return Backbone.View.extend({
 		el : document.getElementById("form-upload-image"),
 		events : {
@@ -14,13 +14,21 @@ define(["Component"], function(Component) {
 			var inputFileImage = document.getElementById("image");
 			var inputUrlImage = document.getElementById("image-url");
 
-			Component.insert({
+			new ImageCompModel({
 				"type" : "image",
 				// "pos_x" : clicked_inside_slide_point.left,
 				// "pos_y" : clicked_inside_slide_point.top
 				"pos_x" : 0,
-				"pos_y" : 0
+				"pos_y" : 0,
+				"slide" : slides.get(selected_slide),
 			});
+			// Component.insert({
+				// "type" : "image",
+				// // "pos_x" : clicked_inside_slide_point.left,
+				// // "pos_y" : clicked_inside_slide_point.top
+				// "pos_x" : 0,
+				// "pos_y" : 0
+			// });
 
 			created_image_comp = slides.get(selected_slide).get("components").last();
 

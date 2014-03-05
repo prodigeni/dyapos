@@ -1,4 +1,4 @@
-define(["Component"], function(Component) {
+define(["VideoCompModel"], function(VideoCompModel) {
 	return Backbone.View.extend({
 		el : document.getElementById("add-video-box"),
 		events : {
@@ -11,7 +11,7 @@ define(["Component"], function(Component) {
 			url_id = url_id[1].split("&");
 			url_id = url_id[0];
 			$("#add-video-box").foundation("reveal", "close");
-			Component.insert({
+			new VideoCompModel({
 				"type" : "video",
 				"website" : "youtube",
 				"url_id" : url_id,
@@ -19,7 +19,17 @@ define(["Component"], function(Component) {
 				// "pos_y" : clicked_inside_slide_point.top,
 				"pos_x" : 0,
 				"pos_y" : 0,
+				"slide" : slides.get(selected_slide),
 			});
+			// Component.insert({
+				// "type" : "video",
+				// "website" : "youtube",
+				// "url_id" : url_id,
+				// // "pos_x" : clicked_inside_slide_point.left,
+				// // "pos_y" : clicked_inside_slide_point.top,
+				// "pos_x" : 0,
+				// "pos_y" : 0,
+			// });
 		},
 	});
 });

@@ -1,4 +1,4 @@
-define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "exports"], function(Component, Mode, SlideModel, SlidesListView, SlidesMapView, module, exports) {
+define(["Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "exports"], function(Mode, SlideModel, SlidesListView, SlidesMapView, module, exports) {
 
 	//Load all (slides and components when editor is opened)
 	var loadAll = function() {

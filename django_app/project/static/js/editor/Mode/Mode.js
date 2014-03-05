@@ -1,4 +1,4 @@
-define(["Map", "Slide", "Component", "module", "exports"], function(Map, Slide, Component, module, exports) {
+define(["Map", "Slide", "module", "exports"], function(Map, Slide, module, exports) {
 
 	var currentMode = null;
 
@@ -48,9 +48,8 @@ define(["Map", "Slide", "Component", "module", "exports"], function(Map, Slide, 
 		}
 
 		document.getElementById(selected_slide).classList.add("selected-slide");
-		// $(".step").off("click", ".component", Component.onClick);
-		$(".step").off("drag", ".component", Component.hideNewComponentBox);
-		$(".step").off("dragstop", ".component", Component.onDragStop);
+		// $(".step").off("drag", ".component", Component.hideNewComponentBox);
+		// $(".step").off("dragstop", ".component", Component.onDragStop);
 		$(document).on("mousedown", Map.onMousedown);
 		$("#slides").on("mousedown", ".step", Slide.onMousedown);
 		$("#slides").on("click", ".step", Slide.onClick);
@@ -105,11 +104,11 @@ define(["Map", "Slide", "Component", "module", "exports"], function(Map, Slide, 
 		$("#btn-exit-preview-mode").show();
 
 		// Remove previously attached events
-		$(".step").off("click", ".component", Component.onClick);
-		$(".step").off("click", ".btn-edit-text", Component.onClickBtnEditText);
-		$(".step").off("click", ".btn-delete-component", Component.onClickDeleteBtn);
-		$(".step").off("drag", ".component", Component.hideNewComponentBox);
-		$(".step").off("dragstop", ".component", Component.onDragStop);
+		// $(".step").off("click", ".component", Component.onClick);
+		// $(".step").off("click", ".btn-edit-text", Component.onClickBtnEditText);
+		// $(".step").off("click", ".btn-delete-component", Component.onClickDeleteBtn);
+		// $(".step").off("drag", ".component", Component.hideNewComponentBox);
+		// $(".step").off("dragstop", ".component", Component.onDragStop);
 
 		// Add events from this mode
 		document.addEventListener("keyup", Slide.onKeyup);
