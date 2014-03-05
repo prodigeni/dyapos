@@ -1,5 +1,4 @@
-define(["Slide", 
-		"SlideModel", 
+define(["SlideModel", 
 		"ComponentModel", 
 		"Mode", 
 		"ImageUploadFormView", 
@@ -16,8 +15,7 @@ define(["Slide",
 		"SlidesMapView", 
 		"TextToolboxView", 
 		"ImageToolboxView", 
-		"VideoToolboxView"], function(Slide, 
-									SlideModel, 
+		"VideoToolboxView"], function(SlideModel, 
 									ComponentModel, 
 									Mode, 
 									ImageUploadFormView, 
@@ -94,13 +92,12 @@ define(["Slide",
 	slide_options_box_view = new SlideOptionsBoxView();
 	text_toolbox_view = new TextToolboxView();
 	image_toolbox_view = new ImageToolboxView();
-	video_toolbox_view = new VideoToolboxView();
+	video_toolbox_view = new VideoToolboxView();	
+	slides_map_view = new SlidesMapView();
 
 	impress().init();
 
-	Slide.loadAll();
-
 	if (is_anonymous) {
-		Slide.saveAllToLocalStorage();
+		saveAllToLocalStorage();
 	}
 });

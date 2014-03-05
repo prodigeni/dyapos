@@ -1,4 +1,4 @@
-define(["Slide"], function(Slide) {
+define([], function() {
 	return Backbone.View.extend({
 		tagName : "li",
 		
@@ -24,7 +24,9 @@ define(["Slide"], function(Slide) {
 		goThere : function(event) {
 			event.stopPropagation();
 			console.log("event: click on mini-slide");
-			Slide.changeSelected(this.model.cid);
+			selected_slide = this.model.cid;
+			slide_options_box_view.hide();
+			impress().goto(selected_slide);
 		},
 		
 		clickDelete : function(event) {

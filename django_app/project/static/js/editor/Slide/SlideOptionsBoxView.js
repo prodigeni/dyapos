@@ -1,4 +1,4 @@
-define(["Slide"], function(Slide) {
+define([], function() {
 	return Backbone.View.extend({
 		el : document.getElementById("slide-options"),
 
@@ -16,7 +16,8 @@ define(["Slide"], function(Slide) {
 		},
 
 		editSlide : function() {
-			Slide.changeSelected(clicked_slide.id);
+			slide_options_box_view.hide();
+			impress().goto(selected_slide);
 		},
 
 		scaleSlide : function(event) {

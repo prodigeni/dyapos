@@ -1,97 +1,4 @@
-define(["Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "exports"], function(Mode, SlideModel, SlidesListView, SlidesMapView, module, exports) {
-
-	//Load all (slides and components when editor is opened)
-	var loadAll = function() {
-		if (!is_anonymous) {
-			//Load from server
-
-			slides.sync("read", slides, {
-				success : function(data) {
-					console.log("Data received from server: ");
-					console.log(data);
-					//If presentation doesn't have any slides (first time opened)
-					if (data.length === 0) {
-						//Insert first slide
-						insert();
-					} else {
-						slides = new SlideCollection(data);
-						changeSelected(slides.at(0).cid);
-
-						slides_list_view = new SlidesListView({ collection : slides });
-						slides_list_view.render();
-						slides_map_view = new SlidesMapView({ collection : slides });
-						slides_map_view.render();
-						setTimeout(loadThumbnails, 3000);
-					}
-				}
-			});
-		} else {
-			//Load from local web storage
-			if (localStorage.slides === undefined || localStorage.slides === "[]") {
-				// If it is the first time the editor is opened, so create a first slide
-				insert();
-			} else {
-				slides = new SlideCollection(JSON.parse(localStorage.slides));
-				changeSelected(slides.at(0).cid);
-
-				slides_list_view = new SlidesListView({ collection : slides });
-				slides_list_view.render();
-				slides_map_view = new SlidesMapView({ collection : slides });
-				slides_map_view.render();
-				setTimeout(loadThumbnails, 3000);
-			}
-		}
-	};
-
-	//Insert a new slide
-	var insert = function(data) {
-		if (data === null) {
-			//If the first Slide is inserted manually
-			if (slides.length === 0) {
-				slides.add(new SlideModel());
-			} else {
-				// If it isn't the first slide, calculate coordinates based on the last slide
-				slides.add(new SlideModel({
-					pos_x : parseInt(slides.at(slides.length - 1).get("pos_x"), 10) + 1000,
-					pos_y : parseInt(slides.at(slides.length - 1).get("pos_y"), 10),
-					number : slides.length
-				}));
-			}
-		} else {
-			//If data is loaded from the server or local web storage
-			slides.add(new SlideModel(data));
-		}
-
-		position = slides.length - 1;
-		cid = slides.at(position).cid;
-
-		if (slides.last().isNew() && !is_anonymous) {
-			//Save the last inserted slide to the database
-			slides.last().save();
-		}
-
-		changeSelected(cid);
-	};
-
-	//Change the selected slide
-	var changeSelected = function(cid) {
-		var from = slides.indexOf(slides.get(selected_slide));
-		selected_slide = cid;
-		selected_slide_position = slides.indexOf(slides.get(cid));
-		moveToSlide(from, selected_slide_position);
-	};
-
-	var moveToSlide = function(from, to) {
-		$input_scale.value = slides.at(to).get("scale");
-		$input_rotation_z.value = slides.at(to).get("rotation_z");
-		$input_rotation_x.value = slides.at(to).get("rotation_x");
-		$input_rotation_y.value = slides.at(to).get("rotation_y");
-		slide_options_box_view.hide();
-		impress().goto(slides.at(to).cid);
-
-		//Change to slide edit mode
-		Mode.goToSlideEditMode();
-	};
+define(["Mode", "SlidesListView", "SlidesMapView", "module", "exports"], function(Mode, SlidesListView, SlidesMapView, module, exports) {
 
 	var goNext = function() {
 		console.log("Go to next");
@@ -137,13 +44,6 @@ define(["Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "expo
 		});
 	};
 
-	var saveAllToLocalStorage = function() {
-		setTimeout(function() {
-			localStorage.slides = JSON.stringify(slides.toJSON());
-			saveAllToLocalStorage();
-		}, 5000);
-	};
-
 	// Event functions
 
 	var onClick = function(event) {
@@ -153,14 +53,6 @@ define(["Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "expo
 		$(".step").removeClass("active");
 		$("#" + selected_slide).addClass("active");
 		slide_options_box_view.show();
-	};
-
-	var onClickDeleteBtnSlideMini = function(event) {
-		event.stopPropagation();
-		$(".tooltip").css("display", "none");
-
-		var cid = event.currentTarget.id.replace("delete-", "");
-		deleteSlide(cid);
 	};
 
 	var onMousedown = function(event) {
@@ -261,21 +153,14 @@ define(["Mode", "SlideModel", "SlidesListView", "SlidesMapView", "module", "expo
 
 	};
 	
-	exports.loadAll = loadAll;
-	exports.insert = insert;
-	exports.changeSelected = changeSelected;
 	exports.changePosition = changePosition;
 	exports.updateSlidesOrder = updateSlidesOrder;
-	exports.moveToSlide = moveToSlide;
 	exports.loadThumbnails = loadThumbnails;
-	exports.saveAllToLocalStorage = saveAllToLocalStorage;
 	exports.goNext = goNext;
 	exports.goPrevious = goPrevious;
 	exports.onClick = onClick;
 	exports.onMousedown = onMousedown;
-	exports.onClickDeleteBtnSlideMini = onClickDeleteBtnSlideMini;
 	exports.onMove = onMove;
-	exports.vonMouseup = onMouseup;
 	exports.onKeyup = onKeyup;
 
 });

@@ -30,6 +30,13 @@ require(["config"], function() {
 			}
 		}
 	};
+	
+	saveAllToLocalStorage = function() {
+		setTimeout(function() {
+			localStorage.slides = JSON.stringify(slides.toJSON());
+			saveAllToLocalStorage();
+		}, 5000);
+	};
 
 	// GLOBAL VARIABLES
 	

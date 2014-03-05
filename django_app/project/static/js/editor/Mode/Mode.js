@@ -85,7 +85,7 @@ define(["Map", "Slide", "module", "exports"], function(Map, Slide, module, expor
 	var goToPreviewMode = function() {
 		console.log("preview mode");
 
-		Slide.changeSelected(selected_slide);
+		impress().goto(selected_slide);		
 		
 		new_component_box_view.$el.hide();
 		$(".toolbox").hide();

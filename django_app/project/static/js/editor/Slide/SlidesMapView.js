@@ -1,4 +1,4 @@
-define(["SlideView"], function(SlideView) {
+define(["SlideView", "SlidesListView"], function(SlideView, SlidesListView) {
 	return Backbone.View.extend({
 		el : document.getElementById("slides"),
 
@@ -6,10 +6,51 @@ define(["SlideView"], function(SlideView) {
 		},
 
 		initialize : function() {
-			this.collection.on("add", function() {
-				console.log("called from SlidesMapView");
-				this.appendSlide(this.collection.last());
-			}, this);
+			if (!is_anonymous) {
+				//Load from server
+	
+				slides.sync("read", slides, {
+					success : function(data) {
+						console.log("Data received from server: ");
+						console.log(data);
+						//If presentation doesn't have any slides (first time opened)
+						if (data.length === 0) {
+							//Insert first slide
+
+						} else {
+							slides = new SlideCollection(JSON.parse(localStorage.slides));
+							this.collection = slides;
+							this.render();
+							
+							this.collection.on("add", function() {
+								console.log("called from SlidesMapView");
+								this.appendSlide(this.collection.last());
+							}, this);					
+							
+							slides_list_view = new SlidesListView({ collection : slides });
+							slides_list_view.render();
+						}
+					}
+				});
+			} else {
+				//Load from local web storage
+				if (localStorage.slides === undefined || localStorage.slides === "[]") {
+					// If it is the first time the editor is opened, so create a first slide
+					
+				} else {
+					slides = new SlideCollection(JSON.parse(localStorage.slides));
+					this.collection = slides;
+					this.render();
+					
+					this.collection.on("add", function() {
+						console.log("called from SlidesMapView");
+						this.appendSlide(this.collection.last());
+					}, this);					
+					
+					slides_list_view = new SlidesListView({ collection : slides });
+					slides_list_view.render();
+				}
+			}
 		},
 
 		render : function() {

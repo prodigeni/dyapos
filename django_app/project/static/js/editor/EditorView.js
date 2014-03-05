@@ -1,4 +1,4 @@
-define(["Slide", "Mode"], function(Slide, Mode) {
+define(["Slide", "Mode", "SlideModel"], function(Slide, Mode, SlideModel) {
 	return Backbone.View.extend({
 		el : document.body,
 		
@@ -11,7 +11,28 @@ define(["Slide", "Mode"], function(Slide, Mode) {
 		
 		addSlide : function(event) {
 			event.stopPropagation();
-			Slide.insert(null);
+			
+			if (slides.length === 0) {
+				slides.add(new SlideModel());
+			} else {
+				// If it isn't the first slide, calculate coordinates based on the last slide
+				slides.add(new SlideModel({
+					pos_x : parseInt(slides.at(slides.length - 1).get("pos_x"), 10) + 1000,
+					pos_y : parseInt(slides.at(slides.length - 1).get("pos_y"), 10),
+					number : slides.length
+				}));
+			}
+			
+			position = slides.length - 1;
+			cid = slides.at(position).cid;
+	
+			if (!is_anonymous) {
+				slides.last().save();
+			}
+	
+			selected_slide = slides.last().cid;
+			slide_options_box_view.hide();
+			impress().goto(selected_slide);
 		},
 		
 		goToNavigationEditMode : function() {
