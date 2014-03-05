@@ -1,4 +1,4 @@
-define(["SlideMiniView", "Slide"], function(SlideMiniView, Slide) {
+define(["SlideMiniView"], function(SlideMiniView) {
 	return Backbone.View.extend({
 		el : document.getElementById("slides-list"),
 
@@ -11,7 +11,9 @@ define(["SlideMiniView", "Slide"], function(SlideMiniView, Slide) {
 			$(this.el).sortable({
 				distance : 20,
 				stop : function(event, ui) {
-					Slide.updateSlidesOrder();
+					$("#slides-list > .slide-mini").each(function(index) {
+						slides.get(this.model.cid).set("number", index);
+					});					
 				}
 			});
 		},

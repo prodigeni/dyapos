@@ -16,34 +16,6 @@ define(["Mode", "SlidesListView", "SlidesMapView", "module", "exports"], functio
 		impress().goto(previous);
 	};
 
-	var changePosition = function(cid, pos_x, pos_y) {
-		var slide = document.getElementById(cid);
-		slide.dataset.x = pos_x;
-		slide.dataset.y = pos_y;
-		impress().initStep(document.getElementById(cid));
-
-		slides.get(cid).set({
-			"pos_x" : pos_x,
-			"pos_y" : pos_y
-		});
-	};
-
-	// Change the order of the slides
-	var updateSlidesOrder = function() {
-
-		$("#slides-list > .slide-mini").each(function(index) {
-			var cid = this.id.replace("slide-", "");
-			slides.get(cid).set("number", index);
-		});
-
-	};
-
-	var loadThumbnails = function() {
-		slides.each(function(slide) {
-			slide.updateThumbnail();
-		});
-	};
-
 	// Event functions
 
 	var onClick = function(event) {
@@ -116,7 +88,16 @@ define(["Mode", "SlidesListView", "SlidesMapView", "module", "exports"], functio
 		clicked_slide.dataset.x = slide_trans3d[0];
 		clicked_slide.dataset.y = slide_trans3d[1];
 		impress().initStep(clicked_slide);
-		changePosition(clicked_slide.id, clicked_slide.dataset.x, clicked_slide.dataset.y);
+	
+		var slide = document.getElementById(clicked_slide.cid);
+		slide.dataset.x = clicked_slide.dataset.x;
+		slide.dataset.y = clicked_slide.dataset.y;
+		impress().initStep(document.getElementById(clicked_slide.cid));
+
+		slides.get(cid).set({
+			"pos_x" : slide.dataset.x,
+			"pos_y" : slide.dataset.y
+		});
 	};
 
 	var onKeyup = function(event) {
@@ -153,9 +134,6 @@ define(["Mode", "SlidesListView", "SlidesMapView", "module", "exports"], functio
 
 	};
 	
-	exports.changePosition = changePosition;
-	exports.updateSlidesOrder = updateSlidesOrder;
-	exports.loadThumbnails = loadThumbnails;
 	exports.goNext = goNext;
 	exports.goPrevious = goPrevious;
 	exports.onClick = onClick;

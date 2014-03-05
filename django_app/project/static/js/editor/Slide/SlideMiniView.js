@@ -29,6 +29,10 @@ define([], function() {
 			impress().goto(selected_slide);
 		},
 		
+		generateThumbnail : function() {
+			
+		},
+		
 		clickDelete : function(event) {
 			event.stopPropagation();
 			console.log("remove slide");
