@@ -16,8 +16,10 @@ define(["Component"], function(Component) {
 
 			Component.insert({
 				"type" : "image",
-				"pos_x" : clicked_inside_slide_point.left,
-				"pos_y" : clicked_inside_slide_point.top
+				// "pos_x" : clicked_inside_slide_point.left,
+				// "pos_y" : clicked_inside_slide_point.top
+				"pos_x" : 0,
+				"pos_y" : 0
 			});
 
 			created_image_comp = slides.get(selected_slide).get("components").last();
@@ -71,8 +73,6 @@ define(["Component"], function(Component) {
 					type : "image"
 				}));
 				last.set("external_url", inputUrlImage.value);
-				var image = document.getElementById(last.cid).getElementsByClassName("component-preview")[0].children[0];
-				image.src = last.get("external_url");
 			}
 		},
 
@@ -90,8 +90,10 @@ define(["Component"], function(Component) {
 		},
 
 		cleanImageInputFile : function() {
-			console.log("changed image url");
-			document.getElementById("image").value = "";
+			if(!is_anonymous) {
+				console.log("changed image url");
+				document.getElementById("image").value = "";
+			}
 		},
 
 		cleanImageURL : function() {

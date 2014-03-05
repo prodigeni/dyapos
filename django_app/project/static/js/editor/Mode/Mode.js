@@ -1,4 +1,4 @@
-define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function(Map, Slide, Component, ImageComp, module, exports) {
+define(["Map", "Slide", "Component", "module", "exports"], function(Map, Slide, Component, module, exports) {
 
 	var currentMode = null;
 
@@ -19,7 +19,6 @@ define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function
 		$(document).off("mousedown", Map.onMousedown);
 		$("#slides").off("mousedown", ".step", Slide.onMousedown);
 		$("#slides").off("click", ".step", Slide.onClick);
-		$("#slides").on("click", ".step", Slide.onClickInsideSlide);
 
 		// Remove mousewheel events for zooming
 		// For Chrome
@@ -35,10 +34,10 @@ define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function
 		currentMode = "slide-edit";
 	};
 
-	var goToNavigationEditMode = function() {
-		Component.hideNewComponentBox();
-		Component.hideToolbox();
-		Component.deselectAll();
+	var goToNavigationEditMode = function() {				
+		new_component_box_view.$el.hide();
+		$(".toolbox").hide();
+		$(".component-options").hide();
 
 		$("body").addClass("non-selectable-text");
 		$(".step").addClass("hoverable");
@@ -49,10 +48,7 @@ define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function
 		}
 
 		document.getElementById(selected_slide).classList.add("selected-slide");
-		$("#slides").off("click", ".step", Component.onClickInsideSlide);
-		$(".step").off("click", ".component", Component.onClick);
-		$(".step").off("click", ".btn-decrease-image-size", ImageComp.onClickBtnDecrease);
-		$(".step").off("click", ".btn-increase-image-size", ImageComp.onClickBtnIncrease);
+		// $(".step").off("click", ".component", Component.onClick);
 		$(".step").off("drag", ".component", Component.hideNewComponentBox);
 		$(".step").off("dragstop", ".component", Component.onDragStop);
 		$(document).on("mousedown", Map.onMousedown);
@@ -91,10 +87,11 @@ define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function
 		console.log("preview mode");
 
 		Slide.changeSelected(selected_slide);
-
-		Component.hideNewComponentBox();
-		Component.hideToolbox();
-		Component.deselectAll();
+		
+		new_component_box_view.$el.hide();
+		$(".toolbox").hide();
+		$(".component").removeClass("selected-component");
+		$(".component-options").hide();
 
 		$("body").addClass("non-selectable-text");
 		$(".component").removeClass("hoverable");
@@ -108,7 +105,6 @@ define(["Map", "Slide", "Component", "ImageComp", "module", "exports"], function
 		$("#btn-exit-preview-mode").show();
 
 		// Remove previously attached events
-		$("#slides").off("click", ".step", Slide.onClickInsideSlide);
 		$(".step").off("click", ".component", Component.onClick);
 		$(".step").off("click", ".btn-edit-text", Component.onClickBtnEditText);
 		$(".step").off("click", ".btn-delete-component", Component.onClickDeleteBtn);

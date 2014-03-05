@@ -15,11 +15,11 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 						insert();
 					} else {
 						slides = new SlideCollection(data);
-						for ( i = 0; i < slides.length; i++) {
-							for ( j = 0; j < slides.at(i).get("components").length; j++) {
-								slides.at(i).get("components").at(j).toHTML();
-							}
-						}
+						// for ( i = 0; i < slides.length; i++) {
+							// for ( j = 0; j < slides.at(i).get("components").length; j++) {
+								// // slides.at(i).get("components").at(j).toHTML();
+							// }
+						// }
 						changeSelected(slides.at(0).cid);
 
 						slides_list_view = new SlidesListView({ collection : slides });
@@ -37,11 +37,11 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 				insert();
 			} else {
 				slides = new SlideCollection(JSON.parse(localStorage.slides));
-				for ( i = 0; i < slides.length; i++) {
-					for ( j = 0; j < slides.at(i).get("components").length; j++) {
-						slides.at(i).get("components").at(j).toHTML();
-					}
-				}
+				// for ( i = 0; i < slides.length; i++) {
+					// for ( j = 0; j < slides.at(i).get("components").length; j++) {
+						// // slides.at(i).get("components").at(j).toHTML();
+					// }
+				// }
 				changeSelected(slides.at(0).cid);
 
 				slides_list_view = new SlidesListView({ collection : slides });
@@ -237,23 +237,6 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 		changePosition(clicked_slide.id, clicked_slide.dataset.x, clicked_slide.dataset.y);
 	};
 
-	var onClickInsideSlide = function(event) {
-		event.stopPropagation();
-		console.log("event: click on slide");
-		var offSet = $(this).offset();
-
-		// Set a global variable to store the inside point where the slide was clicked
-		clicked_inside_slide_point = {
-			"left" : parseFloat(event.clientX - $(this).offset().left),
-			"top" : parseFloat(event.clientY - $(this).offset().top),
-		};
-
-		console.log("Clicked on point: " + clicked_inside_slide_point.left + " " + clicked_inside_slide_point.top);
-
-		Component.deselectAll();
-		Component.showNewComponentBox();
-	};
-
 	var onKeyup = function(event) {
 		event.stopPropagation();
 
@@ -303,7 +286,6 @@ define(["Component", "Mode", "SlideModel", "SlidesListView", "SlidesMapView", "m
 	exports.onClickDeleteBtnSlideMini = onClickDeleteBtnSlideMini;
 	exports.onMove = onMove;
 	exports.vonMouseup = onMouseup;
-	exports.onClickInsideSlide = onClickInsideSlide;
 	exports.onKeyup = onKeyup;
 
 });

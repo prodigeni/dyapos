@@ -2,11 +2,10 @@ define(["Mode",
 		"TextCompModel",
 		"ImageCompModel",
 		"VideoCompModel",
-		"ImageComp",
 		"Slide",
 		"module",
 		"exports",		
-		], function(Mode, TextCompModel, ImageCompModel, VideoCompModel, ImageComp, Slide, module, exports) {
+		], function(Mode, TextCompModel, ImageCompModel, VideoCompModel, Slide, module, exports) {
 
 var loadAll = function() {
 	if(!is_anonymous){
@@ -92,18 +91,6 @@ var loadAll = function() {
 		showMenu(cid);
     };
 
-    var deselectAll = function() {
-        console.log("deselect component");        
-
-		// if a previous component was selected
-		if(selected_component !== null) {
-			$(".component").removeClass("selected-component");
-			$(".component-options").hide();
-			$(".toolbox").hide();
-            selected_component = null;        
-        }
-    };
-
     // Event functions
     
     var onClick = function(event){
@@ -135,7 +122,6 @@ var loadAll = function() {
 	exports.showToolbox = showToolbox;
 	exports.hideToolbox = hideToolbox;        
 	exports.select = select;
-	exports.deselectAll = deselectAll;
 	exports.onClick = onClick;
 	exports.onClickBtnEditText = onClickBtnEditText;
 

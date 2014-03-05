@@ -21,7 +21,6 @@ require.config({
 		Collaborative : "editor/Collaborative/Collaborative",
 		Component : "editor/Component/Component",
 		ComponentModel : "editor/Component/ComponentModel",
-		ImageComp : "editor/ImageComp/ImageComp",
 		ImageCompModel : "editor/ImageComp/ImageCompModel",
 		Map : "editor/Map/Map",
 		Mode : "editor/Mode/Mode",

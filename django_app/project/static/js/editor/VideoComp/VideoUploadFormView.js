@@ -15,8 +15,10 @@ define(["Component"], function(Component) {
 				"type" : "video",
 				"website" : "youtube",
 				"url_id" : url_id,
-				"pos_x" : clicked_inside_slide_point.left,
-				"pos_y" : clicked_inside_slide_point.top,
+				// "pos_x" : clicked_inside_slide_point.left,
+				// "pos_y" : clicked_inside_slide_point.top,
+				"pos_x" : 0,
+				"pos_y" : 0,
 			});
 		},
 	});

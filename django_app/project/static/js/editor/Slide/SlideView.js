@@ -18,7 +18,7 @@ define(["Slide", "ComponentView"], function(Slide, ComponentView) {
 
 
 		events : {
-			"click" : "",
+			"click" : "clickInsideSlide",
 		},
 
 		initialize : function() {
@@ -42,6 +42,29 @@ define(["Slide", "ComponentView"], function(Slide, ComponentView) {
 		appendComponent : function(component_model) {
 			component = new ComponentView({ model: component_model });
 			this.$el.append(component.render().$el);
+		},
+		
+		clickInsideSlide : function(event) {
+			event.stopPropagation();
+			console.log("event: click inside slide");
+			// var offSet = $(this).offset();			
+	
+			// Set a global variable to store the inside point where the slide was clicked
+			// clicked_inside_slide_point = {
+				// "left" : parseFloat(event.clientX - $(this).offset().left),
+				// "top" : parseFloat(event.clientY - $(this).offset().top),
+			// };
+			// console.log("Clicked on point: " + clicked_inside_slide_point.left + " " + clicked_inside_slide_point.top);
+	
+			// if a previous component was selected
+			if(selected_component !== null) {
+				$(".component").removeClass("selected-component");
+				$(".component-options").hide();
+				text_toolbox_view.$el.hide();
+	            selected_component = null;        
+	        }			
+			
+			new_component_box_view.$el.show();			
 		},
 	});
 });

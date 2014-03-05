@@ -3,7 +3,6 @@ define(["SlideView"], function(SlideView) {
 		el : document.getElementById("slides"),
 
 		events : {
-
 		},
 
 		initialize : function() {
@@ -27,6 +26,7 @@ define(["SlideView"], function(SlideView) {
 			this.$el.append(slide.render().$el);
 			
 			impress().initStep(document.getElementById(slide.model.cid));
-		}
+		},
+	
 	});
 });
