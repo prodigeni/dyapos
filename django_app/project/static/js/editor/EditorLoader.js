@@ -15,7 +15,8 @@ define(["SlideModel",
 		"SlidesMapView", 
 		"TextToolboxView", 
 		"ImageToolboxView", 
-		"VideoToolboxView"], function(SlideModel, 
+		"VideoToolboxView", 
+		"PreviewModeView"], function(SlideModel, 
 									ComponentModel, 
 									Mode, 
 									ImageUploadFormView, 
@@ -32,7 +33,8 @@ define(["SlideModel",
 									SlidesMapView, 
 									TextToolboxView, 
 									ImageToolboxView, 
-									VideoToolboxView) {
+									VideoToolboxView, 
+									PreviewModeView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
 	// It's a problem with Require.js, so I declared these variables as global
@@ -94,6 +96,7 @@ define(["SlideModel",
 	image_toolbox_view = new ImageToolboxView();
 	video_toolbox_view = new VideoToolboxView();	
 	slides_map_view = new SlidesMapView();
+	preview_mode_view = new PreviewModeView();
 
 	impress().init();
 

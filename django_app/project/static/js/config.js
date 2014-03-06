@@ -48,6 +48,7 @@ require.config({
 		TextToolboxView : "editor/TextComp/TextToolboxView",
 		ImageToolboxView : "editor/ImageComp/ImageToolboxView",
 		VideoToolboxView : "editor/VideoComp/VideoToolboxView",
+		PreviewModeView : "editor/PreviewModeView",
 	},
 
 	shim : {

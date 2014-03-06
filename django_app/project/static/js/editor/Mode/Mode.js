@@ -82,55 +82,7 @@ define(["Map", "Slide", "module", "exports"], function(Map, Slide, module, expor
 		currentMode = "navigation-edit";
 	};
 
-	var goToPreviewMode = function() {
-		console.log("preview mode");
-
-		impress().goto(selected_slide);		
-		
-		new_component_box_view.$el.hide();
-		$(".toolbox").hide();
-		$(".component").removeClass("selected-component");
-		$(".component-options").hide();
-
-		$("body").addClass("non-selectable-text");
-		$(".component").removeClass("hoverable");
-		$(".step").addClass("borderless");
-
-		if ($(".component").draggable("option", "disabled") === false) {
-			$(".component").draggable("disable");
-		}
-
-		$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
-		$("#btn-exit-preview-mode").show();
-
-		// Remove previously attached events
-		// $(".step").off("click", ".component", Component.onClick);
-		// $(".step").off("click", ".btn-edit-text", Component.onClickBtnEditText);
-		// $(".step").off("click", ".btn-delete-component", Component.onClickDeleteBtn);
-		// $(".step").off("drag", ".component", Component.hideNewComponentBox);
-		// $(".step").off("dragstop", ".component", Component.onDragStop);
-
-		// Add events from this mode
-		document.addEventListener("keyup", Slide.onKeyup);
-
-		currentMode = "preview";
-	};
-
-	var exitFromPreviewMode = function() {
-		currentMode = null;
-		console.log("exit from preview mode");
-
-		$("#btn-exit-preview-mode").hide();
-		$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
-
-		document.removeEventListener("keyup", Slide.onKeyup);
-
-		goToSlideEditMode();
-	};
-
 	exports.getCurrentMode = getCurrentMode;
 	exports.goToSlideEditMode = goToSlideEditMode;
 	exports.goToNavigationEditMode = goToNavigationEditMode;
-	exports.goToPreviewMode = goToPreviewMode;
-	exports.exitFromPreviewMode = exitFromPreviewMode;
 });

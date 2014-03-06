@@ -40,11 +40,11 @@ define(["Slide", "Mode", "SlideModel"], function(Slide, Mode, SlideModel) {
 		},
 		
 		previewPresentation : function() {
-			Mode.goToPreviewMode();
+			preview_mode_view.enterMode();
 		},
 		
 		exitFromPreviewMode : function() {
-			Mode.exitFromPreviewMode();
+			preview_mode_view.exitMode();
 		},
 	});
 });
