@@ -1,6 +1,5 @@
 define(["SlideModel", 
 		"ComponentModel", 
-		"Mode", 
 		"ImageUploadFormView", 
 		"VideoUploadFormView", 
 		"ColorPickerView", 
@@ -16,9 +15,10 @@ define(["SlideModel",
 		"TextToolboxView", 
 		"ImageToolboxView", 
 		"VideoToolboxView", 
+		"EditModeView", 
+		"NavigationModeView", 
 		"PreviewModeView"], function(SlideModel, 
 									ComponentModel, 
-									Mode, 
 									ImageUploadFormView, 
 									VideoUploadFormView, 
 									ColorPickerView, 
@@ -34,6 +34,8 @@ define(["SlideModel",
 									TextToolboxView, 
 									ImageToolboxView, 
 									VideoToolboxView, 
+									EditModeView, 
+									NavigationModeView, 
 									PreviewModeView) {
 
 	// Patch, it is the only way I found to access the subModelTypes models inside the ComponentModel
@@ -96,6 +98,8 @@ define(["SlideModel",
 	image_toolbox_view = new ImageToolboxView();
 	video_toolbox_view = new VideoToolboxView();	
 	slides_map_view = new SlidesMapView();
+	edit_mode_view = new EditModeView();
+	navigation_mode_view = new NavigationModeView();
 	preview_mode_view = new PreviewModeView();
 
 	impress().init();

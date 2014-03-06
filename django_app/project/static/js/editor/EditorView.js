@@ -1,4 +1,4 @@
-define(["Slide", "Mode", "SlideModel"], function(Slide, Mode, SlideModel) {
+define(["Slide", "SlideModel"], function(Slide, SlideModel) {
 	return Backbone.View.extend({
 		el : document.body,
 		
@@ -36,7 +36,7 @@ define(["Slide", "Mode", "SlideModel"], function(Slide, Mode, SlideModel) {
 		},
 		
 		goToNavigationEditMode : function() {
-			Mode.goToNavigationEditMode();
+			navigation_mode_view.enterMode();
 		},
 		
 		previewPresentation : function() {

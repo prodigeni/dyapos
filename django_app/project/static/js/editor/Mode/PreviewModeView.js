@@ -1,4 +1,4 @@
-define(["Mode"], function(Mode) {
+define([], function() {
 	return Backbone.View.extend({
 		el : document.body,
 
@@ -78,15 +78,13 @@ define(["Mode"], function(Mode) {
 		},
 
 		exitMode : function() {
-			this.undelegateEvents();
-
-			currentMode = null;
 			console.log("exit from preview mode");
+			this.undelegateEvents();
 
 			$("#btn-exit-preview-mode").hide();
 			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
 
-			Mode.goToSlideEditMode();
+			edit_mode_view.enterMode();
 		},
 	});
 });

@@ -22,7 +22,6 @@ require.config({
 		ComponentModel : "editor/Component/ComponentModel",
 		ImageCompModel : "editor/ImageComp/ImageCompModel",
 		Map : "editor/Map/Map",
-		Mode : "editor/Mode/Mode",
 		Slide : "editor/Slide/Slide",
 		SlideModel : "editor/Slide/SlideModel",
 		TextCompModel : "editor/TextComp/TextCompModel",
@@ -48,7 +47,9 @@ require.config({
 		TextToolboxView : "editor/TextComp/TextToolboxView",
 		ImageToolboxView : "editor/ImageComp/ImageToolboxView",
 		VideoToolboxView : "editor/VideoComp/VideoToolboxView",
-		PreviewModeView : "editor/PreviewModeView",
+		EditModeView : "editor/Mode/EditModeView",
+		NavigationModeView : "editor/Mode/NavigationModeView",
+		PreviewModeView : "editor/Mode/PreviewModeView",
 	},
 
 	shim : {

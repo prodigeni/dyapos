@@ -1,10 +1,10 @@
-define(["Mode", "Slide"], function(Mode, Slide) {
+define(["Slide"], function(Slide) {
 
 	var zoomOut = function() {
 
 		if (slide_edit_mode === true) {
 			//Change to navigation edit mode
-			Mode.goToNavigationEditMode();
+			navigation_mode_view.enterMode();
 		}
 		// Decrease a little the transition time, for freely moving on the map
 		$impress.style.transition = "all 300ms ease-in-out 50ms";

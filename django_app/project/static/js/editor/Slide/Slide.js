@@ -1,22 +1,4 @@
-define(["Mode", "SlidesListView", "SlidesMapView", "module", "exports"], function(Mode, SlidesListView, SlidesMapView, module, exports) {
-
-	// var goNext = function() {
-		// console.log("Go to next");
-		// var next = slides.get(selected_slide).get("number") + 1;
-		// next = next < slides.length ? slides.where({number:next})[0].cid : slides.where({number:0})[0].cid;
-		// selected_slide = next;
-		// impress().goto(next);
-	// };
-// 
-	// var goPrevious = function() {
-		// console.log("Go to previous");
-		// var previous = slides.get(selected_slide).get("number") - 1;
-		// previous = previous >= 0 ? slides.where({number:previous})[0].cid : slides.where({number:slides.length-1})[0].cid;
-		// selected_slide = previous;
-		// impress().goto(previous);
-	// };
-
-	// Event functions
+define(["SlidesListView", "SlidesMapView", "module", "exports"], function(SlidesListView, SlidesMapView, module, exports) {
 
 	var onClick = function(event) {
 		console.log("event: slide click");
@@ -100,45 +82,8 @@ define(["Mode", "SlidesListView", "SlidesMapView", "module", "exports"], functio
 		});
 	};
 
-	// var onKeyup = function(event) {
-		// event.stopPropagation();
-// 
-		// switch( event.keyCode ) {
-			// case 33:
-			// // pg up
-			// case 37:
-			// // left
-			// case 38:
-				// // up
-				// goPrevious();
-				// break;
-			// case 9:
-			// // tab
-			// case 32:
-			// // space
-			// case 34:
-			// // pg down
-			// case 39:
-			// // right
-			// case 40:
-				// // down
-				// goNext();
-				// break;
-			// case 27:
-				// //Escape
-				// Mode.exitFromPreviewMode();
-				// break;
-		// }
-// 
-		// event.preventDefault();
-// 
-	// };
-	
-	// exports.goNext = goNext;
-	// exports.goPrevious = goPrevious;
 	exports.onClick = onClick;
 	exports.onMousedown = onMousedown;
 	exports.onMove = onMove;
-	// exports.onKeyup = onKeyup;
 
 });
