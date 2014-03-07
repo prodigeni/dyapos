@@ -16,18 +16,6 @@ define([], function() {
 			}
 
 			document.getElementById(selected_slide).classList.add("selected-slide");
-			// $(".step").off("drag", ".component", Component.hideNewComponentBox);
-			// $(".step").off("dragstop", ".component", Component.onDragStop);
-			// $(document).on("mousedown", Map.onMousedown);
-			// $("#slides").on("mousedown", ".step", Slide.onMousedown);
-			// $("#slides").on("click", ".step", Slide.onClick);
-
-			// Add mousewheel events for zooming
-			// For Chrome
-			// document.addEventListener("mousewheel", Map.onMouseWheel);
-			//
-			// // For Firefox (if onmousewheel doesn't work)
-			// document.addEventListener("DOMMouseScroll", Map.onMouseWheel2);
 
 			// Center rotation
 			$map = $impress.children[0];
