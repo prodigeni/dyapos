@@ -66,6 +66,7 @@ define([], function() {
 
 		openColorPicker : function() {
 			console.log("openColorPicker");
+			colorpicker_view.toggle();
 		},
 	});
 });

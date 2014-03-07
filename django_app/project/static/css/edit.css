@@ -309,8 +309,8 @@ body {
 #colorpicker {
   z-index: 1;
   position: absolute;
-  top: 30%;
-  left: 75%;
+  top: 1%;
+  left: 51%;
 }
 #colorpicker #picker-wrapper {
   width: 200px;

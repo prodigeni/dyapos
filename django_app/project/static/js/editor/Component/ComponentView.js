@@ -14,6 +14,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 
 		attributes : function() {
 			return {
+				id : this.model.cid,
 				style : "top: " + this.model.get("pos_y") + "px;" + "left: " + this.model.get("pos_x") + "px;",
 			};
 		},
@@ -27,7 +28,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 			});
 		},
 
-		render : function() {
+		render : function() {			
 			this.$el.append(this.template);
 			
 			switch(this.model.get("type")) {
