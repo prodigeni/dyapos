@@ -69,8 +69,8 @@ define([], function() {
 				slide_trans3d = slide_trans3d[slide_trans3d.length - 1];
 				slide_trans3d = translate3DToArray(slide_trans3d);
 
-				document.addEventListener("mousemove", this.onMoveSlide);
-				document.addEventListener("mouseup", this.onMouseupSlide);
+				$(document).on("mousemove", this.onMoveSlide);
+				$(document).on("mouseup", this.onMouseupSlide);
 			}
 		},
 
@@ -121,8 +121,8 @@ define([], function() {
 			
 			impress().initStep(clicked_slide);
 
-			document.removeEventListener("mousemove", this.onMoveSlide);
-			document.removeEventListener("mouseup", this.onMouseupSlide);
+			$(document).off("mousemove", this.onMoveSlide);
+			$(document).off("mouseup", this.onMouseupSlide);						
 		},
 
 		onMousedownMap : function(event) {
