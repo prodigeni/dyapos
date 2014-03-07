@@ -39,35 +39,12 @@ require(["config"], function() {
 	};
 
 	// GLOBAL VARIABLES
-	
-	slides = null;
-	components = null;
-	last_position = {};
-	map_trans3d = [];
-	slide_trans3d = [];
+
 	//Get CSS prefixes according to the browser render engine
 	css_transform = getSupportedCSSProp(["webkitTransform", "MozTransform", "OTransform"]);
 	css_transition = getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
 
-	selected_slide_position = 0;
-
-	//cid of the selected slide
-	selected_slide = null;
-	//cid of the selected component
 	selected_component = null;
-
-	slide_edit_mode = false;
-
-	clicked_slide = null;
-
-	//Previous selected color before appling a new color from the colorpicker
-	previous_color = null;
-
-	//selected color from the colorpicker (hexadecimal)
-	selected_color = null;
-
-	slides_map_opened = false;
-	slides_imgs = {};
 
 	// Set a variable that controls whether last change was made from server or not
 	updatedFromServer = false;

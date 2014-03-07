@@ -9,9 +9,7 @@ define(["SlideModel"], function(SlideModel) {
 			"click #btn-exit-preview-mode" : "exitFromPreviewMode",			
 		},
 		
-		addSlide : function(event) {
-			event.stopPropagation();
-			
+		addSlide : function() {			
 			if (slides.length === 0) {
 				slides.add(new SlideModel());
 			} else {
