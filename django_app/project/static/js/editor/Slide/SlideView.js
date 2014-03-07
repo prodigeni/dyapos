@@ -1,4 +1,4 @@
-define(["Slide", "ComponentView"], function(Slide, ComponentView) {
+define(["ComponentView"], function(ComponentView) {
 	return Backbone.View.extend({
 		tagName : "div",
 

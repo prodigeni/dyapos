@@ -1,4 +1,4 @@
-define(["Slide"], function(Slide) {
+define([], function() {
 	return Backbone.View.extend({
 		el : document.getElementById("themes-window"),
 
@@ -49,7 +49,7 @@ define(["Slide"], function(Slide) {
 			}
 
 			// Update thumbnails according to the new selected theme
-			Slide.loadThumbnails();
+			// Slide.loadThumbnails();
 		},
 
 		onClickTheme : function(event) {

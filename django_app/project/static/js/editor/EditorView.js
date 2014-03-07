@@ -1,4 +1,4 @@
-define(["Slide", "SlideModel"], function(Slide, SlideModel) {
+define(["SlideModel"], function(SlideModel) {
 	return Backbone.View.extend({
 		el : document.body,
 		

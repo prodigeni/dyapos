@@ -1,8 +1,10 @@
-define(["Map", "Slide"], function(Map, Slide) {
+define([], function() {
 	return Backbone.View.extend({
 		el : document.body,
 
 		enterMode : function() {
+			navigation_mode_view.exitMode();
+			
 			$("body").removeClass("non-selectable-text");
 			$(".step").removeClass("hoverable");
 			$(".step").removeClass("borderless");
@@ -11,16 +13,17 @@ define(["Map", "Slide"], function(Map, Slide) {
 			}
 			$(".component").addClass("hoverable");
 			$(".step").removeClass("selected");
-			$(document).off("mousedown", Map.onMousedown);
-			$("#slides").off("mousedown", ".step", Slide.onMousedown);
-			$("#slides").off("click", ".step", Slide.onClick);
+						
+			// $(document).off("mousedown", Map.onMousedown);
+			// $("#slides").off("mousedown", ".step", Slide.onMousedown);
+			// $("#slides").off("click", ".step", Slide.onClick);
 	
 			// Remove mousewheel events for zooming
 			// For Chrome
-			document.removeEventListener("mousewheel", Map.onMouseWheel);
-	
-			// For Firefox (if onmousewheel doesn't work)
-			document.removeEventListener("DOMMouseScroll", Map.onMouseWheel2);
+			// document.removeEventListener("mousewheel", Map.onMouseWheel);
+// 	
+			// // For Firefox (if onmousewheel doesn't work)
+			// document.removeEventListener("DOMMouseScroll", Map.onMouseWheel2);
 	
 			document.getElementById("btn-navigation-mode").style.display = "block";
 		},

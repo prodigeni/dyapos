@@ -21,8 +21,6 @@ require.config({
 		Collaborator : "editor/Collaborator/Collaborator",
 		ComponentModel : "editor/Component/ComponentModel",
 		ImageCompModel : "editor/ImageComp/ImageCompModel",
-		Map : "editor/Map/Map",
-		Slide : "editor/Slide/Slide",
 		SlideModel : "editor/Slide/SlideModel",
 		TextCompModel : "editor/TextComp/TextCompModel",
 		VideoCompModel : "editor/VideoComp/VideoCompModel",
