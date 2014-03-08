@@ -37,7 +37,7 @@ define([], function() {
 			var url = null;
 			// if an image file is already set
 			if (this.model.get("file") !== null) {
-				url = media_url + "images/" + this.model.get("file");
+				url = app.media_url + "images/" + this.model.get("file");
 			} else {
 				url = this.model.get("external_url");
 			}		

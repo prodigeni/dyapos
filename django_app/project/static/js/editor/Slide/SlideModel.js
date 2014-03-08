@@ -24,13 +24,13 @@ define(["ComponentModel"], function(ComponentModel) {
 		initialize : function() {
 
 			this.on("change", function() {
-				if (!is_anonymous) {
+				if (!app.is_anonymous) {
 					if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
-						if (!updatedFromServer) {
+						if (!app.updatedFromServer) {
 							console.log("Slide changed");
 							this.save();
 						} else {
-							updatedFromServer = false;
+							app.updatedFromServer = false;
 						}
 					}
 				}

@@ -20,7 +20,7 @@ define(["ImageCompModel"], function(ImageCompModel) {
 				// "pos_y" : clicked_inside_slide_point.top
 				"pos_x" : 0,
 				"pos_y" : 0,
-				"slide" : slides.get(selected_slide),
+				"slide" : app.slides.get(app.selected_slide),
 			});
 			// Component.insert({
 				// "type" : "image",
@@ -30,9 +30,9 @@ define(["ImageCompModel"], function(ImageCompModel) {
 				// "pos_y" : 0
 			// });
 
-			created_image_comp = slides.get(selected_slide).get("components").last();
+			var created_image_comp = app.slides.get(app.selected_slide).get("components").last();
 
-			if (!is_anonymous) {
+			if (!app.is_anonymous) {
 				var url;
 
 				if (inputFileImage.value !== "") {
@@ -64,7 +64,7 @@ define(["ImageCompModel"], function(ImageCompModel) {
 					$.post(url, {
 						"image_url" : image_url
 					}, function(file) {
-						var last = _.last(slides.getComponentsWhere({
+						var last = _.last(app.slides.getComponentsWhere({
 							type : "image"
 						}));
 						last.set("file", file);
@@ -77,14 +77,14 @@ define(["ImageCompModel"], function(ImageCompModel) {
 				}
 			} else {
 				// Insert an "external_url" property to the last image component added
-				var last = _.last(slides.getComponentsWhere({
+				var last = _.last(app.slides.getComponentsWhere({
 					type : "image"
 				}));
 				last.set("external_url", inputUrlImage.value);
 			}
 		},
 
-		showPreview : function(event) {
+		showPreview : function() {
 			console.log("Url pasted");
 			setTimeout(function() {
 				console.log("Load image preview");
@@ -98,7 +98,7 @@ define(["ImageCompModel"], function(ImageCompModel) {
 		},
 
 		cleanImageInputFile : function() {
-			if(!is_anonymous) {
+			if(!app.is_anonymous) {
 				console.log("changed image url");
 				document.getElementById("image").value = "";
 			}

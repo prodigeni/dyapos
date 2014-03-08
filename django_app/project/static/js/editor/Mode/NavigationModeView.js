@@ -3,7 +3,7 @@ define([], function() {
 		el : document.body,
 
 		enterMode : function() {
-			views.new_component_box.$el.hide();
+			app.views.new_component_box.$el.hide();
 			$(".toolbox").hide();
 			$(".component-options").hide();
 
@@ -15,7 +15,7 @@ define([], function() {
 				$(".component").draggable("disable");
 			}
 
-			document.getElementById(selected_slide).classList.add("selected-slide");
+			document.getElementById(app.selected_slide).classList.add("selected-slide");
 
 			// Center rotation
 			$map = document.getElementById("impress").children[0];
@@ -27,8 +27,8 @@ define([], function() {
 
 			// Zoomout to 0.6
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
-			document.getElementById("impress").style[css_transition] = "all 300ms ease-in-out 50ms";
-			document.getElementById("impress").style[css_transform] = "scale(0.4)";
+			document.getElementById("impress").style[app.css_transition] = "all 300ms ease-in-out 50ms";
+			document.getElementById("impress").style[app.css_transform] = "scale(0.4)";
 
 			// Hide the navigation mode button
 			document.getElementById("btn-navigation-mode").style.display = "none";
@@ -48,19 +48,19 @@ define([], function() {
 
 		onClickSlide : function(event) {
 			console.log("event: slide click");
-			selected_slide = event.target.id;
-			$("#" + selected_slide).addClass("selected");
+			app.selected_slide = event.target.id;
+			$("#" + app.selected_slide).addClass("selected");
 			$(".step").removeClass("active");
-			$("#" + selected_slide).addClass("active");
-			views.slide_options_box.show();
+			$("#" + app.selected_slide).addClass("active");
+			app.views.slide_options_box.show();
 		},
 
 		onMousedownSlide : function(event) {
 			event.stopPropagation();
 			if (event.target.classList[0] == "step") {
 				$(".step").removeClass("selected");
-				clicked_slide = event.target;
-				clicked_slide.classList.add("selected");
+				app.clicked_slide = event.target;
+				app.clicked_slide.classList.add("selected");
 				console.log("mousedown on slide");
 				last_x = event.clientX;
 				last_y = event.clientY;
@@ -104,22 +104,22 @@ define([], function() {
 			last_y = event.clientY;
 
 			// apply movement to CSS style
-			transform_style = transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + slide_trans3d[0] + "px," + slide_trans3d[1] + "px,0px)");
-			clicked_slide.style[css_transform] = transform_style;
+			app.transform_style = app.transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + slide_trans3d[0] + "px," + slide_trans3d[1] + "px,0px)");
+			app.clicked_slide.style[app.css_transform] = app.transform_style;
 		},
 
 		onMouseupSlide : function(event) {
 			event.stopPropagation();
 			console.log("mouseup slide");
-			clicked_slide.dataset.x = slide_trans3d[0];
-			clicked_slide.dataset.y = slide_trans3d[1];
+			app.clicked_slide.dataset.x = slide_trans3d[0];
+			app.clicked_slide.dataset.y = slide_trans3d[1];
 
-			slides.get(clicked_slide.id).set({
-				"pos_x" : clicked_slide.dataset.x,
-				"pos_y" : clicked_slide.dataset.y
+			app.slides.get(app.clicked_slide.id).set({
+				"pos_x" : app.clicked_slide.dataset.x,
+				"pos_y" : app.clicked_slide.dataset.y
 			});
 			
-			impress().initStep(clicked_slide);
+			impress().initStep(app.clicked_slide);
 
 			$(document).off("mousemove", this.onMoveSlide);
 			$(document).off("mouseup", this.onMouseupSlide);						
@@ -133,8 +133,8 @@ define([], function() {
 				last_x = event.clientX;
 				last_y = event.clientY;
 				$map = document.getElementById("impress").children[0];
-				transform_style = $map.style[css_transform];
-				map_trans3d = $map.style[css_transform].split("translate3d");
+				transform_style = $map.style[app.css_transform];
+				map_trans3d = $map.style[app.css_transform].split("translate3d");
 				map_trans3d = map_trans3d[map_trans3d.length - 1];
 				map_trans3d = translate3DToArray(map_trans3d);
 

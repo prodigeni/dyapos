@@ -24,16 +24,18 @@
 <script src="{{STATIC_URL}}js/editor/impress_custom.js"></script>
 
 <script>
-	var p_id = {{ presentation.id|default:'null' }};
-	var is_anonymous = {{ is_anonymous|yesno:'true,false' }};
-	var user_first_name = "{{ user_data.first_name|default:'null' }}";
-	var user_last_name = "{{ user_data.last_name|default:'null' }}";
-	var user_username = "{{ user_data.username|default:'null' }}";
-	var nodejs_url = "{{ NODEJS_URL|default:'null' }}";
-	var media_url = "{{MEDIA_URL}}";
-	var title_default_text = "{% trans 'btn_new_title' %}";
-	var subtitle_default_text = "{% trans 'btn_new_subtitle' %}";
-	var body_default_text = "{% trans 'btn_new_body' %}"; 
+	// Define a namespace app variable where to save global variables
+	var app = {};
+	app.p_id = {{ presentation.id|default:'null' }};
+	app.is_anonymous = {{ is_anonymous|yesno:'true,false' }};
+	app.user_first_name = "{{ user_data.first_name|default:'null' }}";
+	app.user_last_name = "{{ user_data.last_name|default:'null' }}";
+	app.user_username = "{{ user_data.username|default:'null' }}";
+	app.nodejs_url = "{{ NODEJS_URL|default:'null' }}";
+	app.media_url = "{{MEDIA_URL}}";
+	app.title_default_text = "{% trans 'btn_new_title' %}";
+	app.subtitle_default_text = "{% trans 'btn_new_subtitle' %}";
+	app.body_default_text = "{% trans 'btn_new_body' %}"; 
 </script>
 
 <script data-main="{{STATIC_URL}}js/edit.js" src="{{STATIC_URL}}js/require.js"></script>

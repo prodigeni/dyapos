@@ -5,12 +5,12 @@ define([], function() {
 
 	var initWebsocketEvents = function() {
 		// When a list of connected users is received from the server
-		socket.on("load_connected_users", function(data) {
+		app.socket.on("load_connected_users", function(data) {
 			appendUserList(data);
 		});
 
 		// When a new user connects to the room
-		socket.on("new_user_arrives", function(data) {
+		app.socket.on("new_user_arrives", function(data) {
 			console.log("A new user arrived");
 			console.log(data);
 
@@ -19,7 +19,7 @@ define([], function() {
 		});
 
 		// When a user is disconnected
-		socket.on("user_disconnect", function(data) {
+		app.socket.on("user_disconnect", function(data) {
 			console.log("Disconnected user ID: " + data);
 			removeUser(data);
 		});
@@ -27,7 +27,7 @@ define([], function() {
 
 	// Append a list of connected users
 	var appendUserList = function(list) {
-		for ( i = 0; i < list.length; i++) {
+		for (var i = 0; i < list.length; i++) {
 			console.log(list[i]);
 			appendNewUser(list[i]);
 		}
@@ -60,7 +60,7 @@ define([], function() {
 
 	// Remove a user from the list
 	var removeUser = function(user_id) {
-		user = document.getElementById("user-list").querySelector("#user-" + user_id);
+		var user = document.getElementById("user-list").querySelector("#user-" + user_id);
 		user.remove();
 
 		// Check if it is the last collaborator

@@ -37,26 +37,26 @@ define([], function() {
 
 		goNext : function() {
 			console.log("Go to next");
-			var next = slides.get(selected_slide).get("number") + 1;
-			next = next < slides.length ? slides.where({number:next})[0].cid : slides.where({number:0})[0].cid;
-			selected_slide = next;
+			var next = app.slides.get(app.selected_slide).get("number") + 1;
+			next = next < app.slides.length ? app.slides.where({number:next})[0].cid : app.slides.where({number:0})[0].cid;
+			app.selected_slide = next;
 			impress().goto(next);
 		},
 
 		goPrevious : function() {
 			console.log("Go to previous");
-			var previous = slides.get(selected_slide).get("number") - 1;
-			previous = previous >= 0 ? slides.where({number:previous})[0].cid : slides.where({number:slides.length-1})[0].cid;
-			selected_slide = previous;
+			var previous = app.slides.get(app.selected_slide).get("number") - 1;
+			previous = previous >= 0 ? app.slides.where({number:previous})[0].cid : app.slides.where({number: app.slides.length-1})[0].cid;
+			app.selected_slide = previous;
 			impress().goto(previous);
 		},
 
 		enterMode : function() {
 			console.log("enter preview mode");
 
-			impress().goto(selected_slide);
+			impress().goto(app.selected_slide);
 
-			views.new_component_box.$el.hide();
+			app.views.new_component_box.$el.hide();
 			$(".toolbox").hide();
 			$(".component").removeClass("selected-component");
 			$(".component-options").hide();
@@ -84,7 +84,7 @@ define([], function() {
 			$("#btn-exit-preview-mode").hide();
 			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
 
-			views.edit_mode.enterMode();
+			app.views.edit_mode.enterMode();
 		},
 	});
 });

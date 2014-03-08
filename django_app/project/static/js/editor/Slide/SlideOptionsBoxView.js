@@ -16,87 +16,87 @@ define([], function() {
 		},
 
 		editSlide : function() {
-			slide_options_box_view.hide();
-			impress().goto(selected_slide);
+			this.$el.hide();
+			impress().goto(app.selected_slide);
 		},
 
 		scaleSlide : function(event) {
 			var scale = event.target.value;
-			var style = clicked_slide.style[css_transform];
+			var style = app.clicked_slide.style[app.css_transform];
 			style = style.replace(/scale\(.+?\)/g, "scale(" + scale + ")");
-			clicked_slide.style[css_transform] = style;
-			clicked_slide.dataset.scale = scale;
+			app.clicked_slide.style[app.css_transform] = style;
+			app.clicked_slide.dataset.scale = scale;
 		},
 
 		saveScaleSlide : function() {
-			var scale = document.getElementById(selected_slide).dataset.scale;
+			var scale = document.getElementById(app.selected_slide).dataset.scale;
 			console.log(scale);
-			var slide = document.getElementById(selected_slide);
+			var slide = document.getElementById(app.selected_slide);
 			slide.dataset.scale = scale;
 			impress().initStep(slide);
-			slides.get(selected_slide).set("scale", scale);
+			app.slides.get(app.selected_slide).set("scale", scale);
 		},
 
 		rotateSlideZ : function(event) {
 			var degreesZ = event.target.value;
-			var slide = clicked_slide;
-			var style = slide.style[css_transform];
+			var slide = app.clicked_slide;
+			var style = slide.style[app.css_transform];
 			style = style.replace(/rotateZ\(.+?\)/g, "rotateZ(" + degreesZ + "deg)");
-			slide.style[css_transform] = style;
+			slide.style[app.css_transform] = style;
 			slide.dataset.rotateZ = degreesZ;
 		},
 
 		saveRotateSlideZ : function() {
-			var degrees = parseInt(document.getElementById(selected_slide).dataset.rotateZ, 10);
-			var slide = document.getElementById(selected_slide);
+			var degrees = parseInt(document.getElementById(app.selected_slide).dataset.rotateZ, 10);
+			var slide = document.getElementById(app.selected_slide);
 			slide.dataset.rotateZ = degrees;
 			impress().initStep(slide);
-			slides.get(selected_slide).set("rotation_z", degrees);
+			app.slides.get(app.selected_slide).set("rotation_z", degrees);
 		},
 
 		rotateSlideX : function(event) {
 			var degreesX = event.target.value;
-			var slide = clicked_slide;
-			var style = slide.style[css_transform];
+			var slide = app.clicked_slide;
+			var style = slide.style[app.css_transform];
 			style = style.replace(/rotateX\(.+?\)/g, "rotateX(" + degreesX + "deg)");
-			slide.style[css_transform] = style;
+			slide.style[app.css_transform] = style;
 			slide.dataset.rotateX = degreesX;
 		},
 
 		saveRotateSlideX : function() {
-			var degrees = parseInt(document.getElementById(selected_slide).dataset.rotateX, 10);
-			var slide = document.getElementById(selected_slide);
+			var degrees = parseInt(document.getElementById(app.selected_slide).dataset.rotateX, 10);
+			var slide = document.getElementById(app.selected_slide);
 			slide.dataset.rotateX = degrees;
 			impress().initStep(slide);
-			slides.get(selected_slide).set("rotation_x", degrees);
+			app.slides.get(app.selected_slide).set("rotation_x", degrees);
 		},
 
 		rotateSlideY : function(event) {
 			var degreesY = event.target.value;
-			var slide = document.getElementById(selected_slide);
-			var style = slide.style[css_transform];
+			var slide = document.getElementById(app.selected_slide);
+			var style = slide.style[app.css_transform];
 			style = style.replace(/rotateY\(.+?\)/g, "rotateY(" + degreesY + "deg)");
-			slide.style[css_transform] = style;
+			slide.style[app.css_transform] = style;
 			slide.dataset.rotateY = degreesY;
 		},
 
 		saveRotateSlideY : function() {
-			var degrees = parseInt(document.getElementById(selected_slide).dataset.rotateY, 10);
-			var slide = document.getElementById(selected_slide);
+			var degrees = parseInt(document.getElementById(app.selected_slide).dataset.rotateY, 10);
+			var slide = document.getElementById(app.selected_slide);
 			slide.dataset.rotateY = degrees;
 			impress().initStep(slide);
-			slides.get(selected_slide).set("rotation_y", degrees);
+			app.slides.get(app.selected_slide).set("rotation_y", degrees);
 		},
 
 		deleteSlide : function(event) {
 			event.stopPropagation();
 
 			//Remove slide-mini
-			$("#" + clicked_slide.id).remove();
-			$("#slide-" + clicked_slide.id).remove();
+			$("#" + app.clicked_slide.id).remove();
+			$("#slide-" + app.clicked_slide.id).remove();
 
 			this.hide();
-			slides.get(clicked_slide.id).destroy();
+			app.slides.get(app.clicked_slide.id).destroy();
 		},
 	});
 });

@@ -3,7 +3,7 @@ define([], function() {
 		el : document.body,
 
 		enterMode : function() {
-			views.navigation_mode.exitMode();
+			app.views.navigation_mode.exitMode();
 			
 			$("body").removeClass("non-selectable-text");
 			$(".step").removeClass("hoverable");

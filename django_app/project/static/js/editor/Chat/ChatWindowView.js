@@ -7,8 +7,8 @@ define([], function() {
 		},
 		
 		initialize : function(){
-			if(!is_anonymous){
-				socket.on("receive_chat_message", this.appendMessage);
+			if(!app.is_anonymous){
+				app.socket.on("receive_chat_message", this.appendMessage);
 			}
 		},
 
@@ -16,7 +16,7 @@ define([], function() {
 			var text_box = event.target.querySelector("#message-text"), message = text_box.value;
 			//If message is not empty
 			if (message !== "" && message !== null) {
-				socket.emit("send_chat_message", message);
+				app.socket.emit("send_chat_message", message);
 				text_box.value = "";
 			}
 			event.preventDefault();

@@ -15,12 +15,12 @@ define([], function() {
 
 		increaseSize : function() {
 			console.log("increase image");
-			selected_component.set("size", parseInt(selected_component.get("size"), 10) + 2);
+			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) + 2);
 		},
 
 		decreaseSize : function() {
 			console.log("decrease image");
-			selected_component.set("size", parseInt(selected_component.get("size"), 10) - 2);
+			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) - 2);
 		},
 	});
 });

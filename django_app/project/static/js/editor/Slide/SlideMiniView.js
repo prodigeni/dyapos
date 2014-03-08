@@ -24,9 +24,9 @@ define([], function() {
 		goThere : function(event) {
 			event.stopPropagation();
 			console.log("event: click on mini-slide");
-			selected_slide = this.model.cid;
-			views.slide_options_box.$el.hide();
-			impress().goto(selected_slide);
+			app.selected_slide = this.model.cid;
+			app.views.slide_options_box.$el.hide();
+			impress().goto(app.selected_slide);
 		},
 		
 		generateThumbnail : function() {
@@ -36,8 +36,8 @@ define([], function() {
 		clickDelete : function(event) {
 			event.stopPropagation();
 			console.log("remove slide");
-			selected_slide = null;
-			views.slide_options_box.hide();
+			app.selected_slide = null;
+			app.views.slide_options_box.hide();
 			this.model.destroy();
 		},
 	});

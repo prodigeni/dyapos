@@ -3,8 +3,8 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 
 	// GLOBAL FUNCTIONS
 
-	getTransformValue = function(element, property) {
-		var values = element.style[css_transform].split(")");
+	app.getTransformValue = function(element, property) {
+		var values = element.style[app.css_transform].split(")");
 		for (var key in values) {
 			var val = values[key];
 			var prop = val.split("(");
@@ -14,13 +14,13 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		return false;
 	};
 
-	translate3DToArray = function(value) {
+	app.translate3DToArray = function(value) {
 		value = value.toString();
 		var pattern = /([0-9-]+)+(?![3d]\()/gi;
 		return value.match(pattern);
 	};
 
-	getSupportedCSSProp = function(proparray) {
+	app.getSupportedCSSProp = function(proparray) {
 		var root = document.documentElement;
 		//reference root element of document
 		for (var i = 0; i < proparray.length; i++) {//loop through possible properties
@@ -30,46 +30,46 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		}
 	};
 
-	saveAllToLocalStorage = function() {
+	app.saveAllToLocalStorage = function() {
 		setTimeout(function() {
-			localStorage.slides = JSON.stringify(slides.toJSON());
-			saveAllToLocalStorage();
+			localStorage.slides = JSON.stringify(app.slides.toJSON());
+			app.saveAllToLocalStorage();
 		}, 5000);
 	};
 
 	// GLOBAL VARIABLES
 
 	//Get CSS prefixes according to the browser render engine
-	css_transform = getSupportedCSSProp(["webkitTransform", "MozTransform", "OTransform"]);
-	css_transition = getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
+	app.css_transform = app.getSupportedCSSProp(["webkitTransform", "MozTransform", "OTransform"]);
+	app.css_transition = app.getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
 
-	selected_component = null;
+	app.selected_component = null;
 
 	// Set a variable that controls whether last change was made from server or not
-	updatedFromServer = false;
+	app.updatedFromServer = false;
 
 	//Connect to socket.io
-	if (!is_anonymous) {
-		socket = io.connect(nodejs_url);
+	if (!app.is_anonymous) {
+		app.socket = io.connect(app.nodejs_url);
 
-		socket.emit("collaborator_connect", {
-			presentation_id : p_id,
+		app.socket.emit("collaborator_connect", {
+			presentation_id : app.p_id,
 			user_data : {
-				"first_name" : user_first_name,
-				"last_name" : user_last_name,
-				"username" : user_username,
+				"first_name" : app.user_first_name,
+				"last_name" : app.user_last_name,
+				"username" : app.user_username,
 			}
 		});
 	}
 
 	//Define a collection to store the slide objects
-	SlideCollection = Backbone.Collection.extend({
+	app.SlideCollection = Backbone.Collection.extend({
 		model : SlideModel,
 		url : "slides",
 		getComponent : function(cid) {
-			for ( i = 0; i < slides.length; i++) {
-				if (slides.models[i].get("components").get(cid) !== undefined) {
-					return slides.models[i].get("components").get(cid);
+			for (var i = 0; i < app.slides.length; i++) {
+				if (app.slides.models[i].get("components").get(cid) !== undefined) {
+					return app.slides.models[i].get("components").get(cid);
 				}
 			}
 
@@ -78,10 +78,10 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		},
 		getComponentsWhere : function(values) {
 			var results = [];
-			for ( i = 0; i < slides.length; i++) {
-				var result = slides.models[i].get("components").where(values);
+			for (var i = 0; i < app.slides.length; i++) {
+				var result = app.slides.models[i].get("components").where(values);
 				if (result.length > 0) {
-					for ( j = 0; j < result.length; j++) {
+					for (var j = 0; j < result.length; j++) {
 						results.push(result[j]);
 					}
 				}
@@ -91,35 +91,35 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	});
 
 	//Define a collection to store the component objects
-	ComponentCollection = Backbone.Collection.extend({
+	app.ComponentCollection = Backbone.Collection.extend({
 		model : ComponentModel,
 		url : "components",
 	});
 
-	$(document).ready(function(){
+	$(document).ready(function() {
 		// Instantiate Backbone.js Views
-		views = {};
-		views.editor = new EditorView();
-		views.image_upload_form = new ImageUploadFormView();
-		views.video_upload_form = new VideoUploadFormView();
-		views.colorpicker = new ColorPickerView();
-		views.theme_selector = new ThemeSelectorView();
-		views.chat_window = new ChatWindowView();
-		views.add_link_window = new AddLinkWindowView();
-		views.new_component_box = new NewComponentBoxView();
-		views.slide_options_box = new SlideOptionsBoxView();
-		views.text_toolbox = new TextToolboxView();
-		views.image_toolbox = new ImageToolboxView();
-		views.video_toolbox = new VideoToolboxView();
-		views.slides_map = new SlidesMapView();
-		views.edit_mode = new EditModeView();
-		views.navigation_mode = new NavigationModeView();
-		views.preview_mode = new PreviewModeView();		
+		app.views = {};
+		app.views.editor = new EditorView();
+		app.views.image_upload_form = new ImageUploadFormView();
+		app.views.video_upload_form = new VideoUploadFormView();
+		app.views.colorpicker = new ColorPickerView();
+		app.views.theme_selector = new ThemeSelectorView();
+		app.views.chat_window = new ChatWindowView();
+		app.views.add_link_window = new AddLinkWindowView();
+		app.views.new_component_box = new NewComponentBoxView();
+		app.views.slide_options_box = new SlideOptionsBoxView();
+		app.views.text_toolbox = new TextToolboxView();
+		app.views.image_toolbox = new ImageToolboxView();
+		app.views.video_toolbox = new VideoToolboxView();
+		app.views.slides_map = new SlidesMapView();
+		app.views.edit_mode = new EditModeView();
+		app.views.navigation_mode = new NavigationModeView();
+		app.views.preview_mode = new PreviewModeView();
 	});
 
 	impress().init();
 
-	if (is_anonymous) {
-		saveAllToLocalStorage();
+	if (app.is_anonymous) {
+		app.saveAllToLocalStorage();
 	}
 });

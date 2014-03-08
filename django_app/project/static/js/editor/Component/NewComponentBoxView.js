@@ -1,4 +1,4 @@
-define(["TextCompModel", "ImageCompModel", "VideoCompModel"], function(TextCompModel, ImageCompModel, VideoCompModel) {
+define(["TextCompModel"], function(TextCompModel) {
 	return Backbone.View.extend({
 		el : document.getElementById("new-component-box"),
 
@@ -19,11 +19,11 @@ define(["TextCompModel", "ImageCompModel", "VideoCompModel"], function(TextCompM
 				// "pos_y" : clicked_inside_slide_point.top,
 				"pos_x" : 0,
 				"pos_y" : 0,
-				"content" : title_default_text,
-				"slide" : slides.get(selected_slide),				
+				"content" : app.title_default_text,
+				"slide" : app.slides.get(app.selected_slide),				
 			});
 			
-			if(!is_anonymous){
+			if(!app.is_anonymous){
 				component.save();
 			}
 		},
@@ -37,11 +37,11 @@ define(["TextCompModel", "ImageCompModel", "VideoCompModel"], function(TextCompM
 				// "pos_y" : clicked_inside_slide_point.top,
 				"pos_x" : 0,
 				"pos_y" : 0,
-				"content" : subtitle_default_text,
-				"slide" : slides.get(selected_slide),
+				"content" : app.subtitle_default_text,
+				"slide" : app.slides.get(app.selected_slide),
 			});
 
-			if(!is_anonymous){
+			if(!app.is_anonymous){
 				component.save();
 			}			
 		},
@@ -55,23 +55,23 @@ define(["TextCompModel", "ImageCompModel", "VideoCompModel"], function(TextCompM
 				// "pos_y" : clicked_inside_slide_point.top,
 				"pos_x" : 0,
 				"pos_y" : 0,
-				"content" : body_default_text,
-				"slide" : slides.get(selected_slide),
+				"content" : app.body_default_text,
+				"slide" : app.slides.get(app.selected_slide),
 			});
 			
-			if(!is_anonymous){
+			if(!app.is_anonymous){
 				component.save();
 			}
 		},
 		
 		addImage : function(){
 			$("#add-image-box").foundation("reveal", "open");
-			views.new_component_box.$el.hide();
+			app.views.new_component_box.$el.hide();
 		},
 		
 		addVideo : function(){
 			$("#add-video-box").foundation("reveal", "open");
-			views.new_component_box.$el.hide();			
+			app.views.new_component_box.$el.hide();			
 		},
 	});
 });

@@ -45,7 +45,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView
 					this.$el.append(image_comp.render().el);
 					break;
 				case "video" :
-					video_comp = new VideoCompView({
+					var video_comp = new VideoCompView({
 						model : this.model
 					});
 					this.$el.append(video_comp.render().el);
@@ -59,17 +59,17 @@ define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView
 			event.stopPropagation();			
 			console.log("click component");
 
-			views.new_component_box.$el.hide();
+			app.views.new_component_box.$el.hide();
 			this.$el.find(".component-options").show();
-			selected_component = this.model;
+			app.selected_component = this.model;
 			this.$el.addClass("selected-component");
 			
 			switch(this.model.get("type")){
-				case "text": views.text_toolbox.show();
+				case "text": app.views.text_toolbox.show();
 							break;
-				case "image": views.image_toolbox.show();
+				case "image": app.views.image_toolbox.show();
 							break;
-				case "video": views.video_toolbox.show();
+				case "video": app.views.video_toolbox.show();
 							break;
 			}
 		},
@@ -86,7 +86,7 @@ define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView
 		deleteComponent : function(event) {
 			event.stopPropagation();
 			console.log("remove component");
-			selected_component = null;                
+			app.selected_component = null;                
 			this.model.destroy();	
 		},
 	});
