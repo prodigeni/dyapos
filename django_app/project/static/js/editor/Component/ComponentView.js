@@ -1,7 +1,3 @@
-/* jshint undef: true, unused: true */
-/* global document, console, define, Backbone */
-/* jshint strict: true */
-
 define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView, ImageCompView, VideoCompView) {
 	return Backbone.View.extend({
 		tagName : "div",

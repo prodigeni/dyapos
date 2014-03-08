@@ -1,4 +1,21 @@
 {
 	"undef" : true,
-	"unused" : true
+	"unused" : true,
+	"strict" : true,
+	"globals" : {
+		"window" : true,
+		"console" : true,
+		"document" : true,
+		"app" : true,
+		"$" : true,
+		"_" : true,
+		"Backbone" : true,
+		"Mustache" : true,
+		"define" : true,
+		"ColorPicker" : true,
+		"html2canvas" : true,
+		"localStorage" : true,
+		"require" : true,
+		"impress" : true
+	}
 }
