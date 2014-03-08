@@ -98,13 +98,5 @@ define([], function() {
 			this.hide();
 			slides.get(clicked_slide.id).destroy();
 		},
-
-		show : function() {
-			$slide_options.style.display = "block";
-		},
-
-		hide : function() {
-			$slide_options.style.display = "none";
-		},
 	});
 });

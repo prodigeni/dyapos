@@ -56,7 +56,7 @@ define([], function() {
 
 			impress().goto(selected_slide);
 
-			new_component_box_view.$el.hide();
+			views.new_component_box.$el.hide();
 			$(".toolbox").hide();
 			$(".component").removeClass("selected-component");
 			$(".component-options").hide();
@@ -84,7 +84,7 @@ define([], function() {
 			$("#btn-exit-preview-mode").hide();
 			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
 
-			edit_mode_view.enterMode();
+			views.edit_mode.enterMode();
 		},
 	});
 });

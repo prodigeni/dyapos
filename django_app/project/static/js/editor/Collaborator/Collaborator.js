@@ -53,31 +53,31 @@ define([], function() {
 			data.color = user_colors[total];
 
 			var view = Mustache.render(template, data);
-			$user_list.innerHTML += view;
+			document.getElementById("user-list").innerHTML += view;
 		}
 
 	};
 
 	// Remove a user from the list
 	var removeUser = function(user_id) {
-		user = $user_list.querySelector("#user-" + user_id);
+		user = document.getElementById("user-list").querySelector("#user-" + user_id);
 		user.remove();
 
 		// Check if it is the last collaborator
-		if ($user_list.children.length === 0) {
+		if (document.getElementById("user-list").children.length === 0) {
 			hideCollaborative();
 		}
 	};
 
 	var showCollaborative = function() {
 		console.log("Show collaborative box");
-		$collaborative.style.display = "block";
+		document.getElementById("collaborative").style.display = "block";
 		collaborative_visible = true;
 	};
 
 	var hideCollaborative = function() {
 		console.log("hide collaborative box");
-		$collaborative.style.display = "none";
+		document.getElementById("collaborative").style.display = "none";
 		collaborative_visible = false;
 	};
 

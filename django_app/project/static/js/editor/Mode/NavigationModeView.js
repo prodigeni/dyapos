@@ -3,7 +3,7 @@ define([], function() {
 		el : document.body,
 
 		enterMode : function() {
-			new_component_box_view.$el.hide();
+			views.new_component_box.$el.hide();
 			$(".toolbox").hide();
 			$(".component-options").hide();
 
@@ -18,7 +18,7 @@ define([], function() {
 			document.getElementById(selected_slide).classList.add("selected-slide");
 
 			// Center rotation
-			$map = $impress.children[0];
+			$map = document.getElementById("impress").children[0];
 			var map_style = $map.style[css_transform];
 			map_style = map_style.replace(/rotateZ\(.+?\)/g, "rotateZ(0deg)");
 			map_style = map_style.replace(/rotateX\(.+?\)/g, "rotateX(0deg)");
@@ -26,9 +26,9 @@ define([], function() {
 			$map.style[css_transform] = map_style;
 
 			// Zoomout to 0.6
-			$impress.style.transition = "all 300ms ease-in-out 50ms";
-			$impress.style[css_transition] = "all 300ms ease-in-out 50ms";
-			$impress.style[css_transform] = "scale(0.4)";
+			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
+			document.getElementById("impress").style[css_transition] = "all 300ms ease-in-out 50ms";
+			document.getElementById("impress").style[css_transform] = "scale(0.4)";
 
 			// Hide the navigation mode button
 			document.getElementById("btn-navigation-mode").style.display = "none";
@@ -52,7 +52,7 @@ define([], function() {
 			$("#" + selected_slide).addClass("selected");
 			$(".step").removeClass("active");
 			$("#" + selected_slide).addClass("active");
-			slide_options_box_view.show();
+			views.slide_options_box.show();
 		},
 
 		onMousedownSlide : function(event) {
@@ -132,7 +132,7 @@ define([], function() {
 
 				last_x = event.clientX;
 				last_y = event.clientY;
-				$map = $impress.children[0];
+				$map = document.getElementById("impress").children[0];
 				transform_style = $map.style[css_transform];
 				map_trans3d = $map.style[css_transform].split("translate3d");
 				map_trans3d = map_trans3d[map_trans3d.length - 1];
@@ -225,26 +225,26 @@ define([], function() {
 
 			if (slide_edit_mode === true) {
 				//Change to navigation edit mode
-				navigation_mode_view.enterMode();
+				views.navigation_mode.enterMode();
 			}
 			// Decrease a little the transition time, for freely moving on the map
-			$impress.style.transition = "all 300ms ease-in-out 50ms";
-			$impress.style[css_transition] = "all 300ms ease-in-out 50ms";
-			var currentZoom = getTransformValue($impress, "scale");
+			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
+			document.getElementById("impress").style[css_transition] = "all 300ms ease-in-out 50ms";
+			var currentZoom = getTransformValue(document.getElementById("impress"), "scale");
 
 			var newZoom = currentZoom - 0.02;
 			if (newZoom >= 0) {
-				$impress.style[css_transform] = "scale(" + newZoom + ")";
+				document.getElementById("impress").style[css_transform] = "scale(" + newZoom + ")";
 			}
 		},
 
 		zoomIn : function() {
 			// Decrease a little the transition time, for freely moving on the map
-			$impress.style.transition = "all 300ms ease-in-out 50ms";
-			$impress.style[css_transition] = "all 300ms ease-in-out 50ms";
-			var currentZoom = getTransformValue($impress, "scale");
+			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
+			document.getElementById("impress").style[css_transition] = "all 300ms ease-in-out 50ms";
+			var currentZoom = getTransformValue(document.getElementById("impress"), "scale");
 			var newZoom = currentZoom + 0.02;
-			$impress.style[css_transform] = "scale(" + newZoom + ")";
+			document.getElementById("impress").style[css_transform] = "scale(" + newZoom + ")";
 		},
 	});
 });

@@ -66,12 +66,12 @@ define(["TextCompModel", "ImageCompModel", "VideoCompModel"], function(TextCompM
 		
 		addImage : function(){
 			$("#add-image-box").foundation("reveal", "open");
-			new_component_box_view.$el.hide();
+			views.new_component_box.$el.hide();
 		},
 		
 		addVideo : function(){
 			$("#add-video-box").foundation("reveal", "open");
-			new_component_box_view.$el.hide();			
+			views.new_component_box.$el.hide();			
 		},
 	});
 });

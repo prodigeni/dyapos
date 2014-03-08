@@ -25,7 +25,7 @@ define([], function() {
 			event.stopPropagation();
 			console.log("event: click on mini-slide");
 			selected_slide = this.model.cid;
-			slide_options_box_view.hide();
+			views.slide_options_box.$el.hide();
 			impress().goto(selected_slide);
 		},
 		
@@ -37,7 +37,7 @@ define([], function() {
 			event.stopPropagation();
 			console.log("remove slide");
 			selected_slide = null;
-			slide_options_box_view.hide();
+			views.slide_options_box.hide();
 			this.model.destroy();
 		},
 	});

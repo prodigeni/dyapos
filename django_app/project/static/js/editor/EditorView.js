@@ -29,20 +29,20 @@ define(["SlideModel"], function(SlideModel) {
 			}
 	
 			selected_slide = slides.last().cid;
-			slide_options_box_view.hide();
+			views.slide_options_box.hide();
 			impress().goto(selected_slide);
 		},
 		
 		goToNavigationEditMode : function() {
-			navigation_mode_view.enterMode();
+			views.navigation_mode.enterMode();
 		},
 		
 		previewPresentation : function() {
-			preview_mode_view.enterMode();
+			views.preview_mode.enterMode();
 		},
 		
 		exitFromPreviewMode : function() {
-			preview_mode_view.exitMode();
+			views.preview_mode.exitMode();
 		},
 	});
 });

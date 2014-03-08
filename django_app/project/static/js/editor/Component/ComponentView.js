@@ -1,4 +1,8 @@
-define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], function(TextCompView, ImageCompView, VideoCompView, TextToolboxView) {
+/* jshint undef: true, unused: true */
+/* global document, console, define, Backbone */
+/* jshint strict: true */
+
+define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView, ImageCompView, VideoCompView) {
 	return Backbone.View.extend({
 		tagName : "div",
 
@@ -59,17 +63,17 @@ define(["TextCompView", "ImageCompView", "VideoCompView", "TextToolboxView"], fu
 			event.stopPropagation();			
 			console.log("click component");
 
-			new_component_box_view.$el.hide();
+			views.new_component_box.$el.hide();
 			this.$el.find(".component-options").show();
 			selected_component = this.model;
 			this.$el.addClass("selected-component");
 			
 			switch(this.model.get("type")){
-				case "text": text_toolbox_view.show();
+				case "text": views.text_toolbox.show();
 							break;
-				case "image": image_toolbox_view.show();
+				case "image": views.image_toolbox.show();
 							break;
-				case "video": video_toolbox_view.show();
+				case "video": views.video_toolbox.show();
 							break;
 			}
 		},

@@ -60,11 +60,11 @@ define(["ComponentView"], function(ComponentView) {
 			if(selected_component !== null) {
 				$(".component").removeClass("selected-component");
 				$(".component-options").hide();
-				text_toolbox_view.$el.hide();
+				views.text_toolbox.$el.hide();
 				selected_component = null;
 			}
 			
-			new_component_box_view.$el.show();			
+			views.new_component_box.$el.show();			
 		},
 	});
 });

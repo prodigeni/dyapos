@@ -29,10 +29,10 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 							this.appendSlide(this.collection.last());
 						}, this);
 
-						slides_list_view = new SlidesListView({
+						views.slides_list = new SlidesListView({
 							collection : slides
 						});
-						slides_list_view.render();
+						views.slides_list.render();
 					}
 				});
 			} else {
@@ -52,10 +52,10 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 					this.appendSlide(this.collection.last());
 				}, this);
 
-				slides_list_view = new SlidesListView({
+				views.slides_list = new SlidesListView({
 					collection : slides
 				});
-				slides_list_view.render();
+				views.slides_list.render();
 			}
 		},
 

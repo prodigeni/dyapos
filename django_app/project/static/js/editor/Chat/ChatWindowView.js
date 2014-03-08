@@ -28,7 +28,7 @@ define([], function() {
 				'last_name' : data.last_name,
 				'message' : data.message
 			});
-			$message_list.innerHTML += view;
+			document.getElementById("message-list").innerHTML += view;
 		},
 	});
 });
