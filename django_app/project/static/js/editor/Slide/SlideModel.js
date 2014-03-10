@@ -1,4 +1,5 @@
 define(["ComponentModel"], function(ComponentModel) {
+	"use strict";
 	return Backbone.RelationalModel.extend({
 		relations : [{
 			type : Backbone.HasMany,

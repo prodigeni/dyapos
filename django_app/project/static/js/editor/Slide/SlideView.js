@@ -1,4 +1,5 @@
 define(["ComponentView"], function(ComponentView) {
+	"use strict";
 	return Backbone.View.extend({
 		tagName : "div",
 

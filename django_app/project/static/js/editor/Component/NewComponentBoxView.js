@@ -1,4 +1,5 @@
 define(["TextCompModel"], function(TextCompModel) {
+	"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("new-component-box"),
 

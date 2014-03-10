@@ -1,4 +1,5 @@
 define(["ImageCompModel"], function(ImageCompModel) {
+	"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("form-upload-image"),
 		events : {

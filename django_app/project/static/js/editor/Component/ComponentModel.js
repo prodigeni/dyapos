@@ -1,5 +1,5 @@
 define([], function() {
-
+	"use strict";
 	var model = Backbone.RelationalModel.extend({
 		subModelTypes : {
 			"text" : "TextCompModel",

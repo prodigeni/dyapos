@@ -1,4 +1,5 @@
 define(["VideoCompModel"], function(VideoCompModel) {
+	"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("add-video-box"),
 		events : {

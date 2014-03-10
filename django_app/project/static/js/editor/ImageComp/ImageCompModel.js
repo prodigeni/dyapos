@@ -1,4 +1,5 @@
 define(["ComponentModel"], function(ComponentModel) {
+	"use strict";
 	var model = ComponentModel.extend({
 		defaults : {
 			type : "image",

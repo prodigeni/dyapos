@@ -1,4 +1,5 @@
 define(["SlideModel"], function(SlideModel) {
+	"use strict";
 	return Backbone.View.extend({
 		el : document.body,
 		

@@ -1,4 +1,5 @@
 define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView, ImageCompView, VideoCompView) {
+	"use strict";
 	return Backbone.View.extend({
 		tagName : "div",
 

@@ -1,4 +1,5 @@
 define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView", "NewComponentBoxView", "SlideOptionsBoxView", "EditorView", "SlidesListView", "SlideMiniView", "SlidesMapView", "TextToolboxView", "ImageToolboxView", "VideoToolboxView", "EditModeView", "NavigationModeView", "PreviewModeView"], function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {
+	"use strict";
 	Mustache.tags = ["[[", "]]"];
 
 	// GLOBAL FUNCTIONS

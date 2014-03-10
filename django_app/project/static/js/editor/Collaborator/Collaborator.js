@@ -1,5 +1,5 @@
 define([], function() {
-
+	"use strict";
 	var collaborative_visible = false;
 	var user_colors = new Array("#26642d", "#4e81e0", "#da6229", "#ad0c0c", "#cc76ac", "#1beadc", "#0a0101", "#ffff00", "#6d5050", "#703462");
 
