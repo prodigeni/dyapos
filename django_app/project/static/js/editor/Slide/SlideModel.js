@@ -4,7 +4,7 @@ define(["ComponentModel"], function(ComponentModel) {
 			type : Backbone.HasMany,
 			key : 'components',
 			relatedModel : ComponentModel, // I referenced it by an object instead of a string because of a Require.js problem
-			collectionType : 'ComponentCollection',
+			collectionType : 'app.ComponentCollection',
 			reverseRelation : {
 				key : 'slide',
 				includeInJSON : '_id'

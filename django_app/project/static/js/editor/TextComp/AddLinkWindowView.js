@@ -6,8 +6,8 @@ define([], function() {
 			"click #btn-add-text-link" : "addLink",
 		},
 
-		addLink : function(event) {
-			selected_component.set("link", document.getElementById("text-link").value);
+		addLink : function() {
+			app.selected_component.set("link", document.getElementById("text-link").value);
 			$("#add-link-box").foundation("reveal", "close");
 		}
 	});

@@ -19,7 +19,7 @@ define(["VideoCompModel"], function(VideoCompModel) {
 				// "pos_y" : clicked_inside_slide_point.top,
 				"pos_x" : 0,
 				"pos_y" : 0,
-				"slide" : slides.get(selected_slide),
+				"slide" : app.slides.get(app.selected_slide),
 			});
 			// Component.insert({
 				// "type" : "video",

@@ -10,39 +10,36 @@ define(["SlideModel"], function(SlideModel) {
 		},
 		
 		addSlide : function() {			
-			if (slides.length === 0) {
-				slides.add(new SlideModel());
+			if (app.slides.length === 0) {
+				app.slides.add(new SlideModel());
 			} else {
 				// If it isn't the first slide, calculate coordinates based on the last slide
-				slides.add(new SlideModel({
-					pos_x : parseInt(slides.at(slides.length - 1).get("pos_x"), 10) + 1000,
-					pos_y : parseInt(slides.at(slides.length - 1).get("pos_y"), 10),
-					number : slides.length
+				app.slides.add(new SlideModel({
+					pos_x : parseInt(app.slides.at(app.slides.length - 1).get("pos_x"), 10) + 1000,
+					pos_y : parseInt(app.slides.at(app.slides.length - 1).get("pos_y"), 10),
+					number : app.slides.length
 				}));
 			}
-			
-			position = slides.length - 1;
-			cid = slides.at(position).cid;
 	
-			if (!is_anonymous) {
-				slides.last().save();
+			if (!app.is_anonymous) {
+				app.slides.last().save();
 			}
 	
-			selected_slide = slides.last().cid;
-			views.slide_options_box.hide();
-			impress().goto(selected_slide);
+			app.selected_slide = app.slides.last().cid;
+			app.views.slide_options_box.hide();
+			impress().goto(app.selected_slide);
 		},
 		
 		goToNavigationEditMode : function() {
-			views.navigation_mode.enterMode();
+			app.views.navigation_mode.enterMode();
 		},
 		
 		previewPresentation : function() {
-			views.preview_mode.enterMode();
+			app.views.preview_mode.enterMode();
 		},
 		
 		exitFromPreviewMode : function() {
-			views.preview_mode.exitMode();
+			app.views.preview_mode.exitMode();
 		},
 	});
 });

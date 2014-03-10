@@ -29,8 +29,8 @@ define([], function() {
 
 		set : function(name) {
 			console.log("theme changed");
-			currentStyleSheet = document.getElementById("theme-stylesheet");
-			currentStylesheetURL = currentStyleSheet.href.split("/");
+			var currentStyleSheet = document.getElementById("theme-stylesheet");
+			var currentStylesheetURL = currentStyleSheet.href.split("/");
 			currentStylesheetURL[currentStylesheetURL.length - 1] = name + ".css";
 			currentStylesheetURL = currentStylesheetURL.join();
 			currentStylesheetURL = currentStylesheetURL.replace(/,/g, "/");
@@ -39,10 +39,10 @@ define([], function() {
 			var url = "/theme/set";
 			var theme_id = name.split("_");
 			theme_id = theme_id[theme_id.length - 1];
-			if (!is_anonymous) {
+			if (!app.is_anonymous) {
 				$.post(url, {
 					"theme_id" : theme_id,
-					"presentation_id" : p_id
+					"presentation_id" : app.p_id
 				});
 			} else {
 				localStorage.theme = name;

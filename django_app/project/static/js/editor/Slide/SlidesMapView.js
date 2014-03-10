@@ -6,22 +6,22 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 		},
 
 		initialize : function() {
-			if (!is_anonymous) {
+			if (!app.is_anonymous) {
 				//Load from server
 
-				slides.sync("read", slides, {
+				app.slides.sync("read", app.slides, {
 					success : function(data) {
 						console.log("Data received from server: ");
 						console.log(data);
 						//If presentation doesn't have any slides (first time opened)
 						if (data.length === 0) {
 							//Insert first slide
-							slides = new SlideCollection();
-							slides.add(new SlideModel());
+							app.slides = new app.SlideCollection();
+							app.slides.add(new SlideModel());
 						} else {
-							slides = new SlideCollection(JSON.parse(data));
+							app.slides = new app.SlideCollection(JSON.parse(data));
 						}
-						this.collection = slides;
+						this.collection = app.slides;
 						this.render();
 
 						this.collection.on("add", function() {
@@ -29,22 +29,22 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 							this.appendSlide(this.collection.last());
 						}, this);
 
-						views.slides_list = new SlidesListView({
-							collection : slides
+						app.views.slides_list = new SlidesListView({
+							collection : app.slides
 						});
-						views.slides_list.render();
+						app.views.slides_list.render();
 					}
 				});
 			} else {
 				//Load from local web storage
 				if (localStorage.slides === undefined || localStorage.slides === "[]") {
 					// If it is the first time the editor is opened, so create a first slide
-					slides = new SlideCollection();
-					slides.add(new SlideModel());
+					app.slides = new app.SlideCollection();
+					app.slides.add(new SlideModel());
 				} else {
-					slides = new SlideCollection(JSON.parse(localStorage.slides));
+					app.slides = new app.SlideCollection(JSON.parse(localStorage.slides));
 				}
-				this.collection = slides;
+				this.collection = app.slides;
 				this.render();
 
 				this.collection.on("add", function() {
@@ -52,10 +52,10 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 					this.appendSlide(this.collection.last());
 				}, this);
 
-				views.slides_list = new SlidesListView({
-					collection : slides
+				app.views.slides_list = new SlidesListView({
+					collection : app.slides
 				});
-				views.slides_list.render();
+				app.views.slides_list.render();
 			}
 		},
 

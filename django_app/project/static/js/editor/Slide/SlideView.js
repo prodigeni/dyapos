@@ -40,7 +40,7 @@ define(["ComponentView"], function(ComponentView) {
 		},
 		
 		appendComponent : function(component_model) {
-			component = new ComponentView({ model: component_model });
+			var component = new ComponentView({ model: component_model });
 			this.$el.append(component.render().$el);
 		},
 		
@@ -57,14 +57,14 @@ define(["ComponentView"], function(ComponentView) {
 			// console.log("Clicked on point: " + clicked_inside_slide_point.left + " " + clicked_inside_slide_point.top);
 	
 			// if a previous component was selected
-			if(selected_component !== null) {
+			if(app.selected_component !== null) {
 				$(".component").removeClass("selected-component");
 				$(".component-options").hide();
-				views.text_toolbox.$el.hide();
-				selected_component = null;
+				app.views.text_toolbox.$el.hide();
+				app.selected_component = null;
 			}
 			
-			views.new_component_box.$el.show();			
+			app.views.new_component_box.$el.show();			
 		},
 	});
 });

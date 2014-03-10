@@ -10,9 +10,9 @@ define(["SlideMiniView"], function(SlideMiniView) {
 
 			$(this.el).sortable({
 				distance : 20,
-				stop : function(event, ui) {
+				stop : function() {
 					$("#slides-list > .slide-mini").each(function(index) {
-						slides.get(this.model.cid).set("number", index);
+						app.slides.get(this.model.cid).set("number", index);
 					});					
 				}
 			});

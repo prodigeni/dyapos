@@ -20,42 +20,42 @@ define([], function() {
 
 		increaseFont : function() {
 			console.log("increaseFont");
-			var size = parseFloat(selected_component.get("font_size"));
+			var size = parseFloat(app.selected_component.get("font_size"));
 			size = size + 0.2;
-			selected_component.set("font_size", size);
+			app.selected_component.set("font_size", size);
 		},
 
 		decreaseFont : function() {
 			console.log("decreaseFont");
-			var size = parseFloat(selected_component.get("font_size"));
+			var size = parseFloat(app.selected_component.get("font_size"));
 			size = size - 0.2;
-			selected_component.set("font_size", size);
+			app.selected_component.set("font_size", size);
 		},
 
 		toggleBold : function() {
 			console.log("toggleBold");
-			if (selected_component.get("bold") === true) {
-				selected_component.set("bold", false);
+			if (app.selected_component.get("bold") === true) {
+				app.selected_component.set("bold", false);
 			} else {
-				selected_component.set("bold", true);
+				app.selected_component.set("bold", true);
 			}
 		},
 
 		toggleUnderlined : function() {
 			console.log("toggleUnderlined");
-			if (selected_component.get("underlined") === true) {
-				selected_component.set("underlined", false);
+			if (app.selected_component.get("underlined") === true) {
+				app.selected_component.set("underlined", false);
 			} else {
-				selected_component.set("underlined", true);
+				app.selected_component.set("underlined", true);
 			}
 		},
 
 		toggleItalic : function() {
 			console.log("toggleItalic");
-			if (selected_component.get("italic") === true) {
-				selected_component.set("italic", false);
+			if (app.selected_component.get("italic") === true) {
+				app.selected_component.set("italic", false);
 			} else {
-				selected_component.set("italic", true);
+				app.selected_component.set("italic", true);
 			}
 		},
 
@@ -66,7 +66,7 @@ define([], function() {
 
 		openColorPicker : function() {
 			console.log("openColorPicker");
-			views.colorpicker.toggle();
+			app.views.colorpicker.toggle();
 		},
 	});
 });

@@ -18,12 +18,11 @@ define([], function() {
 			document.getElementById(app.selected_slide).classList.add("selected-slide");
 
 			// Center rotation
-			$map = document.getElementById("impress").children[0];
-			var map_style = $map.style[css_transform];
+			var map_style = app.nav.map.style[app.css_transform];
 			map_style = map_style.replace(/rotateZ\(.+?\)/g, "rotateZ(0deg)");
 			map_style = map_style.replace(/rotateX\(.+?\)/g, "rotateX(0deg)");
 			map_style = map_style.replace(/rotateY\(.+?\)/g, "rotateY(0deg)");
-			$map.style[css_transform] = map_style;
+			app.nav.map.style[app.css_transform] = map_style;
 
 			// Zoomout to 0.6
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
@@ -62,12 +61,12 @@ define([], function() {
 				app.clicked_slide = event.target;
 				app.clicked_slide.classList.add("selected");
 				console.log("mousedown on slide");
-				last_x = event.clientX;
-				last_y = event.clientY;
-				transform_style = event.target.style[css_transform];
-				slide_trans3d = event.target.style[css_transform].split("translate3d");
-				slide_trans3d = slide_trans3d[slide_trans3d.length - 1];
-				slide_trans3d = translate3DToArray(slide_trans3d);
+				app.nav.last_x = event.clientX;
+				app.nav.last_y = event.clientY;
+				app.nav.transform_style = event.target.style[app.css_transform];
+				app.nav.slide_trans3d = event.target.style[app.css_transform].split("translate3d");
+				app.nav.slide_trans3d = app.nav.slide_trans3d[app.nav.slide_trans3d.length - 1];
+				app.nav.slide_trans3d = app.translate3DToArray(app.nav.slide_trans3d);
 
 				$(document).on("mousemove", this.onMoveSlide);
 				$(document).on("mouseup", this.onMouseupSlide);
@@ -79,40 +78,40 @@ define([], function() {
 			var movement = 7;
 
 			//get the difference from last position to this position
-			var deltaX = last_x - event.clientX;
-			var deltaY = last_y - event.clientY;
+			var deltaX = app.nav.last_x - event.clientX;
+			var deltaY = app.nav.last_y - event.clientY;
 
 			//check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
 
 			if (deltaX > 0) {
 				// If the movement is to left
-				slide_trans3d[0] = parseInt(slide_trans3d[0], 10) - movement;
+				app.nav.slide_trans3d[0] = parseInt(app.nav.slide_trans3d[0], 10) - movement;
 			} else if (deltaX < 0) {
 				// If the movement is to right
-				slide_trans3d[0] = parseInt(slide_trans3d[0], 10) + movement;
+				app.nav.slide_trans3d[0] = parseInt(app.nav.slide_trans3d[0], 10) + movement;
 			}
 
 			if (deltaY > 0) {
 				// If the movement is to up
-				slide_trans3d[1] = parseInt(slide_trans3d[1], 10) - movement;
+				app.nav.slide_trans3d[1] = parseInt(app.nav.slide_trans3d[1], 10) - movement;
 			} else if (deltaY < 0) {
 				// If the movement is to down
-				slide_trans3d[1] = parseInt(slide_trans3d[1], 10) + movement;
+				app.nav.slide_trans3d[1] = parseInt(app.nav.slide_trans3d[1], 10) + movement;
 			}
 
-			last_x = event.clientX;
-			last_y = event.clientY;
+			app.nav.last_x = event.clientX;
+			app.nav.last_y = event.clientY;
 
 			// apply movement to CSS style
-			app.transform_style = app.transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + slide_trans3d[0] + "px," + slide_trans3d[1] + "px,0px)");
-			app.clicked_slide.style[app.css_transform] = app.transform_style;
+			app.nav.transform_style = app.nav.transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + app.nav.slide_trans3d[0] + "px," + app.nav.slide_trans3d[1] + "px,0px)");
+			app.clicked_slide.style[app.css_transform] = app.nav.transform_style;
 		},
 
 		onMouseupSlide : function(event) {
 			event.stopPropagation();
 			console.log("mouseup slide");
-			app.clicked_slide.dataset.x = slide_trans3d[0];
-			app.clicked_slide.dataset.y = slide_trans3d[1];
+			app.clicked_slide.dataset.x = app.nav.slide_trans3d[0];
+			app.clicked_slide.dataset.y = app.nav.slide_trans3d[1];
 
 			app.slides.get(app.clicked_slide.id).set({
 				"pos_x" : app.clicked_slide.dataset.x,
@@ -130,18 +129,18 @@ define([], function() {
 			if (event.target.isEqualNode(document.body)) {
 				console.log("mousedown on map");
 
-				last_x = event.clientX;
-				last_y = event.clientY;
-				$map = document.getElementById("impress").children[0];
-				transform_style = $map.style[app.css_transform];
-				map_trans3d = $map.style[app.css_transform].split("translate3d");
-				map_trans3d = map_trans3d[map_trans3d.length - 1];
-				map_trans3d = translate3DToArray(map_trans3d);
+				app.nav.last_x = event.clientX;
+				app.nav.last_y = event.clientY;
+				app.nav.map = document.getElementById("impress").children[0];
+				app.nav.transform_style = app.nav.map.style[app.css_transform];
+				app.nav.map_trans3d = app.nav.map.style[app.css_transform].split("translate3d");
+				app.nav.map_trans3d = app.nav.map_trans3d[app.nav.map_trans3d.length - 1];
+				app.nav.map_trans3d = app.translate3DToArray(app.nav.map_trans3d);
 
 				// Remove transition animation for freely move on the map
 				// (transition will be set again when call impress().goto())
-				$map.style.transition = null;
-				$map.style[css_transition] = null;
+				app.nav.map.style.transition = null;
+				app.nav.map.style[app.css_transition] = null;
 
 				$(document).on("mousemove", this.onMoveMap);
 				$(document).on("mouseup", this.onMouseupMap);
@@ -153,37 +152,37 @@ define([], function() {
 			var movement = 7;
 
 			//get the difference from last position to this position
-			var deltaX = last_x - event.clientX;
-			var deltaY = last_y - event.clientY;
+			var deltaX = app.nav.last_x - event.clientX;
+			var deltaY = app.nav.last_y - event.clientY;
 
 			//check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
 
 			if (deltaX > 0) {
 				// If the movement is to left
 				console.log("left");
-				map_trans3d[0] = parseInt(map_trans3d[0], 10) - movement;
+				app.nav.map_trans3d[0] = parseInt(app.nav.map_trans3d[0], 10) - movement;
 			} else if (deltaX < 0) {
 				// If the movement is to right
 				console.log("right");
-				map_trans3d[0] = parseInt(map_trans3d[0], 10) + movement;
+				app.nav.map_trans3d[0] = parseInt(app.nav.map_trans3d[0], 10) + movement;
 			}
 
 			if (deltaY > 0) {
 				// If the movement is to up
 				console.log("up");
-				map_trans3d[1] = parseInt(map_trans3d[1], 10) - movement;
+				app.nav.map_trans3d[1] = parseInt(app.nav.map_trans3d[1], 10) - movement;
 			} else if (deltaY < 0) {
 				// If the movement is to down
 				console.log("down");
-				map_trans3d[1] = parseInt(map_trans3d[1], 10) + movement;
+				app.nav.map_trans3d[1] = parseInt(app.nav.map_trans3d[1], 10) + movement;
 			}
 
-			last_x = event.clientX;
-			last_y = event.clientY;
+			app.nav.last_x = event.clientX;
+			app.nav.last_y = event.clientY;
 
 			// apply move to CSS style
-			transform_style = transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + map_trans3d[0] + "px," + map_trans3d[1] + "px,0px)");
-			$map.style[css_transform] = transform_style;
+			app.nav.transform_style = app.nav.transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + app.nav.map_trans3d[0] + "px," + app.nav.map_trans3d[1] + "px,0px)");
+			app.nav.map.style[app.css_transform] = app.nav.transform_style;
 		},
 
 		onMouseupMap : function(event) {
@@ -222,29 +221,26 @@ define([], function() {
 		},
 
 		zoomOut : function() {
-
-			if (slide_edit_mode === true) {
-				//Change to navigation edit mode
-				views.navigation_mode.enterMode();
-			}
+			//Change to navigation edit mode
+			app.views.navigation_mode.enterMode();
 			// Decrease a little the transition time, for freely moving on the map
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
-			document.getElementById("impress").style[css_transition] = "all 300ms ease-in-out 50ms";
-			var currentZoom = getTransformValue(document.getElementById("impress"), "scale");
+			document.getElementById("impress").style[app.css_transition] = "all 300ms ease-in-out 50ms";
+			var currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
 
 			var newZoom = currentZoom - 0.02;
 			if (newZoom >= 0) {
-				document.getElementById("impress").style[css_transform] = "scale(" + newZoom + ")";
+				document.getElementById("impress").style[app.css_transform] = "scale(" + newZoom + ")";
 			}
 		},
 
 		zoomIn : function() {
 			// Decrease a little the transition time, for freely moving on the map
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
-			document.getElementById("impress").style[css_transition] = "all 300ms ease-in-out 50ms";
-			var currentZoom = getTransformValue(document.getElementById("impress"), "scale");
+			document.getElementById("impress").style[app.css_transition] = "all 300ms ease-in-out 50ms";
+			var currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
 			var newZoom = currentZoom + 0.02;
-			document.getElementById("impress").style[css_transform] = "scale(" + newZoom + ")";
+			document.getElementById("impress").style[app.css_transform] = "scale(" + newZoom + ")";
 		},
 	});
 });

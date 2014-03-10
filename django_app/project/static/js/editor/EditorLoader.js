@@ -42,6 +42,18 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	//Get CSS prefixes according to the browser render engine
 	app.css_transform = app.getSupportedCSSProp(["webkitTransform", "MozTransform", "OTransform"]);
 	app.css_transition = app.getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
+	//This stores the current selected color on the ColorPicker
+	app.selected_color = null;
+	
+	//Variables for Navigation mode
+	app.nav = {
+		map : document.getElementById("impress").children[0],
+		transform_style : null,
+		map_trans3d : null,
+		slide_trans3d : null,
+		last_x_: null,
+		last_y : null
+	};
 
 	app.selected_component = null;
 
