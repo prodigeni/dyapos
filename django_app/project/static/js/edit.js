@@ -55,7 +55,7 @@ require.config({
 			exports : "$"
 		},
 		jqueryui : {
-			deps : ["jquery"],
+			deps : ["jquery"]
 		},
 		touchpunch : {
 			deps : ["jqueryui"]

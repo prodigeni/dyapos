@@ -1,5 +1,4 @@
-define(["SlideMiniView"], function(SlideMiniView) {
-	"use strict";
+define(["SlideMiniView"], function(SlideMiniView) {"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("slides-list"),
 
@@ -14,13 +13,13 @@ define(["SlideMiniView"], function(SlideMiniView) {
 				stop : function() {
 					$("#slides-list > .slide-mini").each(function(index) {
 						app.slides.get(this.model.cid).set("number", index);
-					});					
+					});
 				}
 			});
 		},
 
 		render : function() {
-			for (var i = 0; i < this.collection.length; i++) {
+			for (var i = 0; i < this.collection.length; i = i + 1) {
 				this.appendSlideMini(this.collection.at(i));
 			}
 			return this;

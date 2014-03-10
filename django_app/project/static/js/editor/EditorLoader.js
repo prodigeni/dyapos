@@ -1,5 +1,4 @@
-define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView", "NewComponentBoxView", "SlideOptionsBoxView", "EditorView", "SlidesListView", "SlideMiniView", "SlidesMapView", "TextToolboxView", "ImageToolboxView", "VideoToolboxView", "EditModeView", "NavigationModeView", "PreviewModeView"], function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {
-	"use strict";
+define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView", "NewComponentBoxView", "SlideOptionsBoxView", "EditorView", "SlidesListView", "SlideMiniView", "SlidesMapView", "TextToolboxView", "ImageToolboxView", "VideoToolboxView", "EditModeView", "NavigationModeView", "PreviewModeView"], function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {"use strict";
 	Mustache.tags = ["[[", "]]"];
 
 	// GLOBAL FUNCTIONS
@@ -45,14 +44,14 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	app.css_transition = app.getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
 	//This stores the current selected color on the ColorPicker
 	app.selected_color = null;
-	
+
 	//Variables for Navigation mode
 	app.nav = {
 		map : document.getElementById("impress").children[0],
 		transform_style : null,
 		map_trans3d : null,
 		slide_trans3d : null,
-		last_x_: null,
+		last_x_ : null,
 		last_y : null
 	};
 
@@ -135,4 +134,5 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	if (app.is_anonymous) {
 		app.saveAllToLocalStorage();
 	}
+	
 });
