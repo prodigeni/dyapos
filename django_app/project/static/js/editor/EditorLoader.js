@@ -6,10 +6,13 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	app.getTransformValue = function(element, property) {
 		var values = element.style[app.css_transform].split(")");
 		for (var key in values) {
-			var val = values[key];
-			var prop = val.split("(");
-			if (prop[0].trim() == property)
-				return parseFloat(prop[1]);
+			if (values.hasOwnProperty(key)) {
+				var val = values[key];
+				var prop = val.split("(");
+				if (prop[0].trim() === property) {
+					return parseFloat(prop[1]);
+				}
+			}
 		}
 		return false;
 	};
@@ -23,7 +26,7 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	app.getSupportedCSSProp = function(proparray) {
 		var root = document.documentElement;
 		//reference root element of document
-		for (var i = 0; i < proparray.length; i++) {//loop through possible properties
+		for (var i = 0; i < proparray.length; i = i + 1) {//loop through possible properties
 			if (proparray[i] in root.style) {//if property exists on element (value will be string, empty string if not set)
 				return proparray[i];
 			}
@@ -69,7 +72,7 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 			user_data : {
 				"first_name" : app.user_first_name,
 				"last_name" : app.user_last_name,
-				"username" : app.user_username,
+				"username" : app.user_username
 			}
 		});
 	}
@@ -79,7 +82,7 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		model : SlideModel,
 		url : "slides",
 		getComponent : function(cid) {
-			for (var i = 0; i < app.slides.length; i++) {
+			for (var i = 0; i < app.slides.length; i = i + 1) {
 				if (app.slides.models[i].get("components").get(cid) !== undefined) {
 					return app.slides.models[i].get("components").get(cid);
 				}
@@ -90,22 +93,22 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		},
 		getComponentsWhere : function(values) {
 			var results = [];
-			for (var i = 0; i < app.slides.length; i++) {
+			for (var i = 0; i < app.slides.length; i = i + 1) {
 				var result = app.slides.models[i].get("components").where(values);
 				if (result.length > 0) {
-					for (var j = 0; j < result.length; j++) {
+					for (var j = 0; j < result.length; j = j + 1) {
 						results.push(result[j]);
 					}
 				}
 			}
 			return results;
-		},
+		}
 	});
 
 	//Define a collection to store the component objects
 	app.ComponentCollection = Backbone.Collection.extend({
 		model : ComponentModel,
-		url : "components",
+		url : "components"
 	});
 
 	$(document).ready(function() {
@@ -134,5 +137,5 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	if (app.is_anonymous) {
 		app.saveAllToLocalStorage();
 	}
-	
+
 });

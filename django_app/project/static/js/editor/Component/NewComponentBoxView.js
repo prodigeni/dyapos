@@ -8,7 +8,7 @@ define(["TextCompModel"], function(TextCompModel) {
 			"click #btn-add-subtitle" : "addSubtitle",
 			"click #btn-add-body" : "addBody",
 			"click #btn-add-image" : "addImage",
-			"click #btn-add-video" : "addVideo",
+			"click #btn-add-video" : "addVideo"
 		},
 
 		addTitle : function() {
@@ -21,9 +21,9 @@ define(["TextCompModel"], function(TextCompModel) {
 				"pos_x" : 0,
 				"pos_y" : 0,
 				"content" : app.title_default_text,
-				"slide" : app.slides.get(app.selected_slide),				
+				"slide" : app.slides.get(app.selected_slide)
 			});
-			
+
 			if(!app.is_anonymous){
 				component.save();
 			}
@@ -39,12 +39,12 @@ define(["TextCompModel"], function(TextCompModel) {
 				"pos_x" : 0,
 				"pos_y" : 0,
 				"content" : app.subtitle_default_text,
-				"slide" : app.slides.get(app.selected_slide),
+				"slide" : app.slides.get(app.selected_slide)
 			});
 
 			if(!app.is_anonymous){
 				component.save();
-			}			
+			}
 		},
 
 		addBody : function() {
@@ -57,22 +57,22 @@ define(["TextCompModel"], function(TextCompModel) {
 				"pos_x" : 0,
 				"pos_y" : 0,
 				"content" : app.body_default_text,
-				"slide" : app.slides.get(app.selected_slide),
+				"slide" : app.slides.get(app.selected_slide)
 			});
-			
+
 			if(!app.is_anonymous){
 				component.save();
 			}
 		},
-		
+
 		addImage : function(){
 			$("#add-image-box").foundation("reveal", "open");
 			app.views.new_component_box.$el.hide();
 		},
-		
+
 		addVideo : function(){
 			$("#add-video-box").foundation("reveal", "open");
-			app.views.new_component_box.$el.hide();			
-		},
+			app.views.new_component_box.$el.hide();
+		}
 	});
 });

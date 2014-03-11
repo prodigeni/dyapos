@@ -13,7 +13,7 @@ define([], function() {
 			"mouseup #input-rotation-x" : "saveRotateSlideX",
 			"change #input-rotation-y" : "rotateSlideY",
 			"mouseup #input-rotation-y" : "saveRotateSlideY",
-			"click #btn-delete-slide" : "deleteSlide",
+			"click #btn-delete-slide" : "deleteSlide"
 		},
 
 		editSlide : function() {
@@ -98,6 +98,6 @@ define([], function() {
 
 			this.hide();
 			app.slides.get(app.clicked_slide.id).destroy();
-		},
+		}
 	});
 });

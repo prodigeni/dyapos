@@ -74,7 +74,7 @@ define([], function() {
 			$("#btn-exit-preview-mode").show();
 
 			this.delegateEvents({
-				"keyup" : "onKeyUp",
+				"keyup" : "onKeyUp"
 			});
 		},
 
@@ -86,6 +86,6 @@ define([], function() {
 			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
 
 			app.views.edit_mode.enterMode();
-		},
+		}
 	});
 });

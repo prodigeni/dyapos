@@ -38,7 +38,7 @@ define([], function() {
 				"mousedown .step" : "onMousedownSlide",
 				"mousedown" : "onMousedownMap",
 				"mousewheel" : "onMouseWheel",
-				"DOMMouseScroll" : "onMouseWheel2", //For Firefox
+				"DOMMouseScroll" : "onMouseWheel2" //For Firefox
 			});
 		},
 
@@ -57,7 +57,7 @@ define([], function() {
 
 		onMousedownSlide : function(event) {
 			event.stopPropagation();
-			if (event.target.classList[0] == "step") {
+			if (event.target.classList[0] === "step") {
 				$(".step").removeClass("selected");
 				app.clicked_slide = event.target;
 				app.clicked_slide.classList.add("selected");
@@ -118,11 +118,11 @@ define([], function() {
 				"pos_x" : app.clicked_slide.dataset.x,
 				"pos_y" : app.clicked_slide.dataset.y
 			});
-			
+
 			impress().initStep(app.clicked_slide);
 
 			$(document).off("mousemove", this.onMoveSlide);
-			$(document).off("mouseup", this.onMouseupSlide);						
+			$(document).off("mouseup", this.onMouseupSlide);
 		},
 
 		onMousedownMap : function(event) {
@@ -242,6 +242,6 @@ define([], function() {
 			var currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
 			var newZoom = currentZoom + 0.02;
 			document.getElementById("impress").style[app.css_transform] = "scale(" + newZoom + ")";
-		},
+		}
 	});
 });

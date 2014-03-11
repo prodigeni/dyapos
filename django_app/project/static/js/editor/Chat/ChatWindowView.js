@@ -4,9 +4,9 @@ define([], function() {
 		el : document.getElementById("chat"),
 
 		events : {
-			"submit #chat-form" : "sendMessage",
+			"submit #chat-form" : "sendMessage"
 		},
-		
+
 		initialize : function(){
 			if(!app.is_anonymous){
 				app.socket.on("receive_chat_message", this.appendMessage);
@@ -25,11 +25,11 @@ define([], function() {
 
 		appendMessage : function(data) {
 			var view = Mustache.render(document.getElementById("template-chat-message").innerHTML, {
-				'first_name' : data.first_name,
-				'last_name' : data.last_name,
-				'message' : data.message
+				"first_name" : data.first_name,
+				"last_name" : data.last_name,
+				"message" : data.message
 			});
 			document.getElementById("message-list").innerHTML += view;
-		},
+		}
 	});
 });

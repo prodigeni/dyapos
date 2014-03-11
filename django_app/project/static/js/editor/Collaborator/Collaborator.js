@@ -1,9 +1,9 @@
 define([], function() {
 	"use strict";
-	var collaborative_visible = false;
-	var user_colors = new Array("#26642d", "#4e81e0", "#da6229", "#ad0c0c", "#cc76ac", "#1beadc", "#0a0101", "#ffff00", "#6d5050", "#703462");
+	var collaborative_visible = false,
+		user_colors = new Array("#26642d", "#4e81e0", "#da6229", "#ad0c0c", "#cc76ac", "#1beadc", "#0a0101", "#ffff00", "#6d5050", "#703462");
 
-	var initWebsocketEvents = function() {
+	function initWebsocketEvents() {
 		// When a list of connected users is received from the server
 		app.socket.on("load_connected_users", function(data) {
 			appendUserList(data);
@@ -23,43 +23,43 @@ define([], function() {
 			console.log("Disconnected user ID: " + data);
 			removeUser(data);
 		});
-	};
+	}
 
 	// Append a list of connected users
-	var appendUserList = function(list) {
-		for (var i = 0; i < list.length; i++) {
+	function appendUserList(list) {
+		for (var i = 0; i < list.length; i = i + 1) {
 			console.log(list[i]);
 			appendNewUser(list[i]);
 		}
-	};
+	}
 
 	// Append a new user to the list
-	var appendNewUser = function(new_user_data) {
+	function appendNewUser(new_user_data) {
+		var template = document.getElementById("template-user").innerHTML,
+			user = document.getElementById("user-" + new_user_data.id),
+			total = $("#user-list").children().length,
+			data = {},
+			view;
+
 		if (collaborative_visible === false) {
 			showCollaborative();
 		}
 
-		var user = document.getElementById("user-" + new_user_data.id);
 		if (user === null) {
-			var template = document.getElementById("template-user").innerHTML;
-			var data = {
-				'id' : new_user_data.id,
-				'first_name' : new_user_data.first_name,
-				'last_name' : new_user_data.last_name
+			data = {
+				"id" : new_user_data.id,
+				"first_name" : new_user_data.first_name,
+				"last_name" : new_user_data.last_name,
+				"color" : user_colors[total]
 			};
-
-			// Get number of connected users and assign a color
-			var total = $("#user-list").children().length;
-			data.color = user_colors[total];
-
-			var view = Mustache.render(template, data);
+			view = Mustache.render(template, data);
 			document.getElementById("user-list").innerHTML += view;
 		}
 
-	};
+	}
 
 	// Remove a user from the list
-	var removeUser = function(user_id) {
+	function removeUser(user_id) {
 		var user = document.getElementById("user-list").querySelector("#user-" + user_id);
 		user.remove();
 
@@ -67,19 +67,19 @@ define([], function() {
 		if (document.getElementById("user-list").children.length === 0) {
 			hideCollaborative();
 		}
-	};
+	}
 
-	var showCollaborative = function() {
+	function showCollaborative() {
 		console.log("Show collaborative box");
 		document.getElementById("collaborative").style.display = "block";
 		collaborative_visible = true;
-	};
+	}
 
-	var hideCollaborative = function() {
+	function hideCollaborative() {
 		console.log("hide collaborative box");
 		document.getElementById("collaborative").style.display = "none";
 		collaborative_visible = false;
-	};
+	}
 
 	return {
 		initWebsocketEvents : initWebsocketEvents,

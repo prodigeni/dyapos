@@ -6,7 +6,7 @@ define([], function() {
 
 		events : {
 			"click #btn-increase-image-size" : "increaseSize",
-			"click #btn-decrease-image-size" : "decreaseSize",
+			"click #btn-decrease-image-size" : "decreaseSize"
 		},
 
 		show : function() {
@@ -22,6 +22,6 @@ define([], function() {
 		decreaseSize : function() {
 			console.log("decrease image");
 			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) - 2);
-		},
+		}
 	});
 });

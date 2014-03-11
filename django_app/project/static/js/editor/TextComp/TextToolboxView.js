@@ -11,7 +11,7 @@ define([], function() {
 			"click #underlined-btn" : "toggleUnderlined",
 			"click #italic-btn" : "toggleItalic",
 			"click #link-btn" : "openLinkDialog",
-			"click #color-btn" : "openColorPicker",
+			"click #color-btn" : "openColorPicker"
 		},
 
 		show : function() {
@@ -68,6 +68,6 @@ define([], function() {
 		openColorPicker : function() {
 			console.log("openColorPicker");
 			app.views.colorpicker.toggle();
-		},
+		}
 	});
 });

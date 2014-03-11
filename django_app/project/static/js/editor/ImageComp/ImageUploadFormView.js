@@ -6,7 +6,7 @@ define(["ImageCompModel"], function(ImageCompModel) {
 			"click #btn-upload-image" : "upload",
 			"paste #image-url" : "showPreview",
 			"change #image" : "cleanImageURL",
-			"change #image-url" : "cleanImageInputFile",
+			"change #image-url" : "cleanImageInputFile"
 		},
 		upload : function() {
 			console.log("upload image");
@@ -15,13 +15,13 @@ define(["ImageCompModel"], function(ImageCompModel) {
 			var inputFileImage = document.getElementById("image");
 			var inputUrlImage = document.getElementById("image-url");
 
-			new ImageCompModel({
+			var image_comp = new ImageCompModel({
 				"type" : "image",
 				// "pos_x" : clicked_inside_slide_point.left,
 				// "pos_y" : clicked_inside_slide_point.top
 				"pos_x" : 0,
 				"pos_y" : 0,
-				"slide" : app.slides.get(app.selected_slide),
+				"slide" : app.slides.get(app.selected_slide)
 			});
 			// Component.insert({
 				// "type" : "image",
@@ -30,8 +30,6 @@ define(["ImageCompModel"], function(ImageCompModel) {
 				// "pos_x" : 0,
 				// "pos_y" : 0
 			// });
-
-			var created_image_comp = app.slides.get(app.selected_slide).get("components").last();
 
 			if (!app.is_anonymous) {
 				var url;
@@ -51,9 +49,9 @@ define(["ImageCompModel"], function(ImageCompModel) {
 						processData : false,
 						cache : false
 					}).done(function(file) {
-						created_image_comp.set("file", file);
-						var image = document.getElementById(created_image_comp.cid).getElementsByClassName("component-preview")[0].children[0];
-						image.src = "/media/images/" + created_image_comp.get("file");
+						image_comp.set("file", file);
+						var image = document.getElementById(image_comp.cid).getElementsByClassName("component-preview")[0].children[0];
+						image.src = "/media/images/" + image_comp.get("file");
 						//Clear the file input value
 						inputFileImage.value = "";
 					});
@@ -91,7 +89,7 @@ define(["ImageCompModel"], function(ImageCompModel) {
 				console.log("Load image preview");
 				var template = $("#template-image-preview").html();
 				var data = {
-					url : $("#image-url").val(),
+					url : $("#image-url").val()
 				};
 				var view = Mustache.render(template, data);
 				$("#image-preview").html(view);
@@ -108,6 +106,6 @@ define(["ImageCompModel"], function(ImageCompModel) {
 		cleanImageURL : function() {
 			console.log("changed image file input");
 			document.getElementById("image-url").value = "";
-		},
+		}
 	});
 });

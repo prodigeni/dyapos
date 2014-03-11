@@ -1,16 +1,15 @@
-define(["SlideModel"], function(SlideModel) {
-	"use strict";
+define(["SlideModel"], function(SlideModel) {"use strict";
 	return Backbone.View.extend({
 		el : document.body,
-		
+
 		events : {
 			"click #btn-add-slide" : "addSlide",
 			"click #btn-navigation-mode" : "goToNavigationEditMode",
 			"click #btn-preview-presentation" : "previewPresentation",
-			"click #btn-exit-preview-mode" : "exitFromPreviewMode",			
+			"click #btn-exit-preview-mode" : "exitFromPreviewMode"
 		},
-		
-		addSlide : function() {			
+
+		addSlide : function() {
 			if (app.slides.length === 0) {
 				app.slides.add(new SlideModel());
 			} else {
@@ -21,26 +20,26 @@ define(["SlideModel"], function(SlideModel) {
 					number : app.slides.length
 				}));
 			}
-	
+
 			if (!app.is_anonymous) {
 				app.slides.last().save();
 			}
-	
+
 			app.selected_slide = app.slides.last().cid;
 			app.views.slide_options_box.hide();
 			impress().goto(app.selected_slide);
 		},
-		
+
 		goToNavigationEditMode : function() {
 			app.views.navigation_mode.enterMode();
 		},
-		
+
 		previewPresentation : function() {
 			app.views.preview_mode.enterMode();
 		},
-		
+
 		exitFromPreviewMode : function() {
 			app.views.preview_mode.exitMode();
-		},
+		}
 	});
 });

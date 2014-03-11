@@ -4,14 +4,14 @@ define([], function() {
 		subModelTypes : {
 			"text" : "TextCompModel",
 			"image" : "ImageCompModel",
-			"video" : "VideoCompModel",
+			"video" : "VideoCompModel"
 		},
 		defaults : {
 			pos_x : 0,
 			pos_y : 0,
 			rotation : 0,
 			scale : null,
-			custom_css : null,
+			custom_css : null
 		},
 		urlRoot : "component",
 		idAttribute : "_id",
@@ -28,10 +28,10 @@ define([], function() {
 						// }
 					// }
 				// }
-// 
+//
 				// this.get("slide").updateThumbnail();
 			// }, this);
-		},
+		}
 	});
 
 	return model;

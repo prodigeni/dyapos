@@ -47,7 +47,7 @@ require.config({
 		VideoToolboxView : "editor/VideoComp/VideoToolboxView",
 		EditModeView : "editor/Mode/EditModeView",
 		NavigationModeView : "editor/Mode/NavigationModeView",
-		PreviewModeView : "editor/Mode/PreviewModeView",
+		PreviewModeView : "editor/Mode/PreviewModeView"
 	},
 
 	shim : {

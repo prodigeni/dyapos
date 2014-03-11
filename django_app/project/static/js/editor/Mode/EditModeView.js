@@ -5,7 +5,7 @@ define([], function() {
 
 		enterMode : function() {
 			app.views.navigation_mode.exitMode();
-			
+
 			$("body").removeClass("non-selectable-text");
 			$(".step").removeClass("hoverable");
 			$(".step").removeClass("borderless");
@@ -14,12 +14,12 @@ define([], function() {
 			}
 			$(".component").addClass("hoverable");
 			$(".step").removeClass("selected");
-	
+
 			document.getElementById("btn-navigation-mode").style.display = "block";
 		},
 
 		exitMode : function() {
-			
-		},
+
+		}
 	});
 });

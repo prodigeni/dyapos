@@ -9,8 +9,8 @@ define(["ComponentModel"], function(ComponentModel) {
 			color : null,
 			bold : false,
 			italic : false,
-			underlined : false,
-		},
+			underlined : false
+		}
 	});
 	_.extend(model.prototype.defaults, ComponentModel.prototype.defaults);
 

@@ -4,7 +4,7 @@ define([], function() {
 		el : document.getElementById("add-link-box"),
 
 		events : {
-			"click #btn-add-text-link" : "addLink",
+			"click #btn-add-text-link" : "addLink"
 		},
 
 		addLink : function() {

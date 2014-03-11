@@ -61,7 +61,7 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 		},
 
 		render : function() {
-			for (var i = 0; i < this.collection.length; i++) {
+			for (var i = 0; i < this.collection.length; i = i + 1) {
 				this.appendSlide(this.collection.at(i));
 			}
 			return this;
@@ -74,6 +74,6 @@ define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, Slide
 			this.$el.append(slide.render().$el);
 
 			impress().initStep(document.getElementById(slide.model.cid));
-		},
+		}
 	});
 });

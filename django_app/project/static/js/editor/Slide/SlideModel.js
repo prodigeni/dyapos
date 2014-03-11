@@ -3,12 +3,12 @@ define(["ComponentModel"], function(ComponentModel) {
 	return Backbone.RelationalModel.extend({
 		relations : [{
 			type : Backbone.HasMany,
-			key : 'components',
+			key : "components",
 			relatedModel : ComponentModel, // I referenced it by an object instead of a string because of a Require.js problem
-			collectionType : 'app.ComponentCollection',
+			collectionType : "app.ComponentCollection",
 			reverseRelation : {
-				key : 'slide',
-				includeInJSON : '_id'
+				key : "slide",
+				includeInJSON : "_id"
 			}
 		}],
 		defaults : {
@@ -18,7 +18,7 @@ define(["ComponentModel"], function(ComponentModel) {
 			rotation_y : 0,
 			rotation_z : 0,
 			scale : 1,
-			number : 0,
+			number : 0
 		},
 		urlRoot : "slide",
 		idAttribute : "_id",
@@ -45,7 +45,7 @@ define(["ComponentModel"], function(ComponentModel) {
 			// console.log("Thumbnail updated");
 			// var slide = document.getElementById(this.cid);
 			// var slide_mini = document.getElementById("slide-"+this.cid).getElementsByClassName("slide-mini-preview")[0];
-// 
+//
 			// // Set the background color
 			// var background_color = null;
 			// if (slide.style.backgroundColor === "") {
@@ -53,7 +53,7 @@ define(["ComponentModel"], function(ComponentModel) {
 			// } else {
 				// background_color = slide.style.backgroundColor;
 			// }
-// 
+//
 			// var number = this.get("number");
 			// html2canvas(slide, {
 				// background : background_color,
@@ -61,7 +61,7 @@ define(["ComponentModel"], function(ComponentModel) {
 					// canvas.style.width = "100%";
 					// slide_mini.innerHTML = "";
 					// slide_mini.appendChild(canvas);
-// 
+//
 					// //If thumbnail corresponds to the first slide
 					// if (number === 0 && !is_anonymous) {
 						// console.log("Update presentation thumbnail");
@@ -75,7 +75,7 @@ define(["ComponentModel"], function(ComponentModel) {
 					// }
 				// },
 			// });
-		},
+		}
 	});
 
 });

@@ -4,7 +4,7 @@ define([], function() {
 		el : document.getElementById("themes-window"),
 
 		events : {
-			"click .theme-link" : "onClickTheme",
+			"click .theme-link" : "onClickTheme"
 		},
 
 		initialize : function() {
@@ -57,6 +57,6 @@ define([], function() {
 			var name = event.currentTarget.id;
 			this.set(name);
 			$("#themes-window").foundation("reveal", "close");
-		},
+		}
 	});
 });
