@@ -17,28 +17,31 @@ define([], function() {
 		},
 
 		loadList : function() {
-			var url = "/theme/load-list";
+			var url = "/theme/load-list",
+				template = document.getElementById("template-theme").innerHTML,
+				view;
+
 			$.post(url, function(data) {
 				data = {
 					themes : JSON.parse(data)
 				};
-				var template = document.getElementById("template-theme").innerHTML;
-				var view = Mustache.render(template, data);
+				view = Mustache.render(template, data);
 				document.getElementById("themes-list").innerHTML = view;
 			});
 		},
 
 		set : function(name) {
+			var currentStyleSheet = document.getElementById("theme-stylesheet"),
+				currentStylesheetURL = currentStyleSheet.href.split("/"),
+				url = "/theme/set",
+				theme_id = name.split("_");
+
 			console.log("theme changed");
-			var currentStyleSheet = document.getElementById("theme-stylesheet");
-			var currentStylesheetURL = currentStyleSheet.href.split("/");
 			currentStylesheetURL[currentStylesheetURL.length - 1] = name + ".css";
 			currentStylesheetURL = currentStylesheetURL.join();
 			currentStylesheetURL = currentStylesheetURL.replace(/,/g, "/");
 			currentStyleSheet.href = currentStylesheetURL;
-			//Save to database
-			var url = "/theme/set";
-			var theme_id = name.split("_");
+
 			theme_id = theme_id[theme_id.length - 1];
 			if (!app.is_anonymous) {
 				$.post(url, {
@@ -55,6 +58,7 @@ define([], function() {
 
 		onClickTheme : function(event) {
 			var name = event.currentTarget.id;
+
 			this.set(name);
 			$("#themes-window").foundation("reveal", "close");
 		}

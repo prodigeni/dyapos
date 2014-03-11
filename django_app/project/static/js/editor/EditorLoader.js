@@ -4,11 +4,15 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	// GLOBAL FUNCTIONS
 
 	app.getTransformValue = function(element, property) {
-		var values = element.style[app.css_transform].split(")");
-		for (var key in values) {
+		var values = element.style[app.css_transform].split(")"),
+			key,
+			val,
+			prop;
+
+		for (key in values) {
 			if (values.hasOwnProperty(key)) {
-				var val = values[key];
-				var prop = val.split("(");
+				val = values[key];
+				prop = val.split("(");
 				if (prop[0].trim() === property) {
 					return parseFloat(prop[1]);
 				}
@@ -24,9 +28,11 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 	};
 
 	app.getSupportedCSSProp = function(proparray) {
-		var root = document.documentElement;
+		var root = document.documentElement,
+			i;
+
 		//reference root element of document
-		for (var i = 0; i < proparray.length; i = i + 1) {//loop through possible properties
+		for (i = 0; i < proparray.length; i = i + 1) {//loop through possible properties
 			if (proparray[i] in root.style) {//if property exists on element (value will be string, empty string if not set)
 				return proparray[i];
 			}
@@ -92,11 +98,15 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 			return undefined;
 		},
 		getComponentsWhere : function(values) {
-			var results = [];
-			for (var i = 0; i < app.slides.length; i = i + 1) {
-				var result = app.slides.models[i].get("components").where(values);
+			var results = [],
+				result,
+				i,
+				j;
+
+			for (i = 0; i < app.slides.length; i = i + 1) {
+				result = app.slides.models[i].get("components").where(values);
 				if (result.length > 0) {
-					for (var j = 0; j < result.length; j = j + 1) {
+					for (j = 0; j < result.length; j = j + 1) {
 						results.push(result[j]);
 					}
 				}

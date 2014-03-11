@@ -8,11 +8,13 @@ define([], function() {
 		template : document.getElementById("template-image-component").innerHTML,
 
 		attributes : function() {
-			var style = "";
+			var style = "",
+				attr_name,
+				value;
 
-			for (var attr_name in this.model.attributes) {
+			for (attr_name in this.model.attributes) {
 				if (this.model.attributes.hasOwnProperty(attr_name)) {
-					var value = this.model.attributes[attr_name];
+					value = this.model.attributes[attr_name];
 
 					switch(attr_name) {
 						case "size":
@@ -37,7 +39,9 @@ define([], function() {
 		},
 
 		render : function() {
-			var url = null;
+			var url = null,
+				template;
+
 			// if an image file is already set
 			if (this.model.get("file") !== null) {
 				url = app.media_url + "images/" + this.model.get("file");
@@ -45,7 +49,7 @@ define([], function() {
 				url = this.model.get("external_url");
 			}
 
-			var template = Mustache.render(this.template, { "url": url });
+			template = Mustache.render(this.template, { "url": url });
 
 			this.$el.html(template);
 			return this;

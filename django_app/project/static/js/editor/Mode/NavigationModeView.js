@@ -76,11 +76,10 @@ define([], function() {
 
 		onMoveSlide : function(event) {
 			event.stopPropagation();
-			var movement = 7;
-
-			//get the difference from last position to this position
-			var deltaX = app.nav.last_x - event.clientX;
-			var deltaY = app.nav.last_y - event.clientY;
+			var movement = 7,
+				//get the difference from last position to this position
+				deltaX = app.nav.last_x - event.clientX,
+				deltaY = app.nav.last_y - event.clientY;
 
 			//check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
 
@@ -150,14 +149,12 @@ define([], function() {
 
 		onMoveMap : function(event) {
 			event.stopPropagation();
-			var movement = 7;
-
-			//get the difference from last position to this position
-			var deltaX = app.nav.last_x - event.clientX;
-			var deltaY = app.nav.last_y - event.clientY;
+			var movement = 7,
+				//get the difference from last position to this position
+				deltaX = app.nav.last_x - event.clientX,
+				deltaY = app.nav.last_y - event.clientY;
 
 			//check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
-
 			if (deltaX > 0) {
 				// If the movement is to left
 				console.log("left");
@@ -222,25 +219,31 @@ define([], function() {
 		},
 
 		zoomOut : function() {
+			var currentZoom,
+				newZoom;
+
 			//Change to navigation edit mode
 			app.views.navigation_mode.enterMode();
 			// Decrease a little the transition time, for freely moving on the map
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
 			document.getElementById("impress").style[app.css_transition] = "all 300ms ease-in-out 50ms";
-			var currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
+			currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
 
-			var newZoom = currentZoom - 0.02;
+			newZoom = currentZoom - 0.02;
 			if (newZoom >= 0) {
 				document.getElementById("impress").style[app.css_transform] = "scale(" + newZoom + ")";
 			}
 		},
 
 		zoomIn : function() {
+			var currentZoom,
+				newZoom;
+
 			// Decrease a little the transition time, for freely moving on the map
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
 			document.getElementById("impress").style[app.css_transition] = "all 300ms ease-in-out 50ms";
-			var currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
-			var newZoom = currentZoom + 0.02;
+			currentZoom = app.getTransformValue(document.getElementById("impress"), "scale");
+			newZoom = currentZoom + 0.02;
 			document.getElementById("impress").style[app.css_transform] = "scale(" + newZoom + ")";
 		}
 	});

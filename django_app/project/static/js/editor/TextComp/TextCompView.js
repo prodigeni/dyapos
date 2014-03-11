@@ -5,11 +5,13 @@ define([], function() {"use strict";
 		template : document.getElementById("template-text-component").innerHTML,
 
 		attributes : function() {
-			var style = "";
+			var style = "",
+				attr_name,
+				value;
 
-			for (var attr_name in this.model.attributes) {
+			for (attr_name in this.model.attributes) {
 				if (this.model.attributes.hasOwnProperty(attr_name)) {
-					var value = this.model.attributes[attr_name];
+					value = this.model.attributes[attr_name];
 
 					switch(attr_name) {
 						case "bold":
@@ -58,6 +60,7 @@ define([], function() {"use strict";
 
 		render : function() {
 			var template = Mustache.render(this.template, this.model.toJSON());
+
 			this.$el.html(template);
 			return this;
 		},

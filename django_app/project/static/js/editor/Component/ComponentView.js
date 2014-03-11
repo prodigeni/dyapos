@@ -30,28 +30,28 @@ define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView
 		},
 
 		render : function() {
+			var comp_view;
+
 			this.$el.append(this.template);
 
 			switch(this.model.get("type")) {
 				case "text" :
-					var text_comp = new TextCompView({
+					comp_view = new TextCompView({
 						model : this.model
 					});
-					this.$el.append(text_comp.render().el);
 					break;
 				case "image" :
-					var image_comp = new ImageCompView({
+					comp_view = new ImageCompView({
 						model : this.model
 					});
-					this.$el.append(image_comp.render().el);
 					break;
 				case "video" :
-					var video_comp = new VideoCompView({
+					comp_view = new VideoCompView({
 						model : this.model
 					});
-					this.$el.append(video_comp.render().el);
 					break;
 			}
+			this.$el.append(comp_view.render().el);
 
 			return this;
 		},

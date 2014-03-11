@@ -31,8 +31,10 @@ define(["ComponentView"], function(ComponentView) {"use strict";
 		},
 
 		render : function() {
-			var components = this.model.get("components");
-			for (var i = 0; i < components.length; i = i + 1) {
+			var components = this.model.get("components"),
+				i;
+
+			for (i = 0; i < components.length; i = i + 1) {
 				this.appendComponent(components.at(i));
 			}
 			return this;
