@@ -28,6 +28,8 @@ define(["ComponentView"], function(ComponentView) {"use strict";
 			this.model.get("components").on("add", function() {
 				this.appendComponent(this.model.get("components").last());
 			}, this);
+
+			this.model.view = this;
 		},
 
 		render : function() {

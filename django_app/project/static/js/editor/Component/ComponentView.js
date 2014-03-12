@@ -27,6 +27,8 @@ define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView
 			this.$el.draggable({
 				handle : ".btn-move-component"
 			});
+
+			this.model.view = this;
 		},
 
 		render : function() {

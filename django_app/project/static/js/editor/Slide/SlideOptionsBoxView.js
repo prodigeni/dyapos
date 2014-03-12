@@ -17,8 +17,8 @@ define([], function() {
 		},
 
 		editSlide : function() {
-			this.$el.hide();
-			impress().goto(app.selected_slide);
+			app.views.navigation_mode.exitMode();
+			app.views.edit_mode.enterMode();
 		},
 
 		scaleSlide : function(event) {

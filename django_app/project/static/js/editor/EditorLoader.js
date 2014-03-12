@@ -46,6 +46,13 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		}, 5000);
 	};
 
+	app.deselectAllComponents = function() {
+		$(".component-options").hide();
+		$(".component").removeClass("selected-component hoverable");
+		$(".toolbox").hide();
+		app.selected_component = null;
+	};
+
 	// GLOBAL VARIABLES
 
 	//Get CSS prefixes according to the browser render engine
@@ -64,6 +71,7 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		last_y : null
 	};
 
+	app.selected_slide = null;
 	app.selected_component = null;
 
 	// Set a variable that controls whether last change was made from server or not

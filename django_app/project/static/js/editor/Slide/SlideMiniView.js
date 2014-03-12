@@ -26,8 +26,8 @@ define([], function() {
 			event.stopPropagation();
 			console.log("event: click on mini-slide");
 			app.selected_slide = this.model.cid;
-			app.views.slide_options_box.$el.hide();
-			impress().goto(app.selected_slide);
+			app.views.navigation_mode.exitMode();
+			app.views.edit_mode.enterMode();
 		},
 
 		generateThumbnail : function() {

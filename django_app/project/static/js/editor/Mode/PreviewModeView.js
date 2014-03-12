@@ -6,7 +6,7 @@ define([], function() {
 		onKeyUp : function(event) {
 			event.stopPropagation();
 
-			switch( event.keyCode ) {
+			switch(event.keyCode) {
 				case 33:
 				// pg up
 				case 37:
@@ -29,7 +29,7 @@ define([], function() {
 					break;
 				case 27:
 					//Escape
-					this.exitFromPreviewMode();
+					this.exitMode();
 					break;
 			}
 
@@ -54,25 +54,12 @@ define([], function() {
 
 		enterMode : function() {
 			console.log("enter preview mode");
-
-			impress().goto(app.selected_slide);
-
-			app.views.new_component_box.$el.hide();
-			$(".toolbox").hide();
-			$(".component").removeClass("selected-component");
-			$(".component-options").hide();
-
 			$("body").addClass("non-selectable-text");
-			$(".component").removeClass("hoverable");
 			$(".step").addClass("borderless");
-
-			if ($(".component").draggable("option", "disabled") === false) {
-				$(".component").draggable("disable");
-			}
-
-			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
+			$("#slides-bar, #right-panel").slideToggle();
+			$("#btn-add-slide, #btn-navigation-mode").hide();
 			$("#btn-exit-preview-mode").show();
-
+			impress().goto(app.selected_slide);
 			this.delegateEvents({
 				"keyup" : "onKeyUp"
 			});
@@ -80,11 +67,9 @@ define([], function() {
 
 		exitMode : function() {
 			console.log("exit from preview mode");
-			this.undelegateEvents();
-
 			$("#btn-exit-preview-mode").hide();
 			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
-
+			this.undelegateEvents();
 			app.views.edit_mode.enterMode();
 		}
 	});

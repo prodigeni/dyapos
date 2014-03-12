@@ -31,10 +31,13 @@ define(["SlideModel"], function(SlideModel) {"use strict";
 		},
 
 		goToNavigationEditMode : function() {
+			app.views.edit_mode.exitMode();
 			app.views.navigation_mode.enterMode();
 		},
 
 		previewPresentation : function() {
+			app.views.edit_mode.exitMode();
+			app.views.navigation_mode.exitMode();
 			app.views.preview_mode.enterMode();
 		},
 

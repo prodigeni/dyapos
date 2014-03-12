@@ -4,22 +4,14 @@ define([], function() {
 		el : document.body,
 
 		enterMode : function() {
-			app.views.new_component_box.$el.hide();
-			$(".toolbox").hide();
-			$(".component-options").hide();
+			var map_style = app.nav.map.style[app.css_transform];
 
 			$("body").addClass("non-selectable-text");
 			$(".step").addClass("hoverable");
-			$(".component").removeClass("hoverable");
+			$("#" + app.selected_slide).addClass("selected-slide");
+			$("#btn-navigation-mode").hide();
 
-			if ($(".component").draggable("option", "disabled") === false) {
-				$(".component").draggable("disable");
-			}
-
-			document.getElementById(app.selected_slide).classList.add("selected-slide");
-
-			// Center rotation
-			var map_style = app.nav.map.style[app.css_transform];
+			// Center rotation to 0 degrees if rotated
 			map_style = map_style.replace(/rotateZ\(.+?\)/g, "rotateZ(0deg)");
 			map_style = map_style.replace(/rotateX\(.+?\)/g, "rotateX(0deg)");
 			map_style = map_style.replace(/rotateY\(.+?\)/g, "rotateY(0deg)");
@@ -29,9 +21,6 @@ define([], function() {
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
 			document.getElementById("impress").style[app.css_transition] = "all 300ms ease-in-out 50ms";
 			document.getElementById("impress").style[app.css_transform] = "scale(0.4)";
-
-			// Hide the navigation mode button
-			document.getElementById("btn-navigation-mode").style.display = "none";
 
 			this.delegateEvents({
 				"click .step" : "onClickSlide",
@@ -43,6 +32,8 @@ define([], function() {
 		},
 
 		exitMode : function() {
+			app.views.slide_options_box.$el.hide();
+
 			this.undelegateEvents();
 		},
 
@@ -52,7 +43,7 @@ define([], function() {
 			$("#" + app.selected_slide).addClass("selected");
 			$(".step").removeClass("active");
 			$("#" + app.selected_slide).addClass("active");
-			app.views.slide_options_box.show();
+			app.views.slide_options_box.$el.show();
 		},
 
 		onMousedownSlide : function(event) {
