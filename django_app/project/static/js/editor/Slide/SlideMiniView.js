@@ -38,7 +38,7 @@ define([], function() {
 			event.stopPropagation();
 			console.log("remove slide");
 			app.selected_slide = null;
-			app.views.slide_options_box.hide();
+			app.views.slide_options_box.$el.hide();
 			this.model.destroy();
 		}
 	});

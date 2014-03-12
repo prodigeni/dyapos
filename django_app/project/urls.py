@@ -52,7 +52,7 @@ urlpatterns = patterns('',
 	# Configs
 	url(r'^lang/(?P<lang>\w+)','main.views.configs.change_language'),
 	# Other
-	url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
+ 	url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+             'document_root': settings.MEDIA_ROOT,
+         }),
 )

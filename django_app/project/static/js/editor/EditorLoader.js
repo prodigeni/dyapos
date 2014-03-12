@@ -79,7 +79,9 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 
 	//Connect to socket.io
 	if (!app.is_anonymous) {
-		app.socket = io.connect(app.nodejs_url);
+		Object.defineProperty(app, "socket", {
+			value : io.connect(app.nodejs_url),
+		});
 
 		app.socket.emit("collaborator_connect", {
 			presentation_id : app.p_id,

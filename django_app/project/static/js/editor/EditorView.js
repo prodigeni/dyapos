@@ -26,8 +26,8 @@ define(["SlideModel"], function(SlideModel) {"use strict";
 			}
 
 			app.selected_slide = app.slides.last().cid;
-			app.views.slide_options_box.hide();
-			impress().goto(app.selected_slide);
+			app.views.edit_mode.exitMode();
+			app.views.edit_mode.enterMode();
 		},
 
 		goToNavigationEditMode : function() {

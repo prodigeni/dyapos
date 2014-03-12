@@ -26,16 +26,18 @@
 <script>
 	// Define a namespace app variable where to save global variables
 	var app = {};
-	app.p_id = {{ presentation.id|default:'null' }};
-	app.is_anonymous = {{ is_anonymous|yesno:'true,false' }};
-	app.user_first_name = "{{ user_data.first_name|default:'null' }}";
-	app.user_last_name = "{{ user_data.last_name|default:'null' }}";
-	app.user_username = "{{ user_data.username|default:'null' }}";
-	app.nodejs_url = "{{ NODEJS_URL|default:'null' }}";
-	app.media_url = "{{MEDIA_URL}}";
-	app.title_default_text = "{% trans 'btn_new_title' %}";
-	app.subtitle_default_text = "{% trans 'btn_new_subtitle' %}";
-	app.body_default_text = "{% trans 'btn_new_body' %}"; 
+	Object.defineProperties(app, {
+		p_id : { value : {{ presentation.id|default:'null' }} },
+		is_anonymous : {value:{{ is_anonymous|yesno:'true,false' }}},
+		user_first_name : {value:"{{ user_data.first_name|default:'null' }}"},
+		user_last_name : {value:"{{ user_data.last_name|default:'null' }}"},
+		user_username : {value:"{{ user_data.username|default:'null' }}"},
+		nodejs_url : {value:"{{ NODEJS_URL|default:'null' }}"},
+		media_url : {value:"{{MEDIA_URL}}"},
+		title_default_text : {value:"{% trans 'btn_new_title' %}"},
+		subtitle_default_text : {value:"{% trans 'btn_new_subtitle' %}"},
+		body_default_text : {value:"{% trans 'btn_new_body' %}"}
+	});
 </script>
 
 <script data-main="{{STATIC_URL}}js/edit.js" src="{{STATIC_URL}}js/require.js"></script>
@@ -264,11 +266,11 @@
 </script>
 
 <script id="template-text-component" type="text/mustache">
-	<div class="text-content" contenteditable="true">	
+	<div class="text-content" contenteditable="true">
 	[[#link]]
 		<a href="[[link]]" class="link" target="_blank">
 	[[/link]]
-		[[content]]	
+		[[content]]
 	[[#link]]
 		</a>
 	[[/link]]
@@ -283,7 +285,7 @@
 	[[^url]]
 	{{STATIC_URL}}img/loading.gif
 	[[/url]]
-	" style="width: 100%; height: 100%;">	
+	" style="width: 100%; height: 100%;">
 </script>
 
 <script id="template-video-component" type="text/mustache">
