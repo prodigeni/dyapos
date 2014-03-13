@@ -1,0 +1,9 @@
+{
+    "name": "Dyapos",
+    "description": "A tool for creating beautiful web presentations based on HTML5+CSS3",
+    "version": "1.0",
+    "url": "http://dyapos.net",
+    "options": {
+        "outdir": "docs"
+    }
+}

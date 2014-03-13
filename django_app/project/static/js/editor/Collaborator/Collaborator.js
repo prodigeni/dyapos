@@ -1,7 +1,7 @@
 define([], function() {
 	"use strict";
 	var collaborative_visible = false,
-		user_colors = new Array("#26642d", "#4e81e0", "#da6229", "#ad0c0c", "#cc76ac", "#1beadc", "#0a0101", "#ffff00", "#6d5050", "#703462");
+		user_colors = ["#26642d", "#4e81e0", "#da6229", "#ad0c0c", "#cc76ac", "#1beadc", "#0a0101", "#ffff00", "#6d5050", "#703462"];
 
 	function initWebsocketEvents() {
 		// When a list of connected users is received from the server
