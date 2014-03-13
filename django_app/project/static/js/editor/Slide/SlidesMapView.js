@@ -1,4 +1,6 @@
-define(["SlideModel", "SlideView", "SlidesListView"], function(SlideModel, SlideView, SlidesListView) {
+define(["Slide/SlideModel",
+		"Slide/SlideView",
+		"Slide/SlidesListView"], function(SlideModel, SlideView, SlidesListView) {
 	"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("slides"),

@@ -3,7 +3,7 @@
  * @extends Backbone.View
  */
 
-define(["ImageCompModel"], function(ImageCompModel) {
+define(["Component/Image/ImageModel"], function(ImageCompModel) {
 	"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("form-upload-image"),

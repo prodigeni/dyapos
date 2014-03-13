@@ -1,4 +1,4 @@
-define(["VideoCompModel"], function(VideoCompModel) {
+define(["Component/Video/VideoModel"], function(VideoCompModel) {
 	"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("add-video-box"),

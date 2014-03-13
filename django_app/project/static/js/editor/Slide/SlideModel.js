@@ -1,4 +1,4 @@
-define(["ComponentModel"], function(ComponentModel) {
+define(["Component/ComponentModel"], function(ComponentModel) {
 	"use strict";
 	return Backbone.RelationalModel.extend({
 		relations : [{

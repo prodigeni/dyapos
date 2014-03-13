@@ -3,7 +3,28 @@
  * @static
  */
 
-define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView", "NewComponentBoxView", "SlideOptionsBoxView", "EditorView", "SlidesListView", "SlideMiniView", "SlidesMapView", "TextToolboxView", "ImageToolboxView", "VideoToolboxView", "EditModeView", "NavigationModeView", "PreviewModeView"], function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {"use strict";
+define(["Slide/SlideModel",
+		"Component/ComponentModel",
+		"Component/Image/ImageUploadFormView",
+		"Component/Video/VideoUploadFormView",
+		"Component/Text/ColorPickerView",
+		"Theme/ThemeSelectorView",
+		"Collaborative/ChatWindowView",
+		"Component/Text/AddLinkWindowView",
+		"Component/NewComponentBoxView",
+		"Slide/SlideOptionsBoxView",
+		"EditorView",
+		"Slide/SlidesListView",
+		"Slide/SlideMiniView",
+		"Slide/SlidesMapView",
+		"Component/Text/TextToolboxView",
+		"Component/Image/ImageToolboxView",
+		"Component/Video/VideoToolboxView",
+		"Mode/EditModeView",
+		"Mode/NavigationModeView",
+		"Mode/PreviewModeView"],
+							function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {"use strict";
+
 	Mustache.tags = ["[[", "]]"];
 
 	/**

@@ -1,79 +1,77 @@
 require.config({
 	paths : {
-		jquery : "jquery-2.0.0",
-		jqueryui : "jquery-ui-1.10.3.custom",
-		touchpunch : "jquery.ui.touch-punch",
-		mustache : "mustache",
-		impress : "impress",
-		impress_custom : "editor/impress_custom",
-		html2canvas : "html2canvas",
-		colorpicker : "colorpicker.min",
-		underscore : "underscore",
-		backbone : "backbone",
-		backbone_relational : "backbone-relational",
-		iobind : "backbone.iobind",
-		iosync : "backbone.iosync",
-		modernizr : "modernizr",
-		foundation : "foundation.min",
+		"jquery" : "jquery-2.0.0",
+		"jqueryui" : "jquery-ui-1.10.3.custom",
+		"touchpunch" : "jquery.ui.touch-punch",
+		"mustache" : "mustache",
+		"impress" : "impress",
+		"impress_custom" : "editor/impress_custom",
+		"html2canvas" : "html2canvas",
+		"colorpicker" : "colorpicker.min",
+		"underscore" : "underscore",
+		"backbone" : "backbone",
+		"backbone_relational" : "backbone-relational",
+		"iobind" : "backbone.iobind",
+		"iosync" : "backbone.iosync",
+		"modernizr" : "modernizr",
+		"foundation" : "foundation.min",
 
-		//Modules
-		EditorLoader : "editor/EditorLoader",
-		Collaborator : "editor/Collaborator/Collaborator",
-		ComponentModel : "editor/Component/ComponentModel",
-		ImageCompModel : "editor/ImageComp/ImageCompModel",
-		SlideModel : "editor/Slide/SlideModel",
-		TextCompModel : "editor/TextComp/TextCompModel",
-		VideoCompModel : "editor/VideoComp/VideoCompModel",
-		//Views
-		EditorView : "editor/EditorView",
-		ImageUploadFormView : "editor/ImageComp/ImageUploadFormView",
-		VideoUploadFormView : "editor/VideoComp/VideoUploadFormView",
-		ColorPickerView : "editor/TextComp/ColorPickerView",
-		ThemeSelectorView : "editor/Theme/ThemeSelectorView",
-		ChatWindowView : "editor/Chat/ChatWindowView",
-		AddLinkWindowView : "editor/TextComp/AddLinkWindowView",
-		NewComponentBoxView : "editor/Component/NewComponentBoxView",
-		SlideOptionsBoxView : "editor/Slide/SlideOptionsBoxView",
-		SlidesListView : "editor/Slide/SlidesListView",
-		SlideMiniView : "editor/Slide/SlideMiniView",
-		SlidesMapView : "editor/Slide/SlidesMapView",
-		SlideView : "editor/Slide/SlideView",
-		ComponentView : "editor/Component/ComponentView",
-		TextCompView : "editor/TextComp/TextCompView",
-		ImageCompView : "editor/ImageComp/ImageCompView",
-		VideoCompView : "editor/VideoComp/VideoCompView",
-		TextToolboxView : "editor/TextComp/TextToolboxView",
-		ImageToolboxView : "editor/ImageComp/ImageToolboxView",
-		VideoToolboxView : "editor/VideoComp/VideoToolboxView",
-		EditModeView : "editor/Mode/EditModeView",
-		NavigationModeView : "editor/Mode/NavigationModeView",
-		PreviewModeView : "editor/Mode/PreviewModeView"
+		"EditorLoader"							: "editor/EditorLoader",
+		"EditorView"							: "editor/EditorView",
+		"Collaborative/ChatWindowView"			: "editor/Collaborative/ChatWindowView",
+		"Collaborative/User"					: "editor/Collaborative/User",
+		"Component/ComponentModel"				: "editor/Component/ComponentModel",
+		"Component/ComponentView"				: "editor/Component/ComponentView",
+		"Component/Image/ImageModel"			: "editor/Component/Image/ImageModel",
+		"Component/Image/ImageToolboxView"		: "editor/Component/Image/ImageToolboxView",
+		"Component/Image/ImageUploadFormView"	: "editor/Component/Image/ImageUploadFormView",
+		"Component/Image/ImageView"				: "editor/Component/Image/ImageView",
+		"Component/NewComponentBoxView"			: "editor/Component/NewComponentBoxView",
+		"Component/Text/AddLinkWindowView"		: "editor/Component/Text/AddLinkWindowView",
+		"Component/Text/ColorPickerView"		: "editor/Component/Text/ColorPickerView",
+		"Component/Text/TextModel"				: "editor/Component/Text/TextModel",
+		"Component/Text/TextToolboxView"		: "editor/Component/Text/TextToolboxView",
+		"Component/Text/TextView"				: "editor/Component/Text/TextView",
+		"Component/Video/VideoModel"			: "editor/Component/Video/VideoModel",
+		"Component/Video/VideoToolboxView"		: "editor/Component/Video/VideoToolboxView",
+		"Component/Video/VideoUploadFormView"	: "editor/Component/Video/VideoUploadFormView",
+		"Component/Video/VideoView"				: "editor/Component/Video/VideoView",
+		"Mode/EditModeView"						: "editor/Mode/EditModeView",
+		"Mode/NavigationModeView"				: "editor/Mode/NavigationModeView",
+		"Mode/PreviewModeView"					: "editor/Mode/PreviewModeView",
+		"Slide/SlideMiniView"					: "editor/Slide/SlideMiniView",
+		"Slide/SlideModel"						: "editor/Slide/SlideModel",
+		"Slide/SlideOptionsBoxView"				: "editor/Slide/SlideOptionsBoxView",
+		"Slide/SlidesListView"					: "editor/Slide/SlidesListView",
+		"Slide/SlidesMapView"					: "editor/Slide/SlidesMapView",
+		"Slide/SlideView"						: "editor/Slide/SlideView",
+		"Theme/ThemeSelectorView"				: "editor/Theme/ThemeSelectorView"
 	},
 
 	shim : {
-		jquery : {
+		"jquery" : {
 			exports : "$"
 		},
-		jqueryui : {
+		"jqueryui" : {
 			deps : ["jquery"]
 		},
-		touchpunch : {
+		"touchpunch" : {
 			deps : ["jqueryui"]
 		},
-		underscore : {
+		"underscore" : {
 			exports : "_"
 		},
-		backbone : {
+		"backbone" : {
 			deps : ["underscore"],
 			exports : "Backbone"
 		},
-		backbone_relational : {
+		"backbone_relational" : {
 			deps : ["backbone"]
 		},
-		iosync : {
+		"iosync" : {
 			deps : ["underscore", "backbone"]
 		},
-		iobind : {
+		"iobind" : {
 			deps : ["underscore", "backbone", "iosync"]
 		}
 	}
