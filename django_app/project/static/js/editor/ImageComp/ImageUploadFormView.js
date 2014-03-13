@@ -1,3 +1,8 @@
+/**
+ * @class ImageUploadFormView
+ * @extends Backbone.View
+ */
+
 define(["ImageCompModel"], function(ImageCompModel) {
 	"use strict";
 	return Backbone.View.extend({

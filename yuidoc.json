@@ -4,6 +4,7 @@
     "version": "1.0",
     "url": "http://dyapos.net",
     "options": {
+    	"paths": "django_app/project/static/js/editor/*.js",
         "outdir": "docs"
     }
 }

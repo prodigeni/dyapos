@@ -1,0 +1,93 @@
+{
+    "project": {
+        "name": "Dyapos",
+        "description": "A tool for creating beautiful web presentations based on HTML5+CSS3",
+        "version": "1.0",
+        "url": "http://dyapos.net"
+    },
+    "files": {
+        "django_app/project/static/js/editor/Chat/ChatWindowView.js": {
+            "name": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
+            "modules": {},
+            "classes": {
+                "ChatWindowView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/impress_custom.js": {
+            "name": "django_app/project/static/js/editor/impress_custom.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "ChatWindowView": {
+            "name": "ChatWindowView",
+            "shortname": "ChatWindowView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
+            "line": 2,
+            "extends": "Backbone.View"
+        }
+    },
+    "classitems": [
+        {
+            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
+            "line": 10,
+            "itemtype": "event",
+            "name": "submit #chat-form\nCalls sendMessage()",
+            "class": "ChatWindowView"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
+            "line": 17,
+            "description": "Connects to socket.io to start sending and receiving messages.\nIt will only connect if you're editing as a non-anonymous user.",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "ChatWindowView"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
+            "line": 29,
+            "description": "Sends a chat message to the other connected users",
+            "itemtype": "method",
+            "name": "sendMessage",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "submit event object",
+                    "type": "Object"
+                }
+            ],
+            "class": "ChatWindowView"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
+            "line": 45,
+            "description": "Appends a new message to the chat conversation",
+            "itemtype": "method",
+            "name": "appendMessage",
+            "class": "ChatWindowView"
+        },
+        {
+            "file": "django_app/project/static/js/editor/impress_custom.js",
+            "line": 1,
+            "description": "impress.js\n\nimpress.js is a presentation tool based on the power of CSS3 transforms and transitions\nin modern browsers and inspired by the idea behind prezi.com.\n\n\nCopyright 2011-2012 Bartek Szopka (@bartaz)\n\nReleased under the MIT and GPL Licenses.\n\n------------------------------------------------\n author:  Bartek Szopka\n version: 0.5.3\n url:     http://bartaz.github.com/impress.js/\n source:  http://github.com/bartaz/impress.js/",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nimpress.js\n\nimpress.js is a presentation tool based on the power of CSS3 transforms and transitions\nin modern browsers and inspired by the idea behind prezi.com.\n\n\nCopyright 2011-2012 Bartek Szopka (@bartaz)\n\nReleased under the MIT and GPL Licenses.\n\n------------------------------------------------\n author:  Bartek Szopka\n version: 0.5.3\n url:     http://bartaz.github.com/impress.js/\n source:  http://github.com/bartaz/impress.js/",
+            "line": " django_app/project/static/js/editor/impress_custom.js:1"
+        }
+    ]
+}

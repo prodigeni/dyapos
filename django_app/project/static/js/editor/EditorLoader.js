@@ -1,13 +1,18 @@
+/**
+ * @class EditorLoader
+ * @static
+ */
+
 define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormView", "ColorPickerView", "ThemeSelectorView", "ChatWindowView", "AddLinkWindowView", "NewComponentBoxView", "SlideOptionsBoxView", "EditorView", "SlidesListView", "SlideMiniView", "SlidesMapView", "TextToolboxView", "ImageToolboxView", "VideoToolboxView", "EditModeView", "NavigationModeView", "PreviewModeView"], function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {"use strict";
 	Mustache.tags = ["[[", "]]"];
 
-	// GLOBAL FUNCTION
-
+	/**
+	 * @method getTransformValue
+	 * @param {Object} element
+	 * @param {Object} property
+	 */
 	app.getTransformValue = function(element, property) {
-		var values = element.style[app.css_transform].split(")"),
-			key,
-			val,
-			prop;
+		var values = element.style[app.css_transform].split(")"), key, val, prop;
 
 		for (key in values) {
 			if (values.hasOwnProperty(key)) {
@@ -21,24 +26,34 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		return false;
 	};
 
+	/**
+	 * @method translate3DToArray
+	 * @param {Object} value
+	 */
 	app.translate3DToArray = function(value) {
 		value = value.toString();
 		var pattern = /([0-9-]+)+(?![3d]\()/gi;
 		return value.match(pattern);
 	};
 
+	/**
+	 * @method getSupportedCSSProp
+ * @param {Object} proparray
+	 */
 	app.getSupportedCSSProp = function(proparray) {
-		var root = document.documentElement,
-			i;
+		var root = document.documentElement, i;
 
 		//reference root element of document
-		for (i = 0; i < proparray.length; i = i + 1) {//loop through possible properties
+		for ( i = 0; i < proparray.length; i = i + 1) {//loop through possible properties
 			if (proparray[i] in root.style) {//if property exists on element (value will be string, empty string if not set)
 				return proparray[i];
 			}
 		}
 	};
 
+	/**
+	 * @method saveAllToLocalStorage
+	 */
 	app.saveAllToLocalStorage = function() {
 		setTimeout(function() {
 			localStorage.slides = JSON.stringify(app.slides.toJSON());
@@ -46,6 +61,9 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 		}, 5000);
 	};
 
+	/**
+	 * @method deselectAllComponents
+	 */
 	app.deselectAllComponents = function() {
 		$(".component-options").hide();
 		$(".component").removeClass("selected-component hoverable");
@@ -108,15 +126,12 @@ define(["SlideModel", "ComponentModel", "ImageUploadFormView", "VideoUploadFormV
 			return undefined;
 		},
 		getComponentsWhere : function(values) {
-			var results = [],
-				result,
-				i,
-				j;
+			var results = [], result, i, j;
 
-			for (i = 0; i < app.slides.length; i = i + 1) {
+			for ( i = 0; i < app.slides.length; i = i + 1) {
 				result = app.slides.models[i].get("components").where(values);
 				if (result.length > 0) {
-					for (j = 0; j < result.length; j = j + 1) {
+					for ( j = 0; j < result.length; j = j + 1) {
 						results.push(result[j]);
 					}
 				}

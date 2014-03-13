@@ -1,3 +1,9 @@
+/**
+ * @module Component
+ * @class ComponentView
+ * @extends Backbone.View
+ */
+
 define(["TextCompView", "ImageCompView", "VideoCompView"], function(TextCompView, ImageCompView, VideoCompView) {
 	"use strict";
 	return Backbone.View.extend({

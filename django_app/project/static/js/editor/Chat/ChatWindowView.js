@@ -1,8 +1,9 @@
+/**
+ * @class ChatWindowView
+ * @extends Backbone.View
+ */
+
 define([], function() {"use strict";
-	/**
-	 * @class ChatWindowView
-	 * @extends Backbone.View
-	 */
 	return Backbone.View.extend({
 		el : document.getElementById("chat"),
 

@@ -1,6 +1,12 @@
+/**
+ * @module Component
+ * @class ComponentModel
+ * @extends Backbone.RelationalModel
+ */
+
 define([], function() {
 	"use strict";
-	var model = Backbone.RelationalModel.extend({
+	return Backbone.RelationalModel.extend({
 		subModelTypes : {
 			"text" : "TextCompModel",
 			"image" : "ImageCompModel",
@@ -33,7 +39,5 @@ define([], function() {
 			// }, this);
 		}
 	});
-
-	return model;
 
 });

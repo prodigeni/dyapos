@@ -1,3 +1,9 @@
+/**
+ * @module Component
+ * @class NewComponentBoxView
+ * @extends Backbone.View
+ */
+
 define(["TextCompModel"], function(TextCompModel) {
 	"use strict";
 	return Backbone.View.extend({

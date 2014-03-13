@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>django_app/project/static/js/editor/impress_custom.js - Dyapos</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Dyapos"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/ChatWindowView.html">ChatWindowView</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: django_app/project/static/js/editor/impress_custom.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * impress.js
+ *
+ * impress.js is a presentation tool based on the power of CSS3 transforms and transitions
+ * in modern browsers and inspired by the idea behind prezi.com.
+ *
+ *
+ * Copyright 2011-2012 Bartek Szopka (@bartaz)
+ *
+ * Released under the MIT and GPL Licenses.
+ *
+ * ------------------------------------------------
+ *  author:  Bartek Szopka
+ *  version: 0.5.3
+ *  url:     http://bartaz.github.com/impress.js/
+ *  source:  http://github.com/bartaz/impress.js/
+ */
+
+/*jshint bitwise:true, curly:true, eqeqeq:true, forin:true, latedef:true, newcap:true,
+noarg:true, noempty:true, undef:true, strict:true, browser:true */
+
+// You are one of those who like to know how thing work inside?
+// Let me show you the cogs that make impress.js run...
+window.onload = function() {
+	(function(document, window) {&#x27;use strict&#x27;;
+
+		// HELPER FUNCTIONS
+
+		// &#x60;pfx&#x60; is a function that takes a standard CSS property name as a parameter
+		// and returns it&#x27;s prefixed version valid for current browser it runs in.
+		// The code is heavily inspired by Modernizr http://www.modernizr.com/
+		var pfx = (function() {
+
+			var style = document.createElement(&#x27;dummy&#x27;).style, prefixes = &#x27;Webkit Moz O ms Khtml&#x27;.split(&#x27; &#x27;), memory = {};
+
+			return function(prop) {
+				if ( typeof memory[prop] === &quot;undefined&quot;) {
+
+					var ucProp = prop.charAt(0).toUpperCase() + prop.substr(1), props = (prop + &#x27; &#x27; + prefixes.join(ucProp + &#x27; &#x27;) + ucProp).split(&#x27; &#x27;);
+
+					memory[prop] = null;
+					for (var i in props ) {
+						if (style[props[i]] !== undefined) {
+							memory[prop] = props[i];
+							break;
+						}
+					}
+
+				}
+
+				return memory[prop];
+			};
+
+		})();
+
+		// &#x60;arraify&#x60; takes an array-like object and turns it into real Array
+		// to make all the Array.prototype goodness available.
+		var arrayify = function(a) {
+			return [].slice.call(a);
+		};
+
+		// &#x60;css&#x60; function applies the styles given in &#x60;props&#x60; object to the element
+		// given as &#x60;el&#x60;. It runs all property names through &#x60;pfx&#x60; function to make
+		// sure proper prefixed version of the property is used.
+		var css = function(el, props) {
+			var key, pkey;
+			for (key in props ) {
+				if (props.hasOwnProperty(key)) {
+					pkey = pfx(key);
+					if (pkey !== null) {
+						el.style[pkey] = props[key];
+					}
+				}
+			}
+			return el;
+		};
+
+		// &#x60;toNumber&#x60; takes a value given as &#x60;numeric&#x60; parameter and tries to turn
+		// it into a number. If it is not possible it returns 0 (or other value
+		// given as &#x60;fallback&#x60;).
+		var toNumber = function(numeric, fallback) {
+			return isNaN(numeric) ? (fallback || 0) : Number(numeric);
+		};
+
+		// &#x60;byId&#x60; returns element with given &#x60;id&#x60; - you probably have guessed that ;)
+		var byId = function(id) {
+			return document.getElementById(id);
+		};
+
+		// &#x60;$&#x60; returns first element for given CSS &#x60;selector&#x60; in the &#x60;context&#x60; of
+		// the given element or whole document.
+		var $ = function(selector, context) {
+			context = context || document;
+			return context.querySelector(selector);
+		};
+
+		// &#x60;$$&#x60; return an array of elements for given CSS &#x60;selector&#x60; in the &#x60;context&#x60; of
+		// the given element or whole document.
+		var $$ = function(selector, context) {
+			context = context || document;
+			return arrayify(context.querySelectorAll(selector));
+		};
+
+		// &#x60;triggerEvent&#x60; builds a custom DOM event with given &#x60;eventName&#x60; and &#x60;detail&#x60; data
+		// and triggers it on element given as &#x60;el&#x60;.
+		var triggerEvent = function(el, eventName, detail) {
+			var event = document.createEvent(&quot;CustomEvent&quot;);
+			event.initCustomEvent(eventName, true, true, detail);
+			el.dispatchEvent(event);
+		};
+
+		// &#x60;translate&#x60; builds a translate transform string for given data.
+		var translate = function(t) {
+			return &quot; translate3d(&quot; + t.x + &quot;px,&quot; + t.y + &quot;px,&quot; + t.z + &quot;px) &quot;;
+		};
+
+		// &#x60;rotate&#x60; builds a rotate transform string for given data.
+		// By default the rotations are in X Y Z order that can be reverted by passing &#x60;true&#x60;
+		// as second parameter.
+		var rotate = function(r, revert) {
+			var rX = &quot; rotateX(&quot; + r.x + &quot;deg) &quot;, rY = &quot; rotateY(&quot; + r.y + &quot;deg) &quot;, rZ = &quot; rotateZ(&quot; + r.z + &quot;deg) &quot;;
+
+			return revert ? rZ + rY + rX : rX + rY + rZ;
+		};
+
+		// &#x60;scale&#x60; builds a scale transform string for given data.
+		var scale = function(s) {
+			return &quot; scale(&quot; + s + &quot;) &quot;;
+		};
+
+		// &#x60;perspective&#x60; builds a perspective transform string for given data.
+		var perspective = function(p) {
+			return &quot; perspective(&quot; + p + &quot;px) &quot;;
+		};
+
+		// &#x60;getElementFromHash&#x60; returns an element located by id from hash part of
+		// window location.
+		var getElementFromHash = function() {
+			// get id from url # by removing &#x60;#&#x60; or &#x60;#/&#x60; from the beginning,
+			// so both &quot;fallback&quot; &#x60;#slide-id&#x60; and &quot;enhanced&quot; &#x60;#/slide-id&#x60; will work
+			return byId(window.location.hash.replace(/^#\/?/, &quot;&quot;));
+		};
+
+		// &#x60;computeWindowScale&#x60; counts the scale factor between window size and size
+		// defined for the presentation in the config.
+		var computeWindowScale = function(config) {
+			var hScale = window.innerHeight / config.height, wScale = window.innerWidth / config.width, scale = hScale &gt; wScale ? wScale : hScale;
+
+			if (config.maxScale &amp;&amp; scale &gt; config.maxScale) {
+				scale = config.maxScale;
+			}
+
+			if (config.minScale &amp;&amp; scale &lt; config.minScale) {
+				scale = config.minScale;
+			}
+
+			return scale;
+		};
+
+		// CHECK SUPPORT
+		var body = document.body;
+
+		var ua = navigator.userAgent.toLowerCase();
+		var impressSupported =
+		// browser should support CSS 3D transtorms
+		(pfx(&quot;perspective&quot;) !== null ) &amp;&amp;
+
+		// and &#x60;classList&#x60; and &#x60;dataset&#x60; APIs
+		(body.classList ) &amp;&amp; (body.dataset ) &amp;&amp;
+
+		// but some mobile devices need to be blacklisted,
+		// because their CSS 3D support or hardware is not
+		// good enough to run impress.js properly, sorry...
+		(ua.search(/(iphone)|(ipod)|(android)/) === -1 );
+
+		if (!impressSupported) {
+			// we can&#x27;t be sure that &#x60;classList&#x60; is supported
+			body.className += &quot; impress-not-supported &quot;;
+		} else {
+			body.classList.remove(&quot;impress-not-supported&quot;);
+			body.classList.add(&quot;impress-supported&quot;);
+		}
+
+		// GLOBALS AND DEFAULTS
+
+		// This is were the root elements of all impress.js instances will be kept.
+		// Yes, this means you can have more than one instance on a page, but I&#x27;m not
+		// sure if it makes any sense in practice ;)
+		var roots = {};
+
+		// some default config values.
+		var defaults = {
+			width : 1024,
+			height : 768,
+			maxScale : 1,
+			minScale : 0,
+
+			perspective : 1000,
+
+			transitionDuration : 1000
+		};
+
+		// it&#x27;s just an empty function ... and a useless comment.
+		var empty = function() {
+			return false;
+		};
+
+		// IMPRESS.JS API
+
+		// And that&#x27;s where interesting things will start to happen.
+		// It&#x27;s the core &#x60;impress&#x60; function that returns the impress.js API
+		// for a presentation based on the element with given id (&#x27;impress&#x27;
+		// by default).
+		var impress = window.impress = function(rootId) {
+
+			// If impress.js is not supported by the browser return a dummy API
+			// it may not be a perfect solution but we return early and avoid
+			// running code that may use features not implemented in the browser.
+			if (!impressSupported) {
+				return {
+					init : empty,
+					goto : empty,
+					prev : empty,
+					next : empty
+				};
+			}
+
+			rootId = rootId || &quot;impress&quot;;
+
+			// if given root is already initialized just return the API
+			if (roots[&quot;impress-root-&quot; + rootId]) {
+				return roots[&quot;impress-root-&quot; + rootId];
+			}
+
+			// data of all presentation steps
+			var stepsData = {};
+
+			// element of currently active step
+			var activeStep = null;
+
+			// current state (position, rotation and scale) of the presentation
+			var currentState = null;
+
+			// array of step elements
+			var steps = null;
+
+			// configuration options
+			var config = null;
+
+			// scale factor of the browser window
+			var windowScale = null;
+
+			// root presentation elements
+			var root = byId(rootId);
+			var canvas = document.createElement(&quot;div&quot;);
+
+			var initialized = false;
+
+			// STEP EVENTS
+			//
+			// There are currently two step events triggered by impress.js
+			// &#x60;impress:stepenter&#x60; is triggered when the step is shown on the
+			// screen (the transition from the previous one is finished) and
+			// &#x60;impress:stepleave&#x60; is triggered when the step is left (the
+			// transition to next step just starts).
+
+			// reference to last entered step
+			var lastEntered = null;
+
+			// &#x60;onStepEnter&#x60; is called whenever the step element is entered
+			// but the event is triggered only if the step is different than
+			// last entered step.
+			var onStepEnter = function(step) {
+				if (lastEntered !== step) {
+					triggerEvent(step, &quot;impress:stepenter&quot;);
+					lastEntered = step;
+				}
+			};
+
+			// &#x60;onStepLeave&#x60; is called whenever the step element is left
+			// but the event is triggered only if the step is the same as
+			// last entered step.
+			var onStepLeave = function(step) {
+				if (lastEntered === step) {
+					triggerEvent(step, &quot;impress:stepleave&quot;);
+					lastEntered = null;
+				}
+			};
+
+			// &#x60;initStep&#x60; initializes given step element by reading data from its
+			// data attributes and setting correct styles.
+			var initStep = function(el, idx) {
+				var data = el.dataset, step = {
+					translate : {
+						x : toNumber(data.x),
+						y : toNumber(data.y),
+						z : toNumber(data.z)
+					},
+					rotate : {
+						x : toNumber(data.rotateX),
+						y : toNumber(data.rotateY),
+						z : toNumber(data.rotateZ || data.rotate)
+					},
+					scale : toNumber(data.scale, 1),
+					el : el
+				};
+
+				if (!el.id) {
+					el.id = &quot;step-&quot; + (idx + 1);
+				}
+
+				stepsData[&quot;impress-&quot; + el.id] = step;
+
+				css(el, {
+					position : &quot;absolute&quot;,
+					transform : &quot;translate(-50%,-50%)&quot; + translate(step.translate) + rotate(step.rotate) + scale(step.scale),
+					transformStyle : &quot;preserve-3d&quot;
+				});
+			};
+
+			// &#x60;init&#x60; API function that initializes (and runs) the presentation.
+			var init = function() {
+				if (initialized) {
+					return;
+				}
+
+				// First we set up the viewport for mobile devices.
+				// For some reason iPad goes nuts when it is not done properly.
+				var meta = $(&quot;meta[name=&#x27;viewport&#x27;]&quot;) || document.createElement(&quot;meta&quot;);
+				meta.content = &quot;width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no&quot;;
+				if (meta.parentNode !== document.head) {
+					meta.name = &#x27;viewport&#x27;;
+					document.head.appendChild(meta);
+				}
+
+				// initialize configuration object
+				var rootData = root.dataset;
+				config = {
+					width : toNumber(rootData.width, defaults.width),
+					height : toNumber(rootData.height, defaults.height),
+					maxScale : toNumber(rootData.maxScale, defaults.maxScale),
+					minScale : toNumber(rootData.minScale, defaults.minScale),
+					perspective : toNumber(rootData.perspective, defaults.perspective),
+					transitionDuration : toNumber(rootData.transitionDuration, defaults.transitionDuration)
+				};
+
+				windowScale = computeWindowScale(config);
+
+				// wrap steps with &quot;canvas&quot; element
+				arrayify(root.childNodes).forEach(function(el) {
+					canvas.appendChild(el);
+				});
+				root.appendChild(canvas);
+
+				// set initial styles
+				document.documentElement.style.height = &quot;100%&quot;;
+
+				css(body, {
+					height : &quot;100%&quot;,
+					overflow : &quot;hidden&quot;
+				});
+
+				var rootStyles = {
+					position : &quot;absolute&quot;,
+					transformOrigin : &quot;top left&quot;,
+					transition : &quot;all 0s ease-in-out&quot;,
+					transformStyle : &quot;preserve-3d&quot;
+				};
+
+				css(root, rootStyles);
+				css(root, {
+					top : &quot;50%&quot;,
+					left : &quot;50%&quot;,
+					transform : perspective(config.perspective / windowScale) + scale(windowScale)
+				});
+				css(canvas, rootStyles);
+
+				body.classList.remove(&quot;impress-disabled&quot;);
+				body.classList.add(&quot;impress-enabled&quot;);
+
+				// get and init steps
+				steps = $$(&quot;.step&quot;, root);
+				steps.forEach(initStep);
+
+				// set a default initial state of the canvas
+				currentState = {
+					translate : {
+						x : 0,
+						y : 0,
+						z : 0
+					},
+					rotate : {
+						x : 0,
+						y : 0,
+						z : 0
+					},
+					scale : 1
+				};
+
+				initialized = true;
+
+				triggerEvent(root, &quot;impress:init&quot;, {
+					api : roots[&quot;impress-root-&quot; + rootId]
+				});
+			};
+
+			// &#x60;getStep&#x60; is a helper function that returns a step element defined by parameter.
+			// If a number is given, step with index given by the number is returned, if a string
+			// is given step element with such id is returned, if DOM element is given it is returned
+			// if it is a correct step element.
+			var getStep = function(step) {
+				if ( typeof step === &quot;number&quot;) {
+					step = step &lt; 0 ? steps[steps.length + step] : steps[step];
+				} else if ( typeof step === &quot;string&quot;) {
+					step = byId(step);
+				}
+				return (step &amp;&amp; step.id &amp;&amp; stepsData[&quot;impress-&quot; + step.id]) ? step : null;
+			};
+
+			// used to reset timeout for &#x60;impress:stepenter&#x60; event
+			var stepEnterTimeout = null;
+
+			// &#x60;goto&#x60; API function that moves to step given with &#x60;el&#x60; parameter (by index, id or element),
+			// with a transition &#x60;duration&#x60; optionally given as second parameter.
+			var goto = function(el, duration) {
+
+				if (!initialized || !( el = getStep(el))) {
+					// presentation not initialized or given element is not a step
+					return false;
+				}
+
+				// Sometimes it&#x27;s possible to trigger focus on first link with some keyboard action.
+				// Browser in such a case tries to scroll the page to make this element visible
+				// (even that body overflow is set to hidden) and it breaks our careful positioning.
+				//
+				// So, as a lousy (and lazy) workaround we will make the page scroll back to the top
+				// whenever slide is selected
+				//
+				// If you are reading this and know any better way to handle it, I&#x27;ll be glad to hear about it!
+				window.scrollTo(0, 0);
+
+				var step = stepsData[&quot;impress-&quot; + el.id];
+
+				if (activeStep) {
+					activeStep.classList.remove(&quot;active&quot;);
+					body.classList.remove(&quot;impress-on-&quot; + activeStep.id);
+				}
+				el.classList.add(&quot;active&quot;);
+
+				body.classList.add(&quot;impress-on-&quot; + el.id);
+
+				// compute target state of the canvas based on given step
+				var target = {
+					rotate : {
+						x : -step.rotate.x,
+						y : -step.rotate.y,
+						z : -step.rotate.z
+					},
+					translate : {
+						x : -step.translate.x,
+						y : -step.translate.y,
+						z : -step.translate.z
+					},
+					scale : 1 / step.scale
+				};
+
+				// Check if the transition is zooming in or not.
+				//
+				// This information is used to alter the transition style:
+				// when we are zooming in - we start with move and rotate transition
+				// and the scaling is delayed, but when we are zooming out we start
+				// with scaling down and move and rotation are delayed.
+				var zoomin = target.scale &gt;= currentState.scale;
+
+				duration = toNumber(duration, config.transitionDuration);
+				var delay = (duration / 2);
+
+				// if the same step is re-selected, force computing window scaling,
+				// because it is likely to be caused by window resize
+				if (el === activeStep) {
+					windowScale = computeWindowScale(config);
+				}
+
+				var targetScale = target.scale * windowScale;
+
+				// trigger leave of currently active element (if it&#x27;s not the same step again)
+				if (activeStep &amp;&amp; activeStep !== el) {
+					onStepLeave(activeStep);
+				}
+
+				// Now we alter transforms of &#x60;root&#x60; and &#x60;canvas&#x60; to trigger transitions.
+				//
+				// And here is why there are two elements: &#x60;root&#x60; and &#x60;canvas&#x60; - they are
+				// being animated separately:
+				// &#x60;root&#x60; is used for scaling and &#x60;canvas&#x60; for translate and rotations.
+				// Transitions on them are triggered with different delays (to make
+				// visually nice and &#x27;natural&#x27; looking transitions), so we need to know
+				// that both of them are finished.
+				css(root, {
+					// to keep the perspective look similar for different scales
+					// we need to &#x27;scale&#x27; the perspective, too
+					transform : perspective(config.perspective / targetScale) + scale(targetScale),
+					transitionDuration : duration + &quot;ms&quot;,
+					transitionDelay : ( zoomin ? delay : 0) + &quot;ms&quot;
+				});
+
+				css(canvas, {
+					transform : rotate(target.rotate, true) + translate(target.translate),
+					transitionDuration : duration + &quot;ms&quot;,
+					transitionDelay : ( zoomin ? 0 : delay) + &quot;ms&quot;
+				});
+
+				// Here is a tricky part...
+				//
+				// If there is no change in scale or no change in rotation and translation, it means there was actually
+				// no delay - because there was no transition on &#x60;root&#x60; or &#x60;canvas&#x60; elements.
+				// We want to trigger &#x60;impress:stepenter&#x60; event in the correct moment, so here we compare the current
+				// and target values to check if delay should be taken into account.
+				//
+				// I know that this &#x60;if&#x60; statement looks scary, but it&#x27;s pretty simple when you know what is going on
+				// - it&#x27;s simply comparing all the values.
+				if (currentState.scale === target.scale || (currentState.rotate.x === target.rotate.x &amp;&amp; currentState.rotate.y === target.rotate.y &amp;&amp; currentState.rotate.z === target.rotate.z &amp;&amp; currentState.translate.x === target.translate.x &amp;&amp; currentState.translate.y === target.translate.y &amp;&amp; currentState.translate.z === target.translate.z)) {
+					delay = 0;
+				}
+
+				// store current state
+				currentState = target;
+				activeStep = el;
+
+				// And here is where we trigger &#x60;impress:stepenter&#x60; event.
+				// We simply set up a timeout to fire it taking transition duration (and possible delay) into account.
+				//
+				// I really wanted to make it in more elegant way. The &#x60;transitionend&#x60; event seemed to be the best way
+				// to do it, but the fact that I&#x27;m using transitions on two separate elements and that the &#x60;transitionend&#x60;
+				// event is only triggered when there was a transition (change in the values) caused some bugs and
+				// made the code really complicated, cause I had to handle all the conditions separately. And it still
+				// needed a &#x60;setTimeout&#x60; fallback for the situations when there is no transition at all.
+				// So I decided that I&#x27;d rather make the code simpler than use shiny new &#x60;transitionend&#x60;.
+				//
+				// If you want learn something interesting and see how it was done with &#x60;transitionend&#x60; go back to
+				// version 0.5.2 of impress.js: http://github.com/bartaz/impress.js/blob/0.5.2/js/impress.js
+				window.clearTimeout(stepEnterTimeout);
+				stepEnterTimeout = window.setTimeout(function() {
+					onStepEnter(activeStep);
+				}, duration + delay);
+
+				return el;
+			};
+
+			// &#x60;prev&#x60; API function goes to previous step (in document order)
+			var prev = function() {
+				var prev = steps.indexOf(activeStep) - 1;
+				prev = prev &gt;= 0 ? steps[prev] : steps[steps.length - 1];
+
+				return goto(prev);
+			};
+
+			// &#x60;next&#x60; API function goes to next step (in document order)
+			var next = function() {
+				var next = steps.indexOf(activeStep) + 1;
+				next = next &lt; steps.length ? steps[next] : steps[0];
+
+				return goto(next);
+			};
+
+			// Adding some useful classes to step elements.
+			//
+			// All the steps that have not been shown yet are given &#x60;future&#x60; class.
+			// When the step is entered the &#x60;future&#x60; class is removed and the &#x60;present&#x60;
+			// class is given. When the step is left &#x60;present&#x60; class is replaced with
+			// &#x60;past&#x60; class.
+			//
+			// So every step element is always in one of three possible states:
+			// &#x60;future&#x60;, &#x60;present&#x60; and &#x60;past&#x60;.
+			//
+			// There classes can be used in CSS to style different types of steps.
+			// For example the &#x60;present&#x60; class can be used to trigger some custom
+			// animations when step is shown.
+			root.addEventListener(&quot;impress:init&quot;, function() {
+				// STEP CLASSES
+				steps.forEach(function(step) {
+					step.classList.add(&quot;future&quot;);
+				});
+
+				root.addEventListener(&quot;impress:stepenter&quot;, function(event) {
+					event.target.classList.remove(&quot;past&quot;);
+					event.target.classList.remove(&quot;future&quot;);
+					event.target.classList.add(&quot;present&quot;);
+				}, false);
+
+				root.addEventListener(&quot;impress:stepleave&quot;, function(event) {
+					event.target.classList.remove(&quot;present&quot;);
+					event.target.classList.add(&quot;past&quot;);
+				}, false);
+
+			}, false);
+
+			// Adding hash change support.
+			root.addEventListener(&quot;impress:init&quot;, function() {
+
+				// last hash detected
+				var lastHash = &quot;&quot;;
+
+				// &#x60;#/step-id&#x60; is used instead of &#x60;#step-id&#x60; to prevent default browser
+				// scrolling to element in hash.
+				//
+				// And it has to be set after animation finishes, because in Chrome it
+				// makes transtion laggy.
+				// BUG: http://code.google.com/p/chromium/issues/detail?id=62820
+				root.addEventListener(&quot;impress:stepenter&quot;, function(event) {
+					window.location.hash = lastHash = &quot;#/&quot; + event.target.id;
+				}, false);
+
+				window.addEventListener(&quot;hashchange&quot;, function() {
+					// When the step is entered hash in the location is updated
+					// (just few lines above from here), so the hash change is
+					// triggered and we would call &#x60;goto&#x60; again on the same element.
+					//
+					// To avoid this we store last entered hash and compare.
+					if (window.location.hash !== lastHash) {
+						goto(getElementFromHash());
+					}
+				}, false);
+
+				// START
+				// by selecting step defined in url or first step of the presentation
+				goto(getElementFromHash() || steps[0], 0);
+			}, false);
+
+			body.classList.add(&quot;impress-disabled&quot;);
+
+			// store and return API for given impress.js root element
+			return (roots[&quot;impress-root-&quot; + rootId] = {
+				init : init,
+				goto : goto,
+				next : next,
+				prev : prev,
+				initStep : initStep,
+			});
+
+		};
+
+		// flag that can be used in JS to check if browser have passed the support test
+		impress.supported = impressSupported;
+
+	})(document, window);
+
+	// NAVIGATION EVENTS
+
+	// As you can see this part is separate from the impress.js core code.
+	// It&#x27;s because these navigation actions only need what impress.js provides with
+	// its simple API.
+	//
+	// In future I think about moving it to make them optional, move to separate files
+	// and treat more like a &#x27;plugins&#x27;.
+	(function(document, window) {&#x27;use strict&#x27;;
+
+		// throttling function calls, by Remy Sharp
+		// http://remysharp.com/2010/07/21/throttling-function-calls/
+		var throttle = function(fn, delay) {
+			var timer = null;
+			return function() {
+				var context = this, args = arguments;
+				clearTimeout(timer);
+				timer = setTimeout(function() {
+					fn.apply(context, args);
+				}, delay);
+			};
+		};
+
+		// wait for impress.js to be initialized
+		document.addEventListener(&quot;impress:init&quot;, function(event) {
+			// Getting API from event data.
+			// So you don&#x27;t event need to know what is the id of the root element
+			// or anything. &#x60;impress:init&#x60; event data gives you everything you
+			// need to control the presentation that was just initialized.
+			var api = event.detail.api;
+
+			// KEYBOARD NAVIGATION HANDLERS
+
+			// Prevent default keydown action when one of supported key is pressed.
+			// document.addEventListener(&quot;keydown&quot;, function ( event ) {
+			// if ( event.keyCode === 9 || ( event.keyCode &gt;= 32 &amp;&amp; event.keyCode &lt;= 34 ) || (event.keyCode &gt;= 37 &amp;&amp; event.keyCode &lt;= 40) ) {
+			// event.preventDefault();
+			// }
+			// }, false);
+
+			// Trigger impress action (next or prev) on keyup.
+
+			// Supported keys are:
+			// [space] - quite common in presentation software to move forward
+			// [up] [right] / [down] [left] - again common and natural addition,
+			// [pgdown] / [pgup] - often triggered by remote controllers,
+			// [tab] - this one is quite controversial, but the reason it ended up on
+			//   this list is quite an interesting story... Remember that strange part
+			//   in the impress.js code where window is scrolled to 0,0 on every presentation
+			//   step, because sometimes browser scrolls viewport because of the focused element?
+			//   Well, the [tab] key by default navigates around focusable elements, so clicking
+			//   it very often caused scrolling to focused element and breaking impress.js
+			//   positioning. I didn&#x27;t want to just prevent this default action, so I used [tab]
+			//   as another way to moving to next step... And yes, I know that for the sake of
+			//   consistency I should add [shift+tab] as opposite action...
+			// document.addEventListener(&quot;keyup&quot;, function ( event ) {
+			// if ( event.keyCode === 9 || ( event.keyCode &gt;= 32 &amp;&amp; event.keyCode &lt;= 34 ) || (event.keyCode &gt;= 37 &amp;&amp; event.keyCode &lt;= 40) ) {
+			// switch( event.keyCode ) {
+			// case 33: // pg up
+			// case 37: // left
+			// case 38: // up
+			// api.prev();
+			// break;
+			// case 9:  // tab
+			// case 32: // space
+			// case 34: // pg down
+			// case 39: // right
+			// case 40: // down
+			// api.next();
+			// break;
+			// }
+			//
+			// event.preventDefault();
+			// }
+			// }, false);
+
+			// delegated handler for clicking on the links to presentation steps
+			document.addEventListener(&quot;click&quot;, function(event) {
+				// event delegation with &quot;bubbling&quot;
+				// check if event target (or any of its parents is a link)
+				var target = event.target;
+				while ((target.tagName !== &quot;A&quot;) &amp;&amp; (target !== document.documentElement)) {
+					target = target.parentNode;
+				}
+
+				if (target.tagName === &quot;A&quot;) {
+					var href = target.getAttribute(&quot;href&quot;);
+
+					// if it&#x27;s a link to presentation step, target this step
+					if (href &amp;&amp; href[0] === &#x27;#&#x27;) {
+						target = document.getElementById(href.slice(1));
+					}
+				}
+
+				if (api.goto(target)) {
+					event.stopImmediatePropagation();
+					event.preventDefault();
+				}
+			}, false);
+
+			// // delegated handler for clicking on step elements
+			// document.addEventListener(&quot;click&quot;, function ( event ) {
+			// var target = event.target;
+			// // find closest step element that is not active
+			// while ( !(target.classList.contains(&quot;step&quot;) &amp;&amp; !target.classList.contains(&quot;active&quot;)) &amp;&amp;
+			// (target !== document.documentElement) ) {
+			// target = target.parentNode;
+			// }
+			//
+			// if ( api.goto(target) ) {
+			// event.preventDefault();
+			// }
+			// }, false);
+
+			// touch handler to detect taps on the left and right side of the screen
+			// based on awesome work of @hakimel: https://github.com/hakimel/reveal.js
+			document.addEventListener(&quot;touchstart&quot;, function(event) {
+				if (event.touches.length === 1) {
+					var x = event.touches[0].clientX, width = window.innerWidth * 0.3, result = null;
+
+					if (x &lt; width) {
+						result = api.prev();
+					} else if (x &gt; window.innerWidth - width) {
+						result = api.next();
+					}
+
+					if (result) {
+						event.preventDefault();
+					}
+				}
+			}, false);
+
+			// rescale presentation when window is resized
+			window.addEventListener(&quot;resize&quot;, throttle(function() {
+				// force going to active step again, to trigger rescaling
+				api.goto(document.querySelector(&quot;.step.active&quot;), 500);
+			}, 250), false);
+
+		}, false);
+
+	})(document, window);
+};
+
+// THAT&#x27;S ALL FOLKS!
+//
+// Thanks for reading it all.
+// Or thanks for scrolling down and reading the last part.
+//
+// I&#x27;ve learnt a lot when building impress.js and I hope this code and comments
+// will help somebody learn at least some part of it.
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
