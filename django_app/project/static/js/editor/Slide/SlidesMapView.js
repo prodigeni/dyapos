@@ -1,3 +1,9 @@
+/**
+ * @module Slide
+ * @class SlidesMapView
+ * @extends Backbone.View
+ */
+
 define(["Slide/SlideModel",
 		"Slide/SlideView",
 		"Slide/SlidesListView"], function(SlideModel, SlideView, SlidesListView) {

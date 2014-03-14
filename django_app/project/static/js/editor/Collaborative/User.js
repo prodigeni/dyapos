@@ -1,3 +1,8 @@
+/**
+ * @module Collaborative
+ * @class User
+ */
+
 define([], function() {
 	"use strict";
 	var collaborative_visible = false,

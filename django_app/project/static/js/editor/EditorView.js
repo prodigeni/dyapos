@@ -1,4 +1,5 @@
 /**
+ * @module Editor
  * @class EditorView
  * @extends Backbone.View
  */

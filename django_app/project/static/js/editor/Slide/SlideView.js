@@ -1,3 +1,9 @@
+/**
+ * @module Slide
+ * @class SlideView
+ * @extends Backbone.View
+ */
+
 define(["Component/ComponentView"], function(ComponentView) {"use strict";
 	return Backbone.View.extend({
 		tagName : "div",

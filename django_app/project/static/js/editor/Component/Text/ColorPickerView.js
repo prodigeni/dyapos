@@ -1,3 +1,10 @@
+/**
+ * @module Component
+ * @submodule Text
+ * @class ColorPickerView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({

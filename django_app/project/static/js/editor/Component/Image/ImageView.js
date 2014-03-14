@@ -1,5 +1,7 @@
 /**
- * @class ImageCompView
+ * @module Component
+ * @submodule Image
+ * @class ImageView
  * @extends Backbone.View
  */
 

@@ -1,3 +1,9 @@
+/**
+ * @module Theme
+ * @class ThemeSelectorView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({

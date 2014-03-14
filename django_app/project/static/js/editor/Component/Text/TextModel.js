@@ -1,3 +1,10 @@
+/**
+ * @module Component
+ * @submodule Text
+ * @class TextModel
+ * @extends ComponentModel
+ */
+
 define(["Component/ComponentModel"], function(ComponentModel) {
 	"use strict";
 	var model = ComponentModel.extend({

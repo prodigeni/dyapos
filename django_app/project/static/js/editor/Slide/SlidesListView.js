@@ -1,3 +1,9 @@
+/**
+ * @module Slide
+ * @class SlidesListView
+ * @extends Backbone.View
+ */
+
 define(["Slide/SlideMiniView"], function(SlideMiniView) {"use strict";
 	return Backbone.View.extend({
 		el : document.getElementById("slides-list"),

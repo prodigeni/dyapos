@@ -1,3 +1,10 @@
+/**
+ * @module Component
+ * @submodule Video
+ * @class VideoView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({

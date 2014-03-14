@@ -1,3 +1,10 @@
+/**
+ * @module Component
+ * @submodule Video
+ * @class VideoUploadFormView
+ * @extends Backbone.View
+ */
+
 define(["Component/Video/VideoModel"], function(VideoCompModel) {
 	"use strict";
 	return Backbone.View.extend({

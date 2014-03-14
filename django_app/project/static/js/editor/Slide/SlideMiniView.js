@@ -1,3 +1,9 @@
+/**
+ * @module Slide
+ * @class SlideMiniView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({

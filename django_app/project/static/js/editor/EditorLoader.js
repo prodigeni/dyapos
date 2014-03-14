@@ -1,4 +1,5 @@
 /**
+ * @module App
  * @class EditorLoader
  * @static
  */
@@ -27,11 +28,6 @@ define(["Slide/SlideModel",
 
 	Mustache.tags = ["[[", "]]"];
 
-	/**
-	 * @method getTransformValue
-	 * @param {Object} element
-	 * @param {Object} property
-	 */
 	app.getTransformValue = function(element, property) {
 		var values = element.style[app.css_transform].split(")"), key, val, prop;
 
@@ -47,20 +43,12 @@ define(["Slide/SlideModel",
 		return false;
 	};
 
-	/**
-	 * @method translate3DToArray
-	 * @param {Object} value
-	 */
 	app.translate3DToArray = function(value) {
 		value = value.toString();
 		var pattern = /([0-9-]+)+(?![3d]\()/gi;
 		return value.match(pattern);
 	};
 
-	/**
-	 * @method getSupportedCSSProp
- * @param {Object} proparray
-	 */
 	app.getSupportedCSSProp = function(proparray) {
 		var root = document.documentElement, i;
 
@@ -72,9 +60,6 @@ define(["Slide/SlideModel",
 		}
 	};
 
-	/**
-	 * @method saveAllToLocalStorage
-	 */
 	app.saveAllToLocalStorage = function() {
 		setTimeout(function() {
 			localStorage.slides = JSON.stringify(app.slides.toJSON());
@@ -82,9 +67,6 @@ define(["Slide/SlideModel",
 		}, 5000);
 	};
 
-	/**
-	 * @method deselectAllComponents
-	 */
 	app.deselectAllComponents = function() {
 		$(".component-options").hide();
 		$(".component").removeClass("selected-component hoverable");

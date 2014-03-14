@@ -1,3 +1,10 @@
+/**
+ * @module Component
+ * @submodule Image
+ * @class ImageModel
+ * @extends ComponentModel
+ */
+
 define(["Component/ComponentModel"], function(ComponentModel) {
 	"use strict";
 	var model = ComponentModel.extend({

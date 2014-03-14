@@ -1,4 +1,5 @@
 /**
+ * @module Collaborative
  * @class ChatWindowView
  * @extends Backbone.View
  */

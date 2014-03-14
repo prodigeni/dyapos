@@ -1,3 +1,9 @@
+/**
+ * @module Slide
+ * @class SlideModel
+ * @extends Backbone.RelationalModel
+ */
+
 define(["Component/ComponentModel"], function(ComponentModel) {
 	"use strict";
 	return Backbone.RelationalModel.extend({

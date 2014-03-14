@@ -1,4 +1,6 @@
 /**
+ * @module Component
+ * @submodule Image
  * @class ImageToolboxView
  * @extends Backbone.View
  */
