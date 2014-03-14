@@ -10,8 +10,8 @@ define([], function() {"use strict";
 
 		events : {
 			/**
-			 * @event submit #chat-form
 			 * Calls sendMessage()
+			 * @event submit #chat-form
 			 */
 			"submit #chat-form" : "sendMessage"
 		},

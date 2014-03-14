@@ -1,9 +1,9 @@
 /**
  * This module stores global variables inside a namespace called "app".
  * It also runs some statements to prepare the app before starting.
- * @module App
+ * @module Editor
  * @main App
- * @class EditorLoader
+ * @class App
  * @static
  */
 
@@ -222,8 +222,8 @@ define(["Slide/SlideModel",
 	});
 
 	/**
-	 * When document is ready, instantiate Backbone.View objects
-	 * @event ready
+	 * Instantiate Backbone.View objects
+	 * @event Document ready
 	 */
 	$(document).ready(function() {
 		// Instantiate Backbone.js Views

@@ -16,8 +16,7 @@ require.config({
 		"modernizr" : "modernizr",
 		"foundation" : "foundation.min",
 
-		"EditorLoader"							: "editor/EditorLoader",
-		"EditorView"							: "editor/EditorView",
+		"App"									: "editor/App",
 		"Collaborative/ChatWindowView"			: "editor/Collaborative/ChatWindowView",
 		"Collaborative/User"					: "editor/Collaborative/User",
 		"Component/ComponentModel"				: "editor/Component/ComponentModel",
@@ -36,6 +35,7 @@ require.config({
 		"Component/Video/VideoToolboxView"		: "editor/Component/Video/VideoToolboxView",
 		"Component/Video/VideoUploadFormView"	: "editor/Component/Video/VideoUploadFormView",
 		"Component/Video/VideoView"				: "editor/Component/Video/VideoView",
+		"EditorView"							: "editor/EditorView",
 		"Mode/EditModeView"						: "editor/Mode/EditModeView",
 		"Mode/NavigationModeView"				: "editor/Mode/NavigationModeView",
 		"Mode/PreviewModeView"					: "editor/Mode/PreviewModeView",
@@ -78,4 +78,4 @@ require.config({
 });
 
 // Here the application starts
-require(["edit", "EditorLoader"]);
+require(["edit", "App"]);
