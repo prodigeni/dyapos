@@ -26,11 +26,11 @@ define([], function() {
 			// this.on("change", function() {
 				// if (!is_anonymous) {
 					// if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
-						// if (!updatedFromServer) {
+						// if (!updated_from_server) {
 							// console.log("Slide changed");
 							// this.save();
 						// } else {
-							// updatedFromServer = false;
+							// updated_from_server = false;
 						// }
 					// }
 				// }

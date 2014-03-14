@@ -1,5 +1,8 @@
 /**
+ * This module stores global variables inside a namespace called "app".
+ * It also runs some statements to prepare the app before starting.
  * @module App
+ * @main App
  * @class EditorLoader
  * @static
  */
@@ -28,6 +31,12 @@ define(["Slide/SlideModel",
 
 	Mustache.tags = ["[[", "]]"];
 
+	/**
+	 * Returns the value of a CSS transform property from a DOM element
+	 * @method getTransformValue
+	 * @param {Object} element DOM element
+	 * @param {String} property Item from the transform CSS property, example: rotateZ
+	 */
 	app.getTransformValue = function(element, property) {
 		var values = element.style[app.css_transform].split(")"), key, val, prop;
 
@@ -43,12 +52,23 @@ define(["Slide/SlideModel",
 		return false;
 	};
 
+	/**
+	* Transforms a translate3D property value from a transform CSS into an array
+	* @method translate3DToArray
+	* @param {Object} value translate3D value from transform CSS property
+	*/
 	app.translate3DToArray = function(value) {
 		value = value.toString();
 		var pattern = /([0-9-]+)+(?![3d]\()/gi;
 		return value.match(pattern);
 	};
 
+	/**
+	 * Get the supported CSS property from a given array according to the web browser.
+	 * <br>Example: app.getSupportedCSSProp(["webkitTransform", "MozTransform", "OTransform"]) will return MozTransform if you're using Firefox'
+	 * @method getSupportedCSSProp
+	 * @param {Array} proparray
+	 */
 	app.getSupportedCSSProp = function(proparray) {
 		var root = document.documentElement, i;
 
@@ -60,6 +80,10 @@ define(["Slide/SlideModel",
 		}
 	};
 
+	/**
+	 * Runs an infinite loop every 5 seconds wheres saves all the presentation data on the Browser's Local Storage as JSON
+	 * @method saveAllToLocalStorage
+	 */
 	app.saveAllToLocalStorage = function() {
 		setTimeout(function() {
 			localStorage.slides = JSON.stringify(app.slides.toJSON());
@@ -67,6 +91,10 @@ define(["Slide/SlideModel",
 		}, 5000);
 	};
 
+	/**
+	 * Deselects all the components and sets the variable app.selected_component as null
+	 * @method deselectAllComponents
+	 */
 	app.deselectAllComponents = function() {
 		$(".component-options").hide();
 		$(".component").removeClass("selected-component hoverable");
@@ -74,15 +102,31 @@ define(["Slide/SlideModel",
 		app.selected_component = null;
 	};
 
-	// GLOBAL VARIABLES
-
-	//Get CSS prefixes according to the browser render engine
+	/**
+	 * Name for the transform CSS property according to the browser and its prefix
+	 * @attribute css_transform
+	 * @type String
+	 */
 	app.css_transform = app.getSupportedCSSProp(["webkitTransform", "MozTransform", "OTransform"]);
+	/**
+	 * Name for the transition CSS property according to the browser and its prefix
+	 * @attribute css_transform
+	 * @type String
+	 */
 	app.css_transition = app.getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
-	//This stores the current selected color on the ColorPicker
+
+	/**
+	 * Current selected color on the ColorPicker
+	 * @attribute selected_color
+	 * @type String
+	 */
 	app.selected_color = null;
 
-	//Variables for Navigation mode
+	/**
+	 * Set of variables for Navigation mode
+	 * @attribute nav
+	 * @type Object
+	 */
 	app.nav = {
 		map : document.getElementById("impress").children[0],
 		transform_style : null,
@@ -92,14 +136,34 @@ define(["Slide/SlideModel",
 		last_y : null
 	};
 
+	/**
+	 * CID of the selected slide
+	 * @attribute selected_slide
+	 * @type String
+	 */
 	app.selected_slide = null;
+
+	/**
+	 * Model of the selected component
+	 * @attribute selected_component
+	 * @type Object (ComponentModel)
+	 */
 	app.selected_component = null;
 
-	// Set a variable that controls whether last change was made from server or not
-	app.updatedFromServer = false;
+	/**
+	 * Indicates whether the last change was made from server or not
+	 * @attribute updated_from_server
+	 * @type boolean
+	 */
+	app.updated_from_server = false;
 
 	//Connect to socket.io
 	if (!app.is_anonymous) {
+		/**
+		 * Websocket object which connects to Socket.io
+		 * @attribute socket
+		 * @type Object
+		 */
 		Object.defineProperty(app, "socket", {
 			value : io.connect(app.nodejs_url),
 		});
@@ -114,7 +178,11 @@ define(["Slide/SlideModel",
 		});
 	}
 
-	//Define a collection to store the slide objects
+	/**
+	 * Collection of slide objects
+	 * @attribute SlideCollection
+	 * @type Object (Backbone.Collection)
+	 */
 	app.SlideCollection = Backbone.Collection.extend({
 		model : SlideModel,
 		url : "slides",
@@ -143,12 +211,20 @@ define(["Slide/SlideModel",
 		}
 	});
 
-	//Define a collection to store the component objects
+	/**
+	 * Collection of component objects
+	 * @attribute ComponentCollection
+	 * @type Object (Backbone.Collection)
+	 */
 	app.ComponentCollection = Backbone.Collection.extend({
 		model : ComponentModel,
 		url : "components"
 	});
 
+	/**
+	 * When document is ready, instantiate Backbone.View objects
+	 * @event ready
+	 */
 	$(document).ready(function() {
 		// Instantiate Backbone.js Views
 		app.views = {};

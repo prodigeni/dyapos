@@ -33,11 +33,11 @@ define(["Component/ComponentModel"], function(ComponentModel) {
 			this.on("change", function() {
 				if (!app.is_anonymous) {
 					if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
-						if (!app.updatedFromServer) {
+						if (!app.updated_from_server) {
 							console.log("Slide changed");
 							this.save();
 						} else {
-							app.updatedFromServer = false;
+							app.updated_from_server = false;
 						}
 					}
 				}
