@@ -47,6 +47,7 @@ define([], function() {"use strict";
 		/**
 		 * Appends a new message to the chat conversation
 		 * @method appendMessage
+		 * @param data message data
 		 */
 		appendMessage : function(data) {
 			var view = Mustache.render(document.getElementById("template-chat-message").innerHTML, {

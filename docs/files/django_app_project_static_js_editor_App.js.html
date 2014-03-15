@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>django_app/project/static/js/editor/App.js - Dyapos</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="Dyapos"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/AddLinkWindowView.html">AddLinkWindowView</a></li>
+            
+                <li><a href="../classes/App.html">App</a></li>
+            
+                <li><a href="../classes/ChatWindowView.html">ChatWindowView</a></li>
+            
+                <li><a href="../classes/ColorPickerView.html">ColorPickerView</a></li>
+            
+                <li><a href="../classes/ComponentModel.html">ComponentModel</a></li>
+            
+                <li><a href="../classes/ComponentView.html">ComponentView</a></li>
+            
+                <li><a href="../classes/EditorView.html">EditorView</a></li>
+            
+                <li><a href="../classes/ImageModel.html">ImageModel</a></li>
+            
+                <li><a href="../classes/ImageToolboxView.html">ImageToolboxView</a></li>
+            
+                <li><a href="../classes/ImageUploadFormView.html">ImageUploadFormView</a></li>
+            
+                <li><a href="../classes/ImageView.html">ImageView</a></li>
+            
+                <li><a href="../classes/NewComponentBoxView.html">NewComponentBoxView</a></li>
+            
+                <li><a href="../classes/SlideMiniView.html">SlideMiniView</a></li>
+            
+                <li><a href="../classes/SlideModel.html">SlideModel</a></li>
+            
+                <li><a href="../classes/SlideOptionsBoxView.html">SlideOptionsBoxView</a></li>
+            
+                <li><a href="../classes/SlidesListView.html">SlidesListView</a></li>
+            
+                <li><a href="../classes/SlidesMapView.html">SlidesMapView</a></li>
+            
+                <li><a href="../classes/SlideView.html">SlideView</a></li>
+            
+                <li><a href="../classes/TextModel.html">TextModel</a></li>
+            
+                <li><a href="../classes/TextToolboxView.html">TextToolboxView</a></li>
+            
+                <li><a href="../classes/TextView.html">TextView</a></li>
+            
+                <li><a href="../classes/ThemeSelectorView.html">ThemeSelectorView</a></li>
+            
+                <li><a href="../classes/User.html">User</a></li>
+            
+                <li><a href="../classes/VideoModel.html">VideoModel</a></li>
+            
+                <li><a href="../classes/VideoToolboxView.html">VideoToolboxView</a></li>
+            
+                <li><a href="../classes/VideoUploadFormView.html">VideoUploadFormView</a></li>
+            
+                <li><a href="../classes/VideoView.html">VideoView</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Collaborative.html">Collaborative</a></li>
+            
+                <li><a href="../modules/Component.html">Component</a></li>
+            
+                <li><a href="../modules/Editor.html">Editor</a></li>
+            
+                <li><a href="../modules/Image.html">Image</a></li>
+            
+                <li><a href="../modules/Slide.html">Slide</a></li>
+            
+                <li><a href="../modules/Text.html">Text</a></li>
+            
+                <li><a href="../modules/Theme.html">Theme</a></li>
+            
+                <li><a href="../modules/Video.html">Video</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: django_app/project/static/js/editor/App.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * This module stores global variables inside a namespace called &quot;app&quot;.
+ * It also runs some statements to prepare the app before starting.
+ * @module Editor
+ * @main App
+ * @class App
+ * @static
+ */
+
+define([&quot;Slide/SlideModel&quot;,
+		&quot;Component/ComponentModel&quot;,
+		&quot;Component/Image/ImageUploadFormView&quot;,
+		&quot;Component/Video/VideoUploadFormView&quot;,
+		&quot;Component/Text/ColorPickerView&quot;,
+		&quot;Theme/ThemeSelectorView&quot;,
+		&quot;Collaborative/ChatWindowView&quot;,
+		&quot;Component/Text/AddLinkWindowView&quot;,
+		&quot;Component/NewComponentBoxView&quot;,
+		&quot;Slide/SlideOptionsBoxView&quot;,
+		&quot;EditorView&quot;,
+		&quot;Slide/SlidesListView&quot;,
+		&quot;Slide/SlideMiniView&quot;,
+		&quot;Slide/SlidesMapView&quot;,
+		&quot;Component/Text/TextToolboxView&quot;,
+		&quot;Component/Image/ImageToolboxView&quot;,
+		&quot;Component/Video/VideoToolboxView&quot;,
+		&quot;Mode/EditModeView&quot;,
+		&quot;Mode/NavigationModeView&quot;,
+		&quot;Mode/PreviewModeView&quot;],
+							function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {&quot;use strict&quot;;
+
+	Mustache.tags = [&quot;[[&quot;, &quot;]]&quot;];
+
+	/**
+	 * Returns the value of a CSS transform property from a DOM element
+	 * @method getTransformValue
+	 * @param {Object} element DOM element
+	 * @param {String} property Item from the transform CSS property, example: rotateZ
+	 */
+	app.getTransformValue = function(element, property) {
+		var values = element.style[app.css_transform].split(&quot;)&quot;), key, val, prop;
+
+		for (key in values) {
+			if (values.hasOwnProperty(key)) {
+				val = values[key];
+				prop = val.split(&quot;(&quot;);
+				if (prop[0].trim() === property) {
+					return parseFloat(prop[1]);
+				}
+			}
+		}
+		return false;
+	};
+
+	/**
+	* Transforms a translate3D property value from a transform CSS into an array
+	* @method translate3DToArray
+	* @param {Object} value translate3D value from transform CSS property
+	*/
+	app.translate3DToArray = function(value) {
+		value = value.toString();
+		var pattern = /([0-9-]+)+(?![3d]\()/gi;
+		return value.match(pattern);
+	};
+
+	/**
+	 * Get the supported CSS property from a given array according to the web browser.
+	 * &lt;br&gt;Example: app.getSupportedCSSProp([&quot;webkitTransform&quot;, &quot;MozTransform&quot;, &quot;OTransform&quot;]) will return MozTransform if you&#x27;re using Firefox&#x27;
+	 * @method getSupportedCSSProp
+	 * @param {Array} proparray
+	 */
+	app.getSupportedCSSProp = function(proparray) {
+		var root = document.documentElement, i;
+
+		//reference root element of document
+		for ( i = 0; i &lt; proparray.length; i = i + 1) {//loop through possible properties
+			if (proparray[i] in root.style) {//if property exists on element (value will be string, empty string if not set)
+				return proparray[i];
+			}
+		}
+	};
+
+	/**
+	 * Runs an infinite loop every 5 seconds wheres saves all the presentation data on the Browser&#x27;s Local Storage as JSON
+	 * @method saveAllToLocalStorage
+	 */
+	app.saveAllToLocalStorage = function() {
+		setTimeout(function() {
+			localStorage.slides = JSON.stringify(app.slides.toJSON());
+			app.saveAllToLocalStorage();
+		}, 5000);
+	};
+
+	/**
+	 * Deselects all the components and sets the variable app.selected_component as null
+	 * @method deselectAllComponents
+	 */
+	app.deselectAllComponents = function() {
+		$(&quot;.component-options&quot;).hide();
+		$(&quot;.component&quot;).removeClass(&quot;selected-component hoverable&quot;);
+		$(&quot;.toolbox&quot;).hide();
+		app.selected_component = null;
+	};
+
+	/**
+	 * Name for the transform CSS property according to the browser and its prefix
+	 * @attribute css_transform
+	 * @type String
+	 */
+	app.css_transform = app.getSupportedCSSProp([&quot;webkitTransform&quot;, &quot;MozTransform&quot;, &quot;OTransform&quot;]);
+	/**
+	 * Name for the transition CSS property according to the browser and its prefix
+	 * @attribute css_transform
+	 * @type String
+	 */
+	app.css_transition = app.getSupportedCSSProp([&quot;webkitTransition&quot;, &quot;MozTransition&quot;, &quot;OTransition&quot;]);
+
+	/**
+	 * Current selected color on the ColorPicker
+	 * @attribute selected_color
+	 * @type String
+	 */
+	app.selected_color = null;
+
+	/**
+	 * Set of variables for Navigation mode
+	 * @attribute nav
+	 * @type Object
+	 */
+	app.nav = {
+		map : document.getElementById(&quot;impress&quot;).children[0],
+		transform_style : null,
+		map_trans3d : null,
+		slide_trans3d : null,
+		last_x_ : null,
+		last_y : null
+	};
+
+	/**
+	 * CID of the selected slide
+	 * @attribute selected_slide
+	 * @type String
+	 */
+	app.selected_slide = null;
+
+	/**
+	 * Model of the selected component
+	 * @attribute selected_component
+	 * @type Object (ComponentModel)
+	 */
+	app.selected_component = null;
+
+	/**
+	 * Indicates whether the last change was made from server or not
+	 * @attribute updated_from_server
+	 * @type boolean
+	 */
+	app.updated_from_server = false;
+
+	//Connect to socket.io
+	if (!app.is_anonymous) {
+		/**
+		 * Websocket object which connects to Socket.io
+		 * @attribute socket
+		 * @type Object
+		 */
+		Object.defineProperty(app, &quot;socket&quot;, {
+			value : io.connect(app.nodejs_url),
+		});
+
+		app.socket.emit(&quot;collaborator_connect&quot;, {
+			presentation_id : app.p_id,
+			user_data : {
+				&quot;first_name&quot; : app.user_first_name,
+				&quot;last_name&quot; : app.user_last_name,
+				&quot;username&quot; : app.user_username
+			}
+		});
+	}
+
+	/**
+	 * Collection of slide objects
+	 * @attribute SlideCollection
+	 * @type Object (Backbone.Collection)
+	 */
+	app.SlideCollection = Backbone.Collection.extend({
+		model : SlideModel,
+		url : &quot;slides&quot;,
+		getComponent : function(cid) {
+			for (var i = 0; i &lt; app.slides.length; i = i + 1) {
+				if (app.slides.models[i].get(&quot;components&quot;).get(cid) !== undefined) {
+					return app.slides.models[i].get(&quot;components&quot;).get(cid);
+				}
+			}
+
+			// In case it&#x27;s not found
+			return undefined;
+		},
+		getComponentsWhere : function(values) {
+			var results = [], result, i, j;
+
+			for ( i = 0; i &lt; app.slides.length; i = i + 1) {
+				result = app.slides.models[i].get(&quot;components&quot;).where(values);
+				if (result.length &gt; 0) {
+					for ( j = 0; j &lt; result.length; j = j + 1) {
+						results.push(result[j]);
+					}
+				}
+			}
+			return results;
+		}
+	});
+
+	/**
+	 * Collection of component objects
+	 * @attribute ComponentCollection
+	 * @type Object (Backbone.Collection)
+	 */
+	app.ComponentCollection = Backbone.Collection.extend({
+		model : ComponentModel,
+		url : &quot;components&quot;
+	});
+
+	/**
+	 * Instantiate Backbone.View objects
+	 * @event Document ready
+	 */
+	$(document).ready(function() {
+		app.views = {};
+		app.views.editor = new EditorView();
+		app.views.image_upload_form = new ImageUploadFormView();
+		app.views.video_upload_form = new VideoUploadFormView();
+		app.views.colorpicker = new ColorPickerView();
+		app.views.theme_selector = new ThemeSelectorView();
+		app.views.chat_window = new ChatWindowView();
+		app.views.add_link_window = new AddLinkWindowView();
+		app.views.new_component_box = new NewComponentBoxView();
+		app.views.slide_options_box = new SlideOptionsBoxView();
+		app.views.text_toolbox = new TextToolboxView();
+		app.views.image_toolbox = new ImageToolboxView();
+		app.views.video_toolbox = new VideoToolboxView();
+		app.views.slides_map = new SlidesMapView();
+		app.views.edit_mode = new EditModeView();
+		app.views.navigation_mode = new NavigationModeView();
+		app.views.preview_mode = new PreviewModeView();
+	});
+
+	impress().init();
+
+	if (app.is_anonymous) {
+		app.saveAllToLocalStorage();
+	}
+
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

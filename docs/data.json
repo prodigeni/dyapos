@@ -6,11 +6,261 @@
         "url": "http://dyapos.net"
     },
     "files": {
-        "django_app/project/static/js/editor/Chat/ChatWindowView.js": {
-            "name": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
-            "modules": {},
+        "django_app/project/static/js/editor/Collaborative/ChatWindowView.js": {
+            "name": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "modules": {
+                "Collaborative": 1
+            },
             "classes": {
                 "ChatWindowView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Collaborative/User.js": {
+            "name": "django_app/project/static/js/editor/Collaborative/User.js",
+            "modules": {},
+            "classes": {
+                "User": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Image/ImageModel.js": {
+            "name": "django_app/project/static/js/editor/Component/Image/ImageModel.js",
+            "modules": {
+                "Image": 1
+            },
+            "classes": {
+                "ImageModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Image/ImageToolboxView.js": {
+            "name": "django_app/project/static/js/editor/Component/Image/ImageToolboxView.js",
+            "modules": {},
+            "classes": {
+                "ImageToolboxView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Image/ImageUploadFormView.js": {
+            "name": "django_app/project/static/js/editor/Component/Image/ImageUploadFormView.js",
+            "modules": {},
+            "classes": {
+                "ImageUploadFormView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Image/ImageView.js": {
+            "name": "django_app/project/static/js/editor/Component/Image/ImageView.js",
+            "modules": {},
+            "classes": {
+                "ImageView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Text/AddLinkWindowView.js": {
+            "name": "django_app/project/static/js/editor/Component/Text/AddLinkWindowView.js",
+            "modules": {
+                "Text": 1
+            },
+            "classes": {
+                "AddLinkWindowView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Text/ColorPickerView.js": {
+            "name": "django_app/project/static/js/editor/Component/Text/ColorPickerView.js",
+            "modules": {},
+            "classes": {
+                "ColorPickerView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Text/TextModel.js": {
+            "name": "django_app/project/static/js/editor/Component/Text/TextModel.js",
+            "modules": {},
+            "classes": {
+                "TextModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Text/TextToolboxView.js": {
+            "name": "django_app/project/static/js/editor/Component/Text/TextToolboxView.js",
+            "modules": {},
+            "classes": {
+                "TextToolboxView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Text/TextView.js": {
+            "name": "django_app/project/static/js/editor/Component/Text/TextView.js",
+            "modules": {},
+            "classes": {
+                "TextView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Video/VideoModel.js": {
+            "name": "django_app/project/static/js/editor/Component/Video/VideoModel.js",
+            "modules": {
+                "Video": 1
+            },
+            "classes": {
+                "VideoModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Video/VideoToolboxView.js": {
+            "name": "django_app/project/static/js/editor/Component/Video/VideoToolboxView.js",
+            "modules": {},
+            "classes": {
+                "VideoToolboxView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Video/VideoUploadFormView.js": {
+            "name": "django_app/project/static/js/editor/Component/Video/VideoUploadFormView.js",
+            "modules": {},
+            "classes": {
+                "VideoUploadFormView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/Video/VideoView.js": {
+            "name": "django_app/project/static/js/editor/Component/Video/VideoView.js",
+            "modules": {},
+            "classes": {
+                "VideoView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/ComponentModel.js": {
+            "name": "django_app/project/static/js/editor/Component/ComponentModel.js",
+            "modules": {
+                "Component": 1
+            },
+            "classes": {
+                "ComponentModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/ComponentView.js": {
+            "name": "django_app/project/static/js/editor/Component/ComponentView.js",
+            "modules": {},
+            "classes": {
+                "ComponentView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Component/NewComponentBoxView.js": {
+            "name": "django_app/project/static/js/editor/Component/NewComponentBoxView.js",
+            "modules": {},
+            "classes": {
+                "NewComponentBoxView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Slide/SlideMiniView.js": {
+            "name": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "modules": {
+                "Slide": 1
+            },
+            "classes": {
+                "SlideMiniView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Slide/SlideModel.js": {
+            "name": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "modules": {},
+            "classes": {
+                "SlideModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js": {
+            "name": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "modules": {},
+            "classes": {
+                "SlideOptionsBoxView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Slide/SlideView.js": {
+            "name": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "modules": {},
+            "classes": {
+                "SlideView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Slide/SlidesListView.js": {
+            "name": "django_app/project/static/js/editor/Slide/SlidesListView.js",
+            "modules": {},
+            "classes": {
+                "SlidesListView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Slide/SlidesMapView.js": {
+            "name": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "modules": {},
+            "classes": {
+                "SlidesMapView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/Theme/ThemeSelectorView.js": {
+            "name": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "modules": {
+                "Theme": 1
+            },
+            "classes": {
+                "ThemeSelectorView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/App.js": {
+            "name": "django_app/project/static/js/editor/App.js",
+            "modules": {},
+            "classes": {
+                "App": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "django_app/project/static/js/editor/EditorView.js": {
+            "name": "django_app/project/static/js/editor/EditorView.js",
+            "modules": {
+                "Editor": 1
+            },
+            "classes": {
+                "EditorView": 1
             },
             "fors": {},
             "namespaces": {}
@@ -23,7 +273,156 @@
             "namespaces": {}
         }
     },
-    "modules": {},
+    "modules": {
+        "Collaborative": {
+            "name": "Collaborative",
+            "submodules": {},
+            "classes": {
+                "ChatWindowView": 1,
+                "User": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "django_app/project/static/js/editor/Collaborative/User.js",
+            "line": 1,
+            "extends": "Backbone.View"
+        },
+        "Component": {
+            "name": "Component",
+            "submodules": {
+                "Image": 1,
+                "Text": 1,
+                "Video": 1
+            },
+            "classes": {
+                "ImageModel": 1,
+                "ImageToolboxView": 1,
+                "ImageUploadFormView": 1,
+                "ImageView": 1,
+                "AddLinkWindowView": 1,
+                "ColorPickerView": 1,
+                "TextModel": 1,
+                "TextToolboxView": 1,
+                "TextView": 1,
+                "VideoModel": 1,
+                "VideoToolboxView": 1,
+                "VideoUploadFormView": 1,
+                "VideoView": 1,
+                "ComponentModel": 1,
+                "ComponentView": 1,
+                "NewComponentBoxView": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "django_app/project/static/js/editor/Component/NewComponentBoxView.js",
+            "line": 1,
+            "extends": "Backbone.RelationalModel"
+        },
+        "Image": {
+            "name": "Image",
+            "submodules": {},
+            "classes": {
+                "ImageModel": 1,
+                "ImageToolboxView": 1,
+                "ImageUploadFormView": 1,
+                "ImageView": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Component",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Image/ImageView.js",
+            "line": 1,
+            "extends": "ComponentModel"
+        },
+        "Text": {
+            "name": "Text",
+            "submodules": {},
+            "classes": {
+                "AddLinkWindowView": 1,
+                "ColorPickerView": 1,
+                "TextModel": 1,
+                "TextToolboxView": 1,
+                "TextView": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Component",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Text/TextView.js",
+            "line": 1,
+            "extends": "Backbone.View"
+        },
+        "Video": {
+            "name": "Video",
+            "submodules": {},
+            "classes": {
+                "VideoModel": 1,
+                "VideoToolboxView": 1,
+                "VideoUploadFormView": 1,
+                "VideoView": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "Component",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Video/VideoView.js",
+            "line": 1,
+            "extends": "ComponentModel"
+        },
+        "Slide": {
+            "name": "Slide",
+            "submodules": {},
+            "classes": {
+                "SlideMiniView": 1,
+                "SlideModel": 1,
+                "SlideOptionsBoxView": 1,
+                "SlideView": 1,
+                "SlidesListView": 1,
+                "SlidesMapView": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "line": 1,
+            "extends": "Backbone.View"
+        },
+        "Theme": {
+            "name": "Theme",
+            "submodules": {},
+            "classes": {
+                "ThemeSelectorView": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 1,
+            "extends": "Backbone.View"
+        },
+        "Editor": {
+            "name": "Editor",
+            "submodules": {},
+            "classes": {
+                "App": 1,
+                "EditorView": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 1,
+            "itemtype": "main",
+            "static": 1,
+            "extends": "Backbone.View"
+        }
+    },
     "classes": {
         "ChatWindowView": {
             "name": "ChatWindowView",
@@ -33,30 +432,390 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
-            "line": 2,
-            "extends": "Backbone.View"
+            "module": "Collaborative",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "line": 1
+        },
+        "User": {
+            "name": "User",
+            "shortname": "User",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Collaborative",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Collaborative/User.js",
+            "line": 1
+        },
+        "ImageModel": {
+            "name": "ImageModel",
+            "shortname": "ImageModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Image",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Image/ImageModel.js",
+            "line": 1
+        },
+        "ImageToolboxView": {
+            "name": "ImageToolboxView",
+            "shortname": "ImageToolboxView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Image",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Image/ImageToolboxView.js",
+            "line": 1
+        },
+        "ImageUploadFormView": {
+            "name": "ImageUploadFormView",
+            "shortname": "ImageUploadFormView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Image",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Image/ImageUploadFormView.js",
+            "line": 1
+        },
+        "ImageView": {
+            "name": "ImageView",
+            "shortname": "ImageView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Image",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Image/ImageView.js",
+            "line": 1
+        },
+        "AddLinkWindowView": {
+            "name": "AddLinkWindowView",
+            "shortname": "AddLinkWindowView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Text",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Text/AddLinkWindowView.js",
+            "line": 1
+        },
+        "ColorPickerView": {
+            "name": "ColorPickerView",
+            "shortname": "ColorPickerView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Text",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Text/ColorPickerView.js",
+            "line": 1
+        },
+        "TextModel": {
+            "name": "TextModel",
+            "shortname": "TextModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Text",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Text/TextModel.js",
+            "line": 1
+        },
+        "TextToolboxView": {
+            "name": "TextToolboxView",
+            "shortname": "TextToolboxView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Text",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Text/TextToolboxView.js",
+            "line": 1
+        },
+        "TextView": {
+            "name": "TextView",
+            "shortname": "TextView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Text",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Text/TextView.js",
+            "line": 1
+        },
+        "VideoModel": {
+            "name": "VideoModel",
+            "shortname": "VideoModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Video",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Video/VideoModel.js",
+            "line": 1
+        },
+        "VideoToolboxView": {
+            "name": "VideoToolboxView",
+            "shortname": "VideoToolboxView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Video",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Video/VideoToolboxView.js",
+            "line": 1
+        },
+        "VideoUploadFormView": {
+            "name": "VideoUploadFormView",
+            "shortname": "VideoUploadFormView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Video",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Video/VideoUploadFormView.js",
+            "line": 1
+        },
+        "VideoView": {
+            "name": "VideoView",
+            "shortname": "VideoView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "submodule": "Video",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/Video/VideoView.js",
+            "line": 1
+        },
+        "ComponentModel": {
+            "name": "ComponentModel",
+            "shortname": "ComponentModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/ComponentModel.js",
+            "line": 1
+        },
+        "ComponentView": {
+            "name": "ComponentView",
+            "shortname": "ComponentView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/ComponentView.js",
+            "line": 1
+        },
+        "NewComponentBoxView": {
+            "name": "NewComponentBoxView",
+            "shortname": "NewComponentBoxView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Component",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Component/NewComponentBoxView.js",
+            "line": 1
+        },
+        "SlideMiniView": {
+            "name": "SlideMiniView",
+            "shortname": "SlideMiniView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Slide",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 1
+        },
+        "SlideModel": {
+            "name": "SlideModel",
+            "shortname": "SlideModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Slide",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "line": 1
+        },
+        "SlideOptionsBoxView": {
+            "name": "SlideOptionsBoxView",
+            "shortname": "SlideOptionsBoxView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Slide",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 1
+        },
+        "SlideView": {
+            "name": "SlideView",
+            "shortname": "SlideView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Slide",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 1
+        },
+        "SlidesListView": {
+            "name": "SlidesListView",
+            "shortname": "SlidesListView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Slide",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Slide/SlidesListView.js",
+            "line": 1
+        },
+        "SlidesMapView": {
+            "name": "SlidesMapView",
+            "shortname": "SlidesMapView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Slide",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "line": 1
+        },
+        "ThemeSelectorView": {
+            "name": "ThemeSelectorView",
+            "shortname": "ThemeSelectorView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Theme",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 1
+        },
+        "App": {
+            "name": "App",
+            "shortname": "App",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Editor",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 1,
+            "description": "This module stores global variables inside a namespace called \"app\".\nIt also runs some statements to prepare the app before starting.",
+            "mainName": "App",
+            "tag": "main",
+            "itemtype": "main",
+            "_main": true
+        },
+        "EditorView": {
+            "name": "EditorView",
+            "shortname": "EditorView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Editor",
+            "namespace": "",
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 1
         }
     },
     "classitems": [
         {
-            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
-            "line": 10,
+            "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "line": 12,
+            "description": "Calls sendMessage()",
             "itemtype": "event",
-            "name": "submit #chat-form\nCalls sendMessage()",
-            "class": "ChatWindowView"
+            "name": "submit #chat-form",
+            "class": "ChatWindowView",
+            "module": "Collaborative"
         },
         {
-            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
-            "line": 17,
+            "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "line": 19,
             "description": "Connects to socket.io to start sending and receiving messages.\nIt will only connect if you're editing as a non-anonymous user.",
             "itemtype": "method",
             "name": "initialize",
-            "class": "ChatWindowView"
+            "class": "ChatWindowView",
+            "module": "Collaborative"
         },
         {
-            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
-            "line": 29,
+            "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "line": 31,
             "description": "Sends a chat message to the other connected users",
             "itemtype": "method",
             "name": "sendMessage",
@@ -67,21 +826,230 @@
                     "type": "Object"
                 }
             ],
-            "class": "ChatWindowView"
+            "class": "ChatWindowView",
+            "module": "Collaborative"
         },
         {
-            "file": "django_app/project/static/js/editor/Chat/ChatWindowView.js",
-            "line": 45,
+            "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "line": 47,
             "description": "Appends a new message to the chat conversation",
             "itemtype": "method",
             "name": "appendMessage",
-            "class": "ChatWindowView"
+            "params": [
+                {
+                    "name": "data",
+                    "description": "message data"
+                }
+            ],
+            "class": "ChatWindowView",
+            "module": "Collaborative"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Component/Image/ImageToolboxView.js",
+            "line": 24,
+            "description": "Increases the font size",
+            "itemtype": "method",
+            "name": "increaseSize",
+            "class": "ImageToolboxView",
+            "module": "Component",
+            "submodule": "Image"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Component/Image/ImageToolboxView.js",
+            "line": 33,
+            "description": "Decreases the font size",
+            "itemtype": "method",
+            "name": "decreaseSize",
+            "class": "ImageToolboxView",
+            "module": "Component",
+            "submodule": "Image"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 34,
+            "description": "Returns the value of a CSS transform property from a DOM element",
+            "itemtype": "method",
+            "name": "getTransformValue",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "DOM element",
+                    "type": "Object"
+                },
+                {
+                    "name": "property",
+                    "description": "Item from the transform CSS property, example: rotateZ",
+                    "type": "String"
+                }
+            ],
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 55,
+            "description": "Transforms a translate3D property value from a transform CSS into an array",
+            "itemtype": "method",
+            "name": "translate3DToArray",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "translate3D value from transform CSS property",
+                    "type": "Object"
+                }
+            ],
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 66,
+            "description": "Get the supported CSS property from a given array according to the web browser.\n<br>Example: app.getSupportedCSSProp([\"webkitTransform\", \"MozTransform\", \"OTransform\"]) will return MozTransform if you're using Firefox'",
+            "itemtype": "method",
+            "name": "getSupportedCSSProp",
+            "params": [
+                {
+                    "name": "proparray",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 83,
+            "description": "Runs an infinite loop every 5 seconds wheres saves all the presentation data on the Browser's Local Storage as JSON",
+            "itemtype": "method",
+            "name": "saveAllToLocalStorage",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 94,
+            "description": "Deselects all the components and sets the variable app.selected_component as null",
+            "itemtype": "method",
+            "name": "deselectAllComponents",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 105,
+            "description": "Name for the transform CSS property according to the browser and its prefix",
+            "itemtype": "attribute",
+            "name": "css_transform",
+            "type": "String",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 111,
+            "description": "Name for the transition CSS property according to the browser and its prefix",
+            "itemtype": "attribute",
+            "name": "css_transform",
+            "type": "String",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 118,
+            "description": "Current selected color on the ColorPicker",
+            "itemtype": "attribute",
+            "name": "selected_color",
+            "type": "String",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 125,
+            "description": "Set of variables for Navigation mode",
+            "itemtype": "attribute",
+            "name": "nav",
+            "type": "Object",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 139,
+            "description": "CID of the selected slide",
+            "itemtype": "attribute",
+            "name": "selected_slide",
+            "type": "String",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 146,
+            "description": "Model of the selected component",
+            "itemtype": "attribute",
+            "name": "selected_component",
+            "type": "Object (ComponentModel)",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 153,
+            "description": "Indicates whether the last change was made from server or not",
+            "itemtype": "attribute",
+            "name": "updated_from_server",
+            "type": "boolean",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 162,
+            "description": "Websocket object which connects to Socket.io",
+            "itemtype": "attribute",
+            "name": "socket",
+            "type": "Object",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 181,
+            "description": "Collection of slide objects",
+            "itemtype": "attribute",
+            "name": "SlideCollection",
+            "type": "Object (Backbone.Collection)",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 214,
+            "description": "Collection of component objects",
+            "itemtype": "attribute",
+            "name": "ComponentCollection",
+            "type": "Object (Backbone.Collection)",
+            "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/App.js",
+            "line": 224,
+            "description": "Instantiate Backbone.View objects",
+            "itemtype": "event",
+            "name": "Document ready",
+            "class": "App",
+            "module": "Editor"
         },
         {
             "file": "django_app/project/static/js/editor/impress_custom.js",
             "line": 1,
             "description": "impress.js\n\nimpress.js is a presentation tool based on the power of CSS3 transforms and transitions\nin modern browsers and inspired by the idea behind prezi.com.\n\n\nCopyright 2011-2012 Bartek Szopka (@bartaz)\n\nReleased under the MIT and GPL Licenses.\n\n------------------------------------------------\n author:  Bartek Szopka\n version: 0.5.3\n url:     http://bartaz.github.com/impress.js/\n source:  http://github.com/bartaz/impress.js/",
-            "class": ""
+            "class": "",
+            "module": "Editor"
         }
     ],
     "warnings": [
