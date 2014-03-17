@@ -247,7 +247,9 @@
         },
         "django_app/project/static/js/editor/App.js": {
             "name": "django_app/project/static/js/editor/App.js",
-            "modules": {},
+            "modules": {
+                "Editor": 1
+            },
             "classes": {
                 "App": 1
             },
@@ -256,9 +258,7 @@
         },
         "django_app/project/static/js/editor/EditorView.js": {
             "name": "django_app/project/static/js/editor/EditorView.js",
-            "modules": {
-                "Editor": 1
-            },
+            "modules": {},
             "classes": {
                 "EditorView": 1
             },
@@ -417,10 +417,8 @@
             "namespaces": {},
             "tag": "module",
             "file": "django_app/project/static/js/editor/EditorView.js",
-            "line": 1,
-            "itemtype": "main",
-            "static": 1,
-            "extends": "Backbone.View"
+            "line": 6,
+            "itemtype": "main"
         }
     },
     "classes": {
@@ -682,7 +680,9 @@
             "module": "Slide",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
-            "line": 1
+            "line": 5,
+            "description": "View for Slide mini-previews located at slides list.",
+            "extends": "Backbone.View"
         },
         "SlideModel": {
             "name": "SlideModel",
@@ -695,7 +695,9 @@
             "module": "Slide",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
-            "line": 1
+            "line": 5,
+            "description": "Slide model",
+            "extends": "Backbone.RelationalModel"
         },
         "SlideOptionsBoxView": {
             "name": "SlideOptionsBoxView",
@@ -708,7 +710,9 @@
             "module": "Slide",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 1
+            "line": 5,
+            "description": "Panel that shows some options for each slide like edit and delete button, scale, rotation, etc.",
+            "extends": "Backbone.View"
         },
         "SlideView": {
             "name": "SlideView",
@@ -773,12 +777,9 @@
             "module": "Editor",
             "namespace": "",
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 1,
-            "description": "This module stores global variables inside a namespace called \"app\".\nIt also runs some statements to prepare the app before starting.",
-            "mainName": "App",
-            "tag": "main",
-            "itemtype": "main",
-            "_main": true
+            "line": 5,
+            "description": "This class stores global variables inside a namespace called \"app\".\nIt also runs some statements to prepare the app before starting.",
+            "static": 1
         },
         "EditorView": {
             "name": "EditorView",
@@ -791,7 +792,9 @@
             "module": "Editor",
             "namespace": "",
             "file": "django_app/project/static/js/editor/EditorView.js",
-            "line": 1
+            "line": 6,
+            "description": "Main view that involves the whole page.\nIt contains the main actions such as \"add slide\" button, \"preview\" button, etc.",
+            "extends": "Backbone.View"
         }
     },
     "classitems": [
@@ -865,8 +868,263 @@
             "submodule": "Image"
         },
         {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 14,
+            "description": "Tag name: li",
+            "itemtype": "property",
+            "name": "tagName",
+            "type": "String",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 21,
+            "description": "Class name: slide-mini",
+            "itemtype": "property",
+            "name": "className",
+            "type": "String",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 28,
+            "description": "Template: #template-slide-mini",
+            "itemtype": "property",
+            "name": "template",
+            "type": "String",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 36,
+            "description": "Calls goThere()",
+            "itemtype": "event",
+            "name": "click",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 41,
+            "description": "Calls clickDelete",
+            "itemtype": "event",
+            "name": "click .btn-delete",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 48,
+            "description": "Runs when the class is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 57,
+            "description": "Renders the view",
+            "itemtype": "method",
+            "name": "render",
+            "return": {
+                "description": "View object"
+            },
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 68,
+            "description": "Go to the clicked slide-mini to edit",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Click event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 84,
+            "description": "Update the image thumbnail from the slide",
+            "itemtype": "method",
+            "name": "generateThumbnail",
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideMiniView.js",
+            "line": 92,
+            "description": "When the user clicks on the delete button",
+            "itemtype": "method",
+            "name": "clickDelete",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Click event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideMiniView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "line": 14,
+            "description": "Array of objects that define the model with other models",
+            "itemtype": "property",
+            "name": "relations",
+            "type": "Array",
+            "class": "SlideModel",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "line": 30,
+            "description": "Default values when creating the model",
+            "itemtype": "property",
+            "name": "defaults",
+            "type": "Objects",
+            "class": "SlideModel",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "line": 45,
+            "itemtype": "property",
+            "name": "urlRoot",
+            "type": "String",
+            "class": "SlideModel",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "line": 51,
+            "description": "Represents the name of the ID attribute",
+            "itemtype": "property",
+            "name": "idAttribute",
+            "type": "String",
+            "class": "SlideModel",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideModel.js",
+            "line": 58,
+            "description": "First executed method when the class is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "SlideModel",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 17,
+            "description": "Calls editSlide()",
+            "itemtype": "event",
+            "name": "click #btn-edit-presentation",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 22,
+            "description": "Calls scaleSlide()",
+            "itemtype": "event",
+            "name": "change #input-scale",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 27,
+            "description": "Calls saveScaleSlide()",
+            "itemtype": "event",
+            "name": "mouseup #input-scale",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 32,
+            "description": "Calls rotateSlideZ()",
+            "itemtype": "event",
+            "name": "change #input-rotation-z",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 37,
+            "description": "Calls saveRotateSlideZ()",
+            "itemtype": "event",
+            "name": "mouseup #input-rotation-z",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 42,
+            "description": "Calls rotateSlideX()",
+            "itemtype": "event",
+            "name": "change #input-rotation-x",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 47,
+            "description": "Calls saveRotateSlideX()",
+            "itemtype": "event",
+            "name": "mouseup #input-rotation-x",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 52,
+            "description": "Calls rotateSlideY()",
+            "itemtype": "event",
+            "name": "change #input-rotation-y",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 57,
+            "description": "Calls saveRotateSlideY()",
+            "itemtype": "event",
+            "name": "mouseup #input-rotation-y",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 62,
+            "description": "Calls deleteSlide()",
+            "itemtype": "event",
+            "name": "click #btn-delete-slide",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 69,
+            "description": "Go to the edit mode on the selected slide",
+            "itemtype": "method",
+            "name": "editSlide",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 34,
+            "line": 36,
             "description": "Returns the value of a CSS transform property from a DOM element",
             "itemtype": "method",
             "name": "getTransformValue",
@@ -887,7 +1145,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 55,
+            "line": 57,
             "description": "Transforms a translate3D property value from a transform CSS into an array",
             "itemtype": "method",
             "name": "translate3DToArray",
@@ -903,7 +1161,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 66,
+            "line": 68,
             "description": "Get the supported CSS property from a given array according to the web browser.\n<br>Example: app.getSupportedCSSProp([\"webkitTransform\", \"MozTransform\", \"OTransform\"]) will return MozTransform if you're using Firefox'",
             "itemtype": "method",
             "name": "getSupportedCSSProp",
@@ -919,7 +1177,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 83,
+            "line": 85,
             "description": "Runs an infinite loop every 5 seconds wheres saves all the presentation data on the Browser's Local Storage as JSON",
             "itemtype": "method",
             "name": "saveAllToLocalStorage",
@@ -928,7 +1186,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 94,
+            "line": 96,
             "description": "Deselects all the components and sets the variable app.selected_component as null",
             "itemtype": "method",
             "name": "deselectAllComponents",
@@ -937,7 +1195,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 105,
+            "line": 107,
             "description": "Name for the transform CSS property according to the browser and its prefix",
             "itemtype": "attribute",
             "name": "css_transform",
@@ -947,7 +1205,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 111,
+            "line": 113,
             "description": "Name for the transition CSS property according to the browser and its prefix",
             "itemtype": "attribute",
             "name": "css_transform",
@@ -957,7 +1215,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 118,
+            "line": 120,
             "description": "Current selected color on the ColorPicker",
             "itemtype": "attribute",
             "name": "selected_color",
@@ -967,7 +1225,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 125,
+            "line": 127,
             "description": "Set of variables for Navigation mode",
             "itemtype": "attribute",
             "name": "nav",
@@ -977,7 +1235,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 139,
+            "line": 141,
             "description": "CID of the selected slide",
             "itemtype": "attribute",
             "name": "selected_slide",
@@ -987,7 +1245,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 146,
+            "line": 148,
             "description": "Model of the selected component",
             "itemtype": "attribute",
             "name": "selected_component",
@@ -997,7 +1255,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 153,
+            "line": 155,
             "description": "Indicates whether the last change was made from server or not",
             "itemtype": "attribute",
             "name": "updated_from_server",
@@ -1007,7 +1265,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 162,
+            "line": 164,
             "description": "Websocket object which connects to Socket.io",
             "itemtype": "attribute",
             "name": "socket",
@@ -1017,7 +1275,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 181,
+            "line": 183,
             "description": "Collection of slide objects",
             "itemtype": "attribute",
             "name": "SlideCollection",
@@ -1027,7 +1285,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 214,
+            "line": 216,
             "description": "Collection of component objects",
             "itemtype": "attribute",
             "name": "ComponentCollection",
@@ -1037,11 +1295,93 @@
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
-            "line": 224,
+            "line": 226,
             "description": "Instantiate Backbone.View objects",
             "itemtype": "event",
             "name": "Document ready",
             "class": "App",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 15,
+            "description": "Element: body",
+            "itemtype": "property",
+            "name": "el",
+            "type": "DOM Object",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 23,
+            "description": "Calls addSlide()",
+            "itemtype": "event",
+            "name": "click #btn-add-slide",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 28,
+            "description": "Calls goToNavigationEditMode()",
+            "itemtype": "event",
+            "name": "click #btn-navigation-mode",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 33,
+            "description": "Calls previewPresentation()",
+            "itemtype": "event",
+            "name": "click #btn-preview-presentation",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 38,
+            "description": "Calls exitFromPreviewMode()",
+            "itemtype": "event",
+            "name": "click #btn-exit-preview-mode",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 45,
+            "description": "Adds a new slide to the presentation",
+            "itemtype": "method",
+            "name": "addSlide",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 75,
+            "description": "Go to the navigation mode where you can manage the slide properties such as position, rotation, size, etc.\nIn this mode you can also make zooming with the mousewheel.",
+            "itemtype": "method",
+            "name": "goToNavigationEditMode",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 85,
+            "description": "Go to the presentation preview mode where you can play the the presentation.\nIn this mode you can you can step between slides with arrow keys and go back to the editor mode with Esc key",
+            "itemtype": "method",
+            "name": "previewPresentation",
+            "class": "EditorView",
+            "module": "Editor"
+        },
+        {
+            "file": "django_app/project/static/js/editor/EditorView.js",
+            "line": 96,
+            "description": "Exit from the preview mode and continue editing",
+            "itemtype": "method",
+            "name": "exitFromPreviewMode",
+            "class": "EditorView",
             "module": "Editor"
         },
         {
@@ -1053,6 +1393,10 @@
         }
     ],
     "warnings": [
+        {
+            "message": "Missing item type\nGo to the clicked slide-mini to edit",
+            "line": " django_app/project/static/js/editor/Slide/SlideMiniView.js:68"
+        },
         {
             "message": "Missing item type\nimpress.js\n\nimpress.js is a presentation tool based on the power of CSS3 transforms and transitions\nin modern browsers and inspired by the idea behind prezi.com.\n\n\nCopyright 2011-2012 Bartek Szopka (@bartaz)\n\nReleased under the MIT and GPL Licenses.\n\n------------------------------------------------\n author:  Bartek Szopka\n version: 0.5.3\n url:     http://bartaz.github.com/impress.js/\n source:  http://github.com/bartaz/impress.js/",
             "line": " django_app/project/static/js/editor/impress_custom.js:1"

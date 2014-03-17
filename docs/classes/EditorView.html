@@ -155,10 +155,14 @@
     
 
     
+        <div class="extends">
+            Extends Backbone.View
+        </div>
+    
 
     
         <div class="foundat">
-            Defined in: <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l1"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:1</code></a>
+            Defined in: <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l6"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:6</code></a>
         </div>
     
 
@@ -174,7 +178,9 @@
 
 
 <div class="box intro">
-    
+    <p>Main view that involves the whole page.
+It contains the main actions such as &quot;add slide&quot; button, &quot;preview&quot; button, etc.</p>
+
 </div>
 
 
@@ -184,8 +190,14 @@
         <li class="api-class-tab index"><a href="#index">Index</a></li>
 
         
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
         
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+        
+        
+        
+            <li class="api-class-tab events"><a href="#events">Events</a></li>
         
     </ul>
 
@@ -194,20 +206,568 @@
             <h2 class="off-left">Item Index</h2>
 
             
+                <div class="index-section methods">
+                    <h3>Methods</h3>
 
+                    <ul class="index-list methods extends">
+                        
+                            <li class="index-item method">
+                                <a href="#method_addSlide">addSlide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_exitFromPreviewMode">exitFromPreviewMode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_goToNavigationEditMode">goToNavigationEditMode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_previewPresentation">previewPresentation</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
+            
+
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                        
+                            <li class="index-item property">
+                                <a href="#property_el">el</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
 
             
 
+            
+                <div class="index-section events">
+                    <h3>Events</h3>
+
+                    <ul class="index-list events extends">
+                        
+                            <li class="index-item event">
+                                <a href="#event_click #btn-add-slide">click #btn-add-slide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_click #btn-exit-preview-mode">click #btn-exit-preview-mode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_click #btn-navigation-mode">click #btn-navigation-mode</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_click #btn-preview-presentation">click #btn-preview-presentation</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
         </div>
 
         
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_addSlide" class="method item">
+    <h3 class="name"><code>addSlide</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l45"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:45</code></a>
+        
+        </p>
+
 
         
 
         
+    </div>
 
+    <div class="description">
+        <p>Adds a new slide to the presentation</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_exitFromPreviewMode" class="method item">
+    <h3 class="name"><code>exitFromPreviewMode</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l96"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:96</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Exit from the preview mode and continue editing</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_goToNavigationEditMode" class="method item">
+    <h3 class="name"><code>goToNavigationEditMode</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l75"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:75</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Go to the navigation mode where you can manage the slide properties such as position, rotation, size, etc.
+In this mode you can also make zooming with the mousewheel.</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_previewPresentation" class="method item">
+    <h3 class="name"><code>previewPresentation</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l85"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:85</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Go to the presentation preview mode where you can play the the presentation.
+In this mode you can you can step between slides with arrow keys and go back to the editor mode with Esc key</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_el" class="property item">
+    <h3 class="name"><code>el</code></h3>
+    <span class="type">DOM Object</span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l15"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:15</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Element: body</p>
+
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
+        
+
+        
+
+        
+            <div id="events" class="api-class-tabpanel">
+                <h2 class="off-left">Events</h2>
+
+                
+                    <div id="event_click #btn-add-slide" class="events item">
+    <h3 class="name"><code>click #btn-add-slide</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l23"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:23</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Calls addSlide()</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_click #btn-exit-preview-mode" class="events item">
+    <h3 class="name"><code>click #btn-exit-preview-mode</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l38"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:38</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Calls exitFromPreviewMode()</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_click #btn-navigation-mode" class="events item">
+    <h3 class="name"><code>click #btn-navigation-mode</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l28"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:28</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Calls goToNavigationEditMode()</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_click #btn-preview-presentation" class="events item">
+    <h3 class="name"><code>click #btn-preview-presentation</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/django_app_project_static_js_editor_EditorView.js.html#l33"><code>django_app&#x2F;project&#x2F;static&#x2F;js&#x2F;editor&#x2F;EditorView.js:33</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Calls previewPresentation()</p>
+
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+            </div>
         
     </div>
 </div>

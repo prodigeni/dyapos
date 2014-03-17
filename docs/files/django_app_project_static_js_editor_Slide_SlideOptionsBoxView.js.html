@@ -156,6 +156,10 @@
     <pre class="code prettyprint linenums">
 /**
  * @module Slide
+ */
+
+/**
+ * Panel that shows some options for each slide like edit and delete button, scale, rotation, etc.
  * @class SlideOptionsBoxView
  * @extends Backbone.View
  */
@@ -166,18 +170,62 @@ define([], function() {
 		el : document.getElementById(&quot;slide-options&quot;),
 
 		events : {
+			/**
+			 * Calls editSlide()
+			 * @event click #btn-edit-presentation
+			 */
 			&quot;click #btn-edit-presentation&quot; : &quot;editSlide&quot;,
+			/**
+			 * Calls scaleSlide()
+			 * @event change #input-scale
+			 */
 			&quot;change #input-scale&quot; : &quot;scaleSlide&quot;,
+			/**
+			 * Calls saveScaleSlide()
+			 * @event mouseup #input-scale
+			 */
 			&quot;mouseup #input-scale&quot; : &quot;saveScaleSlide&quot;,
+			/**
+			 * Calls rotateSlideZ()
+			 * @event change #input-rotation-z
+			 */
 			&quot;change #input-rotation-z&quot; : &quot;rotateSlideZ&quot;,
+			/**
+			 * Calls saveRotateSlideZ()
+			 * @event mouseup #input-rotation-z
+			 */
 			&quot;mouseup #input-rotation-z&quot; : &quot;saveRotateSlideZ&quot;,
+			/**
+			 * Calls rotateSlideX()
+			 * @event change #input-rotation-x
+			 */
 			&quot;change #input-rotation-x&quot; : &quot;rotateSlideX&quot;,
+			/**
+			 * Calls saveRotateSlideX()
+			 * @event mouseup #input-rotation-x
+			 */
 			&quot;mouseup #input-rotation-x&quot; : &quot;saveRotateSlideX&quot;,
+			/**
+			 * Calls rotateSlideY()
+			 * @event change #input-rotation-y
+			 */
 			&quot;change #input-rotation-y&quot; : &quot;rotateSlideY&quot;,
+			/**
+			 * Calls saveRotateSlideY()
+			 * @event mouseup #input-rotation-y
+			 */
 			&quot;mouseup #input-rotation-y&quot; : &quot;saveRotateSlideY&quot;,
+			/**
+			 * Calls deleteSlide()
+			 * @event click #btn-delete-slide
+			 */
 			&quot;click #btn-delete-slide&quot; : &quot;deleteSlide&quot;
 		},
 
+		/**
+		 * Go to the edit mode on the selected slide
+		 * @method editSlide
+		 */
 		editSlide : function() {
 			app.views.navigation_mode.exitMode();
 			app.views.edit_mode.enterMode();

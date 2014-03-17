@@ -156,6 +156,10 @@
     <pre class="code prettyprint linenums">
 /**
  * @module Slide
+ */
+
+/**
+ * Slide model
  * @class SlideModel
  * @extends Backbone.RelationalModel
  */
@@ -163,6 +167,11 @@
 define([&quot;Component/ComponentModel&quot;], function(ComponentModel) {
 	&quot;use strict&quot;;
 	return Backbone.RelationalModel.extend({
+		/**
+		 * Array of objects that define the model with other models
+		 * @property relations
+		 * @type Array
+		 */
 		relations : [{
 			type : Backbone.HasMany,
 			key : &quot;components&quot;,
@@ -173,6 +182,12 @@ define([&quot;Component/ComponentModel&quot;], function(ComponentModel) {
 				includeInJSON : &quot;_id&quot;
 			}
 		}],
+
+		/**
+		 * Default values when creating the model
+		 * @property defaults
+		 * @type Objects
+		 */
 		defaults : {
 			pos_x : 0,
 			pos_y : 0,
@@ -182,10 +197,26 @@ define([&quot;Component/ComponentModel&quot;], function(ComponentModel) {
 			scale : 1,
 			number : 0
 		},
-		urlRoot : &quot;slide&quot;,
-		idAttribute : &quot;_id&quot;,
-		initialize : function() {
 
+		/**
+		 * @property urlRoot
+		 * @type String
+		 */
+		urlRoot : &quot;slide&quot;,
+
+		/**
+		 * Represents the name of the ID attribute
+		 * @property idAttribute
+		 * @type String
+		 */
+		idAttribute : &quot;_id&quot;,
+
+		/**
+		 * First executed method when the class is instantiated
+		 * @method initialize
+		 */
+		initialize : function() {
+			// When the model data changes, update to server
 			this.on(&quot;change&quot;, function() {
 				if (!app.is_anonymous) {
 					if (!_.isEmpty(this.changed) &amp;&amp; !this.changed.hasOwnProperty(&quot;_id&quot;)) {
@@ -197,11 +228,9 @@ define([&quot;Component/ComponentModel&quot;], function(ComponentModel) {
 						}
 					}
 				}
-
-				// this.updateThumbnail();
 			}, this);
 		},
-		// Methods
+
 
 		updateThumbnail : function() {
 			// console.log(&quot;Thumbnail updated&quot;);
