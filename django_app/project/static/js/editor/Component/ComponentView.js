@@ -36,6 +36,7 @@ define(["Component/Text/TextView",
 				handle : ".btn-move-component"
 			});
 
+			// Hack: Add a reverse view relationship to the model, so that way you can access to the view object from the model
 			this.model.view = this;
 		},
 

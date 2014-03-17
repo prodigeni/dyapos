@@ -11,6 +11,11 @@
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: #slide-options
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.getElementById("slide-options"),
 
 		events : {
