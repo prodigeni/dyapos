@@ -1,11 +1,20 @@
 /**
  * @module Collaborative
+ */
+
+/**
+ * Chat window view
  * @class ChatWindowView
  * @extends Backbone.View
  */
 
 define([], function() {"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: #chat
+		 * @property el
+		 * @type Dom Object
+		 */
 		el : document.getElementById("chat"),
 
 		events : {
@@ -19,7 +28,6 @@ define([], function() {"use strict";
 		/**
 		 * Connects to socket.io to start sending and receiving messages.
 		 * It will only connect if you're editing as a non-anonymous user.
-		 *
 		 * @method initialize
 		 */
 		initialize : function() {
@@ -30,7 +38,6 @@ define([], function() {"use strict";
 
 		/**
 		 * Sends a chat message to the other connected users
-		 *
 		 * @method sendMessage
 		 * @param event {Object} submit event object
 		 */

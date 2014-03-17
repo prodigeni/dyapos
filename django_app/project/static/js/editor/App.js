@@ -233,7 +233,6 @@ define(["Slide/SlideModel",
 		app.views.image_upload_form = new ImageUploadFormView();
 		app.views.video_upload_form = new VideoUploadFormView();
 		app.views.colorpicker = new ColorPickerView();
-		app.views.theme_selector = new ThemeSelectorView();
 		app.views.chat_window = new ChatWindowView();
 		app.views.add_link_window = new AddLinkWindowView();
 		app.views.new_component_box = new NewComponentBoxView();
@@ -245,6 +244,7 @@ define(["Slide/SlideModel",
 		app.views.edit_mode = new EditModeView();
 		app.views.navigation_mode = new NavigationModeView();
 		app.views.preview_mode = new PreviewModeView();
+		app.views.theme_selector = new ThemeSelectorView();
 	});
 
 	impress().init();
