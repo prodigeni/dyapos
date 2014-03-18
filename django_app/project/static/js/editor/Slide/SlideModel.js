@@ -56,7 +56,7 @@ define(["Component/ComponentModel"], function(ComponentModel) {
 		idAttribute : "_id",
 
 		/**
-		 * First executed method when the class is instantiated
+		 * Runs when the class is instantiated
 		 * @method initialize
 		 */
 		initialize : function() {

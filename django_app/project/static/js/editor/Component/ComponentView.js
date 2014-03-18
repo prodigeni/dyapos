@@ -1,5 +1,9 @@
 /**
  * @module Component
+ */
+
+/**
+ * Basic structure for a componenent View
  * @class ComponentView
  * @extends Backbone.View
  */
@@ -9,18 +13,50 @@ define(["Component/Text/TextView",
 		"Component/Text/TextView"], function(TextCompView, ImageCompView, VideoCompView) {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Tag name: li
+		 * @property tagName
+		 * @type String
+		 */
 		tagName : "div",
 
+		/**
+		 * Class name: slide-mini
+		 * @property className
+		 * @type String
+		 */
 		className : "component hoverable",
 
 		events : {
+			/**
+			 * Calls clickComponent()
+			 * @event click
+			 */
 			"click" : "clickComponent",
+			/**
+			 * Calls dragStopComponent()
+			 * @event dragstop
+			 */
 			"dragstop" : "dragStopComponent",
+			/**
+			 * Calls deleteComponent()
+			 * @event click .btn-delete-component
+			 */
 			"click .btn-delete-component" : "deleteComponent"
 		},
 
+		/**
+		 * Template for the view
+		 * @property template
+		 * @type String
+		 */
 		template : document.getElementById("template-component").innerHTML,
 
+		/**
+		 * Extra attributes for the view
+		 * @property attributes
+		 * @type Object
+		 */
 		attributes : function() {
 			return {
 				id : this.model.cid,
@@ -28,6 +64,10 @@ define(["Component/Text/TextView",
 			};
 		},
 
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
 			// When the component es destroyed
 			this.model.on("destroy", this.remove, this);
@@ -40,6 +80,10 @@ define(["Component/Text/TextView",
 			this.model.view = this;
 		},
 
+		/**
+		 * Renders the view
+		 * @method render
+		 */
 		render : function() {
 			var comp_view;
 
@@ -67,6 +111,11 @@ define(["Component/Text/TextView",
 			return this;
 		},
 
+		/**
+		 * When the user clicks a component
+		 * @method clickComponent
+		 * @param {Object} event Click event
+		 */
 		clickComponent : function(event) {
 			event.stopPropagation();
 			console.log("click component");
@@ -76,6 +125,7 @@ define(["Component/Text/TextView",
 			app.selected_component = this.model;
 			this.$el.addClass("selected-component");
 
+			// Show the toolbox according to the component type
 			switch(this.model.get("type")){
 				case "text": app.views.text_toolbox.show();
 							break;
@@ -86,15 +136,27 @@ define(["Component/Text/TextView",
 			}
 		},
 
+		/**
+		 * When the user stops dragging a component
+		 * @method dragStopComponent
+		 * @param {Object} event
+		 * @param {Object} ui
+		 */
 		dragStopComponent : function(event, ui) {
 			console.log("Change position");
 
+			// Save the new position on the model
 			this.model.set({
 				"pos_x" : ui.position.left,
 				"pos_y" : ui.position.top
 			});
 		},
 
+		/**
+		 * Removes a component
+		 * @method deleteComponent
+		 * @param {Object} event Click event
+		 */
 		deleteComponent : function(event) {
 			event.stopPropagation();
 			console.log("remove component");
