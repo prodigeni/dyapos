@@ -1,8 +1,27 @@
+/**
+ * @module Mode
+ */
+
+/**
+ * Navigation mode view for slides. Here you can navigate through slides, apply zooming, edit position, scale and rotate slides.
+ * @class EditModeView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: body
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.body,
 
+		/**
+		 * Enters to this mode. Here the events are defined and the user interface is prepared
+		 * @method enterMode
+		 */
 		enterMode : function() {
 			var map_style = app.nav.map.style[app.css_transform];
 
@@ -31,6 +50,10 @@ define([], function() {
 			});
 		},
 
+		/**
+		 * It's the oppossite of enterMode()
+		 * @method enterMode
+		 */
 		exitMode : function() {
 			app.views.slide_options_box.$el.hide();
 

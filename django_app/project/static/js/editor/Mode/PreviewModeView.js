@@ -1,8 +1,28 @@
+/**
+ * @module Mode
+ */
+
+/**
+ * Preview presentation mode view. Here you can see the presentation in execution
+ * @class PreviewModeView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: body
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.body,
 
+		/**
+		 * When the user hits a key
+		 * @method onKeyUp
+		 * @param {Object} event Keyup event
+		 */
 		onKeyUp : function(event) {
 			event.stopPropagation();
 
@@ -36,6 +56,10 @@ define([], function() {
 			event.preventDefault();
 		},
 
+		/**
+		 * Move to the next slide, if you're on the last one, it will move to the first one
+		 * @method goNext
+		 */
 		goNext : function() {
 			console.log("Go to next");
 			var next = app.slides.get(app.selected_slide).get("number") + 1;
@@ -44,6 +68,10 @@ define([], function() {
 			impress().goto(next);
 		},
 
+		/**
+		 * Move to the preview slide, if you're on the first one, it will move to the last one
+		 * @method goPrevious
+		 */
 		goPrevious : function() {
 			console.log("Go to previous");
 			var previous = app.slides.get(app.selected_slide).get("number") - 1;
@@ -52,6 +80,10 @@ define([], function() {
 			impress().goto(previous);
 		},
 
+		/**
+		 * Enters to this mode. Here the events are defined and the user interface is prepared
+		 * @method enterMode
+		 */
 		enterMode : function() {
 			console.log("enter preview mode");
 			$("body").addClass("non-selectable-text");
@@ -65,6 +97,10 @@ define([], function() {
 			});
 		},
 
+		/**
+		 * It's the oppossite of enterMode()
+		 * @method enterMode
+		 */
 		exitMode : function() {
 			console.log("exit from preview mode");
 			$("#btn-exit-preview-mode").hide();
