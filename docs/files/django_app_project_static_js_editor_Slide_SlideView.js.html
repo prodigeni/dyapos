@@ -156,16 +156,35 @@
     <pre class="code prettyprint linenums">
 /**
  * @module Slide
+ */
+
+/**
+ * View for the slide element
  * @class SlideView
  * @extends Backbone.View
  */
 
 define([&quot;Component/ComponentView&quot;], function(ComponentView) {&quot;use strict&quot;;
 	return Backbone.View.extend({
+		/**
+		 * Tag name: div
+		 * @property tagName
+		 * @type String
+		 */
 		tagName : &quot;div&quot;,
 
+		/**
+		 * Class name: step
+		 * @property className
+		 * @type String
+		 */
 		className : &quot;step&quot;,
 
+		/**
+		 * Extra attributes for the view
+		 * @property attributes
+		 * @type Object
+		 */
 		attributes : function() {
 			return {
 				&quot;id&quot; : this.model.cid,
@@ -179,11 +198,19 @@ define([&quot;Component/ComponentView&quot;], function(ComponentView) {&quot;use
 		},
 
 		events : {
+			/**
+			 * Calls clickInsideSlide()
+			 * @event click
+			 */
 			&quot;click&quot; : &quot;clickInsideSlide&quot;
 		},
 
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
-			// When the slide is destroyed
+			// When the model is destroyed
 			this.model.on(&quot;destroy&quot;, this.remove, this);
 
 			// When a new component is added to the slide
@@ -191,19 +218,30 @@ define([&quot;Component/ComponentView&quot;], function(ComponentView) {&quot;use
 				this.appendComponent(this.model.get(&quot;components&quot;).last());
 			}, this);
 
+			// Hack: Add a reverse view relationship to the model, so that way you can access to the view object from the model
 			this.model.view = this;
 		},
 
+		/**
+		 * Renders the view
+		 * @method render
+		 */
 		render : function() {
 			var components = this.model.get(&quot;components&quot;),
 				i;
 
 			for (i = 0; i &lt; components.length; i = i + 1) {
+				// Append every component found on the slide to be visible on the redered view
 				this.appendComponent(components.at(i));
 			}
 			return this;
 		},
 
+		/**
+		 * Appends a new component to the slide view
+		 * @method appendComponent
+		 * @params {Object} component_model Model of the component to be rendered
+		 */
 		appendComponent : function(component_model) {
 			var component = new ComponentView({
 				model : component_model
@@ -211,6 +249,11 @@ define([&quot;Component/ComponentView&quot;], function(ComponentView) {&quot;use
 			this.$el.append(component.render().$el);
 		},
 
+		/**
+		 * When the user clicks on the slide
+		 * @method clickInsideSlide
+		 * @param {Object} event Click event
+		 */
 		clickInsideSlide : function(event) {
 			event.stopPropagation();
 			console.log(&quot;event: click inside slide&quot;);
@@ -231,6 +274,7 @@ define([&quot;Component/ComponentView&quot;], function(ComponentView) {&quot;use
 				app.selected_component = null;
 			}
 
+			// Show the new component box
 			app.views.new_component_box.$el.show();
 		}
 	});

@@ -167,6 +167,11 @@
 define([], function() {
 	&quot;use strict&quot;;
 	return Backbone.View.extend({
+		/**
+		 * Element: #slide-options
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.getElementById(&quot;slide-options&quot;),
 
 		events : {
@@ -223,7 +228,7 @@ define([], function() {
 		},
 
 		/**
-		 * Go to the edit mode on the selected slide
+		 * Goes to the edit mode on the selected slide
 		 * @method editSlide
 		 */
 		editSlide : function() {
@@ -231,6 +236,11 @@ define([], function() {
 			app.views.edit_mode.enterMode();
 		},
 
+		/**
+		 * Scales the slide
+		 * @method scaleSlide
+		 * @param {Object} event Change event
+		 */
 		scaleSlide : function(event) {
 			var scale = event.target.value,
 				style = app.clicked_slide.style[app.css_transform];
@@ -240,6 +250,11 @@ define([], function() {
 			app.clicked_slide.dataset.scale = scale;
 		},
 
+		/**
+		 * Saves the scale value
+		 * @method scaleSlide
+		 * @param {Object} event Mouseup event
+		 */
 		saveScaleSlide : function() {
 			var scale = document.getElementById(app.selected_slide).dataset.scale,
 				slide = document.getElementById(app.selected_slide);
@@ -250,6 +265,11 @@ define([], function() {
 			app.slides.get(app.selected_slide).set(&quot;scale&quot;, scale);
 		},
 
+		/**
+		 * Rotates the slide on the Z-axis
+		 * @method rotateSlideZ
+		 * @param {Object} event Change event
+		 */
 		rotateSlideZ : function(event) {
 			var degreesZ = event.target.value,
 				slide = app.clicked_slide,
@@ -260,6 +280,11 @@ define([], function() {
 			slide.dataset.rotateZ = degreesZ;
 		},
 
+		/**
+		 * Saves the rotation on the Z-axis
+		 * @method saveRotateSlideZ
+		 * @param {Object} event Mouseup event
+		 */
 		saveRotateSlideZ : function() {
 			var degrees = parseInt(document.getElementById(app.selected_slide).dataset.rotateZ, 10),
 				slide = document.getElementById(app.selected_slide);
@@ -269,6 +294,11 @@ define([], function() {
 			app.slides.get(app.selected_slide).set(&quot;rotation_z&quot;, degrees);
 		},
 
+		/**
+		 * Rotates the slide on the X-axis
+		 * @method rotateSlideX
+		 * @param {Object} event Change event
+		 */
 		rotateSlideX : function(event) {
 			var degreesX = event.target.value,
 				slide = app.clicked_slide,
@@ -279,6 +309,11 @@ define([], function() {
 			slide.dataset.rotateX = degreesX;
 		},
 
+		/**
+		 * Saves the rotation on the X-axis
+		 * @method saveRotateSlideX
+		 * @param {Object} event Mouseup event
+		 */
 		saveRotateSlideX : function() {
 			var degrees = parseInt(document.getElementById(app.selected_slide).dataset.rotateX, 10),
 				slide = document.getElementById(app.selected_slide);
@@ -288,6 +323,11 @@ define([], function() {
 			app.slides.get(app.selected_slide).set(&quot;rotation_x&quot;, degrees);
 		},
 
+		/**
+		 * Rotates the slide on the Y-axis
+		 * @method rotateSlideY
+		 * @param {Object} event Change event
+		 */
 		rotateSlideY : function(event) {
 			var degreesY = event.target.value,
 				slide = document.getElementById(app.selected_slide),
@@ -298,6 +338,11 @@ define([], function() {
 			slide.dataset.rotateY = degreesY;
 		},
 
+		/**
+		 * Saves the rotation on the Y-axis
+		 * @method saveRotateSlideY
+		 * @param {Object} event Mouseup event
+		 */
 		saveRotateSlideY : function() {
 			var degrees = parseInt(document.getElementById(app.selected_slide).dataset.rotateY, 10),
 				slide = document.getElementById(app.selected_slide);
@@ -307,15 +352,15 @@ define([], function() {
 			app.slides.get(app.selected_slide).set(&quot;rotation_y&quot;, degrees);
 		},
 
+		/**
+		 * Deletes the selected slide
+		 * @method deleteSlide
+		 * @param {Object} event Click event
+		 */
 		deleteSlide : function(event) {
 			event.stopPropagation();
-
-			//Remove slide-mini
-			$(&quot;#&quot; + app.clicked_slide.id).remove();
-			$(&quot;#slide-&quot; + app.clicked_slide.id).remove();
-
-			this.hide();
 			app.slides.get(app.clicked_slide.id).destroy();
+			this.hide();
 		}
 	});
 });

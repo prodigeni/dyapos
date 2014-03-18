@@ -156,6 +156,10 @@
     <pre class="code prettyprint linenums">
 /**
  * @module Slide
+ */
+
+/**
+ * Map view where the slides are shown
  * @class SlidesMapView
  * @extends Backbone.View
  */
@@ -165,17 +169,23 @@ define([&quot;Slide/SlideModel&quot;,
 		&quot;Slide/SlidesListView&quot;], function(SlideModel, SlideView, SlidesListView) {
 	&quot;use strict&quot;;
 	return Backbone.View.extend({
+		/**
+		 * Element: #slides
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.getElementById(&quot;slides&quot;),
 
-		events : {
-		},
-
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
 			if (!app.is_anonymous) {
-				//Load from server
-
+				//Load the slides from the server
 				app.slides.sync(&quot;read&quot;, app.slides, {
 					success : function(data) {
+						//When the data has arriven
 						console.log(&quot;Data received from server: &quot;);
 						console.log(data);
 						//If presentation doesn&#x27;t have any slides (first time opened)
@@ -186,17 +196,21 @@ define([&quot;Slide/SlideModel&quot;,
 						} else {
 							app.slides = new app.SlideCollection(JSON.parse(data));
 						}
+						//Assign the collection of slides to this view&#x27;s collection
 						this.collection = app.slides;
 						this.render();
 
+						// When a new slide is added to the collection, calls appendSlide()
 						this.collection.on(&quot;add&quot;, function() {
 							console.log(&quot;called from SlidesMapView&quot;);
 							this.appendSlide(this.collection.last());
 						}, this);
 
+						// Instantiate the slide list view with the same data as collection
 						app.views.slides_list = new SlidesListView({
 							collection : app.slides
 						});
+						// Render the listview
 						app.views.slides_list.render();
 					}
 				});
@@ -209,34 +223,49 @@ define([&quot;Slide/SlideModel&quot;,
 				} else {
 					app.slides = new app.SlideCollection(JSON.parse(localStorage.slides));
 				}
+				//Assign the collection of slides to this view&#x27;s collection
 				this.collection = app.slides;
 				this.render();
 
+				// When a new slide is added to the collection, calls appendSlide()
 				this.collection.on(&quot;add&quot;, function() {
 					console.log(&quot;called from SlidesMapView&quot;);
 					this.appendSlide(this.collection.last());
 				}, this);
 
+				// Instantiate the slide list view with the same data as collection
 				app.views.slides_list = new SlidesListView({
 					collection : app.slides
 				});
+				// Render the listview
 				app.views.slides_list.render();
 			}
 		},
 
+		/**
+		 * Renders the view
+		 * @method render
+		 */
 		render : function() {
 			for (var i = 0; i &lt; this.collection.length; i = i + 1) {
+				// Append every slide found on the collection to the view
 				this.appendSlide(this.collection.at(i));
 			}
 			return this;
 		},
 
+		/**
+		 * Appends a new slide to the view
+		 * @method appendSlide
+		 * @param {Object} slide_model Model of the slide to render
+		 */
 		appendSlide : function(slide_model) {
 			var slide = new SlideView({
 				model : slide_model
 			});
 			this.$el.append(slide.render().$el);
 
+			// Init the new slide to Impress.js
 			impress().initStep(document.getElementById(slide.model.cid));
 		}
 	});

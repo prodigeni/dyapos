@@ -1,8 +1,30 @@
+/**
+ * Controls the different modes within the editor, like edit, navigation and preview mode.
+ * Every mode has different event listeners and user interface.
+ * @module Mode
+ * @main
+ */
+
+/**
+ * Edit mode view for slides. Here you can add components to the slides.
+ * @class EditModeView
+ * @extends Backbone.View
+ */
+
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: body
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.body,
 
+		/**
+		 * Enters to this mode. Here the events are defined and the user interface is prepared
+		 * @method enterMode
+		 */
 		enterMode : function() {
 			$("#btn-navigation-mode").show();
 			$(".component").addClass("hoverable");
@@ -28,6 +50,10 @@ define([], function() {
 			impress().goto(app.selected_slide);
 		},
 
+		/**
+		 * It's the oppossite of enterMode()
+		 * @method enterMode
+		 */
 		exitMode : function() {
 			app.deselectAllComponents();
 			app.views.new_component_box.$el.hide();

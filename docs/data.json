@@ -285,8 +285,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "django_app/project/static/js/editor/Collaborative/User.js",
-            "line": 1,
-            "extends": "Backbone.View"
+            "line": 1
         },
         "Component": {
             "name": "Component",
@@ -390,8 +389,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
-            "line": 1,
-            "extends": "Backbone.View"
+            "line": 5
         },
         "Theme": {
             "name": "Theme",
@@ -403,8 +401,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
-            "line": 1,
-            "extends": "Backbone.View"
+            "line": 5
         },
         "Editor": {
             "name": "Editor",
@@ -433,7 +430,9 @@
             "module": "Collaborative",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
-            "line": 1
+            "line": 5,
+            "description": "Chat window view",
+            "extends": "Backbone.View"
         },
         "User": {
             "name": "User",
@@ -725,7 +724,9 @@
             "module": "Slide",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Slide/SlideView.js",
-            "line": 1
+            "line": 5,
+            "description": "View for the slide element",
+            "extends": "Backbone.View"
         },
         "SlidesListView": {
             "name": "SlidesListView",
@@ -738,7 +739,9 @@
             "module": "Slide",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Slide/SlidesListView.js",
-            "line": 1
+            "line": 5,
+            "description": "List view of all the created slides, they are shown as thumbnails",
+            "extends": "Backbone.View"
         },
         "SlidesMapView": {
             "name": "SlidesMapView",
@@ -751,7 +754,9 @@
             "module": "Slide",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
-            "line": 1
+            "line": 5,
+            "description": "Map view where the slides are shown",
+            "extends": "Backbone.View"
         },
         "ThemeSelectorView": {
             "name": "ThemeSelectorView",
@@ -764,7 +769,9 @@
             "module": "Theme",
             "namespace": "",
             "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
-            "line": 1
+            "line": 5,
+            "description": "Theme selector window view",
+            "extends": "Backbone.View"
         },
         "App": {
             "name": "App",
@@ -800,7 +807,17 @@
     "classitems": [
         {
             "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
-            "line": 12,
+            "line": 13,
+            "description": "Element: #chat",
+            "itemtype": "property",
+            "name": "el",
+            "type": "Dom Object",
+            "class": "ChatWindowView",
+            "module": "Collaborative"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
+            "line": 21,
             "description": "Calls sendMessage()",
             "itemtype": "event",
             "name": "submit #chat-form",
@@ -809,7 +826,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
-            "line": 19,
+            "line": 28,
             "description": "Connects to socket.io to start sending and receiving messages.\nIt will only connect if you're editing as a non-anonymous user.",
             "itemtype": "method",
             "name": "initialize",
@@ -818,7 +835,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
-            "line": 31,
+            "line": 39,
             "description": "Sends a chat message to the other connected users",
             "itemtype": "method",
             "name": "sendMessage",
@@ -834,7 +851,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Collaborative/ChatWindowView.js",
-            "line": 47,
+            "line": 54,
             "description": "Appends a new message to the chat conversation",
             "itemtype": "method",
             "name": "appendMessage",
@@ -1025,7 +1042,17 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 17,
+            "line": 14,
+            "description": "Element: #slide-options",
+            "itemtype": "property",
+            "name": "el",
+            "type": "DOM Object",
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 22,
             "description": "Calls editSlide()",
             "itemtype": "event",
             "name": "click #btn-edit-presentation",
@@ -1034,7 +1061,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 22,
+            "line": 27,
             "description": "Calls scaleSlide()",
             "itemtype": "event",
             "name": "change #input-scale",
@@ -1043,7 +1070,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 27,
+            "line": 32,
             "description": "Calls saveScaleSlide()",
             "itemtype": "event",
             "name": "mouseup #input-scale",
@@ -1052,7 +1079,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 32,
+            "line": 37,
             "description": "Calls rotateSlideZ()",
             "itemtype": "event",
             "name": "change #input-rotation-z",
@@ -1061,7 +1088,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 37,
+            "line": 42,
             "description": "Calls saveRotateSlideZ()",
             "itemtype": "event",
             "name": "mouseup #input-rotation-z",
@@ -1070,7 +1097,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 42,
+            "line": 47,
             "description": "Calls rotateSlideX()",
             "itemtype": "event",
             "name": "change #input-rotation-x",
@@ -1079,7 +1106,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 47,
+            "line": 52,
             "description": "Calls saveRotateSlideX()",
             "itemtype": "event",
             "name": "mouseup #input-rotation-x",
@@ -1088,7 +1115,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 52,
+            "line": 57,
             "description": "Calls rotateSlideY()",
             "itemtype": "event",
             "name": "change #input-rotation-y",
@@ -1097,7 +1124,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 57,
+            "line": 62,
             "description": "Calls saveRotateSlideY()",
             "itemtype": "event",
             "name": "mouseup #input-rotation-y",
@@ -1106,7 +1133,7 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 62,
+            "line": 67,
             "description": "Calls deleteSlide()",
             "itemtype": "event",
             "name": "click #btn-delete-slide",
@@ -1115,12 +1142,396 @@
         },
         {
             "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
-            "line": 69,
-            "description": "Go to the edit mode on the selected slide",
+            "line": 74,
+            "description": "Goes to the edit mode on the selected slide",
             "itemtype": "method",
             "name": "editSlide",
             "class": "SlideOptionsBoxView",
             "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 83,
+            "description": "Scales the slide",
+            "itemtype": "method",
+            "name": "scaleSlide",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Change event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 97,
+            "description": "Saves the scale value",
+            "itemtype": "method",
+            "name": "scaleSlide",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Mouseup event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 112,
+            "description": "Rotates the slide on the Z-axis",
+            "itemtype": "method",
+            "name": "rotateSlideZ",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Change event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 127,
+            "description": "Saves the rotation on the Z-axis",
+            "itemtype": "method",
+            "name": "saveRotateSlideZ",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Mouseup event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 141,
+            "description": "Rotates the slide on the X-axis",
+            "itemtype": "method",
+            "name": "rotateSlideX",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Change event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 156,
+            "description": "Saves the rotation on the X-axis",
+            "itemtype": "method",
+            "name": "saveRotateSlideX",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Mouseup event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 170,
+            "description": "Rotates the slide on the Y-axis",
+            "itemtype": "method",
+            "name": "rotateSlideY",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Change event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 185,
+            "description": "Saves the rotation on the Y-axis",
+            "itemtype": "method",
+            "name": "saveRotateSlideY",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Mouseup event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideOptionsBoxView.js",
+            "line": 199,
+            "description": "Deletes the selected slide",
+            "itemtype": "method",
+            "name": "deleteSlide",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Click event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideOptionsBoxView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 13,
+            "description": "Tag name: div",
+            "itemtype": "property",
+            "name": "tagName",
+            "type": "String",
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 20,
+            "description": "Class name: step",
+            "itemtype": "property",
+            "name": "className",
+            "type": "String",
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 27,
+            "description": "Extra attributes for the view",
+            "itemtype": "property",
+            "name": "attributes",
+            "type": "Object",
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 45,
+            "description": "Calls clickInsideSlide()",
+            "itemtype": "event",
+            "name": "click",
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 52,
+            "description": "Runs when the class is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 69,
+            "description": "Renders the view",
+            "itemtype": "method",
+            "name": "render",
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 84,
+            "description": "Appends a new component to the slide view",
+            "itemtype": "method",
+            "name": "appendComponent",
+            "params": [
+                {
+                    "name": "component_model",
+                    "description": "Model of the component to be rendered",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlideView.js",
+            "line": 96,
+            "description": "When the user clicks on the slide",
+            "itemtype": "method",
+            "name": "clickInsideSlide",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Click event",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlideView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesListView.js",
+            "line": 13,
+            "description": "Element: #slides-list",
+            "itemtype": "property",
+            "name": "el",
+            "type": "DOM Object",
+            "class": "SlidesListView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesListView.js",
+            "line": 20,
+            "description": "Runs when the class is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "SlidesListView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesListView.js",
+            "line": 43,
+            "description": "Renders the view",
+            "itemtype": "method",
+            "name": "render",
+            "class": "SlidesListView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesListView.js",
+            "line": 55,
+            "description": "Appends a new SlideMiniView to this view",
+            "params": [
+                {
+                    "name": "slide_model",
+                    "description": "Model object of the slide to append",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlidesListView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "line": 16,
+            "description": "Element: #slides",
+            "itemtype": "property",
+            "name": "el",
+            "type": "DOM Object",
+            "class": "SlidesMapView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "line": 23,
+            "description": "Runs when the class is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "SlidesMapView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "line": 89,
+            "description": "Renders the view",
+            "itemtype": "method",
+            "name": "render",
+            "class": "SlidesMapView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Slide/SlidesMapView.js",
+            "line": 101,
+            "description": "Appends a new slide to the view",
+            "itemtype": "method",
+            "name": "appendSlide",
+            "params": [
+                {
+                    "name": "slide_model",
+                    "description": "Model of the slide to render",
+                    "type": "Object"
+                }
+            ],
+            "class": "SlidesMapView",
+            "module": "Slide"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 14,
+            "description": "Element: #themes-window",
+            "itemtype": "property",
+            "name": "el",
+            "type": "String",
+            "class": "ThemeSelectorView",
+            "module": "Theme"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 22,
+            "description": "Calls onClickTheme",
+            "itemtype": "event",
+            "name": "click .theme-link",
+            "class": "ThemeSelectorView",
+            "module": "Theme"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 29,
+            "description": "Runs when the class is instantiated",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "ThemeSelectorView",
+            "module": "Theme"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 42,
+            "description": "Loads the theme list from server",
+            "itemtype": "method",
+            "name": "loadList",
+            "class": "ThemeSelectorView",
+            "module": "Theme"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 61,
+            "description": "Set the selected theme and show it",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Name of the selected theme",
+                    "type": "Object"
+                }
+            ],
+            "class": "ThemeSelectorView",
+            "module": "Theme"
+        },
+        {
+            "file": "django_app/project/static/js/editor/Theme/ThemeSelectorView.js",
+            "line": 93,
+            "description": "When the user clicks on a theme from the theme selector window",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Click event",
+                    "type": "Object"
+                }
+            ],
+            "class": "ThemeSelectorView",
+            "module": "Theme"
         },
         {
             "file": "django_app/project/static/js/editor/App.js",
@@ -1394,8 +1805,24 @@
     ],
     "warnings": [
         {
+            "message": "replacing incorrect tag: params with param",
+            "line": " django_app/project/static/js/editor/Slide/SlideView.js:84"
+        },
+        {
             "message": "Missing item type\nGo to the clicked slide-mini to edit",
             "line": " django_app/project/static/js/editor/Slide/SlideMiniView.js:68"
+        },
+        {
+            "message": "Missing item type\nAppends a new SlideMiniView to this view",
+            "line": " django_app/project/static/js/editor/Slide/SlidesListView.js:55"
+        },
+        {
+            "message": "Missing item type\nSet the selected theme and show it",
+            "line": " django_app/project/static/js/editor/Theme/ThemeSelectorView.js:61"
+        },
+        {
+            "message": "Missing item type\nWhen the user clicks on a theme from the theme selector window",
+            "line": " django_app/project/static/js/editor/Theme/ThemeSelectorView.js:93"
         },
         {
             "message": "Missing item type\nimpress.js\n\nimpress.js is a presentation tool based on the power of CSS3 transforms and transitions\nin modern browsers and inspired by the idea behind prezi.com.\n\n\nCopyright 2011-2012 Bartek Szopka (@bartaz)\n\nReleased under the MIT and GPL Licenses.\n\n------------------------------------------------\n author:  Bartek Szopka\n version: 0.5.3\n url:     http://bartaz.github.com/impress.js/\n source:  http://github.com/bartaz/impress.js/",
