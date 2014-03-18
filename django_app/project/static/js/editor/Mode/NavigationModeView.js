@@ -4,7 +4,7 @@
 
 /**
  * Navigation mode view for slides. Here you can navigate through slides, apply zooming, edit position, scale and rotate slides.
- * @class EditModeView
+ * @class NavigationModeView
  * @extends Backbone.View
  */
 
@@ -60,6 +60,11 @@ define([], function() {
 			this.undelegateEvents();
 		},
 
+		/**
+		 * When the user clicks on a slide
+		 * @method onClickSlide
+		 * @param {Object} event Click Event
+		 */
 		onClickSlide : function(event) {
 			console.log("event: slide click");
 			app.selected_slide = event.target.id;
@@ -69,6 +74,11 @@ define([], function() {
 			app.views.slide_options_box.$el.show();
 		},
 
+		/**
+		 * When the user keeps the mouse click down on a slide
+		 * @method onMousedownSlide
+		 * @param {Object} event Mousedown event
+		 */
 		onMousedownSlide : function(event) {
 			event.stopPropagation();
 			if (event.target.classList[0] === "step") {
@@ -88,14 +98,19 @@ define([], function() {
 			}
 		},
 
+		/**
+		 * When the user moves the  mouse on a slide (while mousedown event is started)
+		 * @method onMoveSlide
+		 * @param {Object} event Mousedown event
+		 */
 		onMoveSlide : function(event) {
 			event.stopPropagation();
 			var movement = 7,
-				//get the difference from last position to this position
+				// Get the difference from last position to this position
 				deltaX = app.nav.last_x - event.clientX,
 				deltaY = app.nav.last_y - event.clientY;
 
-			//check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
+			// Check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
 
 			if (deltaX > 0) {
 				// If the movement is to left
@@ -116,11 +131,16 @@ define([], function() {
 			app.nav.last_x = event.clientX;
 			app.nav.last_y = event.clientY;
 
-			// apply movement to CSS style
+			// Apply movement to CSS style
 			app.nav.transform_style = app.nav.transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + app.nav.slide_trans3d[0] + "px," + app.nav.slide_trans3d[1] + "px,0px)");
 			app.clicked_slide.style[app.css_transform] = app.nav.transform_style;
 		},
 
+		/**
+		 * When the user releases the mouse button on a slide (while mousedown event is started)
+		 * @method onMouseupSlide
+		 * @param {Object} event Mouseup event
+		 */
 		onMouseupSlide : function(event) {
 			event.stopPropagation();
 			console.log("mouseup slide");
@@ -138,6 +158,11 @@ define([], function() {
 			$(document).off("mouseup", this.onMouseupSlide);
 		},
 
+		/**
+		 * When the user keeps the mouse click down on the map
+		 * @method onMousedownMap
+		 * @param {Object} event Mousedown event
+		 */
 		onMousedownMap : function(event) {
 			event.stopPropagation();
 			if (event.target.isEqualNode(document.body)) {
@@ -161,14 +186,19 @@ define([], function() {
 			}
 		},
 
+		/**
+		 * When the user moves the  mouse on the map (while mousedown event is started)
+		 * @method onMoveMap
+		 * @param {Object} event Mousedown event
+		 */
 		onMoveMap : function(event) {
 			event.stopPropagation();
 			var movement = 7,
-				//get the difference from last position to this position
+				// Get the difference from last position to this position
 				deltaX = app.nav.last_x - event.clientX,
 				deltaY = app.nav.last_y - event.clientY;
 
-			//check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
+			// Check which direction had the highest amplitude and then figure out direction by checking if the value is greater or less than zero
 			if (deltaX > 0) {
 				// If the movement is to left
 				console.log("left");
@@ -192,11 +222,16 @@ define([], function() {
 			app.nav.last_x = event.clientX;
 			app.nav.last_y = event.clientY;
 
-			// apply move to CSS style
+			// Apply move to CSS style
 			app.nav.transform_style = app.nav.transform_style.replace(/translate3d\(.+?\)/g, "translate3d(" + app.nav.map_trans3d[0] + "px," + app.nav.map_trans3d[1] + "px,0px)");
 			app.nav.map.style[app.css_transform] = app.nav.transform_style;
 		},
 
+		/**
+		 * When the user releases the mouse button on the map (while mousedown event is started)
+		 * @method onMouseupMap
+		 * @param {Object} event Mouseup event
+		 */
 		onMouseupMap : function(event) {
 			event.stopPropagation();
 			console.log("event: mouseup map");
@@ -204,6 +239,11 @@ define([], function() {
 			$(document).off("mouseup", this.onMouseupMap);
 		},
 
+		/**
+		 * When the user moves the mouse wheel
+		 * @method onMouseWheel
+		 * @param {Object} event Mousewheel event
+		 */
 		onMouseWheel : function(event) {
 			event.stopPropagation();
 			console.log("event: onmousewheel");
@@ -218,7 +258,11 @@ define([], function() {
 			}
 		},
 
-		// For Mozilla
+		/**
+		 * When the user moves the mouse wheel (For Mozilla)
+		 * @method onMouseWheel2
+		 * @param {Object} event Mousewheel event
+		 */
 		onMouseWheel2 : function(event) {
 			console.log("event: onmousewheel");
 			console.log(event);
@@ -232,11 +276,15 @@ define([], function() {
 			}
 		},
 
+		/**
+		 * Zooms out the map
+		 * @method zoomOut
+		 */
 		zoomOut : function() {
 			var currentZoom,
 				newZoom;
 
-			//Change to navigation edit mode
+			// Change to navigation edit mode
 			app.views.navigation_mode.enterMode();
 			// Decrease a little the transition time, for freely moving on the map
 			document.getElementById("impress").style.transition = "all 300ms ease-in-out 50ms";
@@ -249,6 +297,10 @@ define([], function() {
 			}
 		},
 
+		/**
+		 * Zooms in the map
+		 * @method zoomIn
+		 */
 		zoomIn : function() {
 			var currentZoom,
 				newZoom;
