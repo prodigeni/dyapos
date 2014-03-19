@@ -52,6 +52,26 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+#loading-screen {
+  background-color: #fff;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+#loading-screen #loading-icon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  width: 15%;
+}
+#loading-screen #logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 18%;
+}
 #slides-bar {
   position: absolute;
   overflow: auto;

@@ -37,6 +37,7 @@ define([], function() {
 			if (localStorage.theme !== undefined) {
 				this.set(localStorage.theme);
 			}
+			$("#loading-screen").fadeOut(800);
 		},
 
 		/**

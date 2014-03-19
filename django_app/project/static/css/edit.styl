@@ -13,26 +13,26 @@ hoverSlide()
 hoverComponent()
 	border 1px dotted $c_hover_object
 	cursor pointer
-	
+
 selectedSlide()
-	border 6px solid $primary_color	
+	border 6px solid $primary_color
 
 selectedComponent()
 	border 1px solid $c_hover_object
-	
+
 iconBtn()
 	padding 0px 10px 0px 10px
 	line-height 0px
 	color $primary_color
 	z-index 1
-	
+
 optionsPanel()
 	margin-left 20%
 	margin-right 20%
 	background-color $panel_color
 	border-radius 0px 0px 10px 10px
 	z-index 1
-	
+
 	.button
 		background-color $secondary_color
 		border-radius 5px
@@ -45,13 +45,33 @@ optionsPanel()
 		padding-left 10px
 		padding-right 10px
 		padding-top 2px
-		padding-bottom 2px	
-	
+		padding-bottom 2px
+
 body
 	color $primary_color
 
 .non-selectable-text
 	user-select none
+
+#loading-screen
+	background-color #FFFFFF
+	height 100%
+	position fixed
+	width 100%
+	z-index 2
+
+	#loading-icon
+		display block
+		margin-left auto
+		margin-right auto
+		margin-top 10%
+		width 15%
+
+	#logo
+		display block
+		margin-left auto
+		margin-right auto
+		width 18%
 
 #slides-bar
 	position absolute
@@ -67,29 +87,29 @@ body
 		list-style none
 		margin-top 6px
 		margin-left 3px
-		margin-right 3px		
+		margin-right 3px
 
 		.slide-mini
 			height 90px
 			border 1px solid #000
-			margin-bottom 15px	
+			margin-bottom 15px
 			border-radius 8px
-			
+
 			&.selected
 				border 3px solid $primary_color
-			
+
 			.btn-delete
 				display none
-			
+
 			.slide-mini-preview
 				border-radius 8px
-				
+
 				canvas
 					border-radius 8px
-	
+
 			&:hover
 				border 3px solid $primary_color
-				
+
 				.btn-delete
 					display block
 					position absolute
@@ -124,40 +144,40 @@ body
 	font-size 4em
 	iconBtn()
 
-#right-panel 
+#right-panel
 	position absolute
 	right 0
 	bottom 0
 	height 100%
 	width 15%
 	background-color $panel_color
-	z-index 1	
-	
+	z-index 1
+
 	#btn-preview-presentation
 		font-size 5em
 		iconBtn()
 		width 100%
 		margin-top 5%
 		border-radius 12px 0px 0px 12px
-		
+
 	ul#main-menu
 		li
 			background-color $secondary_color
 			border-radius 12px 0px 0px 12px
 			text-align center
 			padding-top 5%
-			padding-bottom 5%			
-			
+			padding-bottom 5%
+
 			a
 				font-size 1.6em
-				
+
 	#collaborators-title
 		color $secondary_color
-	
+
 	#collaborative
 		#user-list
 			list-style none
-		
+
 			.user
 				background-color $secondary_color
 				width 15%
@@ -167,18 +187,18 @@ body
 				float left
 				margin-left 3px
 				margin-right 3px
-		
+
 		#chat
 			#chat-messages
 				height 145px
 				overflow-y auto
-				
+
 				#message-list
 					list-style none
-				
+
 					.message
 						color $secondary_color
-			
+
 			#chat-form
 				#message-text
 					margin 0px
@@ -188,7 +208,7 @@ body
 					padding 7px*/
 #new-component-box
 	optionsPanel()
-	
+
 	/*.button
 			background-color $secondary_color
 			border-radius 5px
@@ -202,13 +222,13 @@ body
 			padding-right 10px
 			padding-top 2px
 			padding-bottom 2px	*/
-	
+
 	/*a
 		iconBtn()*/
 
 #toolbox-container
 	optionsPanel()
-	
+
 	#bold-btn
 		margin-left 35px
 
@@ -218,43 +238,43 @@ body
 #slide-options
 	position absolute
 	optionsPanel()
-	
+
 	#change-size
 		margin-top 3%
-		
+
 		label
 			color $secondary_color
 			font-weight bold
-	
+
 	#btn-delete-slide
 		&:hover
 			color #b43636
-		
+
 
 /*Color picker*/
-#colorpicker 
+#colorpicker
 	z-index 1
 	position absolute
 	top 1%
 	left 51%
 
-	#picker-wrapper 
+	#picker-wrapper
 		width 200px
 		height 200px
 		position relative
 
-		#picker-indicator 
+		#picker-indicator
 			width 3px
 			height 3px
 			position absolute
 			border 1px solid #fff
 
-	#slider-wrapper 
+	#slider-wrapper
 		width 30px
 		height 200px
 		position relative
 
-		#slider-indicator 
+		#slider-indicator
 			width 100%
 			height 10px
 			position absolute
@@ -263,7 +283,7 @@ body
 /* Slide */
 .step
 	border 1px dotted #808080
-	
+
 	&.hoverable
 		&:hover
 			hoverSlide()
@@ -271,7 +291,7 @@ body
 	/* When a slide is selected */
 	&.selected
 		selectedSlide()
-	
+
 	&.borderless
 		border none
 
@@ -282,32 +302,32 @@ body
 	position absolute
 	padding-top 1px
 	padding-left 1px
-	
+
 	&.hoverable
 		&:hover
 			hoverComponent()
-	
+
 	/*&:hover
 		hoverComponent()
 		cursor pointer*/
-	
+
 	.component-options
 		position absolute
 		/*top -110%
 		left -13%*/
 		transform translate(-48px, -12px)
 		z-index 1
-		
+
 		.btn-edit-text
 			display block
 
 		.btn-delete-component
 			display block
-			
+
 			&:hover
 				color #b43636
-	
-	.component-text-tools 
+
+	.component-text-tools
 		position absolute
 		top -45px
 		background-color #808080
@@ -321,6 +341,6 @@ body
 		.theme-item
 			text-align center
 			border 2px solid white
-			
+
 			&:hover
 				border 2px solid $primary_color
