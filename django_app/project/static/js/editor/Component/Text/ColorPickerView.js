@@ -1,6 +1,10 @@
 /**
  * @module Component
  * @submodule Text
+ */
+
+/**
+ * Color picker view for text components
  * @class ColorPickerView
  * @extends Backbone.View
  */
@@ -8,8 +12,17 @@
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: #colorpicker
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.getElementById("colorpicker"),
 
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
 			ColorPicker.fixIndicators(document.getElementById("slider-indicator"), document.getElementById("picker-indicator"));
 
@@ -21,10 +34,23 @@ define([], function() {
 		},
 
 		events : {
+			/**
+			 * Calls cancelColor()
+			 * @event click #btn-color-cancel
+			 */
 			"click #btn-color-cancel" : "cancelColor",
+			/**
+			 * Calls applyColor
+			 * @event click #btn-color-ok
+			 */
 			"click #btn-color-ok" : "applyColor"
 		},
 
+		/**
+		 * Cancels the selected color (doesn't apply)
+		 * @method cancelColor
+		 * @param {Object} event Click event
+		 */
 		cancelColor : function(event) {
 			event.stopPropagation();
 			console.log("cancel color");
@@ -33,6 +59,11 @@ define([], function() {
 			this.toggle();
 		},
 
+		/**
+		 * Applies the selected color
+		 * @method applyColor
+		 * @param {Object} event Click event
+		 */
 		applyColor : function(event) {
 			event.stopPropagation();
 			console.log("Change color");
@@ -40,6 +71,10 @@ define([], function() {
 			this.toggle();
 		},
 
+		/**
+		 * Shows or hides the colorpicker view (toggle)
+		 * @method toggle
+		 */
 		toggle : function() {
 			this.$el.toggle();
 		}

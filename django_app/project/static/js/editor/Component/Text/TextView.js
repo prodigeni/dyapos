@@ -1,16 +1,35 @@
 /**
  * @module Component
  * @submodule Text
+ */
+
+/**
+ * Text view
  * @class TextView
  * @extends Backbone.View
  */
 
 define([], function() {"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Tag name: div
+		 * @property tagName
+		 * @type String
+		 */
 		tagName : "div",
 
+		/**
+		 * Template: #template-text-component
+		 * @property template
+		 * @type String
+		 */
 		template : document.getElementById("template-text-component").innerHTML,
 
+		/**
+		 * Extra attributes for the view
+		 * @attribute attributes
+		 * @type Object
+		 */
 		attributes : function() {
 			var style = "",
 				attr_name,
@@ -53,9 +72,17 @@ define([], function() {"use strict";
 		},
 
 		events : {
+			/**
+			 * Calls exitTextEditor
+			 * @event blur .text-content
+			 */
 			"blur .text-content" : "exitTextEditor"
 		},
 
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
 			this.model.on("change", function() {
 				this.render();
@@ -65,6 +92,11 @@ define([], function() {"use strict";
 			}, this);
 		},
 
+		/**
+		 * Renders the view
+		 * @method render
+		 * @return View object
+		 */
 		render : function() {
 			var template = Mustache.render(this.template, this.model.toJSON());
 
@@ -72,11 +104,24 @@ define([], function() {"use strict";
 			return this;
 		},
 
+		/**
+		 * Exits from the text editor.
+		 * It also saves the changed text on the model
+		 * @method exitTextEditor
+		 */
 		exitTextEditor : function() {
 			console.log("Exit text editor");
-			if (this.model.get("content") !== this.$el.find(".text-content")[0].innerHTML.trim()) {
-				console.log("text changed");
-				this.model.set("content", this.$el.find(".text-content")[0].innerHTML.trim());
+			var new_text = this.$el.find(".text-content")[0].innerHTML.trim();
+
+			if(new_text === ""){
+				// If the text is void, delete the component
+				this.model.destroy();
+			}else{
+				if (this.model.get("content") !== new_text) {
+					// If the text is different from the last one, save it
+					console.log("text changed");
+					this.model.set("content", new_text);
+				}
 			}
 		}
 	});

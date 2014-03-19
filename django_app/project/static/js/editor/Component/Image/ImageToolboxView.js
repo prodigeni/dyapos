@@ -33,7 +33,7 @@ define([], function() {
 		},
 
 		/**
-		 * Shows the view
+		 * Shows the toolbox
 		 * @method show
 		 */
 		show : function() {
