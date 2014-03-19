@@ -1,6 +1,10 @@
 /**
  * @module Component
  * @submodule Image
+ */
+
+/**
+ * Toolbox for image components
  * @class ImageToolboxView
  * @extends Backbone.View
  */
@@ -8,21 +12,37 @@
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
-
+		/**
+		 * Element: #toolbox-image
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.getElementById("toolbox-image"),
 
 		events : {
+			/**
+			 * Calls increaseSize()
+			 * @event click #btn-increase-image-size
+			 */
 			"click #btn-increase-image-size" : "increaseSize",
+			/**
+			 * Calls decreaseSize()
+			 * @event click #btn-decrease-image-size
+			 */
 			"click #btn-decrease-image-size" : "decreaseSize"
 		},
 
+		/**
+		 * Shows the view
+		 * @method show
+		 */
 		show : function() {
 			$(".toolbox").hide();
 			this.$el.show();
 		},
 
 		/**
-		 * Increases the font size
+		 * Increases the image size
 		 * @method increaseSize
 		 */
 		increaseSize : function() {
@@ -31,7 +51,7 @@ define([], function() {
 		},
 
 		/**
-		 * Decreases the font size
+		 * Decreases the image size
 		 * @method decreaseSize
 		 */
 		decreaseSize : function() {

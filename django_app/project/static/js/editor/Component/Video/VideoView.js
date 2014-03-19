@@ -1,6 +1,10 @@
 /**
  * @module Component
  * @submodule Video
+ */
+
+/**
+ * Video view
  * @class VideoView
  * @extends Backbone.View
  */
@@ -8,12 +12,32 @@
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Tag name: div
+		 * @property tagName
+		 * @type String
+		 */
 		tagName : "div",
 
+		/**
+		 * Class name: video component-preview
+		 * @property className
+		 * @type String
+		 */
 		className : "video component-preview",
 
+		/**
+		 * Template: #template-video-component
+		 * @property template
+		 * @type String
+		 */
 		template : document.getElementById("template-video-component").innerHTML,
 
+		/**
+		 * Extra attributes for the view
+		 * @attribute attributes
+		 * @type Object
+		 */
 		attributes : function() {
 			// var style = "";
 //
@@ -32,6 +56,10 @@ define([], function() {
 			};
 		},
 
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
 			this.model.on("change", function() {
 				this.render();
@@ -41,6 +69,11 @@ define([], function() {
 			}, this);
 		},
 
+		/**
+		 * Renders the view
+		 * @method render
+		 * @return View object
+		 */
 		render : function() {
 			//Get the link from the url_ID
 			var url = "www.youtube.com/embed/" + this.model.get("url_id"),

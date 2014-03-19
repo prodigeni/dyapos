@@ -1,6 +1,10 @@
 /**
  * @module Component
  * @submodule Image
+ */
+
+/**
+ * Image view
  * @class ImageView
  * @extends Backbone.View
  */
@@ -8,12 +12,32 @@
 define([], function() {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Tag name: div
+		 * @property tagName
+		 * @type String
+		 */
 		tagName : "div",
 
+		/**
+		 * Class name: image component-preview
+		 * @property className
+		 * @type String
+		 */
 		className : "image component-preview",
 
+		/**
+		 * Template: #template-image-component
+		 * @property template
+		 * @type String
+		 */
 		template : document.getElementById("template-image-component").innerHTML,
 
+		/**
+		 * Extra attributes for the view
+		 * @attribute attributes
+		 * @type Object
+		 */
 		attributes : function() {
 			var style = "",
 				attr_name,
@@ -22,7 +46,6 @@ define([], function() {
 			for (attr_name in this.model.attributes) {
 				if (this.model.attributes.hasOwnProperty(attr_name)) {
 					value = this.model.attributes[attr_name];
-
 					switch(attr_name) {
 						case "size":
 							style += "width:" + value + "%;";
@@ -36,6 +59,10 @@ define([], function() {
 			};
 		},
 
+		/**
+		 * Runs when the class is instantiated
+		 * @method initialize
+		 */
 		initialize : function() {
 			this.model.on("change", function() {
 				this.render();
@@ -45,6 +72,11 @@ define([], function() {
 			}, this);
 		},
 
+		/**
+		 * Renders the view
+		 * @method render
+		 * @return View object
+		 */
 		render : function() {
 			var url = null,
 				template;

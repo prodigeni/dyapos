@@ -1,6 +1,10 @@
 /**
  * @module Component
  * @submodule Image
+ */
+
+/**
+ * Form for adding a new Image
  * @class ImageUploadFormView
  * @extends Backbone.View
  */
@@ -8,13 +12,40 @@
 define(["Component/Image/ImageModel"], function(ImageCompModel) {
 	"use strict";
 	return Backbone.View.extend({
+		/**
+		 * Element: #form-upload-image
+		 * @property el
+		 * @type DOM Object
+		 */
 		el : document.getElementById("form-upload-image"),
+
 		events : {
+			/**
+			 * Calls upload()
+			 * @event click #btn-upload-image
+			 */
 			"click #btn-upload-image" : "upload",
+			/**
+			 * Calls showPreview()
+			 * @event paste #image-url
+			 */
 			"paste #image-url" : "showPreview",
+			/**
+			 * Calls cleanImageURL
+			 * @event change #image
+			 */
 			"change #image" : "cleanImageURL",
+			/**
+			 * Calls cleanImageInputFile
+			 * @event #image-url
+			 */
 			"change #image-url" : "cleanImageInputFile"
 		},
+
+		/**
+		 * Adds a new image
+		 * @method upload
+		 */
 		upload : function() {
 			var input_file_image = document.getElementById("image"),
 				input_url_image = document.getElementById("image-url"),
@@ -90,8 +121,15 @@ define(["Component/Image/ImageModel"], function(ImageCompModel) {
 			}
 		},
 
+		/**
+		 * Shows an image preview when adding a image url on the form
+		 * @method showPreview
+		 */
 		showPreview : function() {
 			console.log("Url pasted");
+
+			// When the paste event is caught, you can't access the pasted text, so here I wait for 500 milliseconds
+			// and then I can access to the pasted text without problems
 			setTimeout(function() {
 				console.log("Load image preview");
 				var template = $("#template-image-preview").html(),
@@ -104,6 +142,10 @@ define(["Component/Image/ImageModel"], function(ImageCompModel) {
 			}, 500);
 		},
 
+		/**
+		 * Clears the image input file
+		 * @method cleanImageInputFile
+		 */
 		cleanImageInputFile : function() {
 			if(!app.is_anonymous) {
 				console.log("changed image url");
@@ -111,6 +153,10 @@ define(["Component/Image/ImageModel"], function(ImageCompModel) {
 			}
 		},
 
+		/**
+		 * Clears the image input URL
+		 * @method cleanImageURL
+		 */
 		cleanImageURL : function() {
 			console.log("changed image file input");
 			document.getElementById("image-url").value = "";
