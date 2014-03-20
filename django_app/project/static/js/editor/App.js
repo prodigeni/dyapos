@@ -161,16 +161,9 @@ define(["Slide/SlideModel",
 
 	//Connect to socket.io
 	if (!app.is_anonymous) {
-		/**
-		 * Websocket object which connects to Socket.io
-		 * @attribute socket
-		 * @type Object
-		 */
-		Object.defineProperty(app, "socket", {
-			value : io.connect(app.nodejs_url),
-		});
+		socket = io.connect(app.nodejs_url);
 
-		app.socket.emit("collaborator_connect", {
+		socket.emit("collaborator_connect", {
 			presentation_id : app.p_id,
 			user_data : {
 				"first_name" : app.user_first_name,

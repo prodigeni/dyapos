@@ -27,6 +27,7 @@
 		"html2canvas" : false,
 		"require" : false,
 		"impress" : false,
-		"io" : false
+		"io" : false,
+		"socket" : true
 	}
 }

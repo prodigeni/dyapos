@@ -32,7 +32,7 @@ define([], function() {"use strict";
 		 */
 		initialize : function() {
 			if (!app.is_anonymous) {
-				app.socket.on("receive_chat_message", this.appendMessage);
+				socket.on("receive_chat_message", this.appendMessage);
 			}
 		},
 
@@ -45,7 +45,7 @@ define([], function() {"use strict";
 			var text_box = event.target.querySelector("#message-text"), message = text_box.value;
 			//If message is not empty
 			if (message !== "" && message !== null) {
-				app.socket.emit("send_chat_message", message);
+				socket.emit("send_chat_message", message);
 				text_box.value = "";
 			}
 			event.preventDefault();

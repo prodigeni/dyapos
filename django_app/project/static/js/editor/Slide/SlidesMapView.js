@@ -25,6 +25,8 @@ define(["Slide/SlideModel",
 		 * @method initialize
 		 */
 		initialize : function() {
+			app.slides = new app.SlideCollection();
+
 			if (!app.is_anonymous) {
 				//Load the slides from the server
 				app.slides.sync("read", app.slides, {
@@ -35,10 +37,7 @@ define(["Slide/SlideModel",
 						//If presentation doesn't have any slides (first time opened)
 						if (data.length === 0) {
 							//Insert first slide
-							app.slides = new app.SlideCollection();
 							app.slides.add(new SlideModel());
-						} else {
-							app.slides = new app.SlideCollection(JSON.parse(data));
 						}
 						//Assign the collection of slides to this view's collection
 						this.collection = app.slides;
@@ -62,10 +61,9 @@ define(["Slide/SlideModel",
 				//Load from local web storage
 				if (localStorage.slides === undefined || localStorage.slides === "[]") {
 					// If it is the first time the editor is opened, so create a first slide
-					app.slides = new app.SlideCollection();
 					app.slides.add(new SlideModel());
 				} else {
-					app.slides = new app.SlideCollection(JSON.parse(localStorage.slides));
+					app.slides.add(JSON.parse(localStorage.slides));
 				}
 				//Assign the collection of slides to this view's collection
 				this.collection = app.slides;

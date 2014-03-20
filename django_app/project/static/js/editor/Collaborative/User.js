@@ -10,12 +10,12 @@ define([], function() {
 
 	function initWebsocketEvents() {
 		// When a list of connected users is received from the server
-		app.socket.on("load_connected_users", function(data) {
+		socket.on("load_connected_users", function(data) {
 			appendUserList(data);
 		});
 
 		// When a new user connects to the room
-		app.socket.on("new_user_arrives", function(data) {
+		socket.on("new_user_arrives", function(data) {
 			console.log("A new user arrived");
 			console.log(data);
 
@@ -24,7 +24,7 @@ define([], function() {
 		});
 
 		// When a user is disconnected
-		app.socket.on("user_disconnect", function(data) {
+		socket.on("user_disconnect", function(data) {
 			console.log("Disconnected user ID: " + data);
 			removeUser(data);
 		});
