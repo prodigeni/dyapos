@@ -25,63 +25,16 @@ define(["Slide/SlideModel",
 		 * @method initialize
 		 */
 		initialize : function() {
-			app.slides = new app.SlideCollection();
+			// When a new slide is added to the collection, calls appendSlide()
+			this.collection.on("add", function() {
+				console.log("called from SlidesMapView");
+				this.appendSlide(this.collection.last());
+			}, this);
 
-			if (!app.is_anonymous) {
-				//Load the slides from the server
-				app.slides.sync("read", app.slides, {
-					success : function(data) {
-						//When the data has arriven
-						console.log("Data received from server: ");
-						console.log(data);
-						//If presentation doesn't have any slides (first time opened)
-						if (data.length === 0) {
-							//Insert first slide
-							app.slides.add(new SlideModel());
-						}
-						//Assign the collection of slides to this view's collection
-						this.collection = app.slides;
-						this.render();
-
-						// When a new slide is added to the collection, calls appendSlide()
-						this.collection.on("add", function() {
-							console.log("called from SlidesMapView");
-							this.appendSlide(this.collection.last());
-						}, this);
-
-						// Instantiate the slide list view with the same data as collection
-						app.views.slides_list = new SlidesListView({
-							collection : app.slides
-						});
-						// Render the listview
-						app.views.slides_list.render();
-					}
-				});
-			} else {
-				//Load from local web storage
-				if (localStorage.slides === undefined || localStorage.slides === "[]") {
-					// If it is the first time the editor is opened, so create a first slide
-					app.slides.add(new SlideModel());
-				} else {
-					app.slides.add(JSON.parse(localStorage.slides));
-				}
-				//Assign the collection of slides to this view's collection
-				this.collection = app.slides;
+			this.collection.on("reset", function() {
+				console.log("called from SlidesMapView");
 				this.render();
-
-				// When a new slide is added to the collection, calls appendSlide()
-				this.collection.on("add", function() {
-					console.log("called from SlidesMapView");
-					this.appendSlide(this.collection.last());
-				}, this);
-
-				// Instantiate the slide list view with the same data as collection
-				app.views.slides_list = new SlidesListView({
-					collection : app.slides
-				});
-				// Render the listview
-				app.views.slides_list.render();
-			}
+			}, this);
 		},
 
 		/**

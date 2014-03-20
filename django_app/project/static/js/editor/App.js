@@ -217,7 +217,14 @@ define(["Slide/SlideModel",
 	});
 
 	/**
-	 * Instantiate Backbone.View objects
+	 * Instance of SlideCollection where to save all the slides
+	 * @attribute slides
+	 * @type Object (SlideCollection)
+	 */
+	app.slides = new app.SlideCollection();
+
+	/**
+	 * Instantiate Backbone.View objects and load data
 	 * @event Document ready
 	 */
 	$(document).ready(function() {
@@ -233,11 +240,38 @@ define(["Slide/SlideModel",
 		app.views.text_toolbox = new TextToolboxView();
 		app.views.image_toolbox = new ImageToolboxView();
 		app.views.video_toolbox = new VideoToolboxView();
-		app.views.slides_map = new SlidesMapView();
+		app.views.slides_map = new SlidesMapView({collection : app.slides });
+		app.views.slides_list = new SlidesListView({collection : app.slides });
 		app.views.edit_mode = new EditModeView();
 		app.views.navigation_mode = new NavigationModeView();
 		app.views.preview_mode = new PreviewModeView();
 		app.views.theme_selector = new ThemeSelectorView();
+
+		// Load the slides from server or local web storage
+		if (!app.is_anonymous) {
+			//Load the slides from the server
+			app.slides.sync("read", app.slides, {
+				success : function(data) {
+					//When the data has arriven
+					console.log("Data received from server: ");
+					console.log(data);
+					//If presentation doesn't have any slides (first time opened)
+					if (data.length === 0) {
+						//Insert first slide
+						app.slides.add(new SlideModel());
+					}
+				}
+			});
+		} else {
+			//Load from local web storage
+			if (localStorage.slides === undefined || localStorage.slides === "[]") {
+				// If it is the first time the editor is opened, so create a first slide
+				app.slides.add(new SlideModel());
+			} else {
+				app.slides.reset(JSON.parse(localStorage.slides));
+			}
+		}
+
 	});
 
 	impress().init();

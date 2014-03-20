@@ -28,6 +28,11 @@ define(["Slide/SlideMiniView"], function(SlideMiniView) {"use strict";
 				this.appendSlideMini(this.collection.last());
 			}, this);
 
+			this.collection.on("reset", function() {
+				console.log("called from SlidesListView");
+				this.render();
+			}, this);
+
 			// Set this view as sortable
 			$(this.el).sortable({
 				distance : 20,
