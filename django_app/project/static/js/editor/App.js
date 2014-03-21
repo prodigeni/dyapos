@@ -159,6 +159,8 @@ define(["Slide/SlideModel",
 	 */
 	app.updated_from_server = false;
 
+	app.slide_clicked_point = null;
+
 	//Connect to socket.io
 	if (!app.is_anonymous) {
 		socket = io.connect(app.nodejs_url);
@@ -253,12 +255,12 @@ define(["Slide/SlideModel",
 			app.slides.sync("read", app.slides, {
 				success : function(data) {
 					//When the data has arriven
-					console.log("Data received from server: ");
-					console.log(data);
 					//If presentation doesn't have any slides (first time opened)
 					if (data.length === 0) {
 						//Insert first slide
 						app.slides.add(new SlideModel());
+					} else {
+						app.slides.reset(data);
 					}
 				}
 			});

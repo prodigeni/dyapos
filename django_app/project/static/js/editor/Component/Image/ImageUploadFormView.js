@@ -61,10 +61,8 @@ define(["Component/Image/ImageModel"], function(ImageCompModel) {
 
 			image_comp = new ImageCompModel({
 				"type" : "image",
-				// "pos_x" : clicked_inside_slide_point.left,
-				// "pos_y" : clicked_inside_slide_point.top
-				"pos_x" : 0,
-				"pos_y" : 0,
+				"pos_x" : app.slide_clicked_point.left,
+				"pos_y" : app.slide_clicked_point.top,
 				"slide" : app.slides.get(app.selected_slide)
 			});
 

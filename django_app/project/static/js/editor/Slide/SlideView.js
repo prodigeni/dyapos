@@ -8,7 +8,8 @@
  * @extends Backbone.View
  */
 
-define(["Component/ComponentView"], function(ComponentView) {"use strict";
+define(["Component/ComponentView"], function(ComponentView) {
+	"use strict";
 	return Backbone.View.extend({
 		/**
 		 * Tag name: div
@@ -101,20 +102,23 @@ define(["Component/ComponentView"], function(ComponentView) {"use strict";
 		clickInsideSlide : function(event) {
 			event.stopPropagation();
 			console.log("event: click inside slide");
-			// var offSet = $(this).offset();
+			var offset = $(event.target).offset(); //I had to do it with JQuery, because with event.target.offsetTop/Left didn't work.
 
-			// Set a global variable to store the inside point where the slide was clicked
-			// clicked_inside_slide_point = {
-			// "left" : parseFloat(event.clientX - $(this).offset().left),
-			// "top" : parseFloat(event.clientY - $(this).offset().top),
-			// };
-			// console.log("Clicked on point: " + clicked_inside_slide_point.left + " " + clicked_inside_slide_point.top);
+			app.slide_clicked_point = {
+				"left" : event.clientX - offset.left,
+				"top" : event.clientY - offset.top,
+			};
 
 			// if a previous component was selected
 			if (app.selected_component !== null) {
 				$(".component").removeClass("selected-component");
 				$(".component-options").hide();
+
+				// Hide toolboxes for each component type
 				app.views.text_toolbox.$el.hide();
+				app.views.image_toolbox.$el.hide();
+				app.views.video_toolbox.$el.hide();
+
 				app.selected_component = null;
 			}
 

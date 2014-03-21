@@ -9,8 +9,7 @@
  */
 
 define(["Slide/SlideModel",
-		"Slide/SlideView",
-		"Slide/SlidesListView"], function(SlideModel, SlideView, SlidesListView) {
+		"Slide/SlideView"], function(SlideModel, SlideView) {
 	"use strict";
 	return Backbone.View.extend({
 		/**

@@ -55,10 +55,8 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"type" : "text",
 				"text_type" : "title",
 				"font_size" : 3,
-				// "pos_x" : clicked_inside_slide_point.left,
-				// "pos_y" : clicked_inside_slide_point.top,
-				"pos_x" : 0,
-				"pos_y" : 0,
+				"pos_x" : app.slide_clicked_point.left,
+				"pos_y" : app.slide_clicked_point.top,
 				"content" : app.title_default_text,
 				"slide" : app.slides.get(app.selected_slide)
 			});
@@ -77,10 +75,8 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"type" : "text",
 				"text_type" : "subtitle",
 				"font_size" : 2,
-				// "pos_x" : clicked_inside_slide_point.left,
-				// "pos_y" : clicked_inside_slide_point.top,
-				"pos_x" : 0,
-				"pos_y" : 0,
+				"pos_x" : app.slide_clicked_point.left,
+				"pos_y" : app.slide_clicked_point.top,
 				"content" : app.subtitle_default_text,
 				"slide" : app.slides.get(app.selected_slide)
 			});
@@ -99,10 +95,8 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"type" : "text",
 				"text_type" : "body",
 				"font_size" : 1,
-				// "pos_x" : clicked_inside_slide_point.left,
-				// "pos_y" : clicked_inside_slide_point.top,
-				"pos_x" : 0,
-				"pos_y" : 0,
+				"pos_x" : app.slide_clicked_point.left,
+				"pos_y" : app.slide_clicked_point.top,
 				"content" : app.body_default_text,
 				"slide" : app.slides.get(app.selected_slide)
 			});
