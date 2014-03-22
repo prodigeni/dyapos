@@ -225,12 +225,12 @@ body {
   border-radius: 8px;
 }
 #new-component-box {
-  margin-left: 20%;
-  margin-right: 20%;
   background-color: rgba(0,0,0,0.8);
   -webkit-border-radius: 0px 0px 10px 10px;
   border-radius: 0px 0px 10px 10px;
   z-index: 1;
+  position: absolute;
+  left: 22%;
 /*.button
 			background-color $secondary_color
 			border-radius 5px
@@ -263,12 +263,12 @@ body {
   padding-bottom: 2px;
 }
 #toolbox-container {
-  margin-left: 20%;
-  margin-right: 20%;
   background-color: rgba(0,0,0,0.8);
   -webkit-border-radius: 0px 0px 10px 10px;
   border-radius: 0px 0px 10px 10px;
   z-index: 1;
+  position: absolute;
+  right: 22%;
 }
 #toolbox-container .button {
   background-color: #e7e7e7;
@@ -293,12 +293,12 @@ body {
 }
 #slide-options {
   position: absolute;
-  margin-left: 20%;
-  margin-right: 20%;
   background-color: rgba(0,0,0,0.8);
   -webkit-border-radius: 0px 0px 10px 10px;
   border-radius: 0px 0px 10px 10px;
   z-index: 1;
+  position: absolute;
+  right: 22%;
 }
 #slide-options .button {
   background-color: #e7e7e7;
@@ -315,12 +315,13 @@ body {
   padding-top: 2px;
   padding-bottom: 2px;
 }
-#slide-options #change-size {
-  margin-top: 3%;
-}
-#slide-options #change-size label {
+#slide-options label {
   color: #e7e7e7;
   font-weight: bold;
+  margin-left: 30%;
+}
+#slide-options #change-size {
+  margin-top: 3%;
 }
 #slide-options #btn-delete-slide:hover {
   color: #b43636;

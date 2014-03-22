@@ -135,7 +135,9 @@ define([], function() {"use strict";
 		 * @method clearPlaceholder
 		 */
 		clearPlaceholder : function() {
+			console.log("Clear placeholder");
 			this.$el.find(".text-placeholder").html("");
+			this.delegateEvents(_(this.events).omit("input .text-content"));
 		},
 
 	});

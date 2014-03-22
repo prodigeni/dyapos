@@ -110,42 +110,47 @@
 </div>
 
 <div id="slide-options" style="display: none;">
-	<div class="row">
-
-		<div class="large-3 columns first">
+		<div style="float:left;">
 			<a id="btn-edit-presentation" href="#" class="button secondary" data-tooltip title="{% trans 'tt_btn_edit' %}"> <i class="fi-pencil"></i> </a>
 		</div>
 
-		<div class="large-3 columns">
+		<div style="float:left;">
 			<div id="change-size">
 				<label>{% trans "lbl_size" %}</label>
 				<input id="input-scale" type="range" min="0.01" max="2" step="0.005" max="50"/>
 			</div>
 		</div>
 
-		<div class="large-3 columns">
+		<div style="float:left;">
 			<div id="change-rotation">
-				<input id="input-rotation-z" name="z" type="range" value="0" min="-180" max="180" data-tooltip title="{% trans 'tt_rotate_z' %}"/>
-				<input id="input-rotation-x" name="x" type="range" value="0" min="-180" max="180" data-tooltip title="{% trans 'tt_rotate_x' %}"/>
-				<input id="input-rotation-y" name="y" type="range" value="0" min="-180" max="180" data-tooltip title="{% trans 'tt_rotate_y' %}"/>
+				<label for="">{% trans "lbl_rotation" %}</label>
+				<input id="input-rotation-z" name="z" type="range" value="0" min="-180" max="180" data-tooltip title="{% trans 'tt_rotate_z' %}" style="display: block;"/>
+				<input id="input-rotation-x" name="x" type="range" value="0" min="-180" max="180" data-tooltip title="{% trans 'tt_rotate_x' %}" style="display: block;"/>
+				<input id="input-rotation-y" name="y" type="range" value="0" min="-180" max="180" data-tooltip title="{% trans 'tt_rotate_y' %}" style="display: block;"/>
 			</div>
 		</div>
 
-		<div class="large-3 columns last">
+		<div style="float:left;">
 			<a id="btn-delete-slide" href="#" class="button secondary" data-tooltip title="{% trans 'tt_btn_delete' %}"> <i class="fi-x"></i> </a>
 		</div>
-
-	</div>
 </div>
 
 <div id="new-component-box" style="display:none;">
-	<div class="row">
-		<a id="btn-add-title" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_title' %}"> + {% trans "btn_title" %} </a>
-		<a id="btn-add-subtitle" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_subtitle' %}"> + {% trans "btn_subtitle" %} </a>
-		<a id="btn-add-body" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_paragraph' %}"> + {% trans "btn_body" %} </a>
-		<a id="btn-add-image" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_image' %}"> <i class="fi-photo"></i> </a>
-		<a id="btn-add-video" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_video' %}"> <i class="fi-social-youtube"></i> </a>
-	</div>
+	<a id="btn-add-text" class="button secondary" href="#" data-dropdown="text-dropdown" data-tooltip title="{% trans 'tt_btn_add_text' %}">{% trans "text" %}</a>
+	<ul id="text-dropdown" data-dropdown-content class="f-dropdown">
+		<li>
+			<a id="btn-add-title" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_title' %}">{% trans "btn_title" %}</a>
+		</li>
+		<li>
+			<a id="btn-add-subtitle" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_subtitle' %}">{% trans "btn_subtitle" %}</a>
+		</li>
+		<li>
+			<a id="btn-add-body" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_paragraph' %}">{% trans "btn_body" %}</a>
+		</li>
+	</ul>
+
+	<a id="btn-add-image" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_image' %}"> <i class="fi-photo"></i> </a>
+	<a id="btn-add-video" class="button secondary" href="#" data-tooltip title="{% trans 'tt_btn_add_video' %}"> <i class="fi-social-youtube"></i> </a>
 </div>
 
 <div id="toolbox-container">

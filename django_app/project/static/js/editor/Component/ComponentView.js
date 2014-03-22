@@ -120,7 +120,7 @@ define(["Component/Text/TextView",
 			event.stopPropagation();
 			console.log("click component");
 
-			app.views.new_component_box.$el.hide();
+			app.deselectAllComponents();
 			this.$el.find(".component-options").show();
 			app.selected_component = this.model;
 			this.$el.addClass("selected-component");

@@ -27,11 +27,10 @@ iconBtn()
 	z-index 1
 
 optionsPanel()
-	margin-left 20%
-	margin-right 20%
 	background-color $panel_color
 	border-radius 0px 0px 10px 10px
 	z-index 1
+	position absolute
 
 	.button
 		background-color $secondary_color
@@ -209,6 +208,8 @@ body
 #new-component-box
 	optionsPanel()
 
+	left 22%
+
 	/*.button
 			background-color $secondary_color
 			border-radius 5px
@@ -229,6 +230,8 @@ body
 #toolbox-container
 	optionsPanel()
 
+	right 22%
+
 	#bold-btn
 		margin-left 35px
 
@@ -238,13 +241,15 @@ body
 #slide-options
 	position absolute
 	optionsPanel()
+	right 22%
+
+	label
+		color $secondary_color
+		font-weight bold
+		margin-left 30%
 
 	#change-size
 		margin-top 3%
-
-		label
-			color $secondary_color
-			font-weight bold
 
 	#btn-delete-slide
 		&:hover

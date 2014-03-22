@@ -32,7 +32,8 @@ define([], function() {
 			pos_y : 0,
 			rotation : 0,
 			scale : null,
-			custom_css : null
+			custom_css : null,
+			content : ""
 		},
 
 		/**
@@ -54,19 +55,29 @@ define([], function() {
 		 */
 		initialize : function() {
 
+			this.on("change", function() {
+				if(!app.is_anonymous) {
+					console.log(this.changed);
+					if(this.get("content") !== ""){
+						this.save();
+					}
+				}
+			});
+
 			// this.on("change", function() {
-				// if (!is_anonymous) {
-					// if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
-						// if (!updated_from_server) {
-							// console.log("Slide changed");
-							// this.save();
-						// } else {
-							// updated_from_server = false;
-						// }
-					// }
-				// }
-//
-				// this.get("slide").updateThumbnail();
+				// // if (!is_anonymous) {
+					// // if (!_.isEmpty(this.changed) && !this.changed.hasOwnProperty("_id")) {
+						// // if (!updated_from_server) {
+							// // console.log("Slide changed");
+							// // this.save();
+						// // } else {
+							// // updated_from_server = false;
+						// // }
+					// // }
+				// // }
+// //
+				// // this.get("slide").updateThumbnail();
+				// this.save();
 			// }, this);
 		}
 	});

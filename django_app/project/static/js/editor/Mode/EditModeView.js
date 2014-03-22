@@ -27,6 +27,7 @@ define([], function() {
 		 */
 		enterMode : function() {
 			$("#btn-navigation-mode").show();
+			app.views.new_component_box.$el.show();
 			$(".component").addClass("hoverable");
 			$("body").removeClass("non-selectable-text");
 			$(".step").removeClass("hoverable borderless selected");

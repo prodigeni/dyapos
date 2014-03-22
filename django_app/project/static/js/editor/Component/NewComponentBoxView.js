@@ -55,9 +55,10 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"type" : "text",
 				"text_type" : "title",
 				"font_size" : 3,
-				"pos_x" : app.slide_clicked_point.left,
-				"pos_y" : app.slide_clicked_point.top,
-				"slide" : app.slides.get(app.selected_slide)
+				"pos_x" : 200,
+				"pos_y" : 50,
+				"slide" : app.slides.get(app.selected_slide),
+				"content" : app.title_default_text
 			});
 
 			if(!app.is_anonymous){
@@ -74,9 +75,10 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"type" : "text",
 				"text_type" : "subtitle",
 				"font_size" : 2,
-				"pos_x" : app.slide_clicked_point.left,
-				"pos_y" : app.slide_clicked_point.top,
-				"slide" : app.slides.get(app.selected_slide)
+				"pos_x" : 200,
+				"pos_y" : 50,
+				"slide" : app.slides.get(app.selected_slide),
+				"content" : app.subtitle_default_text
 			});
 
 			if(!app.is_anonymous){
@@ -93,9 +95,10 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"type" : "text",
 				"text_type" : "body",
 				"font_size" : 1,
-				"pos_x" : app.slide_clicked_point.left,
-				"pos_y" : app.slide_clicked_point.top,
-				"slide" : app.slides.get(app.selected_slide)
+				"pos_x" : 200,
+				"pos_y" : 50,
+				"slide" : app.slides.get(app.selected_slide),
+				"content" : app.body_default_text
 			});
 
 			if(!app.is_anonymous){
@@ -109,7 +112,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 		 */
 		addImage : function(){
 			$("#add-image-box").foundation("reveal", "open");
-			app.views.new_component_box.$el.hide();
 		},
 
 		/**
@@ -118,7 +120,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 		 */
 		addVideo : function(){
 			$("#add-video-box").foundation("reveal", "open");
-			app.views.new_component_box.$el.hide();
 		}
 	});
 });

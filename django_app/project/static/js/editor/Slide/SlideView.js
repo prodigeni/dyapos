@@ -8,7 +8,7 @@
  * @extends Backbone.View
  */
 
-define(["Component/ComponentView"], function(ComponentView) {
+define(["Component/ComponentView", "Component/Text/TextModel"], function(ComponentView, TextCompModel) {
 	"use strict";
 	return Backbone.View.extend({
 		/**
@@ -103,7 +103,7 @@ define(["Component/ComponentView"], function(ComponentView) {
 			event.stopPropagation();
 			console.log("event: click inside slide");
 			var offset = $(event.target).offset(), //I had to do it with JQuery, because with event.target.offsetTop/Left didn't work.
-				new_text_comp_view;
+				component;
 
 			app.slide_clicked_point = {
 				"left" : event.clientX - offset.left,
@@ -123,17 +123,17 @@ define(["Component/ComponentView"], function(ComponentView) {
 				app.selected_component = null;
 			}
 
-			// Show the new component box
-			app.views.new_component_box.$el.show();
-
-			app.views.new_component_box.addSubtitle();
-
-			new_text_comp_view = app.slides.get(app.selected_slide).get("components").last().view.$el.find(".text-content");
-			new_text_comp_view.click().focus();
-			// $(".text-content").one("input", function(){
-				// console.log("oninput");
-				// $(".text-placeholder").html("");
-			// });
+			// Create a new text component on the clicked point
+			component = new TextCompModel({
+				"type" : "text",
+				"text_type" : "subtitle",
+				"font_size" : 2,
+				"pos_x" : app.slide_clicked_point.left,
+				"pos_y" : app.slide_clicked_point.top,
+				"slide" : app.slides.get(app.selected_slide)
+			});
+			// Focus the new text component. Ready to edit.
+			component.view.$el.find(".text-content").click().focus();
 		}
 	});
 });

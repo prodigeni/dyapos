@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-21 19:25-0300\n"
+"POT-Creation-Date: 2014-03-21 22:59-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: meneer <meneer@pod.orkz.net>\n"
 "Language-Team: Dutch <LL@li.org>\n"
@@ -122,131 +122,144 @@ msgstr "Afsluiten"
 msgid "send_message"
 msgstr "Verstuur bericht"
 
-#: templates/edit.html:116 templates/home.html:92
+#: templates/edit.html:114 templates/home.html:92
 msgid "tt_btn_edit"
 msgstr "Bewerken"
 
-#: templates/edit.html:121
+#: templates/edit.html:119
 msgid "lbl_size"
 msgstr "Afmetingen"
 
-#: templates/edit.html:128
+#: templates/edit.html:126
+#, fuzzy
+msgid "lbl_rotation"
+msgstr "Beschrijving"
+
+#: templates/edit.html:127
 msgid "tt_rotate_z"
 msgstr "Roteren_z"
 
-#: templates/edit.html:129
+#: templates/edit.html:128
 msgid "tt_rotate_x"
 msgstr "Roteren_x"
 
-#: templates/edit.html:130
+#: templates/edit.html:129
 msgid "tt_rotate_y"
 msgstr "Roteren_y"
 
-#: templates/edit.html:135 templates/edit.html.py:268 templates/home.html:97
+#: templates/edit.html:134 templates/edit.html.py:273 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr "Verwijderen"
 
-#: templates/edit.html:143
-msgid "tt_btn_add_title"
-msgstr "Toevoegen titel"
+#: templates/edit.html:139
+msgid "tt_btn_add_text"
+msgstr "Add text"
 
-#: templates/edit.html:143
+#: templates/edit.html:139
+msgid "text"
+msgstr "Text"
+
+#: templates/edit.html:142
+msgid "tt_btn_add_title"
+msgstr "Toevoegen subtitel"
+
+#: templates/edit.html:142
 msgid "btn_title"
 msgstr "Titel"
 
-#: templates/edit.html:144
+#: templates/edit.html:145
 msgid "tt_btn_add_subtitle"
 msgstr "Toevoegen subtitel"
 
-#: templates/edit.html:144
+#: templates/edit.html:145
 msgid "btn_subtitle"
 msgstr "Subtitel"
 
-#: templates/edit.html:145
+#: templates/edit.html:148
 msgid "tt_btn_add_paragraph"
 msgstr "Toevoegen paragraaf"
 
-#: templates/edit.html:145
+#: templates/edit.html:148
 msgid "btn_body"
 msgstr "Body"
 
-#: templates/edit.html:146
+#: templates/edit.html:152
 msgid "tt_btn_add_image"
 msgstr "Toevoegen afbeelding"
 
-#: templates/edit.html:147
+#: templates/edit.html:153
 msgid "tt_btn_add_video"
 msgstr "Toevoegen video"
 
-#: templates/edit.html:154 templates/edit.html.py:166
+#: templates/edit.html:159 templates/edit.html.py:171
 msgid "tt_increase_size"
 msgstr "Vergroten afmetingen"
 
-#: templates/edit.html:155 templates/edit.html.py:167
+#: templates/edit.html:160 templates/edit.html.py:172
 msgid "tt_decrease_size"
 msgstr "Verkleinen afmetingen"
 
-#: templates/edit.html:156
+#: templates/edit.html:161
 msgid "tt_toggle_bold"
 msgstr "Switchen vet"
 
-#: templates/edit.html:157
+#: templates/edit.html:162
 msgid "tt_toggle_underline"
 msgstr "Switchen onderstreept"
 
-#: templates/edit.html:158
+#: templates/edit.html:163
 msgid "tt_toggle_italic"
 msgstr "Switchen schuin"
 
-#: templates/edit.html:159
+#: templates/edit.html:164
 msgid "tt_transform_to_link"
 msgstr "Veranderen in link"
 
-#: templates/edit.html:160
+#: templates/edit.html:165
 msgid "tt_change_color"
 msgstr "Wijzigen kleur"
 
-#: templates/edit.html:174
+#: templates/edit.html:179
 msgid "title_add_image"
 msgstr "Toevoegen afbeelding"
 
-#: templates/edit.html:176
+#: templates/edit.html:181
 msgid "lbl_load_image_file"
 msgstr "Laden afbeeldingenbestand"
 
-#: templates/edit.html:178 templates/index.html:73
+#: templates/edit.html:183 templates/index.html:73
 msgid "lbl_or"
 msgstr "of"
 
-#: templates/edit.html:180
+#: templates/edit.html:185
 msgid "lbl_load_image_url"
 msgstr "Laden afbeeldingsurl"
 
-#: templates/edit.html:182
+#: templates/edit.html:187
 msgid "btn_upload"
 msgstr "Uploaden"
 
-#: templates/edit.html:191
+#: templates/edit.html:196
 msgid "title_add_video"
 msgstr "Toevoegen video"
 
-#: templates/edit.html:194 templates/edit.html.py:200
+#: templates/edit.html:199 templates/edit.html.py:205
 msgid "btn_add"
 msgstr "Toevoegen"
 
-#: templates/edit.html:237
+#: templates/edit.html:242
 msgid "btn_cancel"
 msgstr "Annuleren"
 
-#: templates/edit.html:253
+#: templates/edit.html:258
 msgid "tt_slide_mini_sort"
 msgstr "Sorteren mini"
 
-#: templates/edit.html:265
+#: templates/edit.html:270
 msgid "tt_btn_move"
 msgstr "Move"
 
-#: templates/edit.html:277
+#: templates/edit.html:282
 msgid "enter_text"
 msgstr "Enter text..."
 
