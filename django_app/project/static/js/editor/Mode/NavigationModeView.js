@@ -69,7 +69,7 @@ define([], function() {
 			console.log("event: slide click");
 			app.selected_slide = event.target.id;
 			$("#" + app.selected_slide).addClass("selected");
-			$(".step").removeClass("active");
+			$("#slides > .step").removeClass("active");
 			$("#" + app.selected_slide).addClass("active");
 			app.views.slide_options_box.$el.show();
 		},

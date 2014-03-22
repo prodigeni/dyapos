@@ -91,13 +91,38 @@ define([], function() {
 		generateThumbnail : function() {
 			console.log("Generate thumbnail");
 			var cloned_div = this.model.view.el.cloneNode(true);
+				// context = this;
 
 			cloned_div.attributes.removeNamedItem("id");
+			// $(cloned_div).attr("id", "cloned_div");
+			$(cloned_div).removeClass("past future");
+			$(cloned_div).addClass("active");
+			$(cloned_div).find(".component-options").remove();
+			$(cloned_div).find(".component").removeClass("selected-component");
+			$(cloned_div).find(".component").removeClass("hoverable");
+			$(cloned_div).find(".component").removeClass("ui-draggable");
+			$(cloned_div).find(".text-content").attr("contenteditable", false);
 			cloned_div.style.transform = "";
-			cloned_div.style.backgroundColor = "white";
-			cloned_div.style.transformOrigin = "0% 0%";
-			cloned_div.style.transform = "scale(0.14)";
+			if (cloned_div.style.backgroundColor === "") {
+				cloned_div.style.backgroundColor = $("body").css("background-color");
+			}
+			// cloned_div.style.transformOrigin = "0% 0%";
+			cloned_div.style[app.getSupportedCSSProp(["MozTransformOrigin","webkitTransformOrigin","OTransformOrigin"])] = "0% 0%";
+			cloned_div.style[[app.getSupportedCSSProp(["MozTransform","webkitTransform","OTransform"])]] = "scale(0.14)";
 			this.$el.find(".slide-mini-preview").append(cloned_div);
+
+			// cloned_div.style.transform = "";
+			// cloned_div.style.left = "150%"; // Hide from the screen
+			// document.body.appendChild(cloned_div);
+			// html2canvas(cloned_div, {
+				// onrendered : function(canvas) {
+					// canvas.style.width = "100%";
+					// context.$el.find(".slide-mini-preview").append(canvas);
+					// document.getElementById("cloned_canvas").remove();
+					// // document.getElementById("slides-bar").appendChild(canvas);
+				// }
+			// });
+
 		},
 
 		/**

@@ -31,9 +31,9 @@ define([], function() {
 			$(".component").addClass("hoverable");
 			$("body").removeClass("non-selectable-text");
 			$(".step").removeClass("hoverable borderless selected");
-			if ($(".component").draggable("option", "disabled") === true) {
-				$(".component").draggable("enable");
-			}
+			// if ($(".component").draggable("option", "disabled") === true) {
+				// $(".component").draggable("enable");
+			// }
 
 			// Delegate events to each SlideView object
 			app.slides.each(function(slide){
@@ -58,9 +58,9 @@ define([], function() {
 		exitMode : function() {
 			app.deselectAllComponents();
 			app.views.new_component_box.$el.hide();
-			if ($(".component").draggable("option", "disabled") === false) {
-				$(".component").draggable("disable");
-			}
+			// if ($(".component").draggable("option", "disabled") === false) {
+				// $(".component").draggable("disable");
+			// }
 
 			// Undelegate events to each SlideView object
 			app.slides.each(function(slide){

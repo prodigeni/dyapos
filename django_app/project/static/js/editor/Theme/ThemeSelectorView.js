@@ -88,7 +88,12 @@ define([], function() {
 			}
 
 			// Update thumbnails according to the new selected theme
-			// Slide.loadThumbnails();
+			setTimeout(function() {
+				// I had to call it 1 seconds after because it doesn't show the thumbnails well when I call it directly
+				app.slides.each(function(slide) {
+					slide.mini_view.generateThumbnail();
+				});
+			}, 1000);
 		},
 
 		/**

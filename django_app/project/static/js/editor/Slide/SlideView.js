@@ -79,6 +79,7 @@ define(["Component/ComponentView", "Component/Text/TextModel"], function(Compone
 				// Append every component found on the slide to be visible on the redered view
 				this.appendComponent(components.at(i));
 			}
+
 			return this;
 		},
 

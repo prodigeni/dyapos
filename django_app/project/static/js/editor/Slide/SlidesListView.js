@@ -43,6 +43,13 @@ define(["Slide/SlideMiniView"], function(SlideMiniView) {"use strict";
 					});
 				}
 			});
+
+			// // Load thumbnails for every slide
+			// setTimeout(function() {
+				// app.slides.each(function(slide) {
+					// slide.mini_view.generateThumbnail();
+				// });
+			// }, 3000);
 		},
 
 		/**
@@ -54,6 +61,7 @@ define(["Slide/SlideMiniView"], function(SlideMiniView) {"use strict";
 				// Append every slide found in the collection as a SlideMiniView
 				this.appendSlideMini(this.collection.at(i));
 			}
+
 			return this;
 		},
 
@@ -66,6 +74,7 @@ define(["Slide/SlideMiniView"], function(SlideMiniView) {"use strict";
 				model : slide_model
 			});
 			this.$el.append(slide_mini.render().$el);
+			slide_model.mini_view.generateThumbnail();
 		}
 	});
 });

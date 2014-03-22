@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-21 22:59-0300\n"
+"POT-Creation-Date: 2014-03-22 20:23-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: meneer <meneer@pod.orkz.net>\n"
 "Language-Team: Dutch <LL@li.org>\n"
@@ -131,9 +131,8 @@ msgid "lbl_size"
 msgstr "Afmetingen"
 
 #: templates/edit.html:126
-#, fuzzy
 msgid "lbl_rotation"
-msgstr "Beschrijving"
+msgstr "Rotation"
 
 #: templates/edit.html:127
 msgid "tt_rotate_z"

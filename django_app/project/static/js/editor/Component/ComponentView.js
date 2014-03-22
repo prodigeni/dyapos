@@ -134,6 +134,10 @@ define(["Component/Text/TextView",
 				case "video": app.views.video_toolbox.show();
 							break;
 			}
+
+			// this.$el.draggable({
+				// handle : ".btn-move-component"
+			// });
 		},
 
 		/**
