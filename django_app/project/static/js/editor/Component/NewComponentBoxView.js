@@ -57,7 +57,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"font_size" : 3,
 				"pos_x" : app.slide_clicked_point.left,
 				"pos_y" : app.slide_clicked_point.top,
-				"content" : app.title_default_text,
 				"slide" : app.slides.get(app.selected_slide)
 			});
 
@@ -77,7 +76,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"font_size" : 2,
 				"pos_x" : app.slide_clicked_point.left,
 				"pos_y" : app.slide_clicked_point.top,
-				"content" : app.subtitle_default_text,
 				"slide" : app.slides.get(app.selected_slide)
 			});
 
@@ -97,7 +95,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 				"font_size" : 1,
 				"pos_x" : app.slide_clicked_point.left,
 				"pos_y" : app.slide_clicked_point.top,
-				"content" : app.body_default_text,
 				"slide" : app.slides.get(app.selected_slide)
 			});
 

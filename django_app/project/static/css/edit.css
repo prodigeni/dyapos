@@ -413,6 +413,10 @@ body {
 .component.selected-component {
   border: 1px solid #888a85;
 }
+.component .text-placeholder {
+  position: absolute;
+  color: #949494;
+}
 #themes-window #themes-list .theme-item {
   text-align: center;
   border: 2px solid #fff;

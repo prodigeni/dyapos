@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-28 17:27-0300\n"
+"POT-Creation-Date: 2014-03-21 19:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: forms/presentation.py:10
-msgid "is_private"
-msgstr ""
-
-#: forms/presentation.py:22
-msgid "option_allow_edit"
-msgstr ""
-
-#: forms/presentation.py:22
-msgid "option_view_only"
-msgstr ""
 
 #: forms/user.py:21 forms/user.py:74
 msgid "error_passwords_dont_match"
@@ -50,6 +38,18 @@ msgstr ""
 msgid "error_email_not_registered"
 msgstr ""
 
+#: forms/userpresentation.py:6 templates/elements/share_form.html:12
+msgid "option_allow_edit"
+msgstr ""
+
+#: forms/userpresentation.py:6 templates/elements/share_form.html:14
+msgid "option_view_only"
+msgstr ""
+
+#: models/presentation.py:148
+msgid "text_copy_of"
+msgstr ""
+
 #: templates/change_password.html:11
 msgid "title_change_password"
 msgstr ""
@@ -66,181 +66,188 @@ msgstr ""
 msgid "lbl_repeat_new_password"
 msgstr ""
 
-#: templates/change_password.html:28 templates/profile.html:37
+#: templates/change_password.html:28 templates/profile.html:28
 msgid "btn_change_password"
 msgstr ""
 
-#: templates/edit.html:33
+#: templates/edit.html:37
 msgid "btn_new_title"
 msgstr ""
 
-#: templates/edit.html:34
+#: templates/edit.html:38
 msgid "btn_new_subtitle"
 msgstr ""
 
-#: templates/edit.html:35
+#: templates/edit.html:39
 msgid "btn_new_body"
 msgstr ""
 
-#: templates/edit.html:50
+#: templates/edit.html:61
 msgid "tt_btn_add_slide"
 msgstr ""
 
-#: templates/edit.html:54
+#: templates/edit.html:63
 msgid "tt_btn_navigation_mode"
 msgstr ""
 
-#: templates/edit.html:58
+#: templates/edit.html:65
 msgid "tt_btn_back_edit_mode"
 msgstr ""
 
-#: templates/edit.html:60
+#: templates/edit.html:65
 msgid "btn_back_edit_mode"
 msgstr ""
 
-#: templates/edit.html:65
+#: templates/edit.html:69
 msgid "tt_btn_preview"
 msgstr ""
 
-#: templates/edit.html:71
+#: templates/edit.html:73
 msgid "themes"
 msgstr ""
 
-#: templates/edit.html:78
+#: templates/edit.html:77
 msgid "share"
 msgstr ""
 
-#: templates/edit.html:84
+#: templates/edit.html:81
 msgid "download"
 msgstr ""
 
-#: templates/edit.html:91
+#: templates/edit.html:84
 msgid "exit"
 msgstr ""
 
-#: templates/edit.html:111
+#: templates/edit.html:103
 msgid "send_message"
 msgstr ""
 
-#: templates/edit.html:124 templates/edit.html.py:305 templates/home.html:90
+#: templates/edit.html:116 templates/home.html:92
 msgid "tt_btn_edit"
 msgstr ""
 
-#: templates/edit.html:131
+#: templates/edit.html:121
 msgid "lbl_size"
 msgstr ""
 
-#: templates/edit.html:138
+#: templates/edit.html:128
 msgid "tt_rotate_z"
 msgstr ""
 
-#: templates/edit.html:139
+#: templates/edit.html:129
 msgid "tt_rotate_x"
 msgstr ""
 
-#: templates/edit.html:140
+#: templates/edit.html:130
 msgid "tt_rotate_y"
 msgstr ""
 
-#: templates/edit.html:145 templates/edit.html.py:308 templates/edit.html:323
-#: templates/edit.html.py:343 templates/home.html:95
+#: templates/edit.html:135 templates/edit.html.py:268 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr ""
 
-#: templates/edit.html:155
+#: templates/edit.html:143
 msgid "tt_btn_add_title"
 msgstr ""
 
-#: templates/edit.html:156
+#: templates/edit.html:143
 msgid "btn_title"
 msgstr ""
 
-#: templates/edit.html:158
+#: templates/edit.html:144
 msgid "tt_btn_add_subtitle"
 msgstr ""
 
-#: templates/edit.html:159
+#: templates/edit.html:144
 msgid "btn_subtitle"
 msgstr ""
 
-#: templates/edit.html:161
+#: templates/edit.html:145
 msgid "tt_btn_add_paragraph"
 msgstr ""
 
-#: templates/edit.html:162
+#: templates/edit.html:145
 msgid "btn_body"
 msgstr ""
 
-#: templates/edit.html:164
+#: templates/edit.html:146
 msgid "tt_btn_add_image"
 msgstr ""
 
-#: templates/edit.html:167
+#: templates/edit.html:147
 msgid "tt_btn_add_video"
 msgstr ""
 
-#: templates/edit.html:176 templates/edit.html.py:200
+#: templates/edit.html:154 templates/edit.html.py:166
 msgid "tt_increase_size"
 msgstr ""
 
-#: templates/edit.html:177 templates/edit.html.py:201
+#: templates/edit.html:155 templates/edit.html.py:167
 msgid "tt_decrease_size"
 msgstr ""
 
-#: templates/edit.html:178
+#: templates/edit.html:156
 msgid "tt_toggle_bold"
 msgstr ""
 
-#: templates/edit.html:181
+#: templates/edit.html:157
 msgid "tt_toggle_underline"
 msgstr ""
 
-#: templates/edit.html:184
+#: templates/edit.html:158
 msgid "tt_toggle_italic"
 msgstr ""
 
-#: templates/edit.html:187
+#: templates/edit.html:159
 msgid "tt_transform_to_link"
 msgstr ""
 
-#: templates/edit.html:190
+#: templates/edit.html:160
 msgid "tt_change_color"
 msgstr ""
 
-#: templates/edit.html:208
+#: templates/edit.html:174
 msgid "title_add_image"
 msgstr ""
 
-#: templates/edit.html:210
+#: templates/edit.html:176
 msgid "lbl_load_image_file"
 msgstr ""
 
-#: templates/edit.html:212 templates/index.html:76
+#: templates/edit.html:178 templates/index.html:73
 msgid "lbl_or"
 msgstr ""
 
-#: templates/edit.html:214
+#: templates/edit.html:180
 msgid "lbl_load_image_url"
 msgstr ""
 
-#: templates/edit.html:216
+#: templates/edit.html:182
 msgid "btn_upload"
 msgstr ""
 
-#: templates/edit.html:225
+#: templates/edit.html:191
 msgid "title_add_video"
 msgstr ""
 
-#: templates/edit.html:228 templates/edit.html.py:234
+#: templates/edit.html:194 templates/edit.html.py:200
 msgid "btn_add"
 msgstr ""
 
-#: templates/edit.html:271
+#: templates/edit.html:237
 msgid "btn_cancel"
 msgstr ""
 
-#: templates/edit.html:292
+#: templates/edit.html:253
 msgid "tt_slide_mini_sort"
+msgstr ""
+
+#: templates/edit.html:265
+msgid "tt_btn_move"
+msgstr ""
+
+#: templates/edit.html:277
+msgid "enter_text"
 msgstr ""
 
 #: templates/home.html:15
@@ -283,27 +290,27 @@ msgstr ""
 msgid "tt_input_search"
 msgstr ""
 
-#: templates/home.html:56
+#: templates/home.html:57
 msgid "lbl_name"
 msgstr ""
 
-#: templates/home.html:58
+#: templates/home.html:59
 msgid "lbl_description"
 msgstr ""
 
-#: templates/home.html:58
+#: templates/home.html:59
 msgid "lbl_optional_message"
 msgstr ""
 
-#: templates/home.html:61
+#: templates/home.html:62
 msgid "tt_private_info"
 msgstr ""
 
-#: templates/home.html:67
+#: templates/home.html:69
 msgid "btn_create_presentation"
 msgstr ""
 
-#: templates/home.html:85
+#: templates/home.html:87
 msgid "tt_btn_view"
 msgstr ""
 
@@ -347,35 +354,35 @@ msgstr ""
 msgid "tt_get_started"
 msgstr ""
 
-#: templates/index.html:69
+#: templates/index.html:68
 msgid "get_started"
 msgstr ""
 
-#: templates/index.html:70
+#: templates/index.html:68
 msgid "no_registration"
 msgstr ""
 
-#: templates/index.html:81
+#: templates/index.html:78
 msgid "tt_signup"
 msgstr ""
 
-#: templates/index.html:81 templates/login.html:29
+#: templates/index.html:78 templates/login.html:29
 msgid "link_signup"
 msgstr ""
 
-#: templates/index.html:93
+#: templates/index.html:90
 msgid "search_presentations"
 msgstr ""
 
-#: templates/index.html:105
+#: templates/index.html:102
 msgid "featured_presentations"
 msgstr ""
 
-#: templates/index.html:108
+#: templates/index.html:105
 msgid "search_results"
 msgstr ""
 
-#: templates/index.html:135
+#: templates/index.html:143
 msgid "collaborate_with_us_on"
 msgstr ""
 
@@ -383,12 +390,12 @@ msgstr ""
 msgid "title_login"
 msgstr ""
 
-#: templates/login.html:16 templates/profile.html:25 templates/signup.html:23
-#: templates/elements/share_form.html:11 templates/elements/share_form.html:34
+#: templates/login.html:16 templates/elements/share_form.html:34
+#: templates/elements/share_form.html:57
 msgid "lbl_email"
 msgstr ""
 
-#: templates/login.html:19 templates/signup.html:26
+#: templates/login.html:19
 msgid "lbl_password"
 msgstr ""
 
@@ -404,7 +411,7 @@ msgstr ""
 msgid "tt_rename"
 msgstr ""
 
-#: templates/presentation.html:20 templates/presentation.html.py:163
+#: templates/presentation.html:20 templates/presentation.html.py:169
 msgid "btn_rename"
 msgstr ""
 
@@ -452,39 +459,35 @@ msgstr ""
 msgid "title_comments"
 msgstr ""
 
-#: templates/presentation.html:108
+#: templates/presentation.html:108 templates/elements/share_form.html:18
 msgid "delete"
 msgstr ""
 
-#: templates/presentation.html:123
-msgid "lbl_comment"
-msgstr ""
-
-#: templates/presentation.html:127
+#: templates/presentation.html:131
 msgid "btn_comment"
 msgstr ""
 
-#: templates/presentation.html:140
+#: templates/presentation.html:144
 msgid "title_embed_to_webpage"
 msgstr ""
 
-#: templates/presentation.html:149
+#: templates/presentation.html:153
 msgid "lbl_width"
 msgstr ""
 
-#: templates/presentation.html:151
+#: templates/presentation.html:155
 msgid "lbl_height"
 msgstr ""
 
-#: templates/presentation.html:159
+#: templates/presentation.html:163
 msgid "title_rename_presentation"
 msgstr ""
 
-#: templates/presentation.html:170
+#: templates/presentation.html:177
 msgid "title_modify_description"
 msgstr ""
 
-#: templates/presentation.html:174
+#: templates/presentation.html:183
 msgid "btn_save"
 msgstr ""
 
@@ -492,35 +495,27 @@ msgstr ""
 msgid "title_profile"
 msgstr ""
 
-#: templates/profile.html:19 templates/signup.html:17
-msgid "lbl_first_name"
-msgstr ""
-
-#: templates/profile.html:22 templates/signup.html:20
-msgid "lbl_last_name"
-msgstr ""
-
-#: templates/profile.html:30
+#: templates/profile.html:21
 msgid "btn_update_profile"
 msgstr ""
 
-#: templates/profile.html:40
+#: templates/profile.html:31
 msgid "btn_delete_account"
 msgstr ""
 
-#: templates/profile.html:49
+#: templates/profile.html:40
 msgid "msg_delete_account"
 msgstr ""
 
-#: templates/profile.html:52
+#: templates/profile.html:43
 msgid "msg_delete_account_cannot_be_undone"
 msgstr ""
 
-#: templates/profile.html:54
+#: templates/profile.html:45
 msgid "btn_cancel_delete_account"
 msgstr ""
 
-#: templates/profile.html:55
+#: templates/profile.html:46
 msgid "btn_accept_delete_account"
 msgstr ""
 
@@ -528,11 +523,7 @@ msgstr ""
 msgid "title_recover_password"
 msgstr ""
 
-#: templates/recover_password.html:20
-msgid "lbl_enter_your_email"
-msgstr ""
-
-#: templates/recover_password.html:24
+#: templates/recover_password.html:21
 msgid "btn_send_recover_email"
 msgstr ""
 
@@ -540,11 +531,7 @@ msgstr ""
 msgid "title_signup"
 msgstr ""
 
-#: templates/signup.html:29
-msgid "lbl_repeat_password"
-msgstr ""
-
-#: templates/signup.html:33
+#: templates/signup.html:18
 msgid "btn_register"
 msgstr ""
 
@@ -584,18 +571,14 @@ msgstr ""
 msgid "menu_logout"
 msgstr ""
 
-#: templates/elements/share_form.html:26
+#: templates/elements/share_form.html:49
 msgid "tt_btn_add_collaborator"
 msgstr ""
 
-#: templates/elements/share_form.html:26
+#: templates/elements/share_form.html:49
 msgid "btn_add_collaborator"
 msgstr ""
 
-#: templates/elements/share_form.html:47
+#: templates/elements/share_form.html:70
 msgid "btn_share"
-msgstr ""
-
-#: views/presentations.py:195
-msgid "text_copy_of"
 msgstr ""

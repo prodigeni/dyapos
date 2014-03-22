@@ -262,7 +262,7 @@
 
 <script id="template-component" type="text/mustache">
 	<div class="component-options" style="display:none;">
-		<a class="btn-move-component tip-left" data-tooltip title="{% trans 'tt_btn_edit' %}">
+		<a class="btn-move-component tip-left" data-tooltip title="{% trans 'tt_btn_move' %}">
 			<i class="fi-arrows-out"></i>
 		</a>
 		<a class="btn-delete-component tip-left" data-tooltip title="{% trans 'tt_btn_delete' %}">
@@ -272,6 +272,11 @@
 </script>
 
 <script id="template-text-component" type="text/mustache">
+	<div class="text-placeholder">
+		[[^content]]
+			{% trans 'enter_text' %}
+		[[/content]]
+	</div>
 	<div class="text-content" contenteditable="true">
 	[[#link]]
 		<a href="[[link]]" class="link" target="_blank">

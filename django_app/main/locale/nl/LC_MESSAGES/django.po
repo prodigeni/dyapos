@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-05 14:59-0300\n"
+"POT-Creation-Date: 2014-03-21 19:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: meneer <meneer@pod.orkz.net>\n"
 "Language-Team: Dutch <LL@li.org>\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: forms/presentation.py:10
-msgid "is_private"
-msgstr "Privé"
-
-#: forms/presentation.py:22
-msgid "option_allow_edit"
-msgstr "Bewerken toestaan"
-
-#: forms/presentation.py:22
-msgid "option_view_only"
-msgstr "Alleen bekijken"
 
 #: forms/user.py:21 forms/user.py:74
 msgid "error_passwords_dont_match"
@@ -50,6 +38,18 @@ msgstr "Account is nog niet geactiveerd"
 msgid "error_email_not_registered"
 msgstr "E-mailadres niet geregistreerd"
 
+#: forms/userpresentation.py:6 templates/elements/share_form.html:12
+msgid "option_allow_edit"
+msgstr "Bewerken toestaan"
+
+#: forms/userpresentation.py:6 templates/elements/share_form.html:14
+msgid "option_view_only"
+msgstr "Alleen bekijken"
+
+#: models/presentation.py:148
+msgid "text_copy_of"
+msgstr "kopie van"
+
 #: templates/change_password.html:11
 msgid "title_change_password"
 msgstr "Wijzigen wachtwoord"
@@ -66,182 +66,189 @@ msgstr "Nieuwe wachtwoord"
 msgid "lbl_repeat_new_password"
 msgstr "Herhaal nieuwe wachtwoord"
 
-#: templates/change_password.html:28 templates/profile.html:37
+#: templates/change_password.html:28 templates/profile.html:28
 msgid "btn_change_password"
 msgstr "Wijzigen wachtwoord"
 
-#: templates/edit.html:34
+#: templates/edit.html:37
 msgid "btn_new_title"
 msgstr "Nieuwe titel"
 
-#: templates/edit.html:35
+#: templates/edit.html:38
 msgid "btn_new_subtitle"
 msgstr "Nieuwe subtitel"
 
-#: templates/edit.html:36
+#: templates/edit.html:39
 msgid "btn_new_body"
 msgstr "Nieuwe body"
 
-#: templates/edit.html:51
+#: templates/edit.html:61
 msgid "tt_btn_add_slide"
 msgstr "Nieuwe dia"
 
-#: templates/edit.html:55
+#: templates/edit.html:63
 msgid "tt_btn_navigation_mode"
 msgstr "Navigatiemodus"
 
-#: templates/edit.html:59
+#: templates/edit.html:65
 msgid "tt_btn_back_edit_mode"
 msgstr "Bewerkmodus"
 
-#: templates/edit.html:61
+#: templates/edit.html:65
 msgid "btn_back_edit_mode"
 msgstr "Bewerkmodus"
 
-#: templates/edit.html:66
+#: templates/edit.html:69
 msgid "tt_btn_preview"
 msgstr "Voorbeeld"
 
-#: templates/edit.html:72
+#: templates/edit.html:73
 msgid "themes"
 msgstr "Thema's"
 
-#: templates/edit.html:79
+#: templates/edit.html:77
 msgid "share"
 msgstr "Delen"
 
-#: templates/edit.html:86
+#: templates/edit.html:81
 msgid "download"
 msgstr "Downloaden"
 
-#: templates/edit.html:92
+#: templates/edit.html:84
 msgid "exit"
 msgstr "Afsluiten"
 
-#: templates/edit.html:112
+#: templates/edit.html:103
 msgid "send_message"
 msgstr "Verstuur bericht"
 
-#: templates/edit.html:125 templates/edit.html.py:306 templates/home.html:90
+#: templates/edit.html:116 templates/home.html:92
 msgid "tt_btn_edit"
 msgstr "Bewerken"
 
-#: templates/edit.html:132
+#: templates/edit.html:121
 msgid "lbl_size"
 msgstr "Afmetingen"
 
-#: templates/edit.html:139
+#: templates/edit.html:128
 msgid "tt_rotate_z"
 msgstr "Roteren_z"
 
-#: templates/edit.html:140
+#: templates/edit.html:129
 msgid "tt_rotate_x"
 msgstr "Roteren_x"
 
-#: templates/edit.html:141
+#: templates/edit.html:130
 msgid "tt_rotate_y"
 msgstr "Roteren_y"
 
-#: templates/edit.html:146 templates/edit.html.py:309 templates/edit.html:324
-#: templates/edit.html.py:344 templates/home.html:95
+#: templates/edit.html:135 templates/edit.html.py:268 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr "Verwijderen"
 
-#: templates/edit.html:156
+#: templates/edit.html:143
 msgid "tt_btn_add_title"
 msgstr "Toevoegen titel"
 
-#: templates/edit.html:157
+#: templates/edit.html:143
 msgid "btn_title"
 msgstr "Titel"
 
-#: templates/edit.html:159
+#: templates/edit.html:144
 msgid "tt_btn_add_subtitle"
 msgstr "Toevoegen subtitel"
 
-#: templates/edit.html:160
+#: templates/edit.html:144
 msgid "btn_subtitle"
 msgstr "Subtitel"
 
-#: templates/edit.html:162
+#: templates/edit.html:145
 msgid "tt_btn_add_paragraph"
 msgstr "Toevoegen paragraaf"
 
-#: templates/edit.html:163
+#: templates/edit.html:145
 msgid "btn_body"
 msgstr "Body"
 
-#: templates/edit.html:165
+#: templates/edit.html:146
 msgid "tt_btn_add_image"
 msgstr "Toevoegen afbeelding"
 
-#: templates/edit.html:168
+#: templates/edit.html:147
 msgid "tt_btn_add_video"
 msgstr "Toevoegen video"
 
-#: templates/edit.html:177 templates/edit.html.py:201
+#: templates/edit.html:154 templates/edit.html.py:166
 msgid "tt_increase_size"
 msgstr "Vergroten afmetingen"
 
-#: templates/edit.html:178 templates/edit.html.py:202
+#: templates/edit.html:155 templates/edit.html.py:167
 msgid "tt_decrease_size"
 msgstr "Verkleinen afmetingen"
 
-#: templates/edit.html:179
+#: templates/edit.html:156
 msgid "tt_toggle_bold"
 msgstr "Switchen vet"
 
-#: templates/edit.html:182
+#: templates/edit.html:157
 msgid "tt_toggle_underline"
 msgstr "Switchen onderstreept"
 
-#: templates/edit.html:185
+#: templates/edit.html:158
 msgid "tt_toggle_italic"
 msgstr "Switchen schuin"
 
-#: templates/edit.html:188
+#: templates/edit.html:159
 msgid "tt_transform_to_link"
 msgstr "Veranderen in link"
 
-#: templates/edit.html:191
+#: templates/edit.html:160
 msgid "tt_change_color"
 msgstr "Wijzigen kleur"
 
-#: templates/edit.html:209
+#: templates/edit.html:174
 msgid "title_add_image"
 msgstr "Toevoegen afbeelding"
 
-#: templates/edit.html:211
+#: templates/edit.html:176
 msgid "lbl_load_image_file"
 msgstr "Laden afbeeldingenbestand"
 
-#: templates/edit.html:213 templates/index.html:73
+#: templates/edit.html:178 templates/index.html:73
 msgid "lbl_or"
 msgstr "of"
 
-#: templates/edit.html:215
+#: templates/edit.html:180
 msgid "lbl_load_image_url"
 msgstr "Laden afbeeldingsurl"
 
-#: templates/edit.html:217
+#: templates/edit.html:182
 msgid "btn_upload"
 msgstr "Uploaden"
 
-#: templates/edit.html:226
+#: templates/edit.html:191
 msgid "title_add_video"
 msgstr "Toevoegen video"
 
-#: templates/edit.html:229 templates/edit.html.py:235
+#: templates/edit.html:194 templates/edit.html.py:200
 msgid "btn_add"
 msgstr "Toevoegen"
 
-#: templates/edit.html:272
+#: templates/edit.html:237
 msgid "btn_cancel"
 msgstr "Annuleren"
 
-#: templates/edit.html:293
+#: templates/edit.html:253
 msgid "tt_slide_mini_sort"
 msgstr "Sorteren mini"
+
+#: templates/edit.html:265
+msgid "tt_btn_move"
+msgstr "Move"
+
+#: templates/edit.html:277
+msgid "enter_text"
+msgstr "Enter text..."
 
 #: templates/home.html:15
 msgid "tt_btn_create_presentation"
@@ -283,27 +290,27 @@ msgstr "Zoeken"
 msgid "tt_input_search"
 msgstr "Invoeren zoektermen"
 
-#: templates/home.html:56
+#: templates/home.html:57
 msgid "lbl_name"
 msgstr "Naam"
 
-#: templates/home.html:58
+#: templates/home.html:59
 msgid "lbl_description"
 msgstr "Beschrijving"
 
-#: templates/home.html:58
+#: templates/home.html:59
 msgid "lbl_optional_message"
 msgstr "Optionele mededeling"
 
-#: templates/home.html:61
+#: templates/home.html:62
 msgid "tt_private_info"
 msgstr "Privé info"
 
-#: templates/home.html:67
+#: templates/home.html:69
 msgid "btn_create_presentation"
 msgstr "Creëren presentatie"
 
-#: templates/home.html:85
+#: templates/home.html:87
 msgid "tt_btn_view"
 msgstr "Bekijken"
 
@@ -375,7 +382,7 @@ msgstr "Voorbeeldpresentatie"
 msgid "search_results"
 msgstr "Zoekresultaten"
 
-#: templates/index.html:140
+#: templates/index.html:143
 msgid "collaborate_with_us_on"
 msgstr "Werk met ons samen op"
 
@@ -383,12 +390,12 @@ msgstr "Werk met ons samen op"
 msgid "title_login"
 msgstr "Inloggen"
 
-#: templates/login.html:16 templates/profile.html:25 templates/signup.html:23
-#: templates/elements/share_form.html:11 templates/elements/share_form.html:34
+#: templates/login.html:16 templates/elements/share_form.html:34
+#: templates/elements/share_form.html:57
 msgid "lbl_email"
 msgstr "E-mail"
 
-#: templates/login.html:19 templates/signup.html:26
+#: templates/login.html:19
 msgid "lbl_password"
 msgstr "Wachtwoord"
 
@@ -404,7 +411,7 @@ msgstr "heb geen account"
 msgid "tt_rename"
 msgstr "Hernoemen"
 
-#: templates/presentation.html:20 templates/presentation.html.py:163
+#: templates/presentation.html:20 templates/presentation.html.py:169
 msgid "btn_rename"
 msgstr "Hernoemen"
 
@@ -452,39 +459,35 @@ msgstr "Leuk vinden"
 msgid "title_comments"
 msgstr "Reacties"
 
-#: templates/presentation.html:108
+#: templates/presentation.html:108 templates/elements/share_form.html:18
 msgid "delete"
 msgstr "Verwijderen"
 
-#: templates/presentation.html:123
-msgid "lbl_comment"
-msgstr "Reacties"
-
-#: templates/presentation.html:127
+#: templates/presentation.html:131
 msgid "btn_comment"
 msgstr "Reageren"
 
-#: templates/presentation.html:140
+#: templates/presentation.html:144
 msgid "title_embed_to_webpage"
 msgstr "Inbedden in webpagina"
 
-#: templates/presentation.html:149
+#: templates/presentation.html:153
 msgid "lbl_width"
 msgstr "Breedte"
 
-#: templates/presentation.html:151
+#: templates/presentation.html:155
 msgid "lbl_height"
 msgstr "Hoogte"
 
-#: templates/presentation.html:159
+#: templates/presentation.html:163
 msgid "title_rename_presentation"
 msgstr "Hernoemen presentatis"
 
-#: templates/presentation.html:170
+#: templates/presentation.html:177
 msgid "title_modify_description"
 msgstr "Wijzigen beschrijving"
 
-#: templates/presentation.html:174
+#: templates/presentation.html:183
 msgid "btn_save"
 msgstr "Bewaren"
 
@@ -492,35 +495,27 @@ msgstr "Bewaren"
 msgid "title_profile"
 msgstr "Profiel"
 
-#: templates/profile.html:19 templates/signup.html:17
-msgid "lbl_first_name"
-msgstr "Voornaam"
-
-#: templates/profile.html:22 templates/signup.html:20
-msgid "lbl_last_name"
-msgstr "Achternaam"
-
-#: templates/profile.html:30
+#: templates/profile.html:21
 msgid "btn_update_profile"
 msgstr "Bijwerken profiel"
 
-#: templates/profile.html:40
+#: templates/profile.html:31
 msgid "btn_delete_account"
 msgstr "Verwijderen account"
 
-#: templates/profile.html:49
+#: templates/profile.html:40
 msgid "msg_delete_account"
 msgstr "Verwijderen account"
 
-#: templates/profile.html:52
+#: templates/profile.html:43
 msgid "msg_delete_account_cannot_be_undone"
 msgstr "Verwijderen account kan niet ongedaan worden gemaakt"
 
-#: templates/profile.html:54
+#: templates/profile.html:45
 msgid "btn_cancel_delete_account"
 msgstr "Annuleren verwijderen account"
 
-#: templates/profile.html:55
+#: templates/profile.html:46
 msgid "btn_accept_delete_account"
 msgstr "Verwijderen account"
 
@@ -528,11 +523,7 @@ msgstr "Verwijderen account"
 msgid "title_recover_password"
 msgstr "Herstellen wachtwoord"
 
-#: templates/recover_password.html:20
-msgid "lbl_enter_your_email"
-msgstr "Voor je e-mailadres in"
-
-#: templates/recover_password.html:24
+#: templates/recover_password.html:21
 msgid "btn_send_recover_email"
 msgstr "Versturen wachtwoordherstel e-mail"
 
@@ -540,11 +531,7 @@ msgstr "Versturen wachtwoordherstel e-mail"
 msgid "title_signup"
 msgstr "Aanmelden"
 
-#: templates/signup.html:29
-msgid "lbl_repeat_password"
-msgstr "Herhaal wachtwoord"
-
-#: templates/signup.html:33
+#: templates/signup.html:18
 msgid "btn_register"
 msgstr "Aanmelden"
 
@@ -584,18 +571,32 @@ msgstr "Uitloggen"
 msgid "menu_logout"
 msgstr "Uitloggen"
 
-#: templates/elements/share_form.html:26
+#: templates/elements/share_form.html:49
 msgid "tt_btn_add_collaborator"
 msgstr "Toevoegen deelnemer"
 
-#: templates/elements/share_form.html:26
+#: templates/elements/share_form.html:49
 msgid "btn_add_collaborator"
 msgstr "Toevoegen deelnemer"
 
-#: templates/elements/share_form.html:47
+#: templates/elements/share_form.html:70
 msgid "btn_share"
 msgstr "Delen"
 
-#: views/presentations.py:196
-msgid "text_copy_of"
-msgstr "kopie van"
+#~ msgid "is_private"
+#~ msgstr "Privé"
+
+#~ msgid "lbl_comment"
+#~ msgstr "Reacties"
+
+#~ msgid "lbl_first_name"
+#~ msgstr "Voornaam"
+
+#~ msgid "lbl_last_name"
+#~ msgstr "Achternaam"
+
+#~ msgid "lbl_enter_your_email"
+#~ msgstr "Voor je e-mailadres in"
+
+#~ msgid "lbl_repeat_password"
+#~ msgstr "Herhaal wachtwoord"

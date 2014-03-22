@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-15 17:27-0300\n"
+"POT-Creation-Date: 2014-03-21 19:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: forms/presentation.py:10
-msgid "is_private"
-msgstr "Apresentação Privada"
-
-#: forms/presentation.py:22
-msgid "option_allow_edit"
-msgstr "Permitir edição"
-
-#: forms/presentation.py:22
-msgid "option_view_only"
-msgstr "Apenas ver"
 
 #: forms/user.py:21 forms/user.py:74
 msgid "error_passwords_dont_match"
@@ -49,6 +37,18 @@ msgstr "A conta não está ativada"
 msgid "error_email_not_registered"
 msgstr "Endereço de e-mail não registrado"
 
+#: forms/userpresentation.py:6 templates/elements/share_form.html:12
+msgid "option_allow_edit"
+msgstr "Permitir edição"
+
+#: forms/userpresentation.py:6 templates/elements/share_form.html:14
+msgid "option_view_only"
+msgstr "Apenas ver"
+
+#: models/presentation.py:148
+msgid "text_copy_of"
+msgstr "Cópia de"
+
 #: templates/change_password.html:11
 msgid "title_change_password"
 msgstr "Alterar senha"
@@ -65,182 +65,189 @@ msgstr "Nova senha"
 msgid "lbl_repeat_new_password"
 msgstr "Repetir nova senha"
 
-#: templates/change_password.html:28 templates/profile.html:37
+#: templates/change_password.html:28 templates/profile.html:28
 msgid "btn_change_password"
 msgstr "Alterar senha"
 
-#: templates/edit.html:33
+#: templates/edit.html:37
 msgid "btn_new_title"
 msgstr "Novo título"
 
-#: templates/edit.html:34
+#: templates/edit.html:38
 msgid "btn_new_subtitle"
 msgstr "Novo subtítulo"
 
-#: templates/edit.html:35
+#: templates/edit.html:39
 msgid "btn_new_body"
 msgstr "Novo corpo"
 
-#: templates/edit.html:50
+#: templates/edit.html:61
 msgid "tt_btn_add_slide"
 msgstr "Adicionar slide"
 
-#: templates/edit.html:54
+#: templates/edit.html:63
 msgid "tt_btn_navigation_mode"
 msgstr "Modo Navegação"
 
-#: templates/edit.html:58
+#: templates/edit.html:65
 msgid "tt_btn_back_edit_mode"
 msgstr "Retornar ao modo edição"
 
-#: templates/edit.html:60
+#: templates/edit.html:65
 msgid "btn_back_edit_mode"
 msgstr "Voltar"
 
-#: templates/edit.html:65
+#: templates/edit.html:69
 msgid "tt_btn_preview"
 msgstr "Visualizar apresentação"
 
-#: templates/edit.html:71
+#: templates/edit.html:73
 msgid "themes"
 msgstr "Temas"
 
-#: templates/edit.html:78
+#: templates/edit.html:77
 msgid "share"
 msgstr "Compartilhar"
 
-#: templates/edit.html:84
+#: templates/edit.html:81
 msgid "download"
 msgstr "Baixar"
 
-#: templates/edit.html:91
+#: templates/edit.html:84
 msgid "exit"
 msgstr "Sair"
 
-#: templates/edit.html:111
+#: templates/edit.html:103
 msgid "send_message"
 msgstr "Enviar mensagem"
 
-#: templates/edit.html:124 templates/edit.html.py:305 templates/home.html:90
+#: templates/edit.html:116 templates/home.html:92
 msgid "tt_btn_edit"
 msgstr "Editar"
 
-#: templates/edit.html:131
+#: templates/edit.html:121
 msgid "lbl_size"
 msgstr "Tamanho"
 
-#: templates/edit.html:138
+#: templates/edit.html:128
 msgid "tt_rotate_z"
 msgstr "Rotacionar no eixo Z"
 
-#: templates/edit.html:139
+#: templates/edit.html:129
 msgid "tt_rotate_x"
 msgstr "Rotacionar no eixo X"
 
-#: templates/edit.html:140
+#: templates/edit.html:130
 msgid "tt_rotate_y"
 msgstr "Rotacionar no eixo Y"
 
-#: templates/edit.html:145 templates/edit.html.py:308 templates/edit.html:323
-#: templates/edit.html.py:343 templates/home.html:95
+#: templates/edit.html:135 templates/edit.html.py:268 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr "Apagar"
 
-#: templates/edit.html:155
+#: templates/edit.html:143
 msgid "tt_btn_add_title"
 msgstr "Adicionar slide"
 
-#: templates/edit.html:156
+#: templates/edit.html:143
 msgid "btn_title"
 msgstr "Título"
 
-#: templates/edit.html:158
+#: templates/edit.html:144
 msgid "tt_btn_add_subtitle"
 msgstr "Adicionar subtítulo"
 
-#: templates/edit.html:159
+#: templates/edit.html:144
 msgid "btn_subtitle"
 msgstr "Subtítulo"
 
-#: templates/edit.html:161
+#: templates/edit.html:145
 msgid "tt_btn_add_paragraph"
 msgstr "Adicionar parágrafo"
 
-#: templates/edit.html:162
+#: templates/edit.html:145
 msgid "btn_body"
 msgstr "Corpo"
 
-#: templates/edit.html:164
+#: templates/edit.html:146
 msgid "tt_btn_add_image"
 msgstr "Adicionar imagem"
 
-#: templates/edit.html:167
+#: templates/edit.html:147
 msgid "tt_btn_add_video"
 msgstr "Adicionar vídeo"
 
-#: templates/edit.html:176 templates/edit.html.py:200
+#: templates/edit.html:154 templates/edit.html.py:166
 msgid "tt_increase_size"
 msgstr "Aumentar tamanho"
 
-#: templates/edit.html:177 templates/edit.html.py:201
+#: templates/edit.html:155 templates/edit.html.py:167
 msgid "tt_decrease_size"
 msgstr "Diminuir tamanho"
 
-#: templates/edit.html:178
+#: templates/edit.html:156
 msgid "tt_toggle_bold"
 msgstr "Marcar negrito"
 
-#: templates/edit.html:181
+#: templates/edit.html:157
 msgid "tt_toggle_underline"
 msgstr "Marcar sublinhado"
 
-#: templates/edit.html:184
+#: templates/edit.html:158
 msgid "tt_toggle_italic"
 msgstr "Marcar itálico"
 
-#: templates/edit.html:187
+#: templates/edit.html:159
 msgid "tt_transform_to_link"
 msgstr "Transformar em link"
 
-#: templates/edit.html:190
+#: templates/edit.html:160
 msgid "tt_change_color"
 msgstr "Mudar cor"
 
-#: templates/edit.html:208
+#: templates/edit.html:174
 msgid "title_add_image"
 msgstr "Adicionar imagem"
 
-#: templates/edit.html:210
+#: templates/edit.html:176
 msgid "lbl_load_image_file"
 msgstr "Adicionar arquivo de imagem (.jpg, .png, .gif)"
 
-#: templates/edit.html:212 templates/index.html:76
+#: templates/edit.html:178 templates/index.html:73
 msgid "lbl_or"
 msgstr "Ou"
 
-#: templates/edit.html:214
+#: templates/edit.html:180
 msgid "lbl_load_image_url"
 msgstr "Adicionar URL de imagem"
 
-#: templates/edit.html:216
+#: templates/edit.html:182
 msgid "btn_upload"
 msgstr "Subir"
 
-#: templates/edit.html:225
+#: templates/edit.html:191
 msgid "title_add_video"
 msgstr "Adicionar vídeo"
 
-#: templates/edit.html:228 templates/edit.html.py:234
+#: templates/edit.html:194 templates/edit.html.py:200
 msgid "btn_add"
 msgstr "Adicionar"
 
-#: templates/edit.html:271
+#: templates/edit.html:237
 msgid "btn_cancel"
 msgstr "Cancelar"
 
-#: templates/edit.html:292
+#: templates/edit.html:253
 msgid "tt_slide_mini_sort"
 msgstr "Arraste para alterar a ordem"
+
+#: templates/edit.html:265
+msgid "tt_btn_move"
+msgstr "Move"
+
+#: templates/edit.html:277
+msgid "enter_text"
+msgstr "Enter text..."
 
 #: templates/home.html:15
 msgid "tt_btn_create_presentation"
@@ -282,27 +289,28 @@ msgstr "Buscar"
 msgid "tt_input_search"
 msgstr "Buscar por nome"
 
-#: templates/home.html:56
+#: templates/home.html:57
 msgid "lbl_name"
 msgstr "Nome"
 
-#: templates/home.html:58
+#: templates/home.html:59
 msgid "lbl_description"
 msgstr "Descrição"
 
-#: templates/home.html:58
+#: templates/home.html:59
 msgid "lbl_optional_message"
 msgstr "Opcional"
 
-#: templates/home.html:61
+#: templates/home.html:62
 msgid "tt_private_info"
-msgstr "Faz sua apresentação visivel apenas para você e seus usuários compartilhados"
+msgstr ""
+"Faz sua apresentação visivel apenas para você e seus usuários compartilhados"
 
-#: templates/home.html:67
+#: templates/home.html:69
 msgid "btn_create_presentation"
 msgstr "Criar apresentação"
 
-#: templates/home.html:85
+#: templates/home.html:87
 msgid "tt_btn_view"
 msgstr "Ver apresentação"
 
@@ -336,7 +344,9 @@ msgstr "Não há mais necessidade de Flash Player"
 
 #: templates/index.html:55
 msgid "slide_any_device"
-msgstr "Veja sua aprsentação a partir de qualquer dispositivo, usando apenas um navegador"
+msgstr ""
+"Veja sua aprsentação a partir de qualquer dispositivo, usando apenas um "
+"navegador"
 
 #: templates/index.html:59
 msgid "slide_download"
@@ -345,38 +355,40 @@ msgstr "Baixe sua apresentação e use-a offline"
 #: templates/index.html:68
 msgid "tt_get_started"
 msgstr ""
-"Abra o editor anônimamente."
-" OBS: Esta apresentação não será salva na sua conta."
+"Abra o editor anônimamente. OBS: Esta apresentação não será salva na sua "
+"conta."
 
-#: templates/index.html:69
+#: templates/index.html:68
 msgid "get_started"
 msgstr "Iniciando"
 
-#: templates/index.html:70
+#: templates/index.html:68
 msgid "no_registration"
 msgstr "Registro não requerido"
 
-#: templates/index.html:81
+#: templates/index.html:78
 msgid "tt_signup"
-msgstr "Registre-se para ter acesso a recursos como salvar e compartilhar suas apresentações."
+msgstr ""
+"Registre-se para ter acesso a recursos como salvar e compartilhar suas "
+"apresentações."
 
-#: templates/index.html:81 templates/login.html:29
+#: templates/index.html:78 templates/login.html:29
 msgid "link_signup"
 msgstr "Registre-se"
 
-#: templates/index.html:93
+#: templates/index.html:90
 msgid "search_presentations"
 msgstr "Buscar apresentações"
 
-#: templates/index.html:105
+#: templates/index.html:102
 msgid "featured_presentations"
 msgstr "Apresentações em destaque"
 
-#: templates/index.html:108
+#: templates/index.html:105
 msgid "search_results"
 msgstr "Resultado da busca"
 
-#: templates/index.html:135
+#: templates/index.html:143
 msgid "collaborate_with_us_on"
 msgstr "Colabore conosco"
 
@@ -384,12 +396,12 @@ msgstr "Colabore conosco"
 msgid "title_login"
 msgstr "Entrar"
 
-#: templates/login.html:16 templates/profile.html:25 templates/signup.html:23
-#: templates/elements/share_form.html:11 templates/elements/share_form.html:34
+#: templates/login.html:16 templates/elements/share_form.html:34
+#: templates/elements/share_form.html:57
 msgid "lbl_email"
 msgstr "E-mail"
 
-#: templates/login.html:19 templates/signup.html:26
+#: templates/login.html:19
 msgid "lbl_password"
 msgstr "Senha"
 
@@ -405,7 +417,7 @@ msgstr "Você não tem uma conta?"
 msgid "tt_rename"
 msgstr "Clique aqui para renomear"
 
-#: templates/presentation.html:20 templates/presentation.html.py:163
+#: templates/presentation.html:20 templates/presentation.html.py:169
 msgid "btn_rename"
 msgstr "Renomear"
 
@@ -453,39 +465,35 @@ msgstr "Curtir"
 msgid "title_comments"
 msgstr "Comentários"
 
-#: templates/presentation.html:108
+#: templates/presentation.html:108 templates/elements/share_form.html:18
 msgid "delete"
 msgstr "Apagar"
 
-#: templates/presentation.html:123
-msgid "lbl_comment"
-msgstr "Comentário"
-
-#: templates/presentation.html:127
+#: templates/presentation.html:131
 msgid "btn_comment"
 msgstr "Comentário"
 
-#: templates/presentation.html:140
+#: templates/presentation.html:144
 msgid "title_embed_to_webpage"
 msgstr "Embutir na página web"
 
-#: templates/presentation.html:149
+#: templates/presentation.html:153
 msgid "lbl_width"
 msgstr "Largura"
 
-#: templates/presentation.html:151
+#: templates/presentation.html:155
 msgid "lbl_height"
 msgstr "Altura"
 
-#: templates/presentation.html:159
+#: templates/presentation.html:163
 msgid "title_rename_presentation"
 msgstr "Renomear apresentação"
 
-#: templates/presentation.html:170
+#: templates/presentation.html:177
 msgid "title_modify_description"
 msgstr "Modificar descrição"
 
-#: templates/presentation.html:174
+#: templates/presentation.html:183
 msgid "btn_save"
 msgstr "Salvar"
 
@@ -493,37 +501,29 @@ msgstr "Salvar"
 msgid "title_profile"
 msgstr "Perfil"
 
-#: templates/profile.html:19 templates/signup.html:17
-msgid "lbl_first_name"
-msgstr "Primeiro nome"
-
-#: templates/profile.html:22 templates/signup.html:20
-msgid "lbl_last_name"
-msgstr "Sobrenome"
-
-#: templates/profile.html:30
+#: templates/profile.html:21
 msgid "btn_update_profile"
 msgstr "Atualizar perfil"
 
-#: templates/profile.html:40
+#: templates/profile.html:31
 msgid "btn_delete_account"
 msgstr "Apagar conta"
 
-#: templates/profile.html:49
+#: templates/profile.html:40
 msgid "msg_delete_account"
 msgstr ""
-"Você tem certeza que quer apagar sua conta e todo o conteúdo relacionado, como "
-"as apresentações, comentários e perfis?"
+"Você tem certeza que quer apagar sua conta e todo o conteúdo relacionado, "
+"como as apresentações, comentários e perfis?"
 
-#: templates/profile.html:52
+#: templates/profile.html:43
 msgid "msg_delete_account_cannot_be_undone"
 msgstr "Alerta: Esta operação não poderá ser desfeita"
 
-#: templates/profile.html:54
+#: templates/profile.html:45
 msgid "btn_cancel_delete_account"
 msgstr "Cancelar"
 
-#: templates/profile.html:55
+#: templates/profile.html:46
 msgid "btn_accept_delete_account"
 msgstr "Apagar conta"
 
@@ -531,11 +531,7 @@ msgstr "Apagar conta"
 msgid "title_recover_password"
 msgstr "Recuperar senha"
 
-#: templates/recover_password.html:20
-msgid "lbl_enter_your_email"
-msgstr "Entre com seu e-mail"
-
-#: templates/recover_password.html:24
+#: templates/recover_password.html:21
 msgid "btn_send_recover_email"
 msgstr "Envie e-mail de recuperação"
 
@@ -543,21 +539,17 @@ msgstr "Envie e-mail de recuperação"
 msgid "title_signup"
 msgstr "Registre-se"
 
-#: templates/signup.html:29
-msgid "lbl_repeat_password"
-msgstr "Repita a senha"
-
-#: templates/signup.html:33
+#: templates/signup.html:18
 msgid "btn_register"
 msgstr "Registre-se"
 
 #: templates/view.html:16
 msgid "fallback-message"
 msgstr ""
-"<p>Seu navegador <b>não possui as funcionalidades requeridas</b> pelo impress.js, "
-"portanto você está vendo uma versão simplificada desta apresentação.</"
-"p><p>Para ter uma experiência plena use a verão mais atual de um dos navegadores: <b>Chrome</b>, <b>Safari</"
-"b> ou <b>Firefox</b>.</p>"
+"<p>Seu navegador <b>não possui as funcionalidades requeridas</b> pelo "
+"impress.js, portanto você está vendo uma versão simplificada desta "
+"apresentação.</p><p>Para ter uma experiência plena use a verão mais atual de "
+"um dos navegadores: <b>Chrome</b>, <b>Safari</b> ou <b>Firefox</b>.</p>"
 
 #: templates/view.html:100
 msgid "presentation_hint"
@@ -591,21 +583,35 @@ msgstr "Fechar sessão"
 msgid "menu_logout"
 msgstr "Sair"
 
-#: templates/elements/share_form.html:26
+#: templates/elements/share_form.html:49
 msgid "tt_btn_add_collaborator"
 msgstr "Adicionar outro colaborador"
 
-#: templates/elements/share_form.html:26
+#: templates/elements/share_form.html:49
 msgid "btn_add_collaborator"
 msgstr "Adicionar outro"
 
-#: templates/elements/share_form.html:47
+#: templates/elements/share_form.html:70
 msgid "btn_share"
 msgstr "Compartilhar"
 
-#: views/presentations.py:195
-msgid "text_copy_of"
-msgstr "Cópia de"
+#~ msgid "is_private"
+#~ msgstr "Apresentação Privada"
+
+#~ msgid "lbl_comment"
+#~ msgstr "Comentário"
+
+#~ msgid "lbl_first_name"
+#~ msgstr "Primeiro nome"
+
+#~ msgid "lbl_last_name"
+#~ msgstr "Sobrenome"
+
+#~ msgid "lbl_enter_your_email"
+#~ msgstr "Entre com seu e-mail"
+
+#~ msgid "lbl_repeat_password"
+#~ msgstr "Repita a senha"
 
 #~ msgid "tt_language"
 #~ msgstr "Alterar idoma"

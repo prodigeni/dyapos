@@ -76,7 +76,12 @@ define([], function() {"use strict";
 			 * Calls exitTextEditor
 			 * @event blur .text-content
 			 */
-			"blur .text-content" : "exitTextEditor"
+			"blur .text-content" : "exitTextEditor",
+			/**
+			 * Calls clearPlaceholder
+			 * @event input .text-content
+			 */
+			"input .text-content" : "clearPlaceholder",
 		},
 
 		/**
@@ -123,6 +128,15 @@ define([], function() {"use strict";
 					this.model.set("content", new_text);
 				}
 			}
-		}
+		},
+
+		/**
+		 * Clears the text placeholder
+		 * @method clearPlaceholder
+		 */
+		clearPlaceholder : function() {
+			this.$el.find(".text-placeholder").html("");
+		},
+
 	});
 });

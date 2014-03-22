@@ -102,7 +102,8 @@ define(["Component/ComponentView"], function(ComponentView) {
 		clickInsideSlide : function(event) {
 			event.stopPropagation();
 			console.log("event: click inside slide");
-			var offset = $(event.target).offset(); //I had to do it with JQuery, because with event.target.offsetTop/Left didn't work.
+			var offset = $(event.target).offset(), //I had to do it with JQuery, because with event.target.offsetTop/Left didn't work.
+				new_text_comp_view;
 
 			app.slide_clicked_point = {
 				"left" : event.clientX - offset.left,
@@ -124,6 +125,15 @@ define(["Component/ComponentView"], function(ComponentView) {
 
 			// Show the new component box
 			app.views.new_component_box.$el.show();
+
+			app.views.new_component_box.addSubtitle();
+
+			new_text_comp_view = app.slides.get(app.selected_slide).get("components").last().view.$el.find(".text-content");
+			new_text_comp_view.click().focus();
+			// $(".text-content").one("input", function(){
+				// console.log("oninput");
+				// $(".text-placeholder").html("");
+			// });
 		}
 	});
 });
