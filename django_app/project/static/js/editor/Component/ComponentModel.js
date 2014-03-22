@@ -62,6 +62,8 @@ define([], function() {
 						this.save();
 					}
 				}
+
+				this.get("slide").mini_view.generateThumbnail();
 			});
 
 			// this.on("change", function() {

@@ -52,6 +52,9 @@ define([], function() {
 		initialize : function() {
 			// When the its model is destroyed, remove this view
 			this.model.on("destroy", this.remove, this);
+
+			// Hack: Add a reverse view relationship to the model, so that way you can access to the view object from the model
+			this.model.mini_view = this;
 		},
 
 		/**
@@ -86,7 +89,15 @@ define([], function() {
 		 * @method generateThumbnail
 		 */
 		generateThumbnail : function() {
+			console.log("Generate thumbnail");
+			var cloned_div = this.model.view.el.cloneNode(true);
 
+			cloned_div.attributes.removeNamedItem("id");
+			cloned_div.style.transform = "";
+			cloned_div.style.backgroundColor = "white";
+			cloned_div.style.transformOrigin = "0% 0%";
+			cloned_div.style.transform = "scale(0.14)";
+			this.$el.find(".slide-mini-preview").append(cloned_div);
 		},
 
 		/**
