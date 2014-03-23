@@ -103,6 +103,7 @@ define(["Component/ComponentView", "Component/Text/TextModel"], function(Compone
 		clickInsideSlide : function(event) {
 			event.stopPropagation();
 			console.log("event: click inside slide");
+			console.log($(this).offset());
 			var offset = $(event.target).offset(), //I had to do it with JQuery, because with event.target.offsetTop/Left didn't work.
 				component;
 

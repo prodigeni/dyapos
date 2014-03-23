@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-import datetime, hashlib, urllib, re, shutil, pymongo
+import datetime, hashlib, urllib, re, shutil, pymongo, json
 from main.forms.presentation import *
 from main.forms.comment import *
 from main.models.presentation import Presentation
@@ -170,6 +170,22 @@ def edit(request, key = None):
 			return HttpResponseRedirect("/")
 
 	return render_to_response("edit.html", template_data, context_instance=RequestContext(request))
+
+@csrf_exempt
+def export_presentation(request):
+	"""Exports the presentation data into a JSON file"""
+	
+	data = {}
+  	data["slides"] = json.loads(request.POST["slides"])
+  	data["title"] = request.POST["presentation_title"]
+  	data["theme"] = request.POST["theme"]
+	response = HttpResponse(json.dumps(data), content_type="application/json")
+	response["Content-Disposition"] = "attachment; filename=" + data["title"] + ".json"
+	return response
+
+@csrf_exempt
+def import_presentation(request):
+	return HttpResponse("")
 
 def download(request):
 	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")

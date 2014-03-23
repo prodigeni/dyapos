@@ -78,6 +78,9 @@
 		</li>
 		{% endif %}
 		<li>
+			<a id="import-export-btn" href="#" data-reveal-id="import-export-window"> <i class="fi-page"></i> {% trans 'import_export' %} </a>
+		</li>
+		<li>
 			<a id="download-btn" href="{% url 'main.views.presentations.download' %}" target="_blank" > <i class="fi-download"></i> {% trans 'download' %} </a>
 		</li>
 		<li>
@@ -210,6 +213,35 @@
 	<ul id="themes-list" class="large-block-grid-2">
 
 	</ul>
+	<a class="close-reveal-modal">x</a>
+</div>
+
+<div id="import-export-window" class="reveal-modal small" data-reveal>
+	<div class="row">
+		<h3>{% trans 'title_export' %} <small>({% trans 'json_file' %})</small></h3>
+		<form id="form-export" action="{% url 'main.views.presentations.export_presentation' %}" method="post" target="_blank">
+			<div class="large-6 columns">
+				<input type="text" name="presentation_title" placeholder="{% trans 'placeholder_presentation_name' %}"/>
+				<input type="hidden" name="theme" value="" />
+				<input type="hidden" name="slides" value="" />
+			</div>
+			<div class="large-6 columns">
+				<input class="button" type="submit" value="{% trans 'btn_export' %}"/>
+			</div>
+		</form>
+	</div>
+	<hr />
+	<div class="row">
+		<h3>{% trans 'title_import' %} <small>({% trans 'json_file' %})</small></h3>
+		<form id="form-import" action="{% url 'main.views.presentations.import_presentation' %}" method="post">
+			<div class="large-6 columns">
+				<input type="file" name="presentation_file"/>
+			</div>
+			<div class="large-6 columns">
+				<input class="button" type="submit" value="{% trans 'btn_import' %}"/>
+			</div>
+		</form>
+	</div>
 	<a class="close-reveal-modal">x</a>
 </div>
 

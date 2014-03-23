@@ -36,6 +36,7 @@ require.config({
 		"Component/Video/VideoUploadFormView"	: "editor/Component/Video/VideoUploadFormView",
 		"Component/Video/VideoView"				: "editor/Component/Video/VideoView",
 		"EditorView"							: "editor/EditorView",
+		"ImportExport"							: "editor/ImportExport",
 		"Mode/EditModeView"						: "editor/Mode/EditModeView",
 		"Mode/NavigationModeView"				: "editor/Mode/NavigationModeView",
 		"Mode/PreviewModeView"					: "editor/Mode/PreviewModeView",

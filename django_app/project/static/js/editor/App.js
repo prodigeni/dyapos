@@ -28,8 +28,9 @@ define(["Slide/SlideModel",
 		"Component/Video/VideoToolboxView",
 		"Mode/EditModeView",
 		"Mode/NavigationModeView",
-		"Mode/PreviewModeView"],
-							function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView) {"use strict";
+		"Mode/PreviewModeView",
+		"ImportExport"],
+							function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView, ImportExport) {"use strict";
 
 	Mustache.tags = ["[[", "]]"];
 
@@ -248,6 +249,7 @@ define(["Slide/SlideModel",
 		app.views.navigation_mode = new NavigationModeView();
 		app.views.preview_mode = new PreviewModeView();
 		app.views.theme_selector = new ThemeSelectorView();
+		app.views.import_export_form = new ImportExport();
 
 		// Load the slides from server or local web storage
 		if (!app.is_anonymous) {
