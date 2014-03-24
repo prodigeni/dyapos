@@ -173,19 +173,21 @@ def edit(request, key = None):
 
 @csrf_exempt
 def export_presentation(request):
-	"""Exports the presentation data into a JSON file"""
-	
-	data = {}
-  	data["slides"] = json.loads(request.POST["slides"])
-  	data["title"] = request.POST["presentation_title"]
-  	data["theme"] = request.POST["theme"]
-	response = HttpResponse(json.dumps(data), content_type="application/json")
-	response["Content-Disposition"] = "attachment; filename=" + data["title"] + ".json"
-	return response
+    """Exports the presentation data into a JSON file"""
+
+    data = {}
+    data["slides"] = json.loads(request.POST["slides"])
+    data["title"] = request.POST["presentation_title"]
+    data["theme"] = request.POST["theme"]
+    data["date"] = str(datetime.date.today())
+    response = HttpResponse(json.dumps(data), content_type="application/json")
+    response["Content-Disposition"] = "attachment; filename=" + data["title"] + ".json"
+    return response
 
 @csrf_exempt
 def import_presentation(request):
-	return HttpResponse("")
+    file_content = request.FILES["presentation_file"].read()
+    return HttpResponse(file_content)
 
 def download(request):
 	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")

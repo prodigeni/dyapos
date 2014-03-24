@@ -33,6 +33,11 @@ define(["Slide/SlideModel",
 			this.collection.on("reset", function() {
 				console.log("called from SlidesMapView");
 				this.render();
+                
+                // One the slides are rendered, set the first slide as selected
+                app.selected_slide = this.collection.first().cid;
+                // Now, go there
+                app.views.edit_mode.enterMode();
 			}, this);
 		},
 
@@ -41,6 +46,7 @@ define(["Slide/SlideModel",
 		 * @method render
 		 */
 		render : function() {
+            this.$el.empty();
 			for (var i = 0; i < this.collection.length; i = i + 1) {
 				// Append every slide found on the collection to the view
 				this.appendSlide(this.collection.at(i));

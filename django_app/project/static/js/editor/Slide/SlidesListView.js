@@ -57,6 +57,7 @@ define(["Slide/SlideMiniView"], function(SlideMiniView) {"use strict";
 		 * @method render
 		 */
 		render : function() {
+            this.$el.empty();
 			for (var i = 0; i < this.collection.length; i = i + 1) {
 				// Append every slide found in the collection as a SlideMiniView
 				this.appendSlideMini(this.collection.at(i));

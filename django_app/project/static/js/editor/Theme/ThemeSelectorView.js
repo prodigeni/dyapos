@@ -36,7 +36,9 @@ define([], function() {
 			// If a theme was set and the user is anonymous, load the theme from local web storage
 			if (localStorage.theme !== undefined) {
 				this.set(localStorage.theme);
-			}
+			}else{
+                localStorage.theme = "theme_1";
+            }
 			$("#loading-screen").fadeOut(800);
 		},
 

@@ -92,11 +92,9 @@ body {
   margin-right: 3px;
 }
 #slides-bar #slides-list .slide-mini {
-  height: 90px;
-  border: 1px solid #000;
+  height: 100px;
+  border: 2px solid #000;
   margin-bottom: 15px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
 }
 #slides-bar #slides-list .slide-mini.selected {
   border: 3px solid #005212;
@@ -104,16 +102,12 @@ body {
 #slides-bar #slides-list .slide-mini .btn-delete {
   display: none;
 }
-#slides-bar #slides-list .slide-mini .slide-mini-preview {
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-}
-#slides-bar #slides-list .slide-mini .slide-mini-preview canvas {
+#slides-bar #slides-list .slide-mini .btn-delete canvas {
   -webkit-border-radius: 8px;
   border-radius: 8px;
 }
 #slides-bar #slides-list .slide-mini:hover {
-  border: 3px solid #005212;
+  border: 2px solid #005212;
 }
 #slides-bar #slides-list .slide-mini:hover .btn-delete {
   display: block;
