@@ -133,6 +133,14 @@ a:hover {
   color: #005212;
   z-index: 1;
 }
+#btn-slide-background-color {
+  position: absolute;
+  font-size: 3em;
+  z-index: 1;
+  bottom: 12%;
+  left: 11%;
+  padding: 0 8px;
+}
 #btn-exit-preview-mode {
   position: absolute;
   right: 2%;

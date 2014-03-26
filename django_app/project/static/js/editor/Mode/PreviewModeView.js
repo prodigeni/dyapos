@@ -89,7 +89,7 @@ define([], function() {
 			$("body").addClass("non-selectable-text");
 			$(".step").addClass("borderless");
 			$("#slides-bar, #right-panel").slideToggle();
-			$("#btn-add-slide, #btn-navigation-mode").hide();
+			$("#btn-add-slide, #btn-navigation-mode, #btn-slide-background-color").hide();
 			$("#btn-exit-preview-mode").show();
 			impress().goto(app.selected_slide);
 			this.delegateEvents({

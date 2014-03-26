@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-22 21:45-0300\n"
+"POT-Creation-Date: 2014-03-26 19:04-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,223 +70,227 @@ msgstr ""
 msgid "btn_change_password"
 msgstr ""
 
-#: templates/edit.html:37
+#: templates/edit.html:38
 msgid "btn_new_title"
 msgstr ""
 
-#: templates/edit.html:38
+#: templates/edit.html:39
 msgid "btn_new_subtitle"
 msgstr ""
 
-#: templates/edit.html:39
+#: templates/edit.html:40
 msgid "btn_new_body"
 msgstr ""
 
-#: templates/edit.html:61
+#: templates/edit.html:62
 msgid "tt_btn_add_slide"
 msgstr ""
 
-#: templates/edit.html:63
+#: templates/edit.html:64
 msgid "tt_btn_navigation_mode"
 msgstr ""
 
-#: templates/edit.html:65
+#: templates/edit.html:66
+msgid "tt_btn_slide_background_color"
+msgstr ""
+
+#: templates/edit.html:70
 msgid "tt_btn_back_edit_mode"
 msgstr ""
 
-#: templates/edit.html:65
+#: templates/edit.html:70
 msgid "btn_back_edit_mode"
 msgstr ""
 
-#: templates/edit.html:69
+#: templates/edit.html:74
 msgid "tt_btn_preview"
 msgstr ""
 
-#: templates/edit.html:73
+#: templates/edit.html:78
 msgid "themes"
 msgstr ""
 
-#: templates/edit.html:77
+#: templates/edit.html:82
 msgid "share"
 msgstr ""
 
-#: templates/edit.html:81
+#: templates/edit.html:86
 msgid "import_export"
 msgstr ""
 
-#: templates/edit.html:84
+#: templates/edit.html:89
 msgid "download"
 msgstr ""
 
-#: templates/edit.html:87
+#: templates/edit.html:92
 msgid "exit"
 msgstr ""
 
-#: templates/edit.html:106
+#: templates/edit.html:111
 msgid "send_message"
 msgstr ""
 
-#: templates/edit.html:117 templates/home.html:92
+#: templates/edit.html:122 templates/home.html:92
 msgid "tt_btn_edit"
 msgstr ""
 
-#: templates/edit.html:122
+#: templates/edit.html:127
 msgid "lbl_size"
 msgstr ""
 
-#: templates/edit.html:129
+#: templates/edit.html:134
 msgid "lbl_rotation"
 msgstr ""
 
-#: templates/edit.html:130
+#: templates/edit.html:135
 msgid "tt_rotate_z"
 msgstr ""
 
-#: templates/edit.html:131
+#: templates/edit.html:136
 msgid "tt_rotate_x"
 msgstr ""
 
-#: templates/edit.html:132
+#: templates/edit.html:137
 msgid "tt_rotate_y"
 msgstr ""
 
-#: templates/edit.html:137 templates/edit.html.py:303 templates/home.html:97
+#: templates/edit.html:142 templates/edit.html.py:312 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr ""
 
-#: templates/edit.html:142
+#: templates/edit.html:147
 msgid "tt_btn_add_text"
 msgstr ""
 
-#: templates/edit.html:142
+#: templates/edit.html:147
 msgid "text"
 msgstr ""
 
-#: templates/edit.html:145
+#: templates/edit.html:150
 msgid "tt_btn_add_title"
 msgstr ""
 
-#: templates/edit.html:145
+#: templates/edit.html:150
 msgid "btn_title"
 msgstr ""
 
-#: templates/edit.html:148
+#: templates/edit.html:153
 msgid "tt_btn_add_subtitle"
 msgstr ""
 
-#: templates/edit.html:148
+#: templates/edit.html:153
 msgid "btn_subtitle"
 msgstr ""
 
-#: templates/edit.html:151
+#: templates/edit.html:156
 msgid "tt_btn_add_paragraph"
 msgstr ""
 
-#: templates/edit.html:151
+#: templates/edit.html:156
 msgid "btn_body"
 msgstr ""
 
-#: templates/edit.html:155
+#: templates/edit.html:160
 msgid "tt_btn_add_image"
 msgstr ""
 
-#: templates/edit.html:156
+#: templates/edit.html:161
 msgid "tt_btn_add_video"
 msgstr ""
 
-#: templates/edit.html:162 templates/edit.html.py:174
+#: templates/edit.html:167 templates/edit.html.py:181
 msgid "tt_increase_size"
 msgstr ""
 
-#: templates/edit.html:163 templates/edit.html.py:175
+#: templates/edit.html:168 templates/edit.html.py:182
 msgid "tt_decrease_size"
 msgstr ""
 
-#: templates/edit.html:164
+#: templates/edit.html:169
 msgid "tt_toggle_bold"
 msgstr ""
 
-#: templates/edit.html:165
+#: templates/edit.html:170
 msgid "tt_toggle_underline"
 msgstr ""
 
-#: templates/edit.html:166
+#: templates/edit.html:171
 msgid "tt_toggle_italic"
 msgstr ""
 
-#: templates/edit.html:167
+#: templates/edit.html:172
 msgid "tt_transform_to_link"
 msgstr ""
 
-#: templates/edit.html:168
+#: templates/edit.html:173
 msgid "tt_change_color"
 msgstr ""
 
-#: templates/edit.html:182
+#: templates/edit.html:189
 msgid "title_add_image"
 msgstr ""
 
-#: templates/edit.html:184
+#: templates/edit.html:191
 msgid "lbl_load_image_file"
 msgstr ""
 
-#: templates/edit.html:186 templates/index.html:73
+#: templates/edit.html:193 templates/index.html:73
 msgid "lbl_or"
 msgstr ""
 
-#: templates/edit.html:188
+#: templates/edit.html:195
 msgid "lbl_load_image_url"
 msgstr ""
 
-#: templates/edit.html:190
+#: templates/edit.html:197
 msgid "btn_upload"
 msgstr ""
 
-#: templates/edit.html:199
+#: templates/edit.html:206
 msgid "title_add_video"
 msgstr ""
 
-#: templates/edit.html:202 templates/edit.html.py:208
+#: templates/edit.html:209 templates/edit.html.py:215
 msgid "btn_add"
 msgstr ""
 
-#: templates/edit.html:221
+#: templates/edit.html:228
 msgid "title_export"
 msgstr ""
 
-#: templates/edit.html:221 templates/edit.html.py:233
+#: templates/edit.html:228 templates/edit.html.py:242
 msgid "json_file"
 msgstr ""
 
-#: templates/edit.html:224
+#: templates/edit.html:231
 msgid "placeholder_presentation_name"
 msgstr ""
 
-#: templates/edit.html:227
+#: templates/edit.html:236
 msgid "btn_export"
 msgstr ""
 
-#: templates/edit.html:233
+#: templates/edit.html:242
 msgid "title_import"
 msgstr ""
 
-#: templates/edit.html:239
+#: templates/edit.html:248
 msgid "btn_import"
 msgstr ""
 
-#: templates/edit.html:272
+#: templates/edit.html:281
 msgid "btn_cancel"
 msgstr ""
 
-#: templates/edit.html:288
+#: templates/edit.html:297
 msgid "tt_slide_mini_sort"
 msgstr ""
 
-#: templates/edit.html:300
+#: templates/edit.html:309
 msgid "tt_btn_move"
 msgstr ""
 
-#: templates/edit.html:312
+#: templates/edit.html:321
 msgid "enter_text"
 msgstr ""
 

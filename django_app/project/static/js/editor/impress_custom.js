@@ -553,12 +553,15 @@ window.onload = function () {
                     onStepEnter(activeStep);
                 }, duration + delay);
 
+
+                // This is a custom feature by @edwardoyarzun. It changes the background color
+                // according to the step data-background-color attribute
                 if (el.dataset.backgroundColor !== undefined) {
-                    console.log("change to background color " + el.dataset.backgroundColor);
                     document.body.style.backgroundColor = el.dataset.backgroundColor;
                 } else {
                     document.body.style.backgroundColor = "";
                 }
+                // End of the feature
 
                 return el;
             };

@@ -150,14 +150,9 @@ define([], function() {
 			console.log("toggleColorPicker");
             this.$el.find("#text-color").toggle().focus();
 		},
-        
+
         changeColor : function(event) {
             console.log("color changed");
-            // Hide the color input
-            /*this.$el.find("#text-color").hide();*/
-/*            // Delete the colorpicker frame. It doesn't have an Id or Class, so I have to reference it on the lastChild of body, because it's created there.
-            document.body.lastChild.remove();*/
-            
             app.selected_component.set("color", event.target.value);
         }
 	});

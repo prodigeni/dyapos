@@ -1,4 +1,4 @@
-.title{	
+.title{
 	font-size: 3em;
 	line-height: 1.1em;
 	color: #B04A24;
@@ -6,7 +6,7 @@
 	font-family: cursive;
 }
 
-.subtitle{	
+.subtitle{
 	font-size: 2em;
 	line-height: 1.1em;
 	color: #DD7F5C;
@@ -18,7 +18,7 @@
 	font-size: 1em;
 	line-height: 1.1em;
 	color: B04A24;
-	font-family: cursive;	
+	font-family: cursive;
 }
 
 .link {
@@ -42,10 +42,12 @@
 }
 
 body {
-    /*font-family: 'PT Sans', sans-serif;*/
-    min-height: 740px;
-
-    background: #5B2612;
+	min-height: 740px;
+    background-color: #5B2612;
+	transition: all 0.5s ease-in;
+	-moz-transition: all 0.5s ease-in;
+	-webkit-transition: all 0.5s ease-in;
+	-o-transition: all 0.5s ease-in;
 }
 
 
@@ -73,7 +75,7 @@ i, em { font-style: italic }
     display: none;
 }
 
-.step {	
+.step {
     position: relative;
     width: 900px;
     height: 700px;

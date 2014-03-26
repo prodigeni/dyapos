@@ -7,7 +7,7 @@
     <title>{{presentation.name}}</title>
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id }}.css" rel="stylesheet" />    
+    <link href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id }}.css" rel="stylesheet" />
 </head>
 
 <body class="impress-not-supported">
@@ -21,11 +21,11 @@
 {% autoescape off %}
 
 	{% for slide in slides %}
-    	<div class="step" 
-    	id="step-{{forloop.counter0}}" 
-    	data-x="{{slide.pos_x}}" 
-    	data-y="{{slide.pos_y}}" 
-    	data-scale="{{slide.scale}}" 
+    	<div class="step"
+    	id="step-{{forloop.counter0}}"
+    	data-x="{{slide.pos_x}}"
+    	data-y="{{slide.pos_y}}"
+    	data-scale="{{slide.scale}}"
     	{% if slide.rotation_x %}
     		data-rotate-x="{{slide.rotation_x}}"
     	{% endif %}
@@ -34,35 +34,38 @@
     	{% endif %}
     	{% if slide.rotation_z %}
     		data-rotate-z="{{slide.rotation_z}}"
-    	{% endif %}    	    	
+    	{% endif %}
+    	{% if slide.background_color %}
+    		data-background-color="{{slide.background_color}}"
+    	{% endif %}
     	>
     		{% for component in slide.components %}
-    			<div class="{{component.type}} {{component.text_type}}" 
+    			<div class="{{component.type}} {{component.text_type}}"
     			style="
-    			position: absolute; 
-    			top:{{component.pos_y}}px; 
-    			left:{{component.pos_x}}px; 
+    			position: absolute;
+    			top:{{component.pos_y}}px;
+    			left:{{component.pos_x}}px;
                 -webkit-transform: rotate({{ component.rotation }}deg);
                 -moz-transform: rotate({{ component.rotation }}deg);
                 -o-transform: rotate({{ component.rotation }}deg);
                 -ms-transform: rotate({{ component.rotation }}deg);
-                
-                {% if component.type == "text" %}    			
+
+                {% if component.type == "text" %}
         			{% if component.bold == True %}
-        				font-weight:bold; 
+        				font-weight:bold;
         			{% endif %}
         			{% if component.italic == True %}
         				font-style:italic;
-        			{% endif %}    	
+        			{% endif %}
         			{% if component.underlined == True %}
         				text-decoration:underline;
         			{% endif %}
         			{% if component.color %}
         				color: {{component.color}};
-        			{% endif %}   
+        			{% endif %}
         			{% if component.font_size %}
         				font-size: {{component.font_size}}em;
-        			{% endif %}   
+        			{% endif %}
     			{% endif %}
     			{% if component.type == "image" %}
     			    width: {{component.size}}%;
@@ -70,29 +73,29 @@
     			{% if component.type == "video" %}
     			    width: {{component.size}}%;
     			{% endif %}
-    			 			 			
+
     			"
     			>
-    			
+
     			{% if component.type == "text" %}
     			{{component.content}}
     			{% endif %}
 
                 {% if component.type == "image" %}
                 <img src="/media/images/{{component.file}}" style="width:100%">
-                {% endif %}    		
-                
+                {% endif %}
+
                 {% if component.type == "video" %}
                 <div class='title component-preview' style='position:relative;padding-bottom:56.25%;padding-top:30px;height:0;overflow:hidden;display:block;'>
 					<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="//www.youtube.com/embed/{{component.url_id}}" frameborder="0" allowfullscreen></iframe>
-                </div>                
-                {% endif %}    	                	
-    			
+                </div>
+                {% endif %}
+
     			</div>
     		{% endfor %}
     	</div>
     {% endfor %}
-    
+
 {% endautoescape %}
 
 </div>
@@ -100,7 +103,7 @@
     <p>{% trans 'presentation_hint' %}</p>
 </div>
 <script>
-if ("ontouchstart" in document.documentElement) { 
+if ("ontouchstart" in document.documentElement) {
     document.querySelector(".hint").innerHTML = "<p>{% trans 'presentation_hint_touch' %}</p>";
 }
 </script>
