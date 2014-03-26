@@ -42,7 +42,7 @@ define([], function () {
             document.getElementById("impress").style[app.css_transform] = "scale(0.4)";
 
             this.delegateEvents({
-                "click #impress > .step": "onClickSlide",
+                "click .step": "onClickSlide",
                 "mousedown .step": "onMousedownSlide",
                 "mousedown": "onMousedownMap",
                 "mousewheel": "onMouseWheel",

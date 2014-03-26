@@ -2,11 +2,9 @@ require.config({
 	paths : {
 		"jquery" : "jquery-2.0.0",
 		"jqueryui" : "jquery-ui-1.10.3.custom",
-		"touchpunch" : "jquery.ui.touch-punch",
 		"mustache" : "mustache",
 		"impress" : "impress",
 		"impress_custom" : "editor/impress_custom",
-		"html2canvas" : "html2canvas",
 		"colorpicker" : "colorpicker.min",
 		"underscore" : "underscore",
 		"backbone" : "backbone",
@@ -54,9 +52,6 @@ require.config({
 		},
 		"jqueryui" : {
 			deps : ["jquery"]
-		},
-		"touchpunch" : {
-			deps : ["jqueryui"]
 		},
 		"underscore" : {
 			exports : "_"

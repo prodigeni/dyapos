@@ -96,7 +96,6 @@ define([], function () {
 				for (i = 0; i < currentStyleSheet.sheet.cssRules.length; i = i + 1) {
 					if (currentStyleSheet.sheet.cssRules[i].selectorText === "body") {
 						app.theme_background_color = currentStyleSheet.sheet.cssRules[i].style.backgroundColor;
-						console.log(app.theme_background_color);
 					}
 				}
 				// Update thumbnails according to the new selected theme

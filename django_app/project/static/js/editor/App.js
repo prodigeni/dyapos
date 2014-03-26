@@ -282,12 +282,12 @@ define(["Slide/SlideModel",
 				}
 			}
 
+			impress().init();
+
+			if (app.is_anonymous) {
+				app.saveAllToLocalStorage();
+			}
+
 		});
-
-		impress().init();
-
-		if (app.is_anonymous) {
-			app.saveAllToLocalStorage();
-		}
 
 	});
