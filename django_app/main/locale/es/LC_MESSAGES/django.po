@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 19:04-0300\n"
+"POT-Creation-Date: 2014-03-26 20:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,7 +154,7 @@ msgstr "Rotar en el eje X"
 msgid "tt_rotate_y"
 msgstr "Rotar en el eje Y"
 
-#: templates/edit.html:142 templates/edit.html.py:312 templates/home.html:97
+#: templates/edit.html:142 templates/edit.html.py:314 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr "Eliminar"
 
@@ -282,15 +282,19 @@ msgstr "Importar"
 msgid "btn_cancel"
 msgstr "Cancelar"
 
-#: templates/edit.html:297
+#: templates/edit.html:294
+msgid "import_message"
+msgstr "¿Esta seguro que desea importar una presentación? Todo su trabajo previo será perdido"
+
+#: templates/edit.html:299
 msgid "tt_slide_mini_sort"
 msgstr "Arrastrar para cambiar orden"
 
-#: templates/edit.html:309
+#: templates/edit.html:311
 msgid "tt_btn_move"
 msgstr "Mover"
 
-#: templates/edit.html:321
+#: templates/edit.html:323
 msgid "enter_text"
 msgstr "Ingresar texto..."
 
@@ -596,11 +600,11 @@ msgstr ""
 "</p><p>Para una mejor experiencia, por favor utilice los navegadores "
 "<b>Chrome</b>, <b>Safari</b> o <b>Firefox</b>.</p>"
 
-#: templates/view.html:100
+#: templates/view.html:103
 msgid "presentation_hint"
 msgstr "Usa la barra espaciadora o las flechas para navegar"
 
-#: templates/view.html:104
+#: templates/view.html:107
 msgid "presentation_hint_touch"
 msgstr "Toca en la izquierda o la derecha de la pantalla para navegar"
 

@@ -28,7 +28,7 @@ define([], function () {
 
         importPresentation: function (event) {
             event.preventDefault();
-            if (confirm("dialog message")) {
+            if (confirm(document.getElementById("import-message").value)) {
                 console.log("Import presentation");
                 var file = event.target.querySelector("[name=presentation_file]").files[0],
                     form_data = new FormData();
