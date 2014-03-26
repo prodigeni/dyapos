@@ -43,9 +43,6 @@ a:hover {
 }
 /*Variables*/
 /*Mixins*/
-body {
-  color: #005212;
-}
 .non-selectable-text {
   -moz-user-select: none;
   -webkit-user-select: none;

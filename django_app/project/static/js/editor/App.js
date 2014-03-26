@@ -13,7 +13,6 @@ define(["Slide/SlideModel",
 		"Component/ComponentModel",
 		"Component/Image/ImageUploadFormView",
 		"Component/Video/VideoUploadFormView",
-		"Component/Text/ColorPickerView",
 		"Theme/ThemeSelectorView",
 		"Collaborative/ChatWindowView",
 		"Component/Text/AddLinkWindowView",
@@ -30,7 +29,7 @@ define(["Slide/SlideModel",
 		"Mode/NavigationModeView",
 		"Mode/PreviewModeView",
 		"ImportExport"],
-							function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ColorPickerView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView, ImportExport) {"use strict";
+							function(SlideModel, ComponentModel, ImageUploadFormView, VideoUploadFormView, ThemeSelectorView, ChatWindowView, AddLinkWindowView, NewComponentBoxView, SlideOptionsBoxView, EditorView, SlidesListView, SlideMiniView, SlidesMapView, TextToolboxView, ImageToolboxView, VideoToolboxView, EditModeView, NavigationModeView, PreviewModeView, ImportExport) {"use strict";
 
 	Mustache.tags = ["[[", "]]"];
 
@@ -117,13 +116,6 @@ define(["Slide/SlideModel",
 	 * @type String
 	 */
 	app.css_transition = app.getSupportedCSSProp(["webkitTransition", "MozTransition", "OTransition"]);
-
-	/**
-	 * Current selected color on the ColorPicker
-	 * @attribute selected_color
-	 * @type String
-	 */
-	app.selected_color = null;
 
 	/**
 	 * Set of variables for Navigation mode
@@ -235,7 +227,6 @@ define(["Slide/SlideModel",
 		app.views.editor = new EditorView();
 		app.views.image_upload_form = new ImageUploadFormView();
 		app.views.video_upload_form = new VideoUploadFormView();
-		app.views.colorpicker = new ColorPickerView();
 		app.views.chat_window = new ChatWindowView();
 		app.views.add_link_window = new AddLinkWindowView();
 		app.views.new_component_box = new NewComponentBoxView();

@@ -28,25 +28,27 @@ define([], function () {
 
         importPresentation: function (event) {
             event.preventDefault();
-            console.log("Import presentation");
-            var file = event.target.querySelector("[name=presentation_file]").files[0],
-                form_data = new FormData();
+            if (confirm("dialog message")) {
+                console.log("Import presentation");
+                var file = event.target.querySelector("[name=presentation_file]").files[0],
+                    form_data = new FormData();
 
-            form_data.append("presentation_file", file);
-            $.ajax({
-                url: "presentation/import",
-                type: "POST",
-                contentType: false,
-                data: form_data,
-                processData: false,
-                cache: false
-            }).done(function (result) {
-                result = JSON.parse(result);
-                console.log(result);
-                app.slides.reset(result.slides);
-                app.views.theme_selector.set(result.theme);
-                $("#import-export-window").foundation("reveal", "close");
-            });
+                form_data.append("presentation_file", file);
+                $.ajax({
+                    url: "presentation/import",
+                    type: "POST",
+                    contentType: false,
+                    data: form_data,
+                    processData: false,
+                    cache: false
+                }).done(function (result) {
+                    result = JSON.parse(result);
+                    console.log(result);
+                    app.slides.reset(result.slides);
+                    app.views.theme_selector.set(result.theme);
+                    $("#import-export-window").foundation("reveal", "close");
+                });
+            }
         },
     });
 });

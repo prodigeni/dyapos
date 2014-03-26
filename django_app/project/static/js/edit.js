@@ -27,7 +27,6 @@ require.config({
 		"Component/Image/ImageView"				: "editor/Component/Image/ImageView",
 		"Component/NewComponentBoxView"			: "editor/Component/NewComponentBoxView",
 		"Component/Text/AddLinkWindowView"		: "editor/Component/Text/AddLinkWindowView",
-		"Component/Text/ColorPickerView"		: "editor/Component/Text/ColorPickerView",
 		"Component/Text/TextModel"				: "editor/Component/Text/TextModel",
 		"Component/Text/TextToolboxView"		: "editor/Component/Text/TextToolboxView",
 		"Component/Text/TextView"				: "editor/Component/Text/TextView",

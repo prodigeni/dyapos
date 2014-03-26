@@ -54,7 +54,12 @@ define([], function() {
 			 * Calls openColorPicker()
 			 * @event click #color-btn
 			 */
-			"click #color-btn" : "openColorPicker"
+			"click #color-btn" : "toggleColorPicker",
+            /**
+             * Calls changeColor()
+             * @event change #text-color
+             */
+            "change #text-color" : "changeColor"
 		},
 
 		/**
@@ -63,6 +68,7 @@ define([], function() {
 		 */
 		show : function() {
 			$(".toolbox").hide();
+            this.$el.find("#text-color").hide();
 			this.$el.show();
 		},
 
@@ -138,11 +144,21 @@ define([], function() {
 
 		/**
 		 * Opens the colorpicker view for changing the text color
-		 * @method openColorPicker
+		 * @method toggleColorPicker
 		 */
-		openColorPicker : function() {
-			console.log("openColorPicker");
-			app.views.colorpicker.toggle();
-		}
+		toggleColorPicker : function() {
+			console.log("toggleColorPicker");
+            this.$el.find("#text-color").toggle().focus();
+		},
+        
+        changeColor : function(event) {
+            console.log("color changed");
+            // Hide the color input
+            /*this.$el.find("#text-color").hide();*/
+/*            // Delete the colorpicker frame. It doesn't have an Id or Class, so I have to reference it on the lastChild of body, because it's created there.
+            document.body.lastChild.remove();*/
+            
+            app.selected_component.set("color", event.target.value);
+        }
 	});
 });
