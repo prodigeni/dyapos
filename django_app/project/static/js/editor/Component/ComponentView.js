@@ -60,7 +60,7 @@ define(["Component/Text/TextView",
 		attributes : function() {
 			return {
 				id : this.model.cid,
-				style : "top: " + this.model.get("pos_y") + "px;" + "left: " + this.model.get("pos_x") + "px;"
+				style : "position: absolute;top: " + this.model.get("pos_y") + "px;" + "left: " + this.model.get("pos_x") + "px;"
 			};
 		},
 

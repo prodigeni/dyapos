@@ -50,6 +50,6 @@ $(document).ready(function() {
 		return false;
 	});
 
-	loadFeaturedPresentations();
+	// loadFeaturedPresentations();
 
-}); 
+});

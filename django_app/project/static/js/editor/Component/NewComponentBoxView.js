@@ -111,6 +111,7 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 		 * @method addImage
 		 */
 		addImage : function(){
+			console.log(app.slides.at(0).get("components").length);
 			$("#add-image-box").foundation("reveal", "open");
 		},
 

@@ -124,19 +124,19 @@ define(["Component/ComponentView", "Component/Text/TextModel"], function (Compon
 				app.views.video_toolbox.$el.hide();
 
 				app.selected_component = null;
+			} else {
+				// Create a new text component on the clicked point
+				component = new TextCompModel({
+					"type": "text",
+					"text_type": "subtitle",
+					"font_size": 2,
+					"pos_x": app.slide_clicked_point.left,
+					"pos_y": app.slide_clicked_point.top,
+					"slide": app.slides.get(app.selected_slide)
+				});
+				// Focus the new text component. Ready to edit.
+				component.view.$el.find(".text-content").click().focus();
 			}
-
-			// Create a new text component on the clicked point
-			component = new TextCompModel({
-				"type": "text",
-				"text_type": "subtitle",
-				"font_size": 2,
-				"pos_x": app.slide_clicked_point.left,
-				"pos_y": app.slide_clicked_point.top,
-				"slide": app.slides.get(app.selected_slide)
-			});
-			// Focus the new text component. Ready to edit.
-			component.view.$el.find(".text-content").click().focus();
 		}
 	});
 });

@@ -103,9 +103,6 @@ class Presentation(models.Model):
 		users = [userpresentation.user for userpresentation in self.userpresentation_set.get_queryset()]		
 		return users
 	
-	def get_slides(self):
-		pass
-	
 	def delete_completely(self):
 		"""Deletes the presentation completely including slides, thumbnail, and relation with other users"""
 		
@@ -184,7 +181,7 @@ class Presentation(models.Model):
 		# Load slides from MongoDB
 		conn = pymongo.Connection(settings.MONGODB_URI)
 		db = conn[settings.MONGODB_DATABASE]
-		slides = db.slides.find({"presentation_id": self.id})
+		slides = db.slides.find({"presentation_id": self.id}).sort("number", 1)
 		return slides
 	
 	def get_share_formset(self):

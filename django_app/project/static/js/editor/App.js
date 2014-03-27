@@ -162,7 +162,10 @@ define(["Slide/SlideModel",
 		 */
 		app.theme_background_color = null;
 
-		app.slide_clicked_point = null;
+		app.slide_clicked_point = {
+			top : 200,
+			left : 300
+		};
 
 		//Connect to socket.io
 		if (!app.is_anonymous) {
@@ -269,6 +272,7 @@ define(["Slide/SlideModel",
 						if (data.length === 0) {
 							//Insert first slide
 							app.slides.add(new SlideModel());
+							app.slides.last().save();
 						} else {
 							app.slides.reset(data);
 						}
