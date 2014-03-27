@@ -9,7 +9,6 @@
 <link href="{{STATIC_URL}}css/edit.css" rel="stylesheet" />
 <link id="theme-stylesheet" href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id|default:'1' }}.css" rel="stylesheet" />
 
-<script src="{{STATIC_URL}}js/editor/impress_custom.js"></script>
 <script src="{{STATIC_URL}}js/underscore.js"></script>
 <script src="{{STATIC_URL}}js/backbone.js"></script>
 <script src="{{STATIC_URL}}js/backbone-relational.js"></script>
@@ -289,6 +288,8 @@
 </div>
 
 <input type="hidden" id="import-message" value="{% trans 'import_message' %}" />
+
+<script src="{{STATIC_URL}}js/editor/impress_custom.js"></script>
 
 <!-- Templates -->
 
