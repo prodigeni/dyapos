@@ -234,6 +234,8 @@ define(["Slide/SlideModel",
 		 * @event Document ready
 		 */
 		$(document).ready(function () {
+			impress().init();
+
 			app.views = {};
 			app.views.editor = new EditorView();
 			app.views.image_upload_form = new ImageUploadFormView();
@@ -282,12 +284,10 @@ define(["Slide/SlideModel",
 				}
 			}
 
-			impress().init();
-
-			if (app.is_anonymous) {
-				app.saveAllToLocalStorage();
-			}
-
 		});
+
+		if (app.is_anonymous) {
+			app.saveAllToLocalStorage();
+		}
 
 	});
