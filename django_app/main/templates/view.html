@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id }}.css" rel="stylesheet" />
+    <link href="{{STATIC_URL}}css/impress-progress.css" rel="stylesheet" />
 </head>
 
 <body class="impress-not-supported">
@@ -102,12 +103,19 @@
 <div class="hint">
     <p>{% trans 'presentation_hint' %}</p>
 </div>
+
+<div class="progressbar">
+	<div></div>
+</div>
+<div class="progress"></div>
+
 <script>
 if ("ontouchstart" in document.documentElement) {
     document.querySelector(".hint").innerHTML = "<p>{% trans 'presentation_hint_touch' %}</p>";
 }
 </script>
 
+<script src="{{STATIC_URL}}js/impress-progress.js"></script>
 <script src="{{STATIC_URL}}js/impress.js"></script>
 <script>impress().init();</script>
 </body>
