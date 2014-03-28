@@ -259,7 +259,7 @@ def view(request, key):
 	if presentation.is_private:
 		if not presentation.is_allowed(request.user):
 			raise Http404
-
+	
 	# show the presentation preview
 	return render_to_response("view.html", {
 		"presentation": presentation,

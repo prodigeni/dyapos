@@ -56,7 +56,7 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_IMAGES_ROOT = os.path.join(MEDIA_ROOT, "images")
 MEDIA_THUMBNAILS_ROOT = os.path.join(MEDIA_ROOT, "thumbnails")
-MEDIA_CUSTOM_THEMES_ROOT = os.path.join(MEDIA_ROOT, "custom_themes")
+MEDIA_THEMES_ROOT = os.path.join(MEDIA_ROOT, "themes")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.

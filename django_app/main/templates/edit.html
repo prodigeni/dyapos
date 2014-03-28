@@ -7,7 +7,7 @@
 <title>{{presentation.name|default:'Dyapos - Editor'}}</title>
 
 <link href="{{STATIC_URL}}css/edit.css" rel="stylesheet" />
-<link id="theme-stylesheet" href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id|default:'1' }}.css" rel="stylesheet" />
+<link id="theme-stylesheet" href="{{MEDIA_URL}}/themes/theme_{{ presentation.theme_id|default:'1' }}.css" rel="stylesheet" />
 
 <script src="{{STATIC_URL}}js/underscore.js"></script>
 <script src="{{STATIC_URL}}js/backbone.js"></script>
@@ -363,8 +363,8 @@
 	[[#themes]]
 	<li class="theme-item">
 	<a id='theme_[[pk]]' class="theme-link" href="#">
-	<iframe src="/theme/preview/[[pk]]" frameborder="0" width="200" height="150" scrolling="no"></iframe>
-	<h4>[[fields.name]]</h4>
+		<iframe src="/theme/preview/[[pk]]" frameborder="0" width="200" height="150" scrolling="no"></iframe>
+		<h4>[[fields.name]]</h4>
 	</a>
 	</li>
 	[[/themes]]
