@@ -4,13 +4,13 @@
 	bottom:15px;
 	left:118px;
 	border-radius:7px;
-	border:2px solid rgba(100, 100, 100, 0.2);
+	border:2px solid rgba(100, 100, 100, 0.4);
 }
 .progressbar DIV {
 	width:0;
 	height:10px;
 	border-radius:5px;
-	background:rgba(75, 75, 75, 0.2);
+	background:rgba(75, 75, 75, 0.4);
 	-webkit-transition:width 1s linear;
 	-moz-transition:width 1s linear;
 	-ms-transition:width 1s linear;
