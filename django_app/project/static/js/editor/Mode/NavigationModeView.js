@@ -28,7 +28,7 @@ define([], function () {
             $("body").addClass("non-selectable-text");
             $(".step").addClass("hoverable");
             $("#" + app.selected_slide).addClass("selected-slide");
-            $("#btn-navigation-mode, #btn-slide-background-color").hide();
+            $("#btn-navigation-mode, #btn-slide-background-color, #btn-slide-notes").hide();
 
             // Center rotation to 0 degrees if rotated
             map_style = map_style.replace(/rotateZ\(.+?\)/g, "rotateZ(0deg)");

@@ -89,7 +89,7 @@ define([], function() {
 			$("body").addClass("non-selectable-text");
 			$(".step").addClass("borderless");
 			$("#slides-bar, #right-panel").slideToggle();
-			$("#btn-add-slide, #btn-navigation-mode, #btn-slide-background-color").hide();
+			$("#btn-add-slide, #btn-navigation-mode, #btn-slide-background-color, #btn-slide-notes").hide();
 			$("#btn-exit-preview-mode").show();
 			impress().goto(app.selected_slide);
 			this.delegateEvents({
@@ -104,7 +104,7 @@ define([], function() {
 		exitMode : function() {
 			console.log("exit from preview mode");
 			$("#btn-exit-preview-mode").hide();
-			$("#slides-bar, #right-panel, #btn-add-slide, #btn-navigation-mode").slideToggle();
+			$("#slides-bar, #right-panel, #btn-add-slide").slideToggle();
 			this.undelegateEvents();
 			app.views.edit_mode.enterMode();
 		}

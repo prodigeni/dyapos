@@ -26,7 +26,7 @@ define([], function () {
          * @method enterMode
          */
         enterMode: function () {
-            $("#btn-navigation-mode, #btn-slide-background-color").show();
+            $("#btn-navigation-mode, #btn-slide-background-color, #btn-slide-notes").show();
             app.views.new_component_box.$el.show();
             $(".component").addClass("hoverable");
             $("body").removeClass("non-selectable-text");
