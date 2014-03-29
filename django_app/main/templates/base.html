@@ -11,16 +11,19 @@
 		<link href="{{STATIC_URL}}img/favicon.png" type="image/x-icon" rel="icon" />
 		<link rel="stylesheet" href="{{STATIC_URL}}css/foundation.css" />
 		<link rel="stylesheet" href="{{STATIC_URL}}css/foundation_icons/foundation-icons.css" type="text/css"/>
-		<script src="{{STATIC_URL}}js/mustache.js"></script>
-		<script src="{{STATIC_URL}}js/modernizr.js"></script>
-		<script src="{{STATIC_URL}}js/jquery-2.0.0.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+		<script> if (!window.Mustache) document.write('<script src="{{STATIC_URL}}js/mustache.min.js"><\/script>'); </script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+		<script> if (!window.Modernizr) document.write('<script src="{{STATIC_URL}}js/modernizr.min.js"><\/script>'); </script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script> if (!window.jQuery) document.write('<script src="{{STATIC_URL}}js/jquery-2.0.0.js"><\/script>'); </script>
 		<script src="{{STATIC_URL}}js/foundation/foundation.js"></script>
 		<script src="{{STATIC_URL}}js/foundation/foundation.orbit.js"></script>
 		<script src="{{STATIC_URL}}js/foundation/foundation.reveal.js"></script>
 		<script src="{{STATIC_URL}}js/foundation/foundation.dropdown.js"></script>
 		<script>
 			$(document).ready(function(){
-				$(document).foundation();				
+				$(document).foundation();
 			});
 		</script>
 		{% block includes %}
@@ -29,6 +32,6 @@
 	<body>
 		{% block content %}
 
-		{% endblock content %}		
+		{% endblock content %}
 	</body>
 </html>

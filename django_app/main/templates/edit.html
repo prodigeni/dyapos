@@ -9,10 +9,14 @@
 <link href="{{STATIC_URL}}css/edit.css" rel="stylesheet" />
 <link id="theme-stylesheet" href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id|default:'1' }}.css" rel="stylesheet" />
 
-<script src="{{STATIC_URL}}js/underscore.js"></script>
-<script src="{{STATIC_URL}}js/backbone.js"></script>
-<script src="{{STATIC_URL}}js/backbone-relational.js"></script>
-<script src="{{STATIC_URL}}js/jquery-ui-1.10.3.custom.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script> if (!window._) document.write('<script src="{{STATIC_URL}}js/underscore-min.js"><\/script>'); </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script> if (!window.Backbone) document.write('<script src="{{STATIC_URL}}js/backbone-min.js"><\/script>'); </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/backbone-relational/0.8.6/backbone-relational.min.js"></script>
+<script> if (!window.Backbone.Relational) document.write('<script src="{{STATIC_URL}}js/backbone-relational.min.js"><\/script>'); </script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script> if (!window.jQuery.ui) document.write('<script src="{{STATIC_URL}}js/jquery-ui-1.10.3.custom.js"><\/script>'); </script>
 <script src="{{STATIC_URL}}js/jscolor/jscolor.js"></script>
 {% if is_anonymous == False %}
 <script src="{{NODEJS_URL}}/socket.io/socket.io.js"></script>
@@ -38,7 +42,8 @@
 	var socket;
 </script>
 
-<script data-main="{{STATIC_URL}}js/edit.js" src="{{STATIC_URL}}js/require.js"></script>
+<script data-main="{{STATIC_URL}}js/edit.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.11/require.min.js"></script>
+<script>if (!window.requirejs) document.write('<script data-main="{{STATIC_URL}}js/edit.js" src="{{STATIC_URL}}js/require.min.js"><\/script>'); </script>
 
 {% endblock %}
 
