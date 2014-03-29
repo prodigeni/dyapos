@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link href="{{STATIC_URL}}css/themes/theme_{{ presentation.theme_id }}.css" rel="stylesheet" />
     <link href="{{STATIC_URL}}css/impress-progress.css" rel="stylesheet" />
+    <link id="impress-console-css" href="{{STATIC_URL}}css/impressConsole.css" rel="stylesheet" />
 </head>
 
 <body class="impress-not-supported">
@@ -94,14 +95,14 @@
 
     			</div>
     		{% endfor %}
+
+    		<div class="notes"> {{ slide.notes }} </div>
+
     	</div>
     {% endfor %}
 
 {% endautoescape %}
 
-</div>
-<div class="hint">
-    <p>{% trans 'presentation_hint' %}</p>
 </div>
 
 <div class="progressbar">
@@ -109,14 +110,68 @@
 </div>
 <div class="progress"></div>
 
-<script>
-if ("ontouchstart" in document.documentElement) {
-    document.querySelector(".hint").innerHTML = "<p>{% trans 'presentation_hint_touch' %}</p>";
-}
-</script>
+<div id="help-box">
+	<table>
+		<tbody>
+			<tr>
+				<th>Space</th><td>Forward</td>
+			</tr>
+			<tr>
+				<th>Left, Down, Page Down</th><td>Next slide</td>
+			</tr>
+			<tr>
+				<th>Right, Up, Page Up</th><td>Previous slide</td>
+			</tr>
+			<tr>
+				<th>P</th><td>Open presenter console</td>
+			</tr>
+			<tr>
+				<th>H</th><td>Toggle this help</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
 <script src="{{STATIC_URL}}js/impress-progress.js"></script>
 <script src="{{STATIC_URL}}js/impress.js"></script>
-<script>impress().init();</script>
+<script src="{{STATIC_URL}}js/impressConsole.js"></script>
+<script>
+	impress().init();
+	impressConsole().init(css=document.getElementById("impress-console-css").href);
+
+// Set up the help-box
+var helpdiv = window.document.getElementById('help-box');
+
+if (window.top!=window.self) {
+    // This is inside an iframe, so don't show the help.
+    helpdiv.className = "disabled";
+} else {
+    // Install a funtion to toggle help on and off.
+    var help = function() {
+        if(helpdiv.className == 'hide')
+            helpdiv.className = 'show';
+        else
+            helpdiv.className = 'hide';
+    };
+    impressConsole().registerKeyEvent([72], help, window);
+
+    // The help is by default shown. Hide it after five seconds.
+    setTimeout(function () {
+        var helpdiv = window.document.getElementById('help-box');
+        if(helpdiv.className != 'show')
+            helpdiv.className = 'hide';
+    }, 5000);
+}
+
+
+if (impressConsole()) {
+    impressConsole().init(cssFile=document.getElementById("impress-console-css").href);
+
+    var impressattrs = document.getElementById('impress').attributes;
+    if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
+        consoleWindow = impressConsole().open();
+    }
+}
+</script>
 </body>
 </html>

@@ -40,7 +40,8 @@ define(["Component/ComponentModel"], function(ComponentModel) {
 			rotation_z : 0,
 			scale : 1,
 			number : 0,
-            background_color : null
+            background_color : null,
+            notes : null
 		},
 
 		/**

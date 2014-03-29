@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Dyapos 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-26 20:06-0300\n"
+"POT-Creation-Date: 2014-03-28 21:43-0300\n"
 "PO-Revision-Date: 2014-02-05 21:55+0100\n"
 "Last-Translator: Andre Jaenisch <ryunoki@openmailbox.org>\n"
 "Language-Team: Deutsch <andre.jaenisch@openmailbox.org>\n"
@@ -47,7 +47,7 @@ msgstr "Bearbeitung erlauben"
 msgid "option_view_only"
 msgstr "Nur betrachten"
 
-#: models/presentation.py:148
+#: models/presentation.py:145
 msgid "text_copy_of"
 msgstr "Kopieren von"
 
@@ -71,231 +71,245 @@ msgstr "Neues Passwort wiederholen"
 msgid "btn_change_password"
 msgstr "Passwort ändern"
 
-#: templates/edit.html:38
+#: templates/edit.html:34
 msgid "btn_new_title"
 msgstr "Neuer Titel"
 
-#: templates/edit.html:39
+#: templates/edit.html:35
 msgid "btn_new_subtitle"
 msgstr "Neuer Untertitel"
 
-#: templates/edit.html:40
+#: templates/edit.html:36
 msgid "btn_new_body"
 msgstr "Neuer Inhalt"
 
-#: templates/edit.html:62
+#: templates/edit.html:58
 msgid "tt_btn_add_slide"
 msgstr "Neue Folie"
 
-#: templates/edit.html:64
+#: templates/edit.html:60
 msgid "tt_btn_navigation_mode"
 msgstr "Navigations-Modus"
 
-#: templates/edit.html:66
+#: templates/edit.html:62
 msgid "tt_btn_slide_background_color"
 msgstr "Change slide background color"
 
-#: templates/edit.html:70
+#: templates/edit.html:66
+msgid "tt_btn_edit_helping_notes"
+msgstr "Helping notes"
+
+#: templates/edit.html:68
 msgid "tt_btn_back_edit_mode"
 msgstr "Zurück zum Bearbeiten-Modus"
 
-#: templates/edit.html:70
+#: templates/edit.html:68
 msgid "btn_back_edit_mode"
 msgstr "Zurück"
 
-#: templates/edit.html:74
+#: templates/edit.html:72
 msgid "tt_btn_preview"
 msgstr "Präsentationsvorschau"
 
-#: templates/edit.html:78
+#: templates/edit.html:76
 msgid "themes"
 msgstr "Motive"
 
-#: templates/edit.html:82
+#: templates/edit.html:80
 msgid "share"
 msgstr "Teilen"
 
-#: templates/edit.html:86
+#: templates/edit.html:84
 msgid "import_export"
 msgstr "Import/Export"
 
-#: templates/edit.html:89
+#: templates/edit.html:87
 msgid "download"
 msgstr "Herunterladen"
 
-#: templates/edit.html:92
+#: templates/edit.html:90
 msgid "exit"
 msgstr "Beenden"
 
-#: templates/edit.html:111
+#: templates/edit.html:109
 msgid "send_message"
 msgstr "Nachricht versenden"
 
-#: templates/edit.html:122 templates/home.html:92
+#: templates/edit.html:120 templates/home.html:92
 msgid "tt_btn_edit"
 msgstr "Bearbeiten"
 
-#: templates/edit.html:127
+#: templates/edit.html:125
 msgid "lbl_size"
 msgstr "Größe"
 
-#: templates/edit.html:134
+#: templates/edit.html:132
 msgid "lbl_rotation"
 msgstr "Rotation"
 
-#: templates/edit.html:135
+#: templates/edit.html:133
 msgid "tt_rotate_z"
 msgstr "Um die z-Achse rotieren"
 
-#: templates/edit.html:136
+#: templates/edit.html:134
 msgid "tt_rotate_x"
 msgstr "Um die x-Achse rotieren"
 
-#: templates/edit.html:137
+#: templates/edit.html:135
 msgid "tt_rotate_y"
 msgstr "Um die y-Achse rotieren"
 
-#: templates/edit.html:142 templates/edit.html.py:314 templates/home.html:97
+#: templates/edit.html:140 templates/edit.html.py:296 templates/home.html:97
 msgid "tt_btn_delete"
 msgstr "Löschen"
 
-#: templates/edit.html:147
+#: templates/edit.html:145
 msgid "tt_btn_add_text"
 msgstr "Add text"
 
-#: templates/edit.html:147
+#: templates/edit.html:145
 msgid "text"
 msgstr "Text"
 
-#: templates/edit.html:150
+#: templates/edit.html:148
 msgid "tt_btn_add_title"
 msgstr "Untertitel hinzufügen"
 
-#: templates/edit.html:150
+#: templates/edit.html:148
 msgid "btn_title"
 msgstr "Titel"
 
-#: templates/edit.html:153
+#: templates/edit.html:151
 msgid "tt_btn_add_subtitle"
 msgstr "Untertitel hinzufügen"
 
-#: templates/edit.html:153
+#: templates/edit.html:151
 msgid "btn_subtitle"
 msgstr "Untertitel"
 
-#: templates/edit.html:156
+#: templates/edit.html:154
 msgid "tt_btn_add_paragraph"
 msgstr "Absatz hinzufügen"
 
-#: templates/edit.html:156
+#: templates/edit.html:154
 msgid "btn_body"
 msgstr "Inhalt"
 
-#: templates/edit.html:160
+#: templates/edit.html:158
 msgid "tt_btn_add_image"
 msgstr "Bild hinzufügen"
 
-#: templates/edit.html:161
+#: templates/edit.html:159
 msgid "tt_btn_add_video"
 msgstr "Video hinzufügen"
 
-#: templates/edit.html:167 templates/edit.html.py:181
+#: templates/edit.html:165 templates/edit.html.py:179
 msgid "tt_increase_size"
 msgstr "Größe erhöhen"
 
-#: templates/edit.html:168 templates/edit.html.py:182
+#: templates/edit.html:166 templates/edit.html.py:180
 msgid "tt_decrease_size"
 msgstr "Größe verringern"
 
-#: templates/edit.html:169
+#: templates/edit.html:167
 msgid "tt_toggle_bold"
 msgstr "Fett ein/aus"
 
-#: templates/edit.html:170
+#: templates/edit.html:168
 msgid "tt_toggle_underline"
 msgstr "Unterstrichen ein/aus"
 
-#: templates/edit.html:171
+#: templates/edit.html:169
 msgid "tt_toggle_italic"
 msgstr "Kursiv ein/aus"
 
-#: templates/edit.html:172
+#: templates/edit.html:170
 msgid "tt_transform_to_link"
 msgstr "In einen Link umwandeln"
 
-#: templates/edit.html:173
+#: templates/edit.html:171
 msgid "tt_change_color"
 msgstr "Farbe ändern"
 
-#: templates/edit.html:189
+#: templates/edit.html:187
 msgid "title_add_image"
 msgstr "Bild hinzufügen"
 
-#: templates/edit.html:191
+#: templates/edit.html:189
 msgid "lbl_load_image_file"
 msgstr "Bilddatei (.jpg, .png, .gif) laden"
 
-#: templates/edit.html:193 templates/index.html:73
+#: templates/edit.html:191 templates/index.html:73
 msgid "lbl_or"
 msgstr "Oder"
 
-#: templates/edit.html:195
+#: templates/edit.html:193
 msgid "lbl_load_image_url"
 msgstr "Lade Bild-URL"
 
-#: templates/edit.html:197
+#: templates/edit.html:195
 msgid "btn_upload"
 msgstr "Hochladen"
 
-#: templates/edit.html:206
+#: templates/edit.html:204
 msgid "title_add_video"
 msgstr "Video hinzufügen"
 
-#: templates/edit.html:209 templates/edit.html.py:215
+#: templates/edit.html:207 templates/edit.html.py:213
 msgid "btn_add"
 msgstr "Hinzufügen"
 
-#: templates/edit.html:228
+#: templates/edit.html:226
 msgid "title_export"
 msgstr "Export presentation"
 
-#: templates/edit.html:228 templates/edit.html.py:242
+#: templates/edit.html:226 templates/edit.html.py:240
 msgid "json_file"
 msgstr "JSON File"
 
-#: templates/edit.html:231
+#: templates/edit.html:229
 msgid "placeholder_presentation_name"
 msgstr "Presentation name"
 
-#: templates/edit.html:236
+#: templates/edit.html:234
 msgid "btn_export"
 msgstr "Export"
 
-#: templates/edit.html:242
+#: templates/edit.html:240
 msgid "title_import"
 msgstr "Import presentation"
 
-#: templates/edit.html:248
+#: templates/edit.html:246
 msgid "btn_import"
 msgstr "Import"
 
-#: templates/edit.html:281
-msgid "btn_cancel"
-msgstr "Abbrechen"
+#: templates/edit.html:254
+msgid "helping_notes"
+msgstr "Helping notes"
 
-#: templates/edit.html:294
+#: templates/edit.html:255
+msgid "helping_notes_info"
+msgstr "This is shown by pressing 'p' key when you're presenting"
+
+#: templates/edit.html:257 templates/presentation.html:183
+msgid "btn_save"
+msgstr "Speichern"
+
+#: templates/edit.html:274
 msgid "import_message"
-msgstr "Are you sure you want to import a presentation? All your previous work will be lost"
+msgstr ""
+"Are you sure you want to import a presentation? All your previous work will "
+"be lost"
 
-#: templates/edit.html:299
+#: templates/edit.html:281
 msgid "tt_slide_mini_sort"
 msgstr "Ziehen zum Ändern der Reihenfolge"
 
-#: templates/edit.html:311
+#: templates/edit.html:293
 msgid "tt_btn_move"
 msgstr "Move"
 
-#: templates/edit.html:323
+#: templates/edit.html:305
 msgid "enter_text"
 msgstr "Enter text..."
 
@@ -541,10 +555,6 @@ msgstr "Präsentation umbenennen"
 msgid "title_modify_description"
 msgstr "Beschreibung ändern"
 
-#: templates/presentation.html:183
-msgid "btn_save"
-msgstr "Speichern"
-
 #: templates/profile.html:12
 msgid "title_profile"
 msgstr "Profil"
@@ -591,7 +601,7 @@ msgstr "Registrieren"
 msgid "btn_register"
 msgstr "Registrieren"
 
-#: templates/view.html:16
+#: templates/view.html:18
 msgid "fallback-message"
 msgstr ""
 "<p>Dein Browser <strong>unterstütz nicht die benötigten Funktionen</strong> "
@@ -599,11 +609,11 @@ msgstr ""
 "p><p>Für die besten Ergebnisse benutze bitte den aktuellsten <strong>Chrome</"
 "strong>, <strong>Safari</strong> oder <strong>Firefox</strong> Browser.</p>"
 
-#: templates/view.html:103
+#: templates/view.html:108
 msgid "presentation_hint"
 msgstr "Benutze die Leertaste oder die Pfeiltasten zum Navigieren"
 
-#: templates/view.html:107
+#: templates/view.html:118
 msgid "presentation_hint_touch"
 msgstr "Berühre links oder rechts zum Navigieren"
 
@@ -642,6 +652,9 @@ msgstr "Jemanden hinzufügen"
 #: templates/elements/share_form.html:70
 msgid "btn_share"
 msgstr "Teilen"
+
+#~ msgid "btn_cancel"
+#~ msgstr "Abbrechen"
 
 #~ msgid "is_private"
 #~ msgstr "Private Präsentation"

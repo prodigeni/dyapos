@@ -63,6 +63,8 @@
 	<input id="slide-background-color" class="color {hash:true}" style="display:none;width:60px;border:none;"/>
 </a>
 
+<a href="#" id="btn-slide-notes" class="button secondary" data-tooltip title="{% trans 'tt_btn_edit_helping_notes' %}"> <i class="fi-page-edit"></i> </a>
+
 <a href="#" id="btn-exit-preview-mode" class="button secondary" data-tooltip title="{% trans 'tt_btn_back_edit_mode' %}" style="display: none;"> <i class="fi-arrow-left"></i> {% trans 'btn_back_edit_mode' %} </a>
 
 <div id="right-panel">
@@ -248,38 +250,20 @@
 	<a class="close-reveal-modal">x</a>
 </div>
 
+<div id="slide-notes-window" class="reveal-modal small" data-reveal>
+	<h2>{% trans 'helping_notes' %}</h2>
+	<h4>{% trans 'helping_notes_info' %}</h4>
+	<textarea id="slide-notes" cols="30" rows="10"></textarea>
+	<button id="btn-save-slide-notes">{% trans 'btn_save' %}</button>
+	<a class="close-reveal-modal">x</a>
+</div>
+
 {% if not is_anonymous %}
 <div id="share-window" class="reveal-modal medium" data-reveal>
 	{% include "elements/share_form.html" %}
 	<a class="close-reveal-modal">x</a>
 </div>
 {% endif %}
-
-<div id="colorpicker" style="display:none;">
-	<div id="picker-wrapper" style="display:inline-block;">
-		<div id="picker">
-
-		</div>
-		<div id="picker-indicator">
-
-		</div>
-	</div>
-	<div id="slider-wrapper" style="display:inline-block;">
-		<div id="slider">
-
-		</div>
-		<div id="slider-indicator">
-
-		</div>
-	</div>
-	<br>
-	<button id="btn-color-cancel">
-		{% trans 'btn_cancel' %}
-	</button>
-	<button id="btn-color-ok">
-		OK
-	</button>
-</div>
 
 <div id="impress">
 	<div id="slides">

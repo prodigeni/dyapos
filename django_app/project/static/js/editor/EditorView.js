@@ -47,6 +47,11 @@ define(["Slide/SlideModel"], function (SlideModel) {
 			 */
 			"change #btn-slide-background-color": "changeSlideBackgroundColor",
 			/**
+			 * Calls editSlideNotes()
+			 * @event click #btn-slide-notes
+			 */
+			"click #btn-slide-notes": "editSlideNotes",
+			/**
 			 * Calls exitFromPreviewMode()
 			 * @event click #btn-exit-preview-mode
 			 */
@@ -114,6 +119,16 @@ define(["Slide/SlideModel"], function (SlideModel) {
 			slide.view.el.dataset.backgroundColor = selected_color;
 			document.body.style.backgroundColor = selected_color;
 			slide.mini_view.generateThumbnail();
+		},
+
+		/**
+		 * Opens the slide notes editor
+		 * @method editSlideNote
+		 */
+		editSlideNotes : function() {
+			console.log("edit slide notes");
+			app.views.slide_notes.$el.find("#slide-notes").val(app.slides.get(app.selected_slide).get("notes"));
+			app.views.slide_notes.$el.foundation("reveal", "open");
 		},
 
 		/**

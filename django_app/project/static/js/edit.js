@@ -42,6 +42,7 @@ require.config({
 		"Slide/SlideOptionsBoxView"				: "editor/Slide/SlideOptionsBoxView",
 		"Slide/SlidesListView"					: "editor/Slide/SlidesListView",
 		"Slide/SlidesMapView"					: "editor/Slide/SlidesMapView",
+		"Slide/SlideNotesView"					: "editor/Slide/SlideNotesView",
 		"Slide/SlideView"						: "editor/Slide/SlideView",
 		"Theme/ThemeSelectorView"				: "editor/Theme/ThemeSelectorView"
 	},

@@ -141,6 +141,14 @@ a:hover {
   left: 11%;
   padding: 0 8px;
 }
+#btn-slide-notes {
+  position: absolute;
+  font-size: 3em;
+  z-index: 1;
+  bottom: 12%;
+  left: 16%;
+  padding: 0 8px;
+}
 #btn-exit-preview-mode {
   position: absolute;
   right: 2%;
