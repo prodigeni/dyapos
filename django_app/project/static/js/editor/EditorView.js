@@ -55,7 +55,12 @@ define(["Slide/SlideModel"], function (SlideModel) {
 			 * Calls exitFromPreviewMode()
 			 * @event click #btn-exit-preview-mode
 			 */
-			"click #btn-exit-preview-mode": "exitFromPreviewMode"
+			"click #btn-exit-preview-mode": "exitFromPreviewMode",
+			/**
+			 * Calls downloadPresentation()
+			 * @event click #btn-download
+			 */
+			"click #btn-download" : "downloadPresentation"
 		},
 
 		/**
@@ -148,6 +153,28 @@ define(["Slide/SlideModel"], function (SlideModel) {
 		 */
 		exitFromPreviewMode: function () {
 			app.views.preview_mode.exitMode();
+		},
+
+		/**
+		 * Downloads the presentation as a zip package
+		 * @method downloadPresentation
+		 */
+		downloadPresentation : function(event) {
+			event.preventDefault();
+			console.log("download presentation");
+
+			var form;
+
+			if (app.is_anonymous) {
+				form = document.createElement("form");
+				form.action = event.target;
+				form.method = "post";
+				$(form).append("<input name='slides' value='" + JSON.stringify(app.slides.toJSON()) + "' />");
+				$(form).append("<input name='theme_id' value='" + _.last(localStorage.theme.split("_")) + "' />");
+				form.submit();
+			}else{
+				window.location = event.target;
+			}
 		}
 	});
 });

@@ -89,7 +89,7 @@
 			<a id="import-export-btn" href="#" data-reveal-id="import-export-window"> <i class="fi-page"></i> {% trans 'import_export' %} </a>
 		</li>
 		<li>
-			<a id="download-btn" href="{% url 'main.views.presentations.download' %}" target="_blank" > <i class="fi-download"></i> {% trans 'download' %} </a>
+			<a id="btn-download" href="{% url 'main.views.presentations.download' presentation.id %}" target="_blank" > <i class="fi-download"></i> {% trans 'download' %} </a>
 		</li>
 		<li>
 			<a href="{% url 'main.views.pages.home' %}" > <i class="fi-x-circle"></i> {% trans 'exit' %} </a>

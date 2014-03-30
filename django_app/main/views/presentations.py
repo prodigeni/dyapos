@@ -135,7 +135,7 @@ def modify_description(request, id):
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
-def edit(request, key = None):
+def edit(request, key):
 	"""Open the presentation editor screen
 	Args:
 		key (str): Presentation public key, default = None
@@ -189,8 +189,59 @@ def import_presentation(request):
     file_content = request.FILES["presentation_file"].read()
     return HttpResponse(file_content)
 
-def download(request):
-	return HttpResponse("<h2>Not available yet. Coming soon :)</h2>")
+@csrf_exempt
+def download(request, id):
+	from tempfile import NamedTemporaryFile
+	from zipfile import ZipFile
+	from StringIO import StringIO
+	
+	if request.method == "GET" and id is not None:
+		# get the presentation based on its key
+		presentation = Presentation.objects.get(pk = id)
+		slides = presentation.get_slides()
+	
+		if presentation.is_private:
+			if not presentation.is_allowed(request.user):
+				raise Http404
+		
+	elif request.method == "POST" and id is None:
+		presentation = Presentation.objects.none()
+		presentation.name = "Dyapos presentation"
+		presentation.theme_id = request.POST["theme_id"]
+		slides = json.loads(request.POST["slides"])
+	else:
+		raise Http404
+
+	# get the presentation HTML content
+	presentation_content = render_to_response("view.html", {
+		"presentation": presentation,
+		"slides": slides,
+		}, context_instance=RequestContext(request))
+	presentation_content.content = presentation_content.content.replace(settings.STATIC_URL, "")
+	
+	presentation_file = NamedTemporaryFile()
+ 	presentation_file.write(presentation_content.content)
+ 	presentation_file.seek(0)
+ 	
+	# Open StringIO to grab in-memory ZIP contents
+	s = StringIO()
+
+ 	# create a zip container file for the presentation
+ 	zip = ZipFile(s, "w")
+ 	zip.write(presentation_file.name, presentation.name + ".html")
+ 	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impress.js", "js/impress.js")
+ 	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impress-progress.js", "js/impress-progress.js")
+ 	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impressConsole.js", "js/impressConsole.js")
+ 	zip.write(settings.BASE_DIR + settings.STATIC_URL + "css/themes/theme_" + str(presentation.theme_id) + ".css", "css/themes/theme_" + str(presentation.theme_id) + ".css")
+ 	zip.write(settings.BASE_DIR + settings.STATIC_URL + "css/impress-progress.css", "css/impress-progress.css")
+ 	zip.write(settings.BASE_DIR + settings.STATIC_URL + "css/impressConsole.css", "css/impressConsole.css")
+  	zip.close()
+  	
+  	presentation_file.close()
+	
+	response = HttpResponse(s.getvalue(), content_type = "application/x-zip-compressed")
+	response["Content-Disposition"] = "attachment; filename=" + presentation.name + ".zip"
+	return response
 
 @login_required(login_url="/")
 @csrf_exempt

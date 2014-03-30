@@ -2,7 +2,7 @@
 
 {% block includes %}
 <!-- <script src="{{STATIC_URL}}js/foundation/foundation.reveal.js"></script> -->
-<link href="{{STATIC_URL}}css/presentation.css" rel="stylesheet" />        
+<link href="{{STATIC_URL}}css/presentation.css" rel="stylesheet" />
 <script src="{{STATIC_URL}}js/presentation.js"></script>
 {% endblock %}
 
@@ -11,13 +11,13 @@
 
 <div class="row">
 	<h1>
-		<div id="title" style="display: inline-block;">{{ presentation.name }}</div> 
+		<div id="title" style="display: inline-block;">{{ presentation.name }}</div>
 		{% if user.is_authenticated and is_owner %}
 		<small>
 			<a href="#" data-reveal-id="rename-modal-box" data-tooltip title="{% trans 'tt_rename' %}">
 			    <div class="label">
 			        <i class="fi-pencil"></i>
-    			    {% trans 'btn_rename' %}			        
+    			    {% trans 'btn_rename' %}
 			    </div>
 			</a>
 		</small>
@@ -25,12 +25,12 @@
 	</h1>
 	<p>
 		<h3 class="subheader">
-			<div id="description" style="display: inline-block;">{{ presentation.description }}</div> 
+			<div id="description" style="display: inline-block;">{{ presentation.description }}</div>
 			{% if user.is_authenticated and is_owner %}
 			<small>
 				<a href="#" data-reveal-id="modify-description-modal-box" data-tooltip title="{% trans 'tt_modify_description' %}">
                     <div class="label">
-                        <i class="fi-pencil"></i>                    
+                        <i class="fi-pencil"></i>
 				        {% trans 'btn_modify_description' %}
                     </div>
 			    </a>
@@ -59,7 +59,7 @@
 			{% if user.is_authenticated %}
 			<li>
 				<a href="{% url 'main.views.presentations.copy' presentation.id %}">{% trans 'link_copy' %}</a>
-			</li>			
+			</li>
 			<li class="divider"></li>
 			{% endif %}
 			{% if user.is_authenticated and is_owner %}
@@ -69,12 +69,12 @@
 			<li class="divider"></li>
 			{% endif %}
 			<li>
-				<a href="{% url 'main.views.presentations.download' %}">{% trans 'link_download' %}</a>
+				<a href="{% url 'main.views.presentations.download' presentation.id %}">{% trans 'link_download' %}</a>
 			</li>
 			<li class="divider"></li>
 			<li>
 				<a href="#" data-reveal-id="embed-modal-box">{% trans 'link_embed' %} &lt;iframe&gt;</a>
-			</li>			
+			</li>
 		</ul>
 	</div>
 	<div class="large-9 columns first">
@@ -83,10 +83,10 @@
 			{{presentation.num_likes}}
 			<a id="views" href="#"><i class="fi-eye"></i> </a>
 			{{presentation.num_views}}
-			
+
 		</div>
 		<div class="row">
-			<iframe src="{% url 'main.views.presentations.view' presentation.key %}" width="100%" height="400px"></iframe>			
+			<iframe src="{% url 'main.views.presentations.view' presentation.key %}" width="100%" height="400px"></iframe>
 		</div>
 	</div>
 </div>
@@ -100,22 +100,22 @@
 
 <div class="row">
 	<div class="large-6 columns">
-		<ul>			
+		<ul>
 			{% for comment in comments %}
 			<li class="comment">
 				<b><i class="fi-torso"></i> {{ comment.user.first_name }} {{comment.user.last_name}} ({{ comment.published_date }}):</b>
 				{% if is_owner %}
 					<a class="btn-delete-comment" href="{% url 'main.views.comments.delete' comment.id %}" data-tooltip title="{% trans 'delete' %}" >
 						<i class="fi-x"></i>
-					</a>					
-				{% endif %}		
+					</a>
+				{% endif %}
 				<br>
 				{{ comment.comment }}
 				<hr>
 			</li>
 			{% endfor %}
 		</ul>
-		
+
 		{% if user.is_authenticated %}
 		<form action="{% url 'main.views.comments.comment' presentation.id %}" method="post">
 			{% csrf_token %}
@@ -144,10 +144,10 @@
 	<div class="row">
 		<div class="large-8 columns first">
 			<div id="embed-code" class="panel">
-				&lt;iframe href="{{ view_url }}" width="<span id="iframe-width-property">640</span>" height="<span id="iframe-height-property">480</span>"&gt;				
+				&lt;iframe href="{{ view_url }}" width="<span id="iframe-width-property">640</span>" height="<span id="iframe-height-property">480</span>"&gt;
 				&lt;/iframe&gt;
-			</div>			
-		</div>		
+			</div>
+		</div>
 		<div class="large-4 columns last">
 			<label>{% trans 'lbl_width' %}</label>
 			<input id="iframe-width" type="number" value="640" min="1" max="3000">
@@ -160,7 +160,7 @@
 
 <div id="rename-modal-box" class="reveal-modal small" data-reveal>
 	<h3>{% trans 'title_rename_presentation' %}</h3>
-	<div class="row">	
+	<div class="row">
 		<div class="large-12 columns last">
 			<form action="{% url 'main.views.presentations.rename' presentation.id %}" method="post">
 				{% csrf_token %}
@@ -174,7 +174,7 @@
 
 <div id="modify-description-modal-box" class="reveal-modal small" data-reveal>
 	<h3>{% trans 'title_modify_description' %}</h3>
-	<div class="row">	
+	<div class="row">
 		<div class="large-12 columns last">
 			<form action="{% url 'main.views.presentations.modify_description' presentation.id %}" method="post">
 				{% csrf_token %}
