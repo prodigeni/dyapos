@@ -35,7 +35,7 @@ define([], function () {
 
                 form_data.append("presentation_file", file);
                 $.ajax({
-                    url: "presentation/import",
+                    url: "/presentation/import/",
                     type: "POST",
                     contentType: false,
                     data: form_data,
