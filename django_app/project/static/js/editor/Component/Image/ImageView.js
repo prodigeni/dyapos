@@ -48,7 +48,7 @@ define([], function() {
 					value = this.model.attributes[attr_name];
 					switch(attr_name) {
 						case "size":
-							style += "width:" + value + "%;";
+							style += "width:" + value + "px;";
 							break;
 					}
 				}

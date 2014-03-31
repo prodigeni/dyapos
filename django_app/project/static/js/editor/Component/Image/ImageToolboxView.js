@@ -47,7 +47,7 @@ define([], function() {
 		 */
 		increaseSize : function() {
 			console.log("increase image");
-			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) + 2);
+			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) + 20);
 		},
 
 		/**
@@ -56,7 +56,7 @@ define([], function() {
 		 */
 		decreaseSize : function() {
 			console.log("decrease image");
-			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) - 2);
+			app.selected_component.set("size", parseInt(app.selected_component.get("size"), 10) - 20);
 		}
 	});
 });
