@@ -201,7 +201,7 @@ def download(request, id):
 	from StringIO import StringIO
 	
 	if request.method == "GET" and id is not None:
-		# get the presentation based on its key
+		# get the presentation from the database based on its key
 		presentation = Presentation.objects.get(pk = id)
 		slides = presentation.get_slides()
 	
@@ -210,8 +210,11 @@ def download(request, id):
 				raise Http404
 		
 	elif request.method == "POST" and id is None:
+		# if the presentation is created as an anonymous user and its data is stored on the local web storage
+		
+		# create an empty Presentation queryset and assign data manually
 		presentation = Presentation.objects.none()
-		presentation.name = "Dyapos presentation"
+		presentation.name = "Dyapos_presentation"
 		presentation.theme_id = request.POST["theme_id"]
 		slides = json.loads(request.POST["slides"])
 	else:
@@ -223,14 +226,18 @@ def download(request, id):
  	# create a zip container file for the presentation
  	zip = ZipFile(s, "w")
 	
+	# download from internet the images of the image-components and add them to the zip file
 	for i in slides:
 		for j in i["components"]:
 			if j["type"] == "image":
+				# define an opener class with a fake user agent, in case the image url is protected from the headers
 				class MyOpener(urllib.FancyURLopener):
 				    version = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11'
 				
 				myopener = MyOpener()
+				# retrieve the image file from the url
 				retrieved_img = myopener.retrieve(j["external_url"])
+				# give the image a random name
  				j["external_url"] = "img/" + retrieved_img[0].split("/")[-1]
  				zip.write(retrieved_img[0], j["external_url"])
 
@@ -239,12 +246,15 @@ def download(request, id):
 		"presentation": presentation,
 		"slides": slides,
 		}, context_instance=RequestContext(request))
+	# delete all the references to the static url
 	presentation_content.content = presentation_content.content.replace(settings.STATIC_URL, "")
 	
+	# create a temporary file to store the presentation file
 	presentation_file = NamedTemporaryFile()
  	presentation_file.write(presentation_content.content)
  	presentation_file.seek(0)
  	
+ 	# store files on the zip
  	zip.write(presentation_file.name, presentation.name + ".html")
  	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impress.js", "js/impress.js")
  	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impress-progress.js", "js/impress-progress.js")
@@ -257,7 +267,7 @@ def download(request, id):
   	presentation_file.close()
 	
 	response = HttpResponse(s.getvalue(), content_type = "application/x-zip-compressed")
-	response["Content-Disposition"] = "attachment; filename=" + presentation.name + ".zip"
+	response["Content-Disposition"] = "attachment; filename=" + presentation.name.replace(" ", "_") + ".zip"
 	return response
 
 @login_required(login_url="/")

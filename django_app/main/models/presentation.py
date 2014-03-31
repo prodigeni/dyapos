@@ -150,9 +150,12 @@ class Presentation(models.Model):
 		# save the new copied presentation to the database
 		self.save()
 		
-		# copy the thumbnail
-		thumbnail_dst = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + self.key + ".png"
-		shutil.copy(thumbnail_src, thumbnail_dst)
+		try:
+			# copy the thumbnail
+			thumbnail_dst = settings.MEDIA_THUMBNAILS_ROOT + "/img_" + self.key + ".png"
+			shutil.copy(thumbnail_src, thumbnail_dst)
+		except IOError:
+			pass
 	
 		# Copy slides from MongoDB database
 		conn = pymongo.Connection(settings.MONGODB_URI)

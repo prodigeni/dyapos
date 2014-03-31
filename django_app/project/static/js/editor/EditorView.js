@@ -171,7 +171,13 @@ define(["Slide/SlideModel"], function (SlideModel) {
 				form.method = "post";
 				$(form).append("<input name='slides' value='" + JSON.stringify(app.slides.toJSON()) + "' />");
 				$(form).append("<input name='theme_id' value='" + _.last(localStorage.theme.split("_")) + "' />");
+
+				// I had to append it to the DOM because in Firefox submit() doesn't work if the node is not inside the DOM
+				form.style.display = "none";
+				document.body.appendChild(form);
+
 				form.submit();
+				form.remove();
 			}else{
 				window.location = event.target;
 			}
