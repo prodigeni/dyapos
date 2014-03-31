@@ -185,9 +185,9 @@ def export_presentation(request):
     return response
 
 @csrf_exempt
-def import_presentation(request):
-    file_content = request.FILES["presentation_file"].read()
-    return HttpResponse(file_content)
+def import_presentation(request):	
+	file_content = request.FILES["presentation_file"].read()
+	return HttpResponse(file_content)
 
 @csrf_exempt
 def download(request, id):
