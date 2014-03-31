@@ -84,7 +84,13 @@
     			{% endif %}
 
                 {% if component.type == "image" %}
-                <img src="/media/images/{{component.file}}" style="width:100%">
+                <img src="
+                {% if component.file %}
+                	/media/images/{{component.file}}
+                {% else %}
+                	{{component.external_url}}
+                {% endif %}
+                " style="width:100%">
                 {% endif %}
 
                 {% if component.type == "video" %}

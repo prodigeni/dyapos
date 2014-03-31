@@ -191,6 +191,11 @@ def import_presentation(request):
 
 @csrf_exempt
 def download(request, id):
+	"""Generates a ZIP package with all the presentation data for being presented offline
+	Args:
+		id (int): Presentation ID
+	"""
+	
 	from tempfile import NamedTemporaryFile
 	from zipfile import ZipFile
 	from StringIO import StringIO
@@ -212,6 +217,23 @@ def download(request, id):
 	else:
 		raise Http404
 
+	# Open StringIO to grab in-memory ZIP contents
+	s = StringIO()
+
+ 	# create a zip container file for the presentation
+ 	zip = ZipFile(s, "w")
+	
+	for i in slides:
+		for j in i["components"]:
+			if j["type"] == "image":
+				class MyOpener(urllib.FancyURLopener):
+				    version = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11'
+				
+				myopener = MyOpener()
+				retrieved_img = myopener.retrieve(j["external_url"])
+ 				j["external_url"] = "img/" + retrieved_img[0].split("/")[-1]
+ 				zip.write(retrieved_img[0], j["external_url"])
+
 	# get the presentation HTML content
 	presentation_content = render_to_response("view.html", {
 		"presentation": presentation,
@@ -223,11 +245,6 @@ def download(request, id):
  	presentation_file.write(presentation_content.content)
  	presentation_file.seek(0)
  	
-	# Open StringIO to grab in-memory ZIP contents
-	s = StringIO()
-
- 	# create a zip container file for the presentation
- 	zip = ZipFile(s, "w")
  	zip.write(presentation_file.name, presentation.name + ".html")
  	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impress.js", "js/impress.js")
  	zip.write(settings.BASE_DIR + settings.STATIC_URL + "js/impress-progress.js", "js/impress-progress.js")
