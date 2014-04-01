@@ -92,6 +92,10 @@ define([], function() {
 
 			this.$el.html(template);
 			return this;
-		}
+		},
+
+		// showResizable : function(){
+			// this.$el.resizable();
+		// }
 	});
 });

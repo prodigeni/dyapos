@@ -54,7 +54,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 			var component = new TextCompModel({
 				"type" : "text",
 				"text_type" : "title",
-				"font_size" : 3,
 				"pos_x" : 200,
 				"pos_y" : 50,
 				"slide" : app.slides.get(app.selected_slide),
@@ -74,7 +73,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 			var component = new TextCompModel({
 				"type" : "text",
 				"text_type" : "subtitle",
-				"font_size" : 2,
 				"pos_x" : 200,
 				"pos_y" : 50,
 				"slide" : app.slides.get(app.selected_slide),
@@ -94,7 +92,6 @@ define(["Component/Text/TextModel"], function(TextCompModel) {
 			var component = new TextCompModel({
 				"type" : "text",
 				"text_type" : "body",
-				"font_size" : 1,
 				"pos_x" : 200,
 				"pos_y" : 50,
 				"slide" : app.slides.get(app.selected_slide),

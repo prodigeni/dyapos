@@ -1,19 +1,19 @@
 .title{
-	font-size: 3em;
+	font-size: 128px;
 	line-height: 1.1em;
 	color: #a3cfe6;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 .subtitle{
-	font-size: 2em;
+	font-size: 92px;
 	line-height: 1.1em;
 	color: #4f75ba;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 .body{
-	font-size: 1em;
+	font-size: 80px;
 	line-height: 1.1em;
 	color: white;
 }

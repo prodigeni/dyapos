@@ -21,7 +21,7 @@ define(["Component/ComponentModel"], function(ComponentModel) {
 			type : "image",
 			file : null,
 			external_url : null,
-			size : 40 //Default 40% in relation to the slide container
+			size : 400 //Default 500px
 		}
 	});
 	_.extend(model.prototype.defaults, ComponentModel.prototype.defaults);

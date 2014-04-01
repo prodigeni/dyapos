@@ -21,7 +21,7 @@
 <div id="impress">
 
 {% autoescape off %}
-
+{% spaceless %}
 	{% for slide in slides %}
     	<div class="step" id="step-{{forloop.counter0}}" data-x="{{slide.pos_x}}" data-y="{{slide.pos_y}}" data-scale="{{slide.scale}}"
     	{% if slide.rotation_x %}
@@ -102,7 +102,7 @@
 
     	</div>
     {% endfor %}
-
+{% endspaceless %}
 {% endautoescape %}
 
 </div>

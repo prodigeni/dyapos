@@ -21,15 +21,10 @@ define([], function() {
 
 		events : {
 			/**
-			 * Calls increaseFont()
-			 * @event click #btn-increase-font
-			 */
-			"click #btn-increase-font" : "increaseFont",
-			/**
-			 * Calls decreaseFont()
-			 * @event click #btn-decrease-font
+			 * Calls setFontSize()
+			 * @event click #dropdown-font-size li
 			*/
-			"click #btn-decrease-font" : "decreaseFont",
+			"click #dropdown-font-size li" : "setFontSize",
 			/**
 			 * Calls toggleBold()
 			 * @event click #bold-btn
@@ -73,25 +68,13 @@ define([], function() {
 		},
 
 		/**
-		 * Increases the font size
-		 * @method increaseFont
+		 * Sets a font size
+		 * @method setFontSize
 		 */
-		increaseFont : function() {
-			console.log("increaseFont");
-			var size = parseFloat(app.selected_component.get("font_size"));
-			size = size + 0.2;
-			app.selected_component.set("font_size", size);
-		},
-
-		/**
-		 * Decreases the font size
-		 * @method decreaseFont
-		 */
-		decreaseFont : function() {
-			console.log("decreaseFont");
-			var size = parseFloat(app.selected_component.get("font_size"));
-			size = size - 0.2;
-			app.selected_component.set("font_size", size);
+		setFontSize : function(event) {
+			console.log("set font size");
+			var font_size = parseInt(event.target.dataset.value, 10);
+			app.selected_component.set("font_size", font_size);
 		},
 
 		/**

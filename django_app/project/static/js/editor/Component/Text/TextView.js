@@ -59,7 +59,7 @@ define([], function() {"use strict";
 							style += "color:" + value + ";";
 							break;
 						case "font_size":
-							style += "font-size:" + value + "em;";
+							style += "font-size:" + value + "px;";
 							break;
 					}
 				}

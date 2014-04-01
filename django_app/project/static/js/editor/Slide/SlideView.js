@@ -129,7 +129,6 @@ define(["Component/ComponentView", "Component/Text/TextModel"], function (Compon
 				component = new TextCompModel({
 					"type": "text",
 					"text_type": "subtitle",
-					"font_size": 2,
 					"pos_x": app.slide_clicked_point.left,
 					"pos_y": app.slide_clicked_point.top,
 					"slide": app.slides.get(app.selected_slide)
