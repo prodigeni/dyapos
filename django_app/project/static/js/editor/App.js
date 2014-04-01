@@ -102,9 +102,8 @@ define(["Slide/SlideModel",
 		 * @method deselectAllComponents
 		 */
 		app.deselectAllComponents = function () {
-			$(".component-options").hide();
 			$(".component").removeClass("selected-component hoverable");
-			$(".toolbox").hide();
+			$(".toolbox, .component-options, .btn-resize-image").hide();
 			app.selected_component = null;
 		};
 

@@ -334,8 +334,12 @@ optionsPanel()
 			&:hover
 				border 2px solid $primary_color
 
-.ui-resizable-se
-	width 50px
-	height 50px
-	right -50px
-	bottom -50px
+.image
+	.btn-image-resizer
+		display none
+		position absolute
+		right -45px
+		bottom -80px;
+		color $primary_color
+		font-size 1.5em
+		transform rotate(-45deg)
